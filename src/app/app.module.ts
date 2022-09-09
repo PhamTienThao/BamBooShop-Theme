@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ProductTemplateComponent } from './components/product-template/product-template.component';
 import { ArticleComponent } from './containers/client/article/article.component';
 import { ArticleCategoryComponent } from './containers/client/article-category/article-category.component';
@@ -22,6 +23,17 @@ import { SearchComponent } from './containers/client/search/search.component';
 import { SignUpComponent } from './containers/client/sign-up/sign-up.component';
 import { EmptyCardComponent } from './containers/client/empty-card/empty-card.component';
 import { ThankYouPageComponent } from './containers/client/thank-you-page/thank-you-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocialAuthServiceConfig, SocialAuthService, FacebookLoginProvider, SocialLoginModule, GoogleLoginProvider } from 'angularx-social-login';
+import { AuthGuardService } from './containers/client/auth/auth-guard.service';
+import { ErrorInterceptor } from './containers/client/auth/error.interceptor';
+import { JwtInterceptor } from './containers/client/auth/jwt.interceptor';
+import { HostImageClientPipe } from './core/pipe/host-image-client.pipe';
+import { SafePipe } from './core/pipe/safe.pipe';
+import { OrderStatusPipe } from './core/pipe/order-status.pipe';
+import { PipeHostImagePipe } from './core/pipe/pipe-host-image.pipe';
 
 @NgModule({
   declarations: [
@@ -44,13 +56,52 @@ import { ThankYouPageComponent } from './containers/client/thank-you-page/thank-
     SearchComponent,
     SignUpComponent,
     EmptyCardComponent,
-    ThankYouPageComponent
+    ThankYouPageComponent,
+    HostImageClientPipe,
+    SafePipe,
+    PipeHostImagePipe,
+    OrderStatusPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: NZ_I18N, useValue: en_US },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: { 
+          autoLogin: false, 
+          providers: [
+              {
+                id:GoogleLoginProvider.PROVIDER_ID,
+                provider:new GoogleLoginProvider(
+                  '251499186409-9rhhvhr9o1jgnrj4luf7gcro2q5l26r6.apps.googleusercontent.com',
+                  {
+                    scope: 'email',
+                    plugin_name: 'login-app'
+                  })
+              },
+              {
+                id:FacebookLoginProvider.PROVIDER_ID,
+                provider:new FacebookLoginProvider('601671584841160')
+              },
+            ],
+          onError: (err) => {
+            console.log(err);
+          }
+        } as SocialAuthServiceConfig
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

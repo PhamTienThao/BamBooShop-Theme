@@ -1,54 +1,40 @@
-<div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
-  <!-- Single Prodect -->
-  <div class="product">
-    <span class="badges">
-      <span class="new">New</span>
-    </span>
-    <div class="thumb">
-      <a href="single-product.html" class="image">
-        <img src="assets/images/product-image/1.webp" alt="Product" />
-        <img
-          class="hover-image"
-          src="assets/images/product-image/1.webp"
-          alt="Product"
-        />
+<!-- ChangeTheme -->
+
+<div class="product">
+  <div class="thumb">
+    <a routerLink="/san-pham/{{ product.Alias }}" class="image">
+      <img [src]="product.Image | hostImageClient" alt="Product" />
+    </a>
+  </div>
+  <div class="content">
+    <!-- <span class="category"><a href="#">Accessories</a></span> -->
+    <h5 class="title">
+      <a routerLink="/san-pham/{{ product.Alias }}">
+        {{ product.Name }}
       </a>
-    </div>
-    <div class="content">
-      <span class="category"><a href="#">Accessories</a></span>
-      <h5 class="title">
-        <a href="single-product.html">Modern Smart Phone </a>
-      </h5>
-      <span class="price">
-        <span class="new">$38.50</span>
-      </span>
-    </div>
+    </h5>
+    <span class="price">
+      <span class="old">{{ product.DiscountPrice | number }}đ</span>
+      <span class="new">{{ product.Price | number }}đ</span>
+    </span>
+  </div>
+
+  <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
     <div class="actions">
       <button
         title="Add To Cart"
         class="action add-to-cart"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal-Cart"
+        (click)="addToCart()"
       >
-        <i class="pe-7s-shopbag"></i>
-      </button>
-      <button
-        class="action quickview"
-        data-link-action="quickview"
-        title="Quick view"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <i class="pe-7s-look"></i>
-      </button>
-      <button
-        class="action compare"
-        title="Compare"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal-Compare"
-      >
-        <i class="pe-7s-refresh-2"></i>
+        <span>Thêm vào giỏ</span>
       </button>
     </div>
   </div>
+  <ng-template #QuantityNotAvailable>
+    <div class="actions">
+      <div title="Add To Cart" class="quantityNotAvailable">
+        <span>Đang hết hàng</span>
+      </div>
+    </div>
+  </ng-template>
 </div>
