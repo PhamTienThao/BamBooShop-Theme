@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+//import { NzMessageService } from 'ng-zorro-antd/message';
 import { Product } from 'src/app/core/model/product';
 import { CartService } from 'src/app/core/service/cart.service';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class ProductTemplateComponent implements OnInit {
   @Input() product!: Product
   constructor(
-    private messageService: NzMessageService,
+    //private messageService: NzMessageService,
     private cartService: CartService
   ) { }
 
@@ -27,7 +27,7 @@ export class ProductTemplateComponent implements OnInit {
           x.ProductAttributes[0].Checked = true;
       })
     }
-    this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
+    //this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
     this.cartService.addProductToCart(this.product);
   }
 }

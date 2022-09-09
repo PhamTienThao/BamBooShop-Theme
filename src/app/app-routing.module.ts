@@ -67,7 +67,7 @@ const routes: Routes = [
 //       component: ArticleExtComponent
 //     },
     {
-      path: "san-pham", //:alias
+      path: "san-pham/:alias", //:alias
       component: ProductDetailComponent
     },
     {
