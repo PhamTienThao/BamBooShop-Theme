@@ -34,6 +34,7 @@ import { HostImageClientPipe } from './core/pipe/host-image-client.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
 import { OrderStatusPipe } from './core/pipe/order-status.pipe';
 import { PipeHostImagePipe } from './core/pipe/pipe-host-image.pipe';
+import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { PipeHostImagePipe } from './core/pipe/pipe-host-image.pipe';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    NzMessageModule
   ],
   providers: [
     AuthGuardService,
