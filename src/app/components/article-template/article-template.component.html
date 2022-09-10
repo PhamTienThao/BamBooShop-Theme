@@ -1,0 +1,25 @@
+<div class="single-blog">
+    <div class="blog-image">
+        <a routerLink="/bai-viet/{{article.Alias}}">
+            <img [src]="article.Image | hostImageClient" class="img-responsive w-100" alt="" />
+        </a>
+    </div>
+    <div class="blog-text">
+        <div class="blog-athor-date line-height-1">
+            <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{article.Created | date:'dd/MM/yyyy'}}</span>
+            <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i></a></span>
+        </div>
+        <h5 class="blog-heading">
+            <a routerLink="/bai-viet/{{article.Alias}}" class="blog-heading-link">
+                {{article.Title}}
+            </a>
+        </h5>
+        <p>
+            {{article.ShortDescription}}
+        </p>
+        <a routerLink="/bai-viet/{{article.Alias}}" class="btn btn-primary blog-btn">
+            Read More
+        </a>
+    </div>
+</div>
+<br>

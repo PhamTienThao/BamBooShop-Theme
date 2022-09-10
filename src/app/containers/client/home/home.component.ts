@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Article } from 'src/app/core/model/article';
 import { Gallery } from 'src/app/core/model/gallery';
 import { Menu } from 'src/app/core/model/menu';
@@ -60,7 +61,8 @@ export class HomeComponent implements OnInit {
     private menuService: MenuService,
     private articleService: ArticleService,
     private galleryService: GalleryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private messageService: NzMessageService,
   ) { }
 
   ngOnInit() {
@@ -71,42 +73,76 @@ export class HomeComponent implements OnInit {
   }
 
   getBanner() {
-    this.galleryService.get({})
-      .subscribe((resp: any) => {
+    // this.galleryService.get({})
+    //   .subscribe((resp: any) => {
+    //     let datas: Gallery[] = JSON.parse(resp["data"]);
+    //     this.mainBanner = datas.filter(x => x.Type == 1);
+    //   }, error => {
+
+    //   })
+    this.galleryService.get({}).subscribe({
+      next: (resp: any) => {
         let datas: Gallery[] = JSON.parse(resp["data"]);
         this.mainBanner = datas.filter(x => x.Type == 1);
-      }, error => {
-
-      })
+      },
+      error: (err: any) => {
+        this.messageService.error(err);
+      }
+    }
+    );
   }
 
   getProductSelling() {
-    this.productService.getSelling()
-      .subscribe((resp: any) => {
-        this.productSellings = JSON.parse(resp["data"]);
-      }, error => {
+    // this.productService.getSelling()
+    //   .subscribe((resp: any) => {
+    //     this.productSellings = JSON.parse(resp["data"]);
+    //   }, error => {
 
-      })
+    //   })
+    this.productService.getSelling().subscribe({
+      next: (resp:any) =>{
+        this.productSellings = JSON.parse(resp["data"]);
+      },
+      error: (err: any) => {
+        this.messageService.error(err);
+      }
+    });
   }
 
   getAllMenuHomePage() {
-    this.menuService.getAllMenuHomePage()
-      .subscribe((resp: any) => {
+    // this.menuService.getAllMenuHomePage()
+    //   .subscribe((resp: any) => {
+    //     this.menuHomePages = JSON.parse(resp["data"]);
+    //     console.log(this.menuHomePages)
+
+    //   }, error => {
+
+    //   })
+    this.menuService.getAllMenuHomePage().subscribe({
+      next: (resp: any) => {
         this.menuHomePages = JSON.parse(resp["data"]);
-        console.log(this.menuHomePages)
-
-      }, error => {
-
-      })
+      },
+      error: (err: any) => {
+        this.messageService.error(err);
+      }
+    });
   }
 
   getHighlightArticle() {
-    this.articleService.getHighlight()
-      .subscribe((resp: any) => {
-        this.highlightArticle = JSON.parse(resp["data"])
-      }, error => {
+    // this.articleService.getHighlight()
+    //   .subscribe((resp: any) => {
+    //     this.highlightArticle = JSON.parse(resp["data"])
+    //   }, error => {
 
-      })
+    //   })
+    this.articleService.getHighlight().subscribe({
+      next: (resp: any) => {
+        this.highlightArticle = JSON.parse(resp["data"])
+      },
+      error: (err: any) => {
+        this.messageService.error(err);
+      }
+    });
   }
 
 }

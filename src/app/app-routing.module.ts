@@ -54,14 +54,18 @@ const routes: Routes = [
 //       canActivate: [AuthGuardService],
 //       component: OrderSuccessfulComponent
 //     },
-//     {
-//       path: "danh-muc-bai-viet/:alias",
-//       component: ArticleCategoryComponent
-//     },
-//     {
-//       path: "bai-viet/:alias",
-//       component: ArticleComponent
-//     },
+    {
+      path: "danh-muc-bai-viet/:alias",
+      component: ArticleCategoryComponent
+    },
+    {
+      path: "danh-muc-bai-viet",
+      component: ArticleCategoryComponent
+    },
+    {
+      path: "bai-viet/:alias",
+      component: ArticleComponent
+    },
 //     {
 //       path: "thong-tin/:alias",
 //       component: ArticleExtComponent
@@ -75,7 +79,7 @@ const routes: Routes = [
       component: PageNotFoundComponent
     },
     {
-      path: "dien-thoai",
+      path: ":alias",
       component: CategoryComponent
     },
     {
