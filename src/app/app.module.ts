@@ -85,8 +85,8 @@ import { ArticleTemplateHorizontalComponent } from './components/article-templat
     { provide: NZ_I18N, useValue: en_US },
     {
       provide: 'SocialAuthServiceConfig',
-      useValue: { 
-          autoLogin: false, 
+      useValue: {
+          autoLogin: false,
           providers: [
               {
                 id:GoogleLoginProvider.PROVIDER_ID,
