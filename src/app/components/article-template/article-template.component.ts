@@ -12,7 +12,7 @@ export class ArticleTemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.article.Created)
+    //console.log(this.article)
   }
 
 }

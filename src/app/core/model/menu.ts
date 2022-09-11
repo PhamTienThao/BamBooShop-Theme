@@ -2,19 +2,19 @@ import { Article } from "./article";
 import { Product } from "./product";
 
 export interface Menu {
-    Id: number;
-    ParentMenu: number;
+    Id: number | null;
+    ParentMenu: number | null;
     Group: string;
     Name: string;
     Alias: string;
-    Index: number;
+    Index: number | null;
     ShowHomePage: boolean;
     Type: string;
     Active: boolean;
 
-    SubMenus: Menu[];
-    PMenu: Menu;
+    SubMenus: Menu[] | null;
+    PMenu: Menu | null;
 
-    Products: Product[],
-    Articles: Article[]
+    Products: Product[] | null;
+    Articles: Article[] | null;
 }

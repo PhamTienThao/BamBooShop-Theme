@@ -27,4 +27,7 @@ export class ArticleService extends BaseService {
   getByAlias(alias: string) {
     return this.http.get(this.routerPrefix + "/get-by-alias/" + alias)
   }
+  getAll(){
+    return this.http.get(this.routerPrefix + "/get-all-article");
+  }
 }

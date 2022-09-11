@@ -1,0 +1,9 @@
+.article-image img {
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  padding: 2px;
+  border-radius: 5px;
+}
+h5 .title {
+  font-size: 16px;
+}

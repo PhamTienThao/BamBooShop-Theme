@@ -36,6 +36,7 @@ import { OrderStatusPipe } from './core/pipe/order-status.pipe';
 import { PipeHostImagePipe } from './core/pipe/pipe-host-image.pipe';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
+import { ArticleTemplateHorizontalComponent } from './components/article-template-horizontal/article-template-horizontal.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ArticleTemplateComponent } from './components/article-template/article-
     SafePipe,
     // PipeHostImagePipe,
     // OrderStatusPipe,
-    ArticleTemplateComponent
+    ArticleTemplateComponent,
+    ArticleTemplateHorizontalComponent
   ],
   imports: [
     BrowserModule,

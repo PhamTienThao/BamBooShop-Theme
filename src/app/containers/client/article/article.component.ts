@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { Article } from 'src/app/core/model/article';
+import { Menu } from 'src/app/core/model/menu';
+import { ArticleService } from 'src/app/core/service/article.service';
 
 @Component({
   selector: 'app-article',
@@ -6,10 +11,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+  menu!: Menu;
+  articleAlias: string = "";
+  article!: Article;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private articleService: ArticleService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private messageService: NzMessageService
+  ) {
+    this.router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        this.articleAlias = this.activatedRoute.snapshot.params['alias'];
+        this.getData();
+      }
+    });
   }
 
+  ngOnInit() {
+    this.articleAlias = this.activatedRoute.snapshot.params['alias'];
+    this.getData();
+  }
+
+  getData() {
+    this.articleService.getByAlias(this.articleAlias)
+      .subscribe({
+        next: (resp: any) => {
+          this.article = JSON.parse(resp["data"])
+          this.getArticleRelated();
+        }, 
+        error: (err: any) => {
+          this.messageService.error("Error loading article");
+        }
+      })
+  }
+
+  getArticleRelated() {
+    if (this.article != null) {
+      this.articleService.getByMenu(this.article.Menu.Alias, 10)
+        .subscribe({
+          next: (resp: any) => {
+            this.menu = JSON.parse(resp["data"])
+          },
+          error: (err: any) => {
+            this.messageService.error("Error loading article");
+          }
+        })
+    }
+  }
 }

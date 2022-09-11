@@ -1,0 +1,15 @@
+<div class="thumb-side">
+    <a href="blog-single-left-sidebar.html">
+        <div class="article-image">
+            <img [src]="article.Image | hostImageClient" />
+        </div>
+    </a>
+</div>
+<div class="media-side">
+    <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{article.Created| date:'dd/MM/yyyy'}} </span>
+    <h5>
+        <a class="title" routerLink="/bai-viet/{{article.Alias}}">
+            {{article.Title.substring(0,60)}}...
+        </a>
+    </h5>
+</div>
