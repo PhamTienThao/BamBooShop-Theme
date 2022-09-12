@@ -102,6 +102,7 @@ export class LayoutComponent implements OnInit {
   }
 
   submitRegistration() {
+
     for (const i in this.formRegistration.controls) {
       if (this.formRegistration.controls.hasOwnProperty(i)) {
         this.formRegistration.controls[i].markAsDirty();
@@ -111,14 +112,13 @@ export class LayoutComponent implements OnInit {
     if (this.formRegistration.invalid) {
       return;
     }
-
     this.emailRegistrationService.post(this.formRegistration.getRawValue())
       .subscribe({
         next: (resp: any) => {
           this.messageService.success("Đăng ký thành công.");
           this.formRegistration.reset();
         }, error: (err: any) => {
-          //this.messageService.error(err)
+          this.messageService.error(err)
         }
       })
   }

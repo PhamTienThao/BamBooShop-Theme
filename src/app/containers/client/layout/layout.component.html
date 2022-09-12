@@ -7,20 +7,20 @@
         <div class="row justify-content-between align-items-center">
           <div class="col">
             <div class="welcome-text">
-              <p>World Wide Completely Free Returns and Shipping</p>
+              <p>Made by BamBooShop</p>
             </div>
           </div>
           <div class="col d-none d-lg-block">
             <div class="top-nav">
               <ul>
                 <li>
-                  <a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a>
+                  <a href="tel:{{website.PhoneNumber}}"><i class="fa fa-phone"></i> {{website.PhoneNumber}}</a>
                 </li>
                 <li>
-                  <a href="mailto:demo@example.com"><i class="fa fa-envelope-o"></i> demo@example.com</a>
+                  <a href="mailto:{{website.Email}}"><i class="fa fa-envelope-o"></i> {{website.Email}}</a>
                 </li>
                 <li>
-                  <a routerLink="tai-khoan"><i class="fa fa-user"></i> Account</a>
+                  <a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a>
                 </li>
               </ul>
             </div>
@@ -194,7 +194,7 @@
                 <div class="footer-links">
                   <!-- News letter area -->
                   <div class="search-element">
-                    <form action="#">
+                    <form [formGroup]="formRegistration" (ngSubmit)="submitRegistration()">
                       <input formControlName="Email" type="text" placeholder="Email" />
                       <button type="submit"><i class="fa fa-envelope"></i></button>
                     </form>
