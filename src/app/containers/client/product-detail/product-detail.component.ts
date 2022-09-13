@@ -7,6 +7,7 @@ import { CartService } from 'src/app/core/service/cart.service';
 import { ProductService } from 'src/app/core/service/product.service';
 import { Constants } from 'src/app/core/util/constants';
 
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -15,25 +16,40 @@ import { Constants } from 'src/app/core/util/constants';
 export class ProductDetailComponent implements OnInit {
   productAlias: string = ""
   product!: Product;
-  qty: number =1;
+  qty: number = 1;
   image: string = "./assets/imgs/tivi.png";
   //hmtien add 26/8
   qtyAvailable!: boolean;
+  // config: any = {
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //   },
+  //   paginationClickable: true,
+  //   navigation: {
+  //     nextEl: '.swiper-button-next',
+  //     prevEl: '.swiper-button-prev',
+  //   },
+  //   spaceBetween: 30
+  // };
   constructor(
+
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
     private messageService: NzMessageService,
     private ngZone: NgZone,
-    private router: Router) { this.router.events.forEach((event) => {
+    private router: Router) {
+    this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this.productAlias = this.activatedRoute.snapshot.params['alias'];
         this.getData();
-        if(this.product.Quantity>0) this.qtyAvailable= true;
-        else this.qtyAvailable=false;
+        if (this.product.Quantity > 0) this.qtyAvailable = true;
+        else this.qtyAvailable = false;
         console.log(this.qtyAvailable);
       }
-    });}
+    });
+  }
+
 
   ngOnInit(): void {
     this.productAlias = this.activatedRoute.snapshot.params['alias'];
@@ -42,17 +58,19 @@ export class ProductDetailComponent implements OnInit {
 
   getData() {
     this.productService.getByAlias(this.productAlias)
-      .subscribe((resp: any) => {
-        this.product = JSON.parse(resp["data"]);
+      .subscribe({
+        next: (resp: any) => {
+          this.product = JSON.parse(resp["data"]);
 
-        if(this.qty>this.product.Quantity){
-          this.qty=this.product.Quantity
-        } else if (this.qty <0){
-          this.qty =1
+          if (this.qty > this.product.Quantity) {
+            this.qty = this.product.Quantity
+          } else if (this.qty < 0) {
+            this.qty = 1
+          }
+
+        }, error: (err: any) => {
+          this.messageService.error("Thông tin sản phẩm không khả dụng");
         }
-
-      }, error => {
-        this.messageService.error("Thông tin sản phẩm không khả dụng");
       });
   }
 
@@ -89,12 +107,11 @@ export class ProductDetailComponent implements OnInit {
     //fix bug product qty when add to cart
     this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
     this.cartService.addProductToCart(this.product, this.qty);
-    console.log(localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART));
   }
 
   buyNow() {
-    if(this.qty> this.product.Quantity||this.qty<1){
-      this.messageService.error("Số lượng sản phẩm ko hợp lệ");
+    if (this.qty > this.product.Quantity || this.qty < 1) {
+      this.messageService.error("Số lượng sản phẩm không hợp lệ");
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {

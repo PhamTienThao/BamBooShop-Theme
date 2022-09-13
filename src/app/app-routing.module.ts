@@ -15,117 +15,112 @@ import { ProductDetailComponent } from './containers/client/product-detail/produ
 import { ArticleComponent } from './containers/client/article/article.component';
 
 const routes: Routes = [
-//   {
-// //   path: "admin",
-// //   loadChildren: () => import('./containers/admin/admin.module').then(m => m.AdminModule),
-// // },
-{
-  path: "",
-  component: LayoutComponent,
-  children: [
-//     {
-//       path: "profile",
-//       canActivate: [AuthGuardService],
-//       component: ProfileComponent
-//     },
-//     {
-//       path: "dang-nhap",
-//       component: LoginComponent
-//     },
-//     {
-//       path: "dang-ky-tai-khoan",
-//       component: SignUpComponent
-//     },
-//     {
-//       path: "dang-xuat",
-//       component: LogoutComponent
-//     },
-//     {
-//       path: "quen-mat-khau",
-//       component: ForgotPasswordComponent
-//     },
-//     {
-//       path: "gio-hang",
-//       canActivate: [AuthGuardService],
-//       component: CartComponent
-//     },
-//     {
-//       path: "dat-hang-thanh-cong",
-//       canActivate: [AuthGuardService],
-//       component: OrderSuccessfulComponent
-//     },
-    {
-      path: "danh-muc-bai-viet/:alias",
-      component: ArticleCategoryComponent
-    },
-    {
-      path: "danh-muc-bai-viet",
-      component: ArticleCategoryComponent
-    },
-    {
-      path: "bai-viet/:alias",
-      component: ArticleComponent
-    },
-//     {
-//       path: "thong-tin/:alias",
-//       component: ArticleExtComponent
-//     },
-    {
-      path: "san-pham/:alias", //:alias
-      component: ProductDetailComponent
-    },
-    {
-      path: "not-found",
-      component: PageNotFoundComponent
-    },
-    {
-      path: ":alias",
-      component: CategoryComponent
-    },
-    {
-      path: "gio-hang",
-      component: CartComponent
-    },
-    {
-      path: "tai-khoan",
-      component: ProfileComponent
-    },
-    {
-      path: "dang-nhap",
-      component: LoginComponent
-    },
-    {
-      path: "danh-sach-bai-viet",
-      component: ArticleCategoryComponent
-    },
-    {
-      path: "bai-viet",
-      component: ArticleComponent
-    },
-    {
-      path: "gio-hang-trong",
-      component: EmptyCardComponent
-    },
-    {
-      path: "dat-hang-thanh-cong",
-      component: ThankYouPageComponent
-    },
+  //   {
+  // //   path: "admin",
+  // //   loadChildren: () => import('./containers/admin/admin.module').then(m => m.AdminModule),
+  // // },
+  {
+    path: "",
+    component: LayoutComponent,
+    children: [
+      //     {
+      //       path: "profile",
+      //       canActivate: [AuthGuardService],
+      //       component: ProfileComponent
+      //     },
+      {
+        path: "dang-nhap",
+        component: LoginComponent
+      },
+      //     {
+      //       path: "dang-ky-tai-khoan",
+      //       component: SignUpComponent
+      //     },
+      //     {
+      //       path: "dang-xuat",
+      //       component: LogoutComponent
+      //     },
+      //     {
+      //       path: "quen-mat-khau",
+      //       component: ForgotPasswordComponent
+      //     },
+      //     {
+      //       path: "gio-hang",
+      //       canActivate: [AuthGuardService],
+      //       component: CartComponent
+      //     },
+      //     {
+      //       path: "dat-hang-thanh-cong",
+      //       canActivate: [AuthGuardService],
+      //       component: OrderSuccessfulComponent
+      //     },
+
+      {
+        path: "danh-muc-bai-viet",
+        component: ArticleCategoryComponent
+      },
+
+      //     {
+      //       path: "thong-tin/:alias",
+      //       component: ArticleExtComponent
+      //     },
+
+      {
+        path: "not-found",
+        component: PageNotFoundComponent
+      },
+      {
+        path: "gio-hang",
+        component: CartComponent
+      },
+      {
+        path: "tai-khoan",
+        component: ProfileComponent
+      },
+      {
+        path: "danh-sach-bai-viet",
+        component: ArticleCategoryComponent
+      },
+      {
+        path: "bai-viet",
+        component: ArticleComponent
+      },
+      {
+        path: "gio-hang-trong",
+        component: EmptyCardComponent
+      },
+      {
+        path: "dat-hang-thanh-cong",
+        component: ThankYouPageComponent
+      },
 
 
-//     {
-//       path: "tim-kiem/:alias",
-//       component: SearchComponent
-//     },
-//     {
-//       path: ":alias",
-//       component: CategoryComponent
-//     },
-    {
-      path: "",
-      component: HomeComponent
-    }
-  ]
-},
+      //     {
+      //       path: "tim-kiem/:alias",
+      //       component: SearchComponent
+      //     },
+      {
+        path: "san-pham/:alias", //:alias
+        component: ProductDetailComponent
+      },
+      {
+        path: "bai-viet/:alias",
+        component: ArticleComponent
+      },
+      {
+        path: "danh-muc-bai-viet/:alias",
+        component: ArticleCategoryComponent
+      },
+      {
+        path: ":alias",
+        component: CategoryComponent
+      },
+      {
+        path: "",
+        component: HomeComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({
