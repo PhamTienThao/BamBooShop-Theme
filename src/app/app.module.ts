@@ -41,6 +41,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { SwiperModule } from 'swiper/angular';
 
 
+import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { SwiperModule } from 'swiper/angular';
     // OrderStatusPipe,
     ArticleTemplateComponent,
     ArticleTemplateHorizontalComponent,
+    ArticleExtComponent
   ],
   imports: [
     BrowserModule,

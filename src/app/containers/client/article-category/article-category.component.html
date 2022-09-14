@@ -8,7 +8,7 @@
       <div class="col-lg-6 col-md-6 col-xl-4 mb-50px" *ngFor="let item of menu?.Articles">
         <div class="single-blog">
           <div class="blog-image">
-            <a routerLink="/bai-viet">
+            <a routerLink="/bai-viet/{{item.Alias}}">
               <img [src]="item.Image | hostImageClient" class="img-responsive w-100" alt="" />
             </a>
           </div>

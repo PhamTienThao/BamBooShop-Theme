@@ -1,0 +1,27 @@
+<div *ngIf="article != null" class="container">
+    <div class="box-breadcrumb">
+        <div>
+            <div>
+                <a routerLink="/">Trang chủ</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div nz-row>
+            <div nz-col nzSpan="24">
+                <div>
+                    <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{article.Created |
+                        date:'dd/MM/yyyy'}}
+                    </span>
+                </div>
+                <h1 class="title">{{article.Title}}</h1>
+                <div>
+                    <div [innerHTML]="article.ShortDescription"> </div>
+                </div>
+                <div>
+                    <div [innerHTML]="article.Description"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
