@@ -38,10 +38,6 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import { ArticleTemplateHorizontalComponent } from './components/article-template-horizontal/article-template-horizontal.component';
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { SwiperModule } from 'swiper/angular';
-
-
 
 @NgModule({
   declarations: [
@@ -82,10 +78,7 @@ import { SwiperModule } from 'swiper/angular';
     ReactiveFormsModule,
     HttpClientModule,
     SocialLoginModule,
-    NzMessageModule,
-    NzTabsModule,
-    SwiperModule,
-
+    NzMessageModule
   ],
   providers: [
     AuthGuardService,
@@ -94,27 +87,27 @@ import { SwiperModule } from 'swiper/angular';
     { provide: NZ_I18N, useValue: en_US },
     {
       provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '251499186409-9rhhvhr9o1jgnrj4luf7gcro2q5l26r6.apps.googleusercontent.com',
+      useValue: { 
+          autoLogin: false, 
+          providers: [
               {
-                scope: 'email',
-                plugin_name: 'login-app'
-              })
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('601671584841160')
-          },
-        ],
-        onError: (err) => {
-          console.log(err);
-        }
-      } as SocialAuthServiceConfig
+                id:GoogleLoginProvider.PROVIDER_ID,
+                provider:new GoogleLoginProvider(
+                  '251499186409-9rhhvhr9o1jgnrj4luf7gcro2q5l26r6.apps.googleusercontent.com',
+                  {
+                    scope: 'email',
+                    plugin_name: 'login-app'
+                  })
+              },
+              {
+                id:FacebookLoginProvider.PROVIDER_ID,
+                provider:new FacebookLoginProvider('601671584841160')
+              },
+            ],
+          onError: (err) => {
+            console.log(err);
+          }
+        } as SocialAuthServiceConfig
     },
   ],
   bootstrap: [AppComponent]
