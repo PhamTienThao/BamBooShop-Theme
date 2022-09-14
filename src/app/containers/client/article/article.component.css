@@ -1,0 +1,3 @@
+:host ::ng-deep div img.lazyloaded {
+    max-width: 100%;
+}
