@@ -30,40 +30,59 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
-      {
-        path: "profile",
-        //canActivate: [AuthGuardService],
-        component: ProfileComponent
-      },
+      //     {
+      //       path: "profile",
+      //       canActivate: [AuthGuardService],
+      //       component: ProfileComponent
+      //     },
       {
         path: "dang-nhap",
         component: LoginComponent
       },
+      //     {
+      //       path: "dang-ky-tai-khoan",
+      //       component: SignUpComponent
+      //     },
+      //     {
+      //       path: "dang-xuat",
+      //       component: LogoutComponent
+      //     },
+      //     {
+      //       path: "quen-mat-khau",
+      //       component: ForgotPasswordComponent
+      //     },
+      //     {
+      //       path: "gio-hang",
+      //       canActivate: [AuthGuardService],
+      //       component: CartComponent
+      //     },
+      //     {
+      //       path: "dat-hang-thanh-cong",
+      //       canActivate: [AuthGuardService],
+      //       component: OrderSuccessfulComponent
+      //     },
+
       {
-        path: "dang-ky-tai-khoan",
-        component: SignUpComponent
+        path: "danh-muc-bai-viet",
+        component: ArticleCategoryComponent
       },
-      {
-        path: "dang-xuat",
-        component: LogoutComponent
-      },
-      {
-        path: "quen-mat-khau",
-        component: ForgotPasswordComponent
-      },
-      {
-        path: "gio-hang",
-        //canActivate: [AuthGuardService],
-        component: CartComponent
-      },
-      {
-        path: "dat-hang-thanh-cong",
-        //canActivate: [AuthGuardService],
-        component: OrderSuccessfulComponent
-      },
+
+      //     {
+      //       path: "thong-tin/:alias",
+      //       component: ArticleExtComponent
+      //     },
+
       {
         path: "not-found",
         component: PageNotFoundComponent
+      },
+      {
+        path: "gio-hang",
+        component: CartComponent
+      },
+      {
+        path: "tai-khoan",
+        component: ProfileComponent
       },
       {
         path: "danh-sach-bai-viet",
@@ -81,39 +100,32 @@ const routes: Routes = [
         path: "dat-hang-thanh-cong",
         component: ThankYouPageComponent
       },
+
+
+      //     {
+      //       path: "tim-kiem/:alias",
+      //       component: SearchComponent
+      //     },
       {
-        path: "tim-kiem/:alias",
-        component: SearchComponent
-      },
-      {
-        path: "danh-muc-bai-viet/:alias",
-        component: ArticleCategoryComponent
-      },
-      {
-        path: "danh-muc-bai-viet",
-        component: ArticleCategoryComponent
+        path: "san-pham/:alias", //:alias
+        component: ProductDetailComponent
       },
       {
         path: "bai-viet/:alias",
         component: ArticleComponent
       },
       {
-        path: "thong-tin/:alias",
-        component: ArticleExtComponent
-      },
-      {
-        path: "san-pham/:alias", //:alias
-        component: ProductDetailComponent
-      },
-      {
-        path: "",
-        component: HomeComponent
+        path: "danh-muc-bai-viet/:alias",
+        component: ArticleCategoryComponent
       },
       {
         path: ":alias",
         component: CategoryComponent
       },
-
+      {
+        path: "",
+        component: HomeComponent
+      }
     ]
   },
 ];
