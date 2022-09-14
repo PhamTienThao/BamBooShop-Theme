@@ -28,6 +28,8 @@ export class AuthenticationService {
         map((resp: any) => {
           localStorage.setItem(Constants.LOCAL_STORAGE_KEY.SESSION, resp["data"]);
           localStorage.setItem(Constants.LOCAL_STORAGE_KEY.TOKEN, JSON.parse(resp["data"])["Token"]);
+          console.log(localStorage.getItem(Constants.LOCAL_STORAGE_KEY.TOKEN))
+          console.log(localStorage.getItem(Constants.LOCAL_STORAGE_KEY.SESSION))
           return resp;
         })
       );

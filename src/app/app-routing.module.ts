@@ -31,8 +31,8 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "profile",
-        //canActivate: [AuthGuardService],
+        path: "tai-khoan",
+        canActivate: [AuthGuardService],
         component: ProfileComponent
       },
       {
