@@ -22,10 +22,10 @@ import { SearchComponent } from './containers/client/search/search.component';
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
 
 const routes: Routes = [
-  //   {
-  // //   path: "admin",
-  // //   loadChildren: () => import('./containers/admin/admin.module').then(m => m.AdminModule),
-  // // },
+  // {
+  //   path: "admin",
+  //   loadChildren: () => import('./containers/admin/admin.module').then(m => m.AdminModule),
+  // },
   {
     path: "",
     component: LayoutComponent,
@@ -53,12 +53,12 @@ const routes: Routes = [
       },
       {
         path: "gio-hang",
-        //canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         component: CartComponent
       },
       {
         path: "dat-hang-thanh-cong",
-        //canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         component: OrderSuccessfulComponent
       },
       {
@@ -88,7 +88,7 @@ const routes: Routes = [
       {
         path: "danh-muc-bai-viet/:alias",
         component: ArticleCategoryComponent
-      },   
+      },
       {
         path: "bai-viet/:alias",
         component: ArticleComponent
