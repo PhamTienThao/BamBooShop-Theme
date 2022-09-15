@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
-import { Order } from 'src/app/core/model/order';
+import { Order, OrderStatus } from 'src/app/core/model/order';
 import { OrderDetail } from 'src/app/core/model/order-detail';
 import { Review } from 'src/app/core/model/review';
+import { CustomerService } from 'src/app/core/service/customer.service';
 import { OrderService } from 'src/app/core/service/order.service';
 import { ReviewService } from 'src/app/core/service/review.service';
 
@@ -14,80 +15,59 @@ import { ReviewService } from 'src/app/core/service/review.service';
   styleUrls: ['./order-table.component.css']
 })
 export class OrderTableComponent implements OnInit {
-  @Input() order!: Order;
-
+  orders: Order[] = [];
   orderDetailSelected!: OrderDetail;
   isVisibleModal: boolean = false;
   tooltips = ['Rất không hài lòng', 'Không hài lòng', 'Bình thường', 'Hài lòng', 'Rất hài lòng'];
   reviewModel!: Review;
+  orderStatus = [
+    { value: 0, name: 'All' },
+    { value: 10, name: 'Waiting for confirm' },
+    { value: 20, name: 'Confirmed' },
+    { value: 30, name: 'Delivering' },
+    { value: 40, name: 'Delivered' },
+    { value: 50, name: 'Canceled' },
+  ];
+  orderFilter: Order[] = [];
 
   constructor(
     private reviewService: ReviewService,
     private orderService: OrderService,
     private messageService: NzMessageService,
     private spinner: NgxSpinnerService,
-  ) { }
-
-  ngOnInit(): void {
+    private customerService: CustomerService
+  ) {
   }
 
-  get getTotalAmount(): number {
-    let total: number = 0;
-    this.order.OrderDetails.forEach(x => {
-      total += x.Qty * x.ProductDiscountPrice;
-    })
-
-    return total;
+  ngOnInit() {
+    this.getOrders();
   }
 
-  review(orderDetail: OrderDetail) {
-    this.orderDetailSelected = orderDetail;
-    this.reviewService.getByOrder(this.orderDetailSelected.Id ?? 0)
-      .subscribe((resp: any) => {
-        let data: Review = JSON.parse(resp["data"]);
-        if (data == null) {
-          this.reviewModel = {
-            Content: "",
-            Star: 0,
-            Status: -1
-          };
+  chooseAttribute(event: any) {
+    let index = Number(event.target.value);
+    this.filterOrderByStatus(index);
+  }
+
+  filterOrderByStatus(status: number) {
+    if (status == 0) {
+      this.getOrders();
+    } else {
+      this.orderFilter = this.orders.filter(x => x.Status == status);
+    }
+  }
+  filterOrderStatusName(status: number) {
+    return this.orderStatus.find(x => x.value == status)?.name;
+  }
+  getOrders() {
+    this.customerService.getOrders()
+      .subscribe({
+        next: (resp: any) => {
+          this.orders = JSON.parse(resp["data"]);
+          this.orderFilter = this.orders;
+          this
+        }, error: (err: any) => {
         }
-        else {
-          this.reviewModel = data;
-        }
-        this.isVisibleModal = true;
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
       })
-
-  }
-
-  confirmReview() {
-    this.reviewService.review(this.orderDetailSelected.Id ?? 0, this.reviewModel.Star, this.reviewModel.Content)
-      .subscribe((resp: any) => {
-        this.messageService.success("Thành công");
-        this.isVisibleModal = false;
-        this.orderDetailSelected.IsReview = true;
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
-      })
-  }
-  cancelOrder(status: number) {
-    this.spinner.show();
-    this.orderService.changeStatus(this.order.Id, status)
-      .pipe(
-        finalize(() => {
-          this.spinner.hide();
-        })
-      )
-      .subscribe((resp: any) => {
-        this.messageService.success("Cập nhật thành công");
-        //this.showOrderDetail(this.orderSelected);
-        //this.getData();
-      }, error => {
-        this.messageService.error(error.error.message);
-      });
-      location.reload();
   }
 
 }

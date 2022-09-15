@@ -46,14 +46,9 @@
                 <p>{{ attributes.Name }}:</p>
               </div>
               <div class="shop-select">
-                <select class="shop-sort" #attributeSelected (change)="
-                    chooseAttribute(attributes.ProductAttributes, $event)
-                  ">
+                <select class="shop-sort" #attributeSelected (change)="chooseAttribute(attributes.ProductAttributes, $event)">
                   <!-- <option data-display="Balck">Balck</option> -->
-                  <option [value]="index" *ngFor="
-                      let item of attributes.ProductAttributes;
-                      index as index
-                    ">
+                  <option [value]="index" *ngFor=" let item of attributes.ProductAttributes; index as index ">
                     {{ item.Value }}
                   </option>
                 </select>
