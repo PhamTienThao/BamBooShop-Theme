@@ -38,10 +38,8 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import { ArticleTemplateHorizontalComponent } from './components/article-template-horizontal/article-template-horizontal.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { SwiperModule } from 'swiper/angular';
-
-
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -84,8 +82,7 @@ import { ArticleExtComponent } from './containers/client/article-ext/article-ext
     SocialLoginModule,
     NzMessageModule,
     NzTabsModule,
-    SwiperModule,
-
+    NgbModule
   ],
   providers: [
     AuthGuardService,

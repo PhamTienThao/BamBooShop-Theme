@@ -56,18 +56,37 @@ export class ProductDetailComponent implements OnInit {
     this.getData();
   }
 
+
+  handleMinus() {
+    if (this.qty > 1) {
+      this.qty--;
+    }
+    else {
+      this.qty = 1;
+    }
+  }
+  handlePlus() {
+    if (this.qty < this.product.Quantity) {
+      this.qty++;
+    }
+    else {
+      this.qty = this.product.Quantity;
+    }
+  }
+
+  handleInputQuantity() {
+    if (this.qty > this.product.Quantity) {
+      this.qty = this.product.Quantity;
+    } else if (this.qty < 0) {
+      this.qty = 1;
+    }
+  }
+
   getData() {
     this.productService.getByAlias(this.productAlias)
       .subscribe({
         next: (resp: any) => {
           this.product = JSON.parse(resp["data"]);
-
-          if (this.qty > this.product.Quantity) {
-            this.qty = this.product.Quantity
-          } else if (this.qty < 0) {
-            this.qty = 1
-          }
-
         }, error: (err: any) => {
           this.messageService.error("Thông tin sản phẩm không khả dụng");
         }
@@ -94,16 +113,16 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
 
-    // if(this.qty> this.product.Quantity||this.qty<1){
-    //   this.messageService.error("Số lượng sản phẩm ko hợp lệ");
-    //   return;
-    // }
-    // if (this.product.Attributes != null && this.product.Attributes.length > 0) {
-    //   if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
-    //     this.messageService.error("Chọn ít nhất một thuộc tính sản phẩm")
-    //     return;
-    //   }
-    // }
+    if (this.qty > this.product.Quantity || this.qty < 1) {
+      this.messageService.error("Số lượng sản phẩm không hợp lệ");
+      return;
+    }
+    if (this.product.Attributes != null && this.product.Attributes.length > 0) {
+      if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
+        this.messageService.error("Chọn ít nhất một thuộc tính sản phẩm")
+        return;
+      }
+    }
     //fix bug product qty when add to cart
     this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
     this.cartService.addProductToCart(this.product, this.qty);

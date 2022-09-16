@@ -37,16 +37,21 @@
             </ul>
           </div>
           <div class="pro-details-rating-wrap">
-            <div class="rating-product">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-            <span class="read-review"
-              ><a class="reviews" href="#">(5 Customer Review)</a></span
-            >
+            <ngb-rating [max]="5" [readonly]="true" [rate]="product.RateAvg">
+              <ng-template let-fill="fill">
+                <span class="defaultHert" [class.filled]="fill === 100">
+                  <span class="paintHeart" [style.width.%]="fill">
+                    &#9733;
+                  </span>
+                  &#9733;
+                </span>
+              </ng-template>
+            </ngb-rating>
+            <!-- <div>
+              <input type="text" [(ngModel)]="userValue" />
+              <button type="button" (click)="submit()">Update Rating</button>
+            </div> -->
+            <span class="rate-avg">({{ product.RateAvg }}) </span>
           </div>
           <div class="mt-30px">
             <div [innerHTML]="product.ShortDescription"></div>
@@ -93,24 +98,38 @@
               </li>
             </ul>
           </div>
-          <div class="pro-details-quality">
-            <div class="cart-plus-minus">
-              <input
-                class="cart-plus-minus-box"
-                type="text"
-                name="qtybutton"
-                value="1"
-              />
-            </div>
-            <div class="pro-details-cart">
-              <button (click)="addToCart()" class="add-cart">
-                Add To Cart
-              </button>
-            </div>
-            <div class="pro-details-cart">
-              <button (click)="buyNow()" class="add-cart">Buy Now</button>
+          <div *ngIf="product.Quantity > 0; else qtyNotAvailable">
+            <div class="pro-details-quality">
+              <div class="wrapper">
+                <button class="plusminus-minus" (click)="handleMinus()">
+                  -
+                </button>
+                <input
+                  type="number"
+                  class="number-input"
+                  value="1"
+                  [(ngModel)]="qty"
+                  (change)="handleInputQuantity()"
+                />
+                <button class="plusminus-plus" (click)="handlePlus()">+</button>
+              </div>
+              <div class="pro-details-cart">
+                <button (click)="addToCart()" class="add-cart">
+                  Add To Cart
+                </button>
+              </div>
+              <div class="pro-details-cart">
+                <button (click)="buyNow()" class="add-cart">Buy Now</button>
+              </div>
             </div>
           </div>
+          <ng-template #qtyNotAvailable>
+            <div class="pro-details-quality">
+              <div class="out-of-stock-wrap">
+                <span class="out-of-stock"> Out of Stock </span>
+              </div>
+            </div>
+          </ng-template>
         </div>
         <!-- product details description area start -->
         <div class="description-review-wrapper">
@@ -156,13 +175,26 @@
                             <div class="review-name">
                               <h4>{{ review.CreatedBy }}</h4>
                             </div>
-                            <div class="rating-product">
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                              <i class="fa fa-star"></i>
-                            </div>
+                            <ngb-rating
+                              [max]="5"
+                              [readonly]="true"
+                              [rate]="review.Star"
+                            >
+                              <ng-template let-fill="fill">
+                                <span
+                                  class="defaultHert-review"
+                                  [class.filled]="fill === 100"
+                                >
+                                  <span
+                                    class="paintHeart"
+                                    [style.width.%]="fill"
+                                  >
+                                    &#9733;
+                                  </span>
+                                  &#9733;
+                                </span>
+                              </ng-template>
+                            </ngb-rating>
                           </div>
                         </div>
                         <div class="review-bottom">
