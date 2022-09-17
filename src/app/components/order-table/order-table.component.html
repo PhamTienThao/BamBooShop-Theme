@@ -29,7 +29,7 @@
         <td>{{item.Created| date:'dd/MM/yyyy'|| null}}</td>
         <td><span class="success">{{filterOrderStatusName(item.Status)}}</span></td>
         <td>{{item.TotalAmount}}</td>
-        <td><a href="cart.html" class="view">view</a></td>
+        <td><a (click)="view(item)" class="view">view</a></td>
       </tr>
     </tbody>
   </table>

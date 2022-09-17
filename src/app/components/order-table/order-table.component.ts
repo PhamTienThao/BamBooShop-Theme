@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
@@ -8,6 +9,7 @@ import { Review } from 'src/app/core/model/review';
 import { CustomerService } from 'src/app/core/service/customer.service';
 import { OrderService } from 'src/app/core/service/order.service';
 import { ReviewService } from 'src/app/core/service/review.service';
+import { OrderTemplateComponent } from '../order-template/order-template.component';
 
 @Component({
   selector: 'app-order-table',
@@ -29,13 +31,14 @@ export class OrderTableComponent implements OnInit {
     { value: 50, name: 'Canceled' },
   ];
   orderFilter: Order[] = [];
-
+  orderFilterIndexValue: number = 0;
   constructor(
     private reviewService: ReviewService,
     private orderService: OrderService,
     private messageService: NzMessageService,
     private spinner: NgxSpinnerService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private dialog: MatDialog
   ) {
   }
 
@@ -44,15 +47,11 @@ export class OrderTableComponent implements OnInit {
   }
 
   chooseAttribute(event: any) {
-    let index = Number(event.target.value);
-    this.filterOrderByStatus(index);
-  }
-
-  filterOrderByStatus(status: number) {
-    if (status == 0) {
+    this.orderFilterIndexValue = Number(event.target.value);
+    if (this.orderFilterIndexValue == 0 || this.orderFilterIndexValue == null || this.orderFilterIndexValue == undefined) {
       this.getOrders();
     } else {
-      this.orderFilter = this.orders.filter(x => x.Status == status);
+      this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
     }
   }
   filterOrderStatusName(status: number) {
@@ -64,10 +63,39 @@ export class OrderTableComponent implements OnInit {
         next: (resp: any) => {
           this.orders = JSON.parse(resp["data"]);
           this.orderFilter = this.orders;
-          this
         }, error: (err: any) => {
         }
       })
   }
+  view(order: Order) {
+    //config data
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.maxHeight = "80vh";
+    dialogConfig.width = "75vw";
+    dialogConfig.data = order;
 
+    //pass data
+    let openedDialog = this.dialog.open(OrderTemplateComponent, dialogConfig);
+    
+    //after close dialog and catch data from dialog
+    openedDialog.afterClosed().subscribe(result => {
+      if(result){
+        debugger
+        this.customerService.getOrders()
+        .subscribe({
+          next: (resp: any) => {
+            this.orders = JSON.parse(resp["data"]);
+            this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
+          }, error: (err: any) => {
+
+          }
+        })
+      }else{
+
+      }
+    })
+  }
+  
 }

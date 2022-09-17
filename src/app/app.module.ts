@@ -40,6 +40,7 @@ import { ArticleExtComponent } from './containers/client/article-ext/article-ext
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { OrderTemplateComponent } from './components/order-template/order-template.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -84,10 +85,12 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     NzMessageModule,
     NzTabsModule,
     MatRadioModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     AuthGuardService,
+    
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: NZ_I18N, useValue: en_US },
@@ -116,6 +119,7 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
       } as SocialAuthServiceConfig
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OrderTemplateComponent]
 })
 export class AppModule { }
