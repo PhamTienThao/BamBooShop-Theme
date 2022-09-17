@@ -18,11 +18,11 @@
               <tbody>
                 <tr *ngFor="let item of data.OrderDetails">
                   <td class="product-thumbnail">
-                    <a href="#"><img class="img-responsive img-size ml-15px" [src]="item.ProductImage | hostImageClient"
+                    <a><img class="img-responsive img-size ml-15px" [src]="item.ProductImage | hostImageClient"
                         alt="" /></a>
                   </td>
                   <td class="product-name">
-                    <a href="#">{{item.ProductName}}</a>
+                    <a>{{item.ProductName}}</a>
                   </td>
                   <td class="product-price-cart">
                     <span class="amount">{{item.ProductPrice}}</span>
@@ -49,8 +49,7 @@
                 <div class="order-shiping-update">
                   <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30"
                     (click)="cancelOrder()">Cancel Order</button>
-                  <button *ngIf="data.Status==40"
-                    (click)="cancelOrder()">Review</button>
+                  <button *ngIf="data.Status==40" (click)="cancelOrder()">Review</button>
                 </div>
                 <div class="order-close">
                   <button (click)="close()">Close</button>
