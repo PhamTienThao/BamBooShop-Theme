@@ -76,11 +76,20 @@
               <a
                 routerLink="/gio-hang"
                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                *ngIf="getQtyItemInCart > 0; else notCart"
               >
                 <i class="pe-7s-cart"></i>
                 <p class="header-action-num">{{ getQtyItemInCart }}</p>
                 <!-- <span class="cart-amount">€30.00</span> -->
               </a>
+              <ng-template #notCart>
+                <a
+                  routerLink="/gio-hang"
+                  class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                >
+                  <i class="pe-7s-cart"></i>
+                </a>
+              </ng-template>
               <a
                 href="#offcanvas-mobile-menu"
                 class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none"
@@ -125,11 +134,20 @@
               <a
                 routerLink="/gio-hang"
                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                *ngIf="getQtyItemInCart > 0; else notCart"
               >
                 <i class="pe-7s-cart"></i>
                 <span class="header-action-num">{{ getQtyItemInCart }}</span>
-                <!-- <span class="cart-amount">€30.00</span> -->
               </a>
+              <ng-template #notCart>
+                <a
+                  routerLink="/gio-hang"
+                  class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                >
+                  <i class="pe-7s-cart"></i>
+                  <!-- <span class="cart-amount">€30.00</span> -->
+                </a>
+              </ng-template>
               <a
                 href="#offcanvas-mobile-menu"
                 class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none"

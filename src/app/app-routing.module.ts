@@ -88,7 +88,7 @@ const routes: Routes = [
       {
         path: "danh-muc-bai-viet/:alias",
         component: ArticleCategoryComponent
-      },   
+      },
       {
         path: "bai-viet/:alias",
         component: ArticleComponent

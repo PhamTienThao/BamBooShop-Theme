@@ -71,6 +71,10 @@
   overflow: hidden;
 }
 
+.select-shoing-wrap {
+  width: 320px !important;
+}
+
 /* Out of stock */
 .out-of-stock-wrap {
   position: relative;

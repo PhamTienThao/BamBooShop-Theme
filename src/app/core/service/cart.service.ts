@@ -14,16 +14,20 @@ export class CartService {
     return JSON.parse(cartJson);
   }
 
-  addProductToCart(product: Product, qty: number =1) {
+  addProductToCart(product: Product, qty: number = 1) {
     let cart: OrderDetail[] = [];
     let cartJson = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART);
     if (cartJson != null)
       cart = JSON.parse(cartJson);
 
-    let pExist = cart.find(x => x.ProductId == product.Id);
+    // let pExist = cart.find(x => x.ProductId == product.Id);
+    //Fix attribute check logic
+    let pExist = cart.find(x => { x.ProductId == product.Id }
+    );
     if (pExist != null) {
       pExist.Qty += qty;
     }
+
     else {
       cart.push({
         Id: 0,
@@ -48,5 +52,8 @@ export class CartService {
 
   clearCart() {
     localStorage.removeItem(Constants.LOCAL_STORAGE_KEY.CART);
+  }
+  deleteCartProduct() {
+
   }
 }

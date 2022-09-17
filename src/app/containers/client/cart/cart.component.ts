@@ -11,6 +11,8 @@ import { OrderService } from 'src/app/core/service/order.service';
 import { DataHelper } from 'src/app/core/util/data-helper';
 // import { render } from 'creditcardpayments/creditCardPayments';
 import { CityData } from 'src/app/containers/client/cart/city'
+import { Constants } from 'src/app/core/util/constants';
+
 
 @Component({
   selector: 'app-cart',
@@ -23,6 +25,7 @@ export class CartComponent implements OnInit {
   nzLoading: boolean = false;
   totalPayPal!: number;
   quantityRemain!: number | any;
+  qtyProductCart!: number | any;
 
 
 
@@ -49,9 +52,15 @@ export class CartComponent implements OnInit {
       Note: [null]
     });
     this.getCart();
+    let bien = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART);
+    if (bien != null) {
+      console.log(JSON.parse(bien))
+    }
+    for (let i = 0; i <= this.orderDetail.length; i++) {
+      this.qtyProductCart = this.orderDetail[i].Qty;
+    }
     this.quantityRemain = this.orderDetail[0].QtyRemain;
     this.getProfile();
-    console.log(CityData);
   }
   // showPaypal() {
   //   //Paypal test
@@ -79,16 +88,17 @@ export class CartComponent implements OnInit {
       });
   }
 
-  handleMinus() {
-    // if (this.quantityRemain > 1) {
-    //   this.quantityRemain--;
-    // }
-    // else {
-    //   this.quantityRemain = 1;
-    // }
+  handleMinus(QtyProductCart: number) {
+    this.qtyProductCart = QtyProductCart;
+    if (this.qtyProductCart > 1) {
+      this.qtyProductCart--;
+    }
+    else {
+      this.qtyProductCart = 1;
+    }
   }
   handlePlus() {
-    // if (this.quantityRemain < this.product.Quantity) {
+    // if (this.quantityRemain < this.product.quantityRemain) {
     //   this.quantityRemain++;
     // }
     // else {
@@ -118,30 +128,32 @@ export class CartComponent implements OnInit {
     return total;
   }
 
+
+  clearCart() {
+    this.cartService.clearCart();
+
+  }
+
   updateCart() {
     this.orderDetail = this.orderDetail.filter(x => x.Qty > 0);
     this.cartService.updateCart(this.orderDetail);
   }
-  chooseAttribute(attributes: ProductAttribute[], index: number) {
+
+
+
+  chooseAttribute(attributes: ProductAttribute[], event: any) {
+    let index = Number(event.target.value);
     for (let i = 0; i < attributes.length; i++) {
       if (i == index) {
-        // if (attributes[i].Checked == true)
-        //   attributes[i].Checked = false;
-        // else
-        //   attributes[i].Checked = true;
-        attributes[i].Checked = !attributes[i].Checked;
-        //check if no attributes was checked
-        let noAttributesChecked = attributes.filter(x => x.Checked == true);
-        if (noAttributesChecked.length < 1) {
-          attributes[i].Checked = !attributes[i].Checked;
-        }
+        if (attributes[i].Checked == true)
+          attributes[i].Checked = false;
+        else
+          attributes[i].Checked = true;
       }
       else
         attributes[i].Checked = false;
     }
   }
-
-
   submitForm(): void {
     for (const i in this.formData.controls) {
       if (this.formData.controls.hasOwnProperty(i)) {
