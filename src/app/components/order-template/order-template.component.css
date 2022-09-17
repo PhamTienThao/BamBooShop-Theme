@@ -1,0 +1,147 @@
+.order-detail-main-area .table-content table {
+    border: 1px solid #ebebeb;
+    max-width: 100%;
+    max-height: 50vh;
+    display: inline-block;
+    overflow: auto;
+}
+
+.order-detail-main-area .table-content table thead>tr {
+    background-color: #ebebeb;
+    border: 1px solid #ebebeb;
+}
+
+.order-detail-main-area .table-content table thead>tr>th {
+    border-top: medium none;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 21px 45px 22px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.order-detail-main-area .table-content table tbody {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.order-detail-main-area .table-content table tbody>tr {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.order-detail-main-area .table-content table tbody>tr td {
+    color: #3a3a3a;
+    font-size: 16px;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.order-detail-main-area .table-content table tbody>tr td.product-thumbnail {
+    width: 150px;
+}
+
+.order-detail-main-area .table-content table tbody>tr td.product-name {
+    width: 435px;
+}
+
+.order-detail-main-area .table-content table tbody>tr td.product-name a {
+    color: #3a3a3a;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.order-detail-main-area .table-content table tbody>tr td.product-quantity {
+    width: 435px;
+}
+
+
+.order-detail-main-area .order-shiping-update-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 5px 0 5px;
+}
+
+.order-main-area .order-shiping-update-wrapper .order-close>button {
+    border: medium none;
+    cursor: pointer;
+    margin-right: 27px;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.order-shiping-update-wrapper .order-close>button,
+.order-shiping-update-wrapper .order-close>button,
+.order-shiping-update-wrapper .order-shiping-update>button {
+    background-color: #f2f2f2;
+    border-radius: 0;
+    color: #000;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 18px 63px 17px;
+    text-transform: uppercase;
+}
+
+.order-detail-main-area .order-shiping-update-wrapper .order-close>button {
+    border: medium none;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+img.img-size {
+    max-width: 75%;
+    height: auto;
+}
+
+.order-detail-main-area .total-order-wrapper {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 600;
+    padding-right: 45px;
+    text-align: right;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+}
+
+.order-detail-main-area .total-order-wrapper .total-order {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    color: #000000;
+    margin: 0 0 28px;
+    line-height: 34px;
+    font-size: 20px;
+    width: 20%;
+}
+
+.order-shiping-update-wrapper .order-close>button:hover,
+.order-shiping-update-wrapper .order-shiping-update>button:hover {
+    background-color: #266bf9;
+    color: #fff;
+}
+
+.order-shiping-update-wrapper .order-close>button {
+    background-color: #f2f2f2;
+    border-radius: 0;
+    color: #000;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 18px 63px 17px;
+    text-transform: uppercase;
+}
+
+.order-shiping-update-wrapper .order-close>button:hover {
+    background-color: #ea5c43;
+    color: #fff;
+}

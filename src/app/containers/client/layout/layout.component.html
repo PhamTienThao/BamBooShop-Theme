@@ -14,19 +14,13 @@
             <div class="top-nav">
               <ul>
                 <li>
-                  <a href="tel:{{ website.PhoneNumber }}"
-                    ><i class="fa fa-phone"></i> {{ website.PhoneNumber }}</a
-                  >
+                  <a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i> {{ website.PhoneNumber }}</a>
                 </li>
                 <li>
-                  <a href="mailto:{{ website.Email }}"
-                    ><i class="fa fa-envelope-o"></i> {{ website.Email }}</a
-                  >
+                  <a href="mailto:{{ website.Email }}"><i class="fa fa-envelope-o"></i> {{ website.Email }}</a>
                 </li>
                 <li>
-                  <a routerLink="/tai-khoan"
-                    ><i class="fa fa-user"></i> Account</a
-                  >
+                  <a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a>
                 </li>
               </ul>
             </div>
@@ -42,23 +36,15 @@
           <div class="col-lg-3 col">
             <div class="header-logo">
               <a routerLink="/">
-                <img
-                  src="{{ website.Logo | hostImageClient }}"
-                  alt="Site-logo"
-                />
+                <img src="{{ website.Logo | hostImageClient }}" alt="Site-logo" />
               </a>
             </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input
-                  (keyup.enter)="search()"
-                  [(ngModel)]="keySearch"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  placeholder="Search"
-                />
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
+                  type="text" placeholder="Search" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
             </div>
@@ -108,9 +94,7 @@
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-3 col">
             <div class="header-logo">
-              <a href="index.html"
-                ><img src="assets/images/logo/bamboo.png" alt="Site Logo"
-              /></a>
+              <a href="index.html"><img src="assets/images/logo/bamboo.png" alt="Site Logo" /></a>
             </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block">
@@ -124,10 +108,7 @@
           <div class="col-lg-3 col">
             <div class="header-actions">
               <!-- Single Wedge Start -->
-              <a
-                routerLink="dang-nhap"
-                class="header-action-btn offcanvas-toggle"
-              >
+              <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle">
                 <i class="pe-7s-back"></i>
               </a>
               <!-- Single Wedge End -->
@@ -168,25 +149,19 @@
           <div class="main-menu position-relative">
             <ul>
               <li class="dropdown" *ngFor="let menu of mainMenus">
-                <ng-container
-                  *ngIf="
+                <ng-container *ngIf="
                     menu.SubMenus == null || menu.SubMenus.length == 0;
                     else elseTemplateMenu
-                  "
-                >
-                  <a
-                    routerLink="/{{
+                  ">
+                  <a routerLink="/{{
                       menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''
-                    }}{{ menu.Alias }}"
-                    rel="noopener noreferrer"
-                  >
+                    }}{{ menu.Alias }}" rel="noopener noreferrer">
                     {{ menu.Name }}
                   </a>
                 </ng-container>
                 <ng-template #elseTemplateMenu>
                   <a routerLink="dien-thoai">
-                    {{ menu.Name }} <i class="fa fa-angle-down"></i
-                  ></a>
+                    {{ menu.Name }} <i class="fa fa-angle-down"></i></a>
                   <ul class="sub-menu">
                     <li *ngFor="let item of menu?.SubMenus">
                       <a routerLink="/{{ item.Alias }}">
@@ -223,40 +198,22 @@
                 </div>
                 <ul class="link-follow">
                   <li>
-                    <a
-                      class="m-0"
-                      title="Twitter"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-facebook" aria-hidden="true"></i
-                    ></a>
+                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#"><i
+                        class="fa fa-facebook" aria-hidden="true"></i></a>
                   </li>
                   <li>
-                    <a
-                      title="Tumblr"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-tumblr" aria-hidden="true"></i>
+                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-tumblr"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a
-                      title="Facebook"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-twitter" aria-hidden="true"></i>
+                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-twitter"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a
-                      title="Instagram"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-instagram" aria-hidden="true"></i>
+                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-instagram"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                 </ul>
@@ -271,16 +228,11 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li" *ngFor="let item of subMenus">
-                        <p
-                          *ngIf="
+                        <p *ngIf="
                             item.Articles != null && item.Articles.length > 0
-                          "
-                        >
-                          <a
-                            class="single-link"
-                            routerLink="/thong-tin/{{ item.Articles[0].Alias }}"
-                            >{{ item.Name }}</a
-                          >
+                          ">
+                          <a class="single-link" routerLink="/thong-tin/{{ item.Articles[0].Alias }}">{{ item.Name
+                            }}</a>
                         </p>
                       </li>
                     </ul>
@@ -297,25 +249,22 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li">
-                        <a class="single-link" routerLink="/profile"
-                          >My Account</a
-                        >
+                        <<<<<<< HEAD <a class="single-link" routerLink="/tai-khoan">My Account</a>
+                          =======
+                          <a class="single-link" routerLink="/profile">My Account</a>
+                          >>>>>>> origin/Bamboo/GetDB-cart-product-page
                       </li>
                       <li class="li">
                         <a class="single-link" href="contact.html">Contact</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/gio-hang"
-                          >Shopping cart</a
-                        >
+                        <a class="single-link" href="/gio-hang">Shopping cart</a>
                       </li>
                       <li class="li">
                         <a class="single-link" href="/">Shop</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/dang-nhap"
-                          >Services Login</a
-                        >
+                        <a class="single-link" href="/dang-nhap">Services Login</a>
                       </li>
                     </ul>
                   </div>
@@ -337,8 +286,7 @@
                   </p>
                   <p class="mail">
                     Email:<a href="mailto:{{ website.Email }}">
-                      {{ website.Email }}</a
-                    >
+                      {{ website.Email }}</a>
                   </p>
                   <p class="mail">
                     Addresses:
@@ -358,12 +306,8 @@
             <div class="row flex-md-row-reverse align-items-center">
               <div class="col-md-6 text-center text-md-end">
                 <div class="payment-mth">
-                  <a href="#"
-                    ><img
-                      class="img img-fluid"
-                      src="assets/images/icons/payment.png"
-                      alt="payment-image"
-                  /></a>
+                  <a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png"
+                      alt="payment-image" /></a>
                 </div>
               </div>
             </div>

@@ -7,7 +7,6 @@ import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ProductTemplateComponent } from './components/product-template/product-template.component';
 import { ArticleComponent } from './containers/client/article/article.component';
 import { ArticleCategoryComponent } from './containers/client/article-category/article-category.component';
-import { AuthComponent } from './containers/client/auth/auth.component';
 import { CartComponent } from './containers/client/cart/cart.component';
 import { CategoryComponent } from './containers/client/category/category.component';
 import { ForgotPasswordComponent } from './containers/client/forgot-password/forgot-password.component';
@@ -32,13 +31,16 @@ import { ErrorInterceptor } from './containers/client/auth/error.interceptor';
 import { JwtInterceptor } from './containers/client/auth/jwt.interceptor';
 import { HostImageClientPipe } from './core/pipe/host-image-client.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
-import { OrderStatusPipe } from './core/pipe/order-status.pipe';
-import { PipeHostImagePipe } from './core/pipe/pipe-host-image.pipe';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import { ArticleTemplateHorizontalComponent } from './components/article-template-horizontal/article-template-horizontal.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import {MatRadioModule} from '@angular/material/radio';
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { OrderTemplateComponent } from './components/order-template/order-template.component';
+import { OrderTableComponent } from './components/order-table/order-table.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -47,7 +49,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductTemplateComponent,
     ArticleComponent,
     ArticleCategoryComponent,
-    AuthComponent,
     CartComponent,
     CategoryComponent,
     ForgotPasswordComponent,
@@ -69,7 +70,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     // OrderStatusPipe,
     ArticleTemplateComponent,
     ArticleTemplateHorizontalComponent,
-    ArticleExtComponent
+    ArticleExtComponent,
+    OrderTemplateComponent,
+    OrderTableComponent
   ],
   imports: [
     BrowserModule,
@@ -82,10 +85,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SocialLoginModule,
     NzMessageModule,
     NzTabsModule,
+    MatRadioModule,
+    NgxSpinnerModule,
+    MatDialogModule,
     NgbModule
   ],
   providers: [
     AuthGuardService,
+    
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: NZ_I18N, useValue: en_US },
@@ -114,6 +121,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       } as SocialAuthServiceConfig
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [OrderTemplateComponent]
 })
 export class AppModule { }

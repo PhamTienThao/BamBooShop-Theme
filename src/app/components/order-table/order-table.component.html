@@ -1,0 +1,36 @@
+<div class="select-filter-wrap d-flex align-items-center">
+  <div class="shot-product">
+     Filter:  
+  </div>
+  <div class="filter-select">
+    <select class="shop-sort" (change)="chooseAttribute($event)">
+      <!-- <option data-display="Balck">Balck</option> -->
+      <option [value]="item.value" *ngFor=" let item of orderStatus">
+        {{ item.name }}
+      </option>
+    </select>
+  </div>
+</div>
+<br>
+<div class="table_page table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of orderFilter">
+      <tr>
+        <td>{{item.Id || null}}</td>
+        <td>{{item.Created| date:'dd/MM/yyyy'|| null}}</td>
+        <td><span class="success">{{filterOrderStatusName(item.Status)}}</span></td>
+        <td>{{item.TotalAmount}}</td>
+        <td><a (click)="view(item)" class="view">view</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

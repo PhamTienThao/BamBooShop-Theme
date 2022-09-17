@@ -20,52 +20,31 @@
               <tbody *ngFor="let product of orderDetail">
                 <tr>
                   <td class="product-thumbnail">
-                    <a routerLink="/san-pham/{{ product.ProductAlias }}"
-                      ><img
-                        class="img-responsive"
-                        [src]="product.ProductImage | hostImageClient"
-                        alt=""
-                    /></a>
+                    <a routerLink="/san-pham/{{ product.ProductAlias }}"><img class="img-responsive"
+                        [src]="product.ProductImage | hostImageClient" alt="" /></a>
                   </td>
                   <td class="product-name">
-                    <a routerLink="/san-pham/{{ product.ProductAlias }}">{{
-                      product.ProductName
-                    }}</a>
-
-                    <div
-                      class="attribute-product-cart"
-                      *ngFor="let attributes of product?.Attributes"
-                    >
+                    <a routerLink="/san-pham/{{ product.ProductAlias }}">
+                      {{product.ProductName}}
+                    </a>
+                    <div class="attribute-product-cart" *ngFor="let attributes of product?.Attributes">
                       <div class="attribute-product-cart-num">
-                        <span class="attribute-name-product-cart"
-                          >{{ attributes.Name }}:
+                        <span class="attribute-name-product-cart">{{ attributes.Name }}:
                         </span>
-                        <span class="attribute-infor-product-cart"
-                          >SSD 256GB Sliver</span
-                        >
+                        <span class="attribute-infor-product-cart">SSD 256GB Sliver</span>
                       </div>
                     </div>
                   </td>
                   <td class="product-price-cart">
-                    <span class="amount"
-                      >${{ product.ProductDiscountPrice | number }}</span
-                    >
+                    <span class="amount">${{ product.ProductDiscountPrice | number }}</span>
                   </td>
                   <td class="product-quantity">
                     <div class="wrapper">
-                      <button
-                        class="plusminus-minus"
-                        (click)="handleMinus(product.Qty)"
-                      >
+                      <button class="plusminus-minus" (click)="handleMinus(product.Qty)">
                         -
                       </button>
-                      <input
-                        type="number"
-                        class="number-input"
-                        [(ngModel)]="product.Qty"
-                        value="{{ product.Qty }}"
-                        (change)="handleInputQuantity(); updateCart()"
-                      />
+                      <input type="number" class="number-input" [(ngModel)]="product.Qty" value="{{ product.Qty }}"
+                        (change)="handleInputQuantity(); updateCart()" />
                       <button class="plusminus-plus" (click)="handlePlus()">
                         +
                       </button>
@@ -124,10 +103,7 @@
                   <div class="billing-select mb-4">
                     <label>City</label>
                     <select (change)="changeCity($event)">
-                      <option
-                        *ngFor="let city of cities"
-                        value="{{ city.name }}"
-                      >
+                      <option *ngFor="let city of cities" value="{{ city.name }}">
                         {{ city.name }}
                       </option>
                     </select>
@@ -146,11 +122,7 @@
                 <div class="col-lg-12">
                   <div class="billing-info mb-4">
                     <label>Street Address</label>
-                    <input
-                      class="billing-address"
-                      placeholder="House number and street name"
-                      type="text"
-                    />
+                    <input class="billing-address" placeholder="House number and street name" type="text" />
                   </div>
                 </div>
               </div>
@@ -159,10 +131,8 @@
                 <h4>Additional information</h4>
                 <div class="additional-info">
                   <label>Order notes</label>
-                  <textarea
-                    placeholder="Notes about your order, e.g. special notes for delivery. "
-                    name="message"
-                  ></textarea>
+                  <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
+                    name="message"></textarea>
                 </div>
               </div>
             </div>
@@ -181,15 +151,13 @@
                   <div class="your-order-middle">
                     <ul>
                       <li *ngFor="let product of orderDetail">
-                        <span class="order-middle-left"
-                          >{{ product.ProductName }}
+                        <span class="order-middle-left">{{ product.ProductName }}
                         </span>
                         <span class="order-quantity-quantity">
                           X {{ product.Qty }}
                         </span>
-                        <span class="order-price"
-                          >${{
-                            product.ProductDiscountPrice * product.Qty | number
+                        <span class="order-price">${{
+                          product.ProductDiscountPrice * product.Qty | number
                           }}
                         </span>
                       </li>
@@ -208,20 +176,11 @@
                       <div class="panel panel-default single-my-account m-0">
                         <div class="panel-heading my-account-title">
                           <h4 class="panel-title">
-                            <a
-                              data-bs-toggle="collapse"
-                              href="#my-account-1"
-                              class="collapsed"
-                              aria-expanded="true"
-                              >Direct bank transfer</a
-                            >
+                            <a data-bs-toggle="collapse" href="#my-account-1" class="collapsed"
+                              aria-expanded="true">Direct bank transfer</a>
                           </h4>
                         </div>
-                        <div
-                          id="my-account-1"
-                          class="panel-collapse collapse show"
-                          data-bs-parent="#faq"
-                        >
+                        <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
                           <div class="panel-body">
                             <p>
                               Please send a check to Store Name, Store Street,
@@ -233,20 +192,11 @@
                       <div class="panel panel-default single-my-account m-0">
                         <div class="panel-heading my-account-title">
                           <h4 class="panel-title">
-                            <a
-                              data-bs-toggle="collapse"
-                              href="#my-account-2"
-                              aria-expanded="false"
-                              class="collapsed"
-                              >Check payments</a
-                            >
+                            <a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false"
+                              class="collapsed">Check payments</a>
                           </h4>
                         </div>
-                        <div
-                          id="my-account-2"
-                          class="panel-collapse collapse"
-                          data-bs-parent="#faq"
-                        >
+                        <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
                           <div class="panel-body">
                             <p>
                               Please send a check to Store Name, Store Street,
@@ -258,16 +208,10 @@
                       <div class="panel panel-default single-my-account m-0">
                         <div class="panel-heading my-account-title">
                           <h4 class="panel-title">
-                            <a data-bs-toggle="collapse" href="#my-account-3"
-                              >Cash on delivery</a
-                            >
+                            <a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a>
                           </h4>
                         </div>
-                        <div
-                          id="my-account-3"
-                          class="panel-collapse collapse"
-                          data-bs-parent="#faq"
-                        >
+                        <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
                           <div class="panel-body">
                             <p>
                               Please send a check to Store Name, Store Street,
