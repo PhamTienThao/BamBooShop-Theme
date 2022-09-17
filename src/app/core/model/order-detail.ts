@@ -17,5 +17,5 @@ export interface OrderDetail {
     ProductAlias?: string;
     Attributes: Attribute[];
     IsReview?: boolean;
-    QtyRemain?: number;
+    QtyRemain: number;
 }

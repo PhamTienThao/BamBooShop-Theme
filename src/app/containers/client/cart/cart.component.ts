@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
   orderDetail: OrderDetail[] = [];
   nzLoading: boolean = false;
   totalPayPal!: number;
-  quantityRemain!: number | any;
+  //quantityRemain!: number | any;
   qtyProductCart!: number | any;
 
 
@@ -52,14 +52,10 @@ export class CartComponent implements OnInit {
       Note: [null]
     });
     this.getCart();
-    let bien = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART);
-    if (bien != null) {
-      console.log(JSON.parse(bien))
-    }
-    for (let i = 0; i <= this.orderDetail.length; i++) {
-      this.qtyProductCart = this.orderDetail[i].Qty;
-    }
-    this.quantityRemain = this.orderDetail[0].QtyRemain;
+    // for (let i = 0; i <= this.orderDetail.length; i++) {
+    //   this.qtyProductCart = this.orderDetail[i].Qty;
+    // }
+    // this.quantityRemain = this.orderDetail[0].QtyRemain;
     this.getProfile();
   }
   // showPaypal() {
@@ -88,30 +84,33 @@ export class CartComponent implements OnInit {
       });
   }
 
-  handleMinus(QtyProductCart: number) {
-    this.qtyProductCart = QtyProductCart;
-    if (this.qtyProductCart > 1) {
-      this.qtyProductCart--;
+  handleQty(orderDetailIndex: number, checkMath: number, event: any = null) {
+    switch (checkMath) {
+      case -1:
+        if (this.orderDetail[orderDetailIndex].QtyRemain > 1) {
+          this.orderDetail[orderDetailIndex].Qty--;
+        }
+        else {
+          this.orderDetail[orderDetailIndex].Qty = 1;
+        }
+        break;
+      case 0:
+        if (Number(event.target.value) < 0) 
+          this.orderDetail[orderDetailIndex].Qty = 1;
+        else if(Number(event.target.value) >  this.orderDetail[orderDetailIndex].QtyRemain)
+          this.orderDetail[orderDetailIndex].Qty = this.orderDetail[orderDetailIndex].QtyRemain;
+        else 
+          this.orderDetail[orderDetailIndex].Qty = Number(event.target.value);
+        break;
+      case 1:
+        if (this.orderDetail[orderDetailIndex].QtyRemain > this.orderDetail[orderDetailIndex].Qty) {
+          this.orderDetail[orderDetailIndex].Qty++;
+        } else {
+          this.orderDetail[orderDetailIndex].Qty = this.orderDetail[orderDetailIndex].QtyRemain;
+        }
+        break;
     }
-    else {
-      this.qtyProductCart = 1;
-    }
-  }
-  handlePlus() {
-    // if (this.quantityRemain < this.product.quantityRemain) {
-    //   this.quantityRemain++;
-    // }
-    // else {
-    //   this.quantityRemain = this.product.Quantity;
-    // }
-  }
-
-  handleInputQuantity() {
-    // if (this.quantityRemain > this.product.Quantity) {
-    //   this.quantityRemain = this.product.Quantity;
-    // } else if (this.quantityRemain < 0) {
-    //   this.quantityRemain = 1;
-    // }
+    if (this.orderDetail[orderDetailIndex].Qty == 0) this.updateCart();
   }
 
   getCart() {
