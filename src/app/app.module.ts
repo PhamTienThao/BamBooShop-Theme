@@ -41,6 +41,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { OrderTemplateComponent } from './components/order-template/order-template.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     NzTabsModule,
     MatRadioModule,
     NgxSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbModule
   ],
   providers: [
     AuthGuardService,

@@ -14,10 +14,10 @@
             <div class="top-nav">
               <ul>
                 <li>
-                  <a href="tel:{{website.PhoneNumber}}"><i class="fa fa-phone"></i> {{website.PhoneNumber}}</a>
+                  <a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i> {{ website.PhoneNumber }}</a>
                 </li>
                 <li>
-                  <a href="mailto:{{website.Email}}"><i class="fa fa-envelope-o"></i> {{website.Email}}</a>
+                  <a href="mailto:{{ website.Email }}"><i class="fa fa-envelope-o"></i> {{ website.Email }}</a>
                 </li>
                 <li>
                   <a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a>
@@ -36,14 +36,14 @@
           <div class="col-lg-3 col">
             <div class="header-logo">
               <a routerLink="/">
-                <img src="{{website.Logo | hostImageClient}}" alt="Site-logo">
+                <img src="{{ website.Logo | hostImageClient }}" alt="Site-logo" />
               </a>
             </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{standalone: true}"
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
                   type="text" placeholder="Search" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
@@ -53,15 +53,59 @@
             <div class="header-actions">
               <!-- Single Wedge Start -->
               <a routerLink="/dang-xuat" class="header-action-btn offcanvas-toggle">
+                <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle">
+                  <i class="pe-7s-back"></i>
+                </a>
+                <!-- Single Wedge End -->
+                <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                  <i class="pe-7s-cart"></i>
+                  <p class="header-action-num">{{ getQtyItemInCart }}</p>
+                  <!-- <span class="cart-amount">€30.00</span> -->
+                </a>
+                <a href="#offcanvas-mobile-menu"
+                  class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+                  <i class="pe-7s-menu"></i>
+                </a>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Header action area end -->
+    <!-- Header action area start -->
+    <div class="header-bottom d-lg-none sticky-nav style-1">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-lg-3 col">
+            <div class="header-logo">
+              <a href="index.html"><img src="assets/images/logo/bamboo.png" alt="Site Logo" /></a>
+            </div>
+          </div>
+          <div class="col-lg-6 d-none d-lg-block">
+            <div class="search-element">
+              <form action="#">
+                <input type="text" placeholder="Search" />
+                <button><i class="pe-7s-search"></i></button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-3 col">
+            <div class="header-actions">
+              <!-- Single Wedge Start -->
+              <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle">
                 <i class="pe-7s-back"></i>
               </a>
               <!-- Single Wedge End -->
               <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                 <i class="pe-7s-cart"></i>
-                <span class="header-action-num">01</span>
+                <span class="header-action-num">{{ getQtyItemInCart }}</span>
                 <!-- <span class="cart-amount">€30.00</span> -->
               </a>
-             
+              <a href="#offcanvas-mobile-menu"
+                class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
+                <i class="pe-7s-menu"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -76,18 +120,23 @@
           <div class="main-menu position-relative">
             <ul>
               <li class="dropdown" *ngFor="let menu of mainMenus">
-                <ng-container *ngIf="menu.SubMenus == null || menu.SubMenus.length == 0; else elseTemplateMenu">
-                  <a routerLink="/{{menu.Type=='bai-viet'?'danh-muc-bai-viet/':''}}{{menu.Alias}}"
-                    rel="noopener noreferrer">
-                    {{menu.Name}}
+                <ng-container *ngIf="
+                    menu.SubMenus == null || menu.SubMenus.length == 0;
+                    else elseTemplateMenu
+                  ">
+                  <a routerLink="/{{
+                      menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''
+                    }}{{ menu.Alias }}" rel="noopener noreferrer">
+                    {{ menu.Name }}
                   </a>
                 </ng-container>
                 <ng-template #elseTemplateMenu>
-                  <a routerLink="dien-thoai"> {{ menu.Name }} <i class="fa fa-angle-down"></i></a>
+                  <a routerLink="dien-thoai">
+                    {{ menu.Name }} <i class="fa fa-angle-down"></i></a>
                   <ul class="sub-menu">
                     <li *ngFor="let item of menu?.SubMenus">
-                      <a routerLink="/{{item.Alias}}">
-                        {{item.Name}}
+                      <a routerLink="/{{ item.Alias }}">
+                        {{ item.Name }}
                       </a>
                     </li>
                   </ul>
@@ -111,11 +160,12 @@
             <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
               <div class="single-wedge">
                 <div class="footer-logo">
-                  <a href="index.html"> <img src="{{website.Logo | hostImageClient}}">
+                  <a href="index.html">
+                    <img src="{{ website.Logo | hostImageClient }}" />
                   </a>
                 </div>
                 <div class="mg-t about-text">
-                  <div [innerHTML]="website.Location | safe: 'html'"> </div>
+                  <div [innerHTML]="website.Location | safe: 'html'"></div>
                 </div>
                 <ul class="link-follow">
                   <li>
@@ -149,11 +199,13 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li" *ngFor="let item of subMenus">
-                        <p *ngIf="item.Articles != null && item.Articles.length > 0">
-                          <a class="single-link" routerLink="/thong-tin/{{item.Articles[0].Alias}}">{{item.Name}}</a>
+                        <p *ngIf="
+                            item.Articles != null && item.Articles.length > 0
+                          ">
+                          <a class="single-link" routerLink="/thong-tin/{{ item.Articles[0].Alias }}">{{ item.Name
+                            }}</a>
                         </p>
                       </li>
-
                     </ul>
                   </div>
                 </div>
@@ -168,7 +220,10 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li">
-                        <a class="single-link" routerLink="/tai-khoan">My Account</a>
+                        <<<<<<< HEAD <a class="single-link" routerLink="/tai-khoan">My Account</a>
+                          =======
+                          <a class="single-link" routerLink="/profile">My Account</a>
+                          >>>>>>> origin/Bamboo/GetDB-cart-product-page
                       </li>
                       <li class="li">
                         <a class="single-link" href="contact.html">Contact</a>
@@ -194,21 +249,19 @@
                 <h4 class="footer-herading">Contact Info</h4>
                 <div class="footer-links">
                   <!-- News letter area -->
-                  <div class="search-element">
-                    <form [formGroup]="formRegistration" (ngSubmit)="submitRegistration()">
-                      <input formControlName="Email" type="text" placeholder="Email" />
-                      <button type="submit"><i class="fa fa-envelope"></i></button>
-                    </form>
-                  </div>
+
                   <p class="phone">
-                    Phone/Fax:<a href="tel:{{website.PhoneNumber}}"> {{website.PhoneNumber}} </a>
+                    Phone/Fax:<a href="tel:{{ website.PhoneNumber }}">
+                      {{ website.PhoneNumber }}
+                    </a>
                   </p>
                   <p class="mail">
-                    Email:<a href="mailto:{{website.Email}}">
-                      {{website.Email}}</a>
+                    Email:<a href="mailto:{{ website.Email }}">
+                      {{ website.Email }}</a>
                   </p>
-                  <p class="mail">Addresses:
-                    <a href=""> {{website.Address}}</a>
+                  <p class="mail">
+                    Addresses:
+                    <a href=""> {{ website.Address }}</a>
                   </p>
                   <!-- News letter area  End -->
                 </div>
@@ -228,7 +281,6 @@
                       alt="payment-image" /></a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
