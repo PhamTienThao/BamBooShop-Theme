@@ -72,6 +72,8 @@ export class OrderTemplateComponent implements OnInit {
           }
           else {
             this.reviewModel = data;
+            if (this.reviewModel.Content == null|| this.reviewModel.Content == undefined)
+              this.reviewModel.Content = "";
           }
           this.isVisibleModal = true;
         }, error: (err: any) => {
@@ -90,9 +92,7 @@ export class OrderTemplateComponent implements OnInit {
     this.orderService.changeStatus(this.data.Id, 50)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          //this.showOrderDetail(this.orderSelected);
-          //this.getData();
+          this.messageService.success("Cancel Success");
           this.reloadData = true;
           this.dialogRef.close(this.reloadData);
         }, error: (err: any) => {
