@@ -21,24 +21,28 @@ export class CartService {
     let cartJson = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART);
     if (cartJson != null)
       cart = JSON.parse(cartJson);
-
     // let pExist = cart.find(x => x.ProductId == product.Id);
     // Fix attribute check logic
     let isExist: boolean = true;
-    let listDuplicate : OrderDetail[] = [];
-    let dupliacteDetail :[] =[];
-    for (let i = 0; i < cart.length; i++) {
-      if (product.Id == cart[i].ProductId) {
-        // listDuplicate.push(cart[i]);
-        if (JSON.stringify(product.Attributes) == JSON.stringify(cart[i].Attributes)) {
-          cart[i].Qty += qty;
-          isExist = true;
-          break;
-        }else{
-          isExist = false;
+    //let listDuplicate : OrderDetail[] = [];
+    //let dupliacteDetail :[] =[];
+    if(cart.length == 0) isExist = false;
+    else{
+      for (let i = 0; i < cart.length; i++) {
+        if (product.Id == cart[i].ProductId) {
+          // listDuplicate.push(cart[i]);
+          console.log(product.Attributes)
+          console.log(cart[i].Attributes)
+          if (JSON.stringify(product.Attributes) == JSON.stringify(cart[i].Attributes)) {
+            cart[i].Qty += qty;
+            isExist = true;
+            break;
+          }else{
+            isExist = false;
+          }
         }
       }
-    }
+    } 
     // if(listDuplicate.length == 0){
     //   isExist = false;
     // }
