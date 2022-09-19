@@ -42,6 +42,7 @@ import { OrderTemplateComponent } from './components/order-template/order-templa
 import { OrderTableComponent } from './components/order-table/order-table.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingComponent } from './components/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ArticleTemplateHorizontalComponent,
     ArticleExtComponent,
     OrderTemplateComponent,
-    OrderTableComponent
+    OrderTableComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

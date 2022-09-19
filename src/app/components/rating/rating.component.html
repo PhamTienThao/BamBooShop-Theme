@@ -1,0 +1,6 @@
+<div class="setting-rating" *ngFor="let item of counter()">
+    <span class="fa fa-star rate rate-border" *ngIf="item <= value; else notRated" (click)="rating(item)" ></span>
+    <ng-template #notRated> 
+        <span class="fa fa-star not-rate rate-border" (click)="rating(item)"></span>
+    </ng-template>
+</div>

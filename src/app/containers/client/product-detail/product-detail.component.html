@@ -50,7 +50,8 @@
                 <p>{{ attributes.Name }}:</p>
               </div>
               <div class="shop-select">
-                <select class="shop-sort" #attributeSelected (change)="chooseAttribute(attributes.ProductAttributes, $event)">
+                <select class="shop-sort" #attributeSelected
+                  (change)="chooseAttribute(attributes.ProductAttributes, $event)">
                   <!-- <option data-display="Balck">Balck</option> -->
                   <option [value]="index" *ngFor=" let item of attributes.ProductAttributes; index as index ">
                     {{ item.Value }}
@@ -74,13 +75,8 @@
                 <button class="plusminus-minus" (click)="handleMinus()">
                   -
                 </button>
-                <input
-                  type="number"
-                  class="number-input"
-                  value="1"
-                  [(ngModel)]="qty"
-                  (change)="handleInputQuantity()"
-                />
+                <input type="number" class="number-input" value="1" [(ngModel)]="qty"
+                  (change)="handleInputQuantity()" />
                 <button class="plusminus-plus" (click)="handlePlus()">+</button>
               </div>
               <div class="pro-details-cart">
@@ -138,20 +134,10 @@
                             <div class="review-name">
                               <h4>{{ review.CreatedBy }}</h4>
                             </div>
-                            <ngb-rating
-                              [max]="5"
-                              [readonly]="true"
-                              [rate]="review.Star"
-                            >
+                            <ngb-rating [max]="5" [readonly]="true" [rate]="review.Star">
                               <ng-template let-fill="fill">
-                                <span
-                                  class="defaultHert-review"
-                                  [class.filled]="fill === 100"
-                                >
-                                  <span
-                                    class="paintHeart"
-                                    [style.width.%]="fill"
-                                  >
+                                <span class="defaultHert-review" [class.filled]="fill === 100">
+                                  <span class="paintHeart" [style.width.%]="fill">
                                     &#9733;
                                   </span>
                                   &#9733;

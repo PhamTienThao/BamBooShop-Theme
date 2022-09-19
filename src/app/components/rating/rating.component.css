@@ -1,0 +1,9 @@
+.rate{
+    color: yellow;
+}
+.not-rate{
+    color: rgb(187, 210, 224);
+}
+.rate-border{
+    margin: 3px 3px 3px 3px;
+}
