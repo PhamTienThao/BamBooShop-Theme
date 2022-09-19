@@ -24,16 +24,51 @@ export class CartService {
 
     // let pExist = cart.find(x => x.ProductId == product.Id);
     // Fix attribute check logic
-    let isExist: boolean = false;
+    let isExist: boolean = true;
+    let listDuplicate : OrderDetail[] = [];
+    let dupliacteDetail :[] =[];
     for (let i = 0; i < cart.length; i++) {
       if (product.Id == cart[i].ProductId) {
+        // listDuplicate.push(cart[i]);
         if (JSON.stringify(product.Attributes) == JSON.stringify(cart[i].Attributes)) {
           cart[i].Qty += qty;
           isExist = true;
           break;
+        }else{
+          isExist = false;
         }
       }
     }
+    // if(listDuplicate.length == 0){
+    //   isExist = false;
+    // }
+    // else{
+    //   let productAdd = product.Attributes;
+    //   let length = listDuplicate.length;
+    //   for(let i = 0; i < length; i++){
+    //     let productCart = listDuplicate[i].Attributes;
+
+    //     for(let j = 0; j < productAdd.length; j++){
+    //       if(productAdd[j].Id == productCart[i].Id){
+    //         let productAttributesLength = productAdd[j].ProductAttributes.length;
+
+    //         for(let k = 0; k < productAttributesLength; k ++){
+    //           if(productCart[j].ProductAttributes[k].Checked != productAdd[j].ProductAttributes[k].Checked)
+    //           {
+    //             isExist = false;
+    //             break;
+    //           }
+    //         }
+
+    //         if(!isExist) break;
+    //       }
+
+
+    //     }
+    //     if(!isExist) break;
+    //   }
+    // }
+    //console.log(isExist);
     if (!isExist) {
       cart.push({
         Id: 0,
