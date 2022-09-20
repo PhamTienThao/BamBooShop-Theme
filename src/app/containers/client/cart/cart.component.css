@@ -16,9 +16,12 @@
 /* Input Number */
 
 .product-quantity {
-  width: 200px !important;
+  width: 140px !important;
 }
 
+.product-price-cart {
+  width: 150px !important;
+}
 .wrapper input {
   text-align: center;
   border: none;
@@ -38,7 +41,7 @@
   position: relative;
   border: none;
   width: 110px;
-  height: 45px;
+  height: 40px;
   display: flex;
   border-radius: 5px;
   background-color: transparent;
@@ -133,6 +136,53 @@
 
 .btn-hover {
   cursor: pointer;
+}
+
+.text-red {
+  color: red;
+  padding-left: 5px;
+  font-size: 15px;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: #266bf9;
+  color: #fff;
+  display: block;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 18px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0px;
+  z-index: 9;
+}
+
+.product-subtotal {
+  width: 200px !important;
+}
+.pro-details-color-size .shop-select {
+  margin-left: 0 !important;
+}
+
+.select-shoing-wrap {
+  width: 220px !important;
+  height: 40px !important;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+.pro-details-color-size p {
+  text-align: start;
+}
+.pro-details-color-size {
+  margin: 15px 0;
+}
+.product-name {
+  width: 300px !important;
+}
+.product-name a {
+  margin: 0 auto;
 }
 
 /* Responsvie */

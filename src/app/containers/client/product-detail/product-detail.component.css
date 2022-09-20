@@ -2,6 +2,10 @@
   max-width: 100%;
 }
 
+:host ::ng-deep div p > img.lazyloaded {
+  text-align: center;
+}
+
 .section-title-product-detail {
   padding-top: 50px;
   line-height: 2;

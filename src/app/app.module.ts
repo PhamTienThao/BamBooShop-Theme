@@ -1,3 +1,4 @@
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -35,12 +36,12 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { ArticleTemplateComponent } from './components/article-template/article-template.component';
 import { ArticleTemplateHorizontalComponent } from './components/article-template-horizontal/article-template-horizontal.component';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { OrderTemplateComponent } from './components/order-template/order-template.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
@@ -92,11 +93,12 @@ import { ProductTemplateListComponent } from './components/product-template-list
     MatRadioModule,
     NgxSpinnerModule,
     MatDialogModule,
-    NgbModule
+    NgbModule,
+    NzFormModule
   ],
   providers: [
     AuthGuardService,
-    
+
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: NZ_I18N, useValue: en_US },

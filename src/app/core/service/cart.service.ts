@@ -4,6 +4,7 @@ import { OrderDetail } from '../model/order-detail';
 import { Product } from '../model/product';
 import { Constants } from '../util/constants';
 import { isFakeMousedownFromScreenReader } from '@angular/cdk/a11y';
+import { flattenTreeData } from 'ng-zorro-antd/core/tree';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class CartService {
     let isExist: boolean = true;
     //let listDuplicate : OrderDetail[] = [];
     //let dupliacteDetail :[] =[];
-    if(cart.length == 0) isExist = false;
-    else{
+    if (cart.length == 0) isExist = false;
+    else {
       for (let i = 0; i < cart.length; i++) {
         if (product.Id == cart[i].ProductId) {
           // listDuplicate.push(cart[i]);
@@ -36,12 +37,12 @@ export class CartService {
             cart[i].Qty += qty;
             isExist = true;
             break;
-          }else{
+          } else {
             isExist = false;
           }
         }else isExist = false;
       }
-    } 
+    }
     // if(listDuplicate.length == 0){
     //   isExist = false;
     // }
