@@ -21,11 +21,7 @@
 
   <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
     <div class="actions">
-      <button
-        title="Add To Cart"
-        class="action add-to-cart"
-        (click)="addToCart()"
-      >
+      <button title="Add To Cart" class="action add-to-cart" (click)="addToCart()">
         <span>Thêm vào giỏ</span>
       </button>
     </div>

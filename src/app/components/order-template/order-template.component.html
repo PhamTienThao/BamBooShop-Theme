@@ -13,13 +13,15 @@
                   <th>Attributes</th>
                   <th>Qty</th>
                   <th>Subtotal</th>
+                  <th *ngIf="data.Status == 40">Review</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of data.OrderDetails">
                   <td class="product-thumbnail">
-                    <a><img class="img-responsive img-size ml-15px" [src]="item.ProductImage | hostImageClient"
-                        alt="" /></a>
+                    <a>
+                      <img class="img-responsive img-size ml-15px" [src]="item.ProductImage | hostImageClient" alt="" />
+                    </a>
                   </td>
                   <td class="product-name">
                     <a>{{item.ProductName}}</a>
@@ -33,7 +35,18 @@
                   <td class="product-quantity">
                     <a>{{item.Qty}}</a>
                   </td>
-                  <td class="product-subtotal">{{item.Qty * item.ProductPrice}}</td>
+                  <td class="product-subtotal">
+                    {{item.Qty * item.ProductPrice}}
+                  </td>
+                  <td *ngIf="data.Status == 40">
+                    <a class="view" (click)="review(item)"> View
+                      <a
+                        *ngIf="(item.Reviews != null && item.Reviews.length > 0) || item.IsReview; else elseTemplate">/Reviewed</a>
+                      <ng-template #elseTemplate>
+                        <a>/No review</a>
+                      </ng-template>
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -43,13 +56,78 @@
             Total: <span class="total-order"> {{data.TotalAmount}}</span>
           </div>
           <br>
+          <div class="review-container" *ngIf="isVisibleModal">
+            <div class="review-title"><span>Review</span></div>
+            <br>
+            <div class="table-content table-responsive cart-table-content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Until Price</th>
+                    <th>Attributes</th>
+                    <th>Qty</th>
+                    <th>Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="product-thumbnail">
+                      <a><img class="img-responsive img-size ml-15px"
+                          [src]="orderDetailSelected.ProductImage | hostImageClient" alt="" /></a>
+                    </td>
+                    <td class="product-name">
+                      <a>{{orderDetailSelected.ProductName}}</a>
+                    </td>
+                    <td class="product-price-cart">
+                      <span class="amount">{{orderDetailSelected.ProductPrice}}</span>
+                    </td>
+                    <td class="product-attributes">
+                      <div [innerHTML]="orderDetailSelected.Attribute"> </div>
+                    </td>
+                    <td class="product-quantity">
+                      <a>{{orderDetailSelected.Qty}}</a>
+                    </td>
+                    <td class="rating">
+                      <a>
+                        <ngb-rating [max]="5" [(rate)]="reviewModel.Star">
+                          <ng-template let-fill="fill">
+                            <span class="defaultHert-review" [class.filled]="fill === 100">
+                              <span class="paintHeart" [style.width.%]="fill">
+                                &#9733;
+                              </span>
+                              &#9733;
+                            </span>
+                          </ng-template>
+                        </ngb-rating>
+
+                        <!-- <app-rating style="display:flex;" [value]="reviewModel.Star" [maxRate]="5"
+                          (rateChange)="rateChange($event)"></app-rating> -->
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <textarea cols="80" rows="4" [(ngModel)]="reviewModel.Content" name="ProductReview"
+                placeholder="Place your review here ...">
+            </textarea>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="order-shiping-update-wrapper">
                 <div class="order-shiping-update">
-                  <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30"
+                  <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30; else delivered"
                     (click)="cancelOrder()">Cancel Order</button>
-                  <button *ngIf="data.Status==40" (click)="cancelOrder()">Review</button>
+                  <ng-template #delivered>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="confirmReview()"
+                      style="margin-right: 30px;">Review</button>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="closeReview()">Close Review</button>
+                  </ng-template>
+
                 </div>
                 <div class="order-close">
                   <button (click)="close()">Close</button>

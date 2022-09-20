@@ -19,16 +19,18 @@ export class OrderTemplateComponent implements OnInit {
 
   orderDetailSelected!: OrderDetail;
   isVisibleModal: boolean = false;
-  tooltips = ['Rất không hài lòng', 'Không hài lòng', 'Bình thường', 'Hài lòng', 'Rất hài lòng'];
   reviewModel!: Review;
   reloadData: boolean = false;
+  isDelivered: boolean = false;
   constructor(
     private reviewService: ReviewService,
     private orderService: OrderService,
     private messageService: NzMessageService,
     public dialogRef: MatDialogRef<OrderTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order,
-  ) { }
+  ) {
+    if (this.data.Status == 40) this.isDelivered = true;
+  }
 
   ngOnInit(): void {
   }
@@ -44,29 +46,62 @@ export class OrderTemplateComponent implements OnInit {
 
   confirmReview() {
     this.reviewService.review(this.orderDetailSelected.Id ?? 0, this.reviewModel.Star, this.reviewModel.Content)
-      .subscribe((resp: any) => {
-        this.messageService.success("Thành công");
-        this.isVisibleModal = false;
-        this.orderDetailSelected.IsReview = true;
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success("Success");
+          this.isVisibleModal = false;
+          this.orderDetailSelected.IsReview = true;
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
+        }
       })
+  }
+  review(orderDetail: OrderDetail) {
+    console.log(orderDetail.Id)
+    this.orderDetailSelected = orderDetail;
+    this.reviewService.getByOrder(this.orderDetailSelected.Id ?? 0)
+      .subscribe({
+        next: (resp: any) => {
+          let data: Review = JSON.parse(resp["data"]);
+          if (data == null) {
+            this.reviewModel = {
+              Content: "",
+              Star: 0,
+              Status: -1
+            };
+          }
+          else {
+            this.reviewModel = data;
+            if (this.reviewModel.Content == null|| this.reviewModel.Content == undefined)
+              this.reviewModel.Content = "";
+          }
+          this.isVisibleModal = true;
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
+        }
+      })
+
+  }
+  rateChange(data: any) {
+    this.reviewModel.Star = Number(data);
+  }
+  closeReview() {
+    this.isVisibleModal = false;
   }
   cancelOrder() {
     this.orderService.changeStatus(this.data.Id, 50)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          //this.showOrderDetail(this.orderSelected);
-          //this.getData();
+          this.messageService.success("Cancel Success");
           this.reloadData = true;
           this.dialogRef.close(this.reloadData);
         }, error: (err: any) => {
           this.messageService.error(err.error.message);
         }
       });
-    }
+  }
   close() {
     this.dialogRef.close(this.reloadData);
   }
+
 }

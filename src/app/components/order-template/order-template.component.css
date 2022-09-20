@@ -7,16 +7,16 @@
 }
 
 .order-detail-main-area .table-content table thead > tr {
-  background-color: #ebebeb;
+  background-color: #266bf9;
   border: 1px solid #ebebeb;
 }
 
 .order-detail-main-area .table-content table thead > tr > th {
   border-top: medium none;
-  color: #000000;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 600;
-  padding: 21px 45px 22px;
+  padding: 12px 25px 15px;
   text-align: center;
   text-transform: uppercase;
   vertical-align: middle;
@@ -56,6 +56,13 @@
   width: 435px;
 }
 
+.order-detail-main-area .table-content table tbody > tr td.product-subtotal {
+  width: 435px;
+}
+.order-detail-main-area .table-content table tbody > tr td.rating {
+  width: 435px;
+}
+
 .order-detail-main-area .order-shiping-update-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -74,7 +81,6 @@
   transition: all 0.3s ease 0s;
 }
 
-.order-shiping-update-wrapper .order-close > button,
 .order-shiping-update-wrapper .order-close > button,
 .order-shiping-update-wrapper .order-shiping-update > button {
   background-color: #f2f2f2;
@@ -142,4 +148,39 @@ img.img-size {
 .order-shiping-update-wrapper .order-close > button:hover {
   background-color: #ea5c43;
   color: #fff;
+}
+
+.order-detail-main-area .review-container .review-title {
+  text-align: center;
+}
+
+.order-detail-main-area .review-container .review-title > span {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.order-detail-main-area .review-container .review-title > textarea {
+  font-size: 5px;
+}
+.order-detail-main-area .review-container .table-content {
+  text-align: center;
+}
+.order-detail-main-area .review-container .table-content table {
+  border: 1px solid #ebebeb;
+  width: 100%;
+}
+
+.defaultHert-review {
+  position: relative;
+  display: inline-block;
+  color: rgb(161, 161, 161);
+  font-size: 20px;
+  padding-right: 1px;
+}
+
+.paintHeart {
+  position: absolute;
+  display: inline - block;
+  color: yellow;
+  overflow: hidden;
 }

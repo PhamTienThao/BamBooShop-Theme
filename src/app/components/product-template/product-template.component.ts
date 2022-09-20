@@ -26,6 +26,9 @@ export class ProductTemplateComponent implements OnInit {
       this.product.Attributes.forEach(x => {
         if (x.ProductAttributes.length > 0)
           x.ProductAttributes[0].Checked = true;
+          for (let i = 1; i < x.ProductAttributes.length;i ++){
+            x.ProductAttributes[i].Checked = false;
+          }
       })
     }
     this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
