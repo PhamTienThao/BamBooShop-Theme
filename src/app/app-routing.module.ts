@@ -53,7 +53,7 @@ const routes: Routes = [
       },
       {
         path: "gio-hang",
-        //canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         component: CartComponent
       },
       {
