@@ -1,38 +1,53 @@
 <div class="row">
-    <div class="col-md-5 col-lg-5 col-xl-4">
-        <div class="product">
-            <div class="thumb">
-                <a href="single-product.html" class="image">
-                    <img [src]="product.Image | hostImageClient" alt="Product" />
-                </a>
-
-            </div>
-        </div>
+  <div class="col-md-5 col-lg-5 col-xl-4">
+    <div class="product">
+      <div class="thumb">
+        <a routerLink="/san-pham/{{ product.Alias }}" class="image">
+          <img [src]="product.Image | hostImageClient" alt="Product" />
+        </a>
+      </div>
     </div>
-    <div class="col-md-7 col-lg-7 col-xl-8">
-        <div class="content-desc-wrap">
-            <div class="content">
-                <h5 class="title">
-                    <a href="single-product.html">{{product.Name}}</a>
-                </h5>
-                <p [innerHTML]="product.ShortDescription">
-                </p>
-            </div>
-            <span class="price">
-                <span class="new">{{product.DiscountPrice}}</span>
-            </span>
-            <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
-                <div class="actions">
-                    <button class="quantityNotAvailable" (click)="addToCart()">
-                        <span>Thêm vào giỏ</span>
-                    </button>
-                </div>
-            </div>
-            <ng-template #QuantityNotAvailable>
-                <div class="quantityNotAvailable">
-                    <span>Đang hết hàng</span>
-                </div>
-            </ng-template>
+  </div>
+  <div class="col-md-7 col-lg-7 col-xl-8">
+    <div class="content-desc-wrap">
+      <div class="content">
+        <h5 class="title">
+          <a routerLink="/san-pham/{{ product.Alias }}">{{ product.Name }}</a>
+        </h5>
+        <p [innerHTML]="product.ShortDescription"></p>
+      </div>
+      <span class="quantity">
+        <span class="quantity-title">Quantity:</span>
+        <span class="quantity-value">
+          {{ product.Quantity }}
+        </span>
+      </span>
+      <span class="price">
+        <span class="old">${{ product.Price | number }}đ</span>
+        <span class="new">${{ product.DiscountPrice | number }}</span>
+      </span>
+      <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
+        <div class="actions">
+          <div class="actions-add-to-card">
+            <button (click)="addToCart()">
+              <span>Thêm vào giỏ</span>
+            </button>
+          </div>
+          <div class="actions-read-more">
+            <button
+              class="read-more"
+              routerLink="/san-pham/{{ product.Alias }}"
+            >
+              <span>Read more</span>
+            </button>
+          </div>
         </div>
+      </div>
+      <ng-template #QuantityNotAvailable>
+        <div class="quantityNotAvailable">
+          <span>Đang hết hàng</span>
+        </div>
+      </ng-template>
     </div>
+  </div>
 </div>

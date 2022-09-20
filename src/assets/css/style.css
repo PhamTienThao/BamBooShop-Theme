@@ -829,7 +829,7 @@ header .main-menu ul li.dropdown {
 
 header .main-menu ul li.dropdown ul.sub-menu {
   position: absolute;
-  z-index: 9;
+  z-index: 1000;
   text-align: left;
   opacity: 0;
   visibility: hidden;
@@ -2778,12 +2778,12 @@ body.offcanvas-open {
   position: absolute;
   top: 50%;
   left: auto;
-  width: 10px;
-  height: 2px;
+  width: 8px;
+  height: 1px;
   content: "";
   background-color: #666666;
   margin-top: -1px;
-  right: -15px;
+  right: -19px;
 }
 
 .product .content .btn {
@@ -7276,6 +7276,7 @@ body.offcanvas-open {
   padding: 0;
   color: #090909;
   width: 100%;
+  margin-left: 10px;
 }
 
 .header-bottom-set .dropdown-toggle::after {

@@ -44,6 +44,7 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
+
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
 
 @NgModule({
@@ -76,6 +77,7 @@ import { ProductTemplateListComponent } from './components/product-template-list
     ArticleExtComponent,
     OrderTemplateComponent,
     OrderTableComponent,
+    CategoryComponent,
     RatingComponent,
     ProductTemplateListComponent
   ],
