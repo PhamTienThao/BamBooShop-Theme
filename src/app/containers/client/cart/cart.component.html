@@ -1,5 +1,8 @@
 <!-- Cart Area Start -->
-<div class="cart-main-area pt-100px pb-100px" *ngIf="getTotalAmount > 0;else noCart ">
+<div
+  class="cart-main-area pt-100px pb-100px"
+  *ngIf="getTotalAmount > 0; else noCart"
+>
   <div class="container">
     <h3 class="cart-page-title">Your cart items</h3>
     <div class="row">
@@ -11,49 +14,92 @@
                 <tr>
                   <th>Image</th>
                   <th>Product Name</th>
+                  <th>Attributes</th>
                   <th>Until Price</th>
                   <th>Qty</th>
                   <th>Subtotal</th>
-                  <th>Action</th>
                 </tr>
               </thead>
-              <tbody *ngFor="let product of orderDetail, index as index">
+              <tbody *ngFor="let product of orderDetail; index as index">
                 <tr>
                   <td class="product-thumbnail">
-                    <a routerLink="/san-pham/{{ product.ProductAlias }}"><img class="img-responsive"
-                        [src]="product.ProductImage | hostImageClient" alt="" /></a>
+                    <a routerLink="/san-pham/{{ product.ProductAlias }}"
+                      ><img
+                        class="img-responsive"
+                        [src]="product.ProductImage | hostImageClient"
+                        alt=""
+                    /></a>
                   </td>
                   <td class="product-name">
                     <a routerLink="/san-pham/{{ product.ProductAlias }}">
-                      {{product.ProductName}}
+                      {{ product.ProductName }}
                     </a>
-                    <div class="attribute-product-cart" *ngFor="let attributes of product?.Attributes">
-                      <div class="attribute-product-cart-num">
-                        <span class="attribute-name-product-cart">{{ attributes.Name }}:
-                        </span>
-                        <div *ngFor="let item of attributes.ProductAttributes">
-                          <span *ngIf="item.Checked == true" class="attribute-infor-product-cart">{{item.Value}}</span>
-
+                  </td>
+                  <td class="product-attribute-cart">
+                    <div
+                      class="pro-details-color-size d-flex"
+                      *ngFor="let attributes of product?.Attributes"
+                    >
+                      <!-- Right Side Start -->
+                      <div class="select-shoing-wrap d-flex align-items-center">
+                        <div class="shot-product">
+                          <p>{{ attributes.Name }}:</p>
+                        </div>
+                        <div class="shop-select">
+                          <select
+                            class="shop-sort"
+                            #attributeSelected
+                            (change)="
+                              chooseAttribute(
+                                attributes.ProductAttributes,
+                                $event
+                              )
+                            "
+                          >
+                            <option
+                              [value]="index"
+                              *ngFor="
+                                let item of attributes.ProductAttributes;
+                                index as index
+                              "
+                            >
+                              {{ item.Value }}
+                            </option>
+                          </select>
                         </div>
                       </div>
+                      <!-- Right Side End -->
                     </div>
                   </td>
                   <td class="product-price-cart">
-                    <span class="amount">${{ product.ProductDiscountPrice | number }}</span>
+                    <span class="amount"
+                      >${{ product.ProductDiscountPrice | number }}</span
+                    >
                   </td>
                   <td class="product-quantity">
                     <div class="wrapper">
-                      <button class="plusminus-minus" (click)="handleQty(index, -1)"> - </button>
-                      <input type="number" class="number-input" [value]="product.Qty"
-                        (change)="handleQty(index,0, $event)" />
-                      <button class="plusminus-plus" (click)="handleQty(index, 1)"> + </button>
+                      <button
+                        class="plusminus-minus"
+                        (click)="handleQty(index, -1)"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        class="number-input"
+                        [value]="product.Qty"
+                        (change)="handleQty(index, 0, $event)"
+                      />
+                      <button
+                        class="plusminus-plus"
+                        (click)="handleQty(index, 1)"
+                      >
+                        +
+                      </button>
                     </div>
                   </td>
                   <td class="product-subtotal">
                     ${{ product.ProductDiscountPrice * product.Qty | number }}
-                  </td>
-                  <td class="product-remove">
-                    <a href="#"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
               </tbody>
@@ -74,161 +120,231 @@
             </div>
           </div>
         </form>
+        <form nz-form [formGroup]="formData" (ngSubmit)="submitForm()">
+          <div class="row row-detail-order">
+            <div class="col-lg-7">
+              <div class="billing-info-wrap">
+                <h3>Billing Details</h3>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="billing-info mb-4">
+                      <label>Full Name</label>
+                      <span class="text-red">(*)</span>
+                      <nz-form-control nzErrorTip="Không được để trống!">
+                        <input nz-input formControlName="FullName" />
+                      </nz-form-control>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="billing-info mb-4">
+                      <label>Phone</label>
+                      <span class="text-red">(*)</span>
+                      <nz-form-control nzErrorTip="Không được để trống!">
+                        <input nz-input formControlName="PhoneNumber" />
+                      </nz-form-control>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="billing-info mb-4">
+                      <label>Email Address</label>
+                      <input nz-input type="text" />
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="billing-select mb-4">
+                      <label>City</label>
+                      <span class="text-red">(*)</span>
+                      <nz-form-control nzErrorTip="Không được để trống!">
+                        <select
+                          nz-input
+                          formControlName="City"
+                          (change)="changeCity($event)"
+                        >
+                          <option
+                            *ngFor="let city of cities"
+                            value="{{ city.name }}"
+                          >
+                            {{ city.name }}
+                          </option>
+                        </select>
+                      </nz-form-control>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="billing-select mb-4">
+                      <label>District</label>
+                      <span class="text-red">(*)</span>
+                      <nz-form-control nzErrorTip="Không được để trống!">
+                        <select nz-input formControlName="District">
+                          <option
+                            *ngFor="let data of district"
+                            value="{{ data }}"
+                          >
+                            {{ data }}
+                          </option>
+                        </select>
+                      </nz-form-control>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="billing-info mb-4">
+                      <label>Street Address</label>
+                      <span class="text-red" formControlName="Address"
+                        >(*)</span
+                      >
+                      <nz-form-control nzErrorTip="Không được để trống!">
+                        <input nz-input formControlName="Address" />
+                      </nz-form-control>
+                    </div>
+                  </div>
+                </div>
 
-        <div class="row row-detail-order">
-          <div class="col-lg-7">
-            <div class="billing-info-wrap">
-              <h3>Billing Details</h3>
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="billing-info mb-4">
-                    <label>Full Name</label>
-                    <input type="text" />
+                <div class="additional-info-wrap">
+                  <h4>Additional information</h4>
+                  <div class="additional-info">
+                    <label>Order notes</label>
+                    <nz-form-control>
+                      <textarea
+                        formControlName="Note"
+                        rows="2"
+                        nz-input
+                      ></textarea>
+                    </nz-form-control>
                   </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="billing-info mb-4">
-                    <label>Phone</label>
-                    <input type="text" />
-                  </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="billing-info mb-4">
-                    <label>Email Address</label>
-                    <input type="text" />
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="billing-select mb-4">
-                    <label>City</label>
-                    <select (change)="changeCity($event)">
-                      <option *ngFor="let city of cities" value="{{ city.name }}">
-                        {{ city.name }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="billing-select mb-4">
-                    <label>District</label>
-                    <select>
-                      <option *ngFor="let data of district" value="{{ data }}">
-                        {{ data }}
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="billing-info mb-4">
-                    <label>Street Address</label>
-                    <input class="billing-address" placeholder="House number and street name" type="text" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="additional-info-wrap">
-                <h4>Additional information</h4>
-                <div class="additional-info">
-                  <label>Order notes</label>
-                  <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
-                    name="message"></textarea>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-5 mt-md-30px mt-lm-30px">
-            <div class="your-order-area">
-              <h3>Your order</h3>
-              <div class="your-order-wrap gray-bg-4">
-                <div class="your-order-product-info">
-                  <div class="your-order-top">
-                    <ul>
-                      <li>Product</li>
-                      <li>Total</li>
-                    </ul>
+            <div class="col-lg-5 mt-md-30px mt-lm-30px">
+              <div class="your-order-area">
+                <h3>Your order</h3>
+                <div class="your-order-wrap gray-bg-4">
+                  <div class="your-order-product-info">
+                    <div class="your-order-top">
+                      <ul>
+                        <li>Product</li>
+                        <li>Total</li>
+                      </ul>
+                    </div>
+                    <div class="your-order-middle">
+                      <ul>
+                        <li *ngFor="let product of orderDetail">
+                          <span class="order-middle-left"
+                            >{{ product.ProductName }}
+                          </span>
+                          <span class="order-quantity-quantity">
+                            X {{ product.Qty }}
+                          </span>
+                          <span class="order-price"
+                            >${{
+                              product.ProductDiscountPrice * product.Qty
+                                | number
+                            }}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="your-order-total">
+                      <ul>
+                        <li class="order-total">Total</li>
+                        <li>${{ getTotalAmount | number }}</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div class="your-order-middle">
-                    <ul>
-                      <li *ngFor="let product of orderDetail">
-                        <span class="order-middle-left">{{ product.ProductName }}
-                        </span>
-                        <span class="order-quantity-quantity">
-                          X {{ product.Qty }}
-                        </span>
-                        <span class="order-price">${{
-                          product.ProductDiscountPrice * product.Qty | number
-                          }}
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="your-order-total">
-                    <ul>
-                      <li class="order-total">Total</li>
-                      <li>${{ getTotalAmount | number }}</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="payment-method">
-                  <div class="payment-accordion element-mrg">
-                    <div id="faq" class="panel-group">
-                      <div class="panel panel-default single-my-account m-0">
-                        <div class="panel-heading my-account-title">
-                          <h4 class="panel-title">
-                            <a data-bs-toggle="collapse" href="#my-account-1" class="collapsed"
-                              aria-expanded="true">Direct bank transfer</a>
-                          </h4>
-                        </div>
-                        <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
-                          <div class="panel-body">
-                            <p>
-                              Please send a check to Store Name, Store Street,
-                              Store Town, Store State / County, Store Postcode.
-                            </p>
+                  <div class="payment-method">
+                    <div class="payment-accordion element-mrg">
+                      <div id="faq" class="panel-group">
+                        <div class="panel panel-default single-my-account m-0">
+                          <div class="panel-heading my-account-title">
+                            <h4 class="panel-title">
+                              <a
+                                data-bs-toggle="collapse"
+                                href="#my-account-1"
+                                class="collapsed"
+                                aria-expanded="true"
+                                >Direct bank transfer</a
+                              >
+                            </h4>
+                          </div>
+                          <div
+                            id="my-account-1"
+                            class="panel-collapse collapse show"
+                            data-bs-parent="#faq"
+                          >
+                            <div class="panel-body">
+                              <p>
+                                Please send a check to Store Name, Store Street,
+                                Store Town, Store State / County, Store
+                                Postcode.
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="panel panel-default single-my-account m-0">
-                        <div class="panel-heading my-account-title">
-                          <h4 class="panel-title">
-                            <a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false"
-                              class="collapsed">Check payments</a>
-                          </h4>
-                        </div>
-                        <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
-                          <div class="panel-body">
-                            <p>
-                              Please send a check to Store Name, Store Street,
-                              Store Town, Store State / County, Store Postcode.
-                            </p>
+                        <div class="panel panel-default single-my-account m-0">
+                          <div class="panel-heading my-account-title">
+                            <h4 class="panel-title">
+                              <a
+                                data-bs-toggle="collapse"
+                                href="#my-account-2"
+                                aria-expanded="false"
+                                class="collapsed"
+                                >Check payments</a
+                              >
+                            </h4>
+                          </div>
+                          <div
+                            id="my-account-2"
+                            class="panel-collapse collapse"
+                            data-bs-parent="#faq"
+                          >
+                            <div class="panel-body">
+                              <p>
+                                Please send a check to Store Name, Store Street,
+                                Store Town, Store State / County, Store
+                                Postcode.
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="panel panel-default single-my-account m-0">
-                        <div class="panel-heading my-account-title">
-                          <h4 class="panel-title">
-                            <a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a>
-                          </h4>
-                        </div>
-                        <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
-                          <div class="panel-body">
-                            <p>
-                              Please send a check to Store Name, Store Street,
-                              Store Town, Store State / County, Store Postcode.
-                            </p>
+                        <div class="panel panel-default single-my-account m-0">
+                          <div class="panel-heading my-account-title">
+                            <h4 class="panel-title">
+                              <a data-bs-toggle="collapse" href="#my-account-3"
+                                >Cash on delivery</a
+                              >
+                            </h4>
+                          </div>
+                          <div
+                            id="my-account-3"
+                            class="panel-collapse collapse"
+                            data-bs-parent="#faq"
+                          >
+                            <div class="panel-body">
+                              <p>
+                                Please send a check to Store Name, Store Street,
+                                Store Town, Store State / County, Store
+                                Postcode.
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="Place-order mt-25">
-                <a class="btn-hover" (click)="submitForm()">Place Order</a>
+                <div class="Place-order mt-25">
+                  <button
+                    type="submit"
+                    nz-button
+                    nzType="primary"
+                    class="btn-submit"
+                  >
+                    Place Order
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
