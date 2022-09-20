@@ -31,16 +31,15 @@ export class CartService {
       for (let i = 0; i < cart.length; i++) {
         if (product.Id == cart[i].ProductId) {
           // listDuplicate.push(cart[i]);
-          console.log(product.Attributes)
-          console.log(cart[i].Attributes)
           if (JSON.stringify(product.Attributes) == JSON.stringify(cart[i].Attributes)) {
+            debugger
             cart[i].Qty += qty;
             isExist = true;
             break;
           }else{
             isExist = false;
           }
-        }
+        }else isExist = false;
       }
     } 
     // if(listDuplicate.length == 0){

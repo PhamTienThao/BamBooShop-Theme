@@ -1,0 +1,103 @@
+/* Shop list style */
+:host .shop-list-wrapper .content-desc-wrap .content {
+    position: relative;
+    z-index: 10;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    background-color: #fff;
+}
+
+.content-desc-wrap .content .category a {
+    font-size: 14px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.content-desc-wrap .content .category a:hover {
+    color: #266bf9;
+}
+
+.content-desc-wrap .content .title {
+    margin: 0px 0 15px;
+    font-family: "Poppins", sans-serif;
+}
+
+.content-desc-wrap .content .title a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-desc-wrap .content .title a:hover {
+    color: #266bf9;
+}
+
+.content-desc-wrap .content p {
+    line-height: 1.7;
+}
+.product .thumb .image{
+    text-align: center;
+}
+.product .thumb .image img {
+    max-height: 30vh !important;
+    width: auto;
+}
+
+.product:hover {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.product:hover .thumb .image img {
+    -webkit-transform: scale(1.01) rotate(0deg);
+    transform: scale(1.01) rotate(0deg);
+}
+
+.product:hover .thumb .image img:not(:last-child) {
+    opacity: 0;
+}
+
+.product:hover .thumb .image img.hover-image {
+    opacity: 1;
+}
+
+.product:hover .actions {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content-desc-wrap .actions .quantityNotAvailable>button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    height: 60%;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    background-color: #ff0000;
+    font-size: 16px;
+    border: solid 1px;
+}
+.actions>button{
+    background-color: white;
+    border-radius: 5px;
+    color: #266bf9;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 18px 63px 17px;
+    text-transform: uppercase;
+    border: 2px solid #266bf9;
+}
