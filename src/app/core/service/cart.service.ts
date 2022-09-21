@@ -33,7 +33,6 @@ export class CartService {
         if (product.Id == cart[i].ProductId) {
           // listDuplicate.push(cart[i]);
           if (JSON.stringify(product.Attributes) == JSON.stringify(cart[i].Attributes)) {
-            debugger
             cart[i].Qty += qty;
             isExist = true;
             break;
@@ -88,7 +87,6 @@ export class CartService {
       });
     }
 
-
     localStorage.setItem(Constants.LOCAL_STORAGE_KEY.CART, JSON.stringify(cart));
   }
 
@@ -100,6 +98,5 @@ export class CartService {
     localStorage.removeItem(Constants.LOCAL_STORAGE_KEY.CART);
   }
   deleteCartProduct() {
-
   }
 }

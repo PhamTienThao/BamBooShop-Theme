@@ -95,11 +95,11 @@ export class CartComponent implements OnInit {
         }
         break;
       case 0:
-        if (Number(event.target.value) < 0) 
+        if (Number(event.target.value) < 0)
           this.orderDetail[orderDetailIndex].Qty = 1;
-        else if(Number(event.target.value) >  this.orderDetail[orderDetailIndex].QtyRemain)
+        else if (Number(event.target.value) > this.orderDetail[orderDetailIndex].QtyRemain)
           this.orderDetail[orderDetailIndex].Qty = this.orderDetail[orderDetailIndex].QtyRemain;
-        else 
+        else
           this.orderDetail[orderDetailIndex].Qty = Number(event.target.value);
         break;
       case 1:
@@ -110,7 +110,8 @@ export class CartComponent implements OnInit {
         }
         break;
     }
-    if (this.orderDetail[orderDetailIndex].Qty == 0) this.updateCart();
+    //if (this.orderDetail[orderDetailIndex].Qty == 0) this.updateCart();
+    this.updateCart();
   }
 
   getCart() {
@@ -140,18 +141,31 @@ export class CartComponent implements OnInit {
 
 
 
-  chooseAttribute(attributes: ProductAttribute[], event: any) {
-    let index = Number(event.target.value);
+  chooseAttribute(orderDetailIndex: number, attributeIndex: number, productAttributeIndex: any, attributes: ProductAttribute[]) {
+    let index = Number(productAttributeIndex.target.value);
     for (let i = 0; i < attributes.length; i++) {
       if (i == index) {
-        if (attributes[i].Checked == true)
-          attributes[i].Checked = false;
-        else
-          attributes[i].Checked = true;
+        this.orderDetail[orderDetailIndex].Attributes[attributeIndex].ProductAttributes[i].Checked = true;
       }
       else
-        attributes[i].Checked = false;
+        this.orderDetail[orderDetailIndex].Attributes[attributeIndex].ProductAttributes[i].Checked = false;
     }
+    for (let i = 0; i < this.orderDetail.length; i++) {
+      if (i != orderDetailIndex
+        && this.orderDetail[i].ProductId == this.orderDetail[orderDetailIndex].ProductId
+        && JSON.stringify(this.orderDetail[i].Attributes) == JSON.stringify(this.orderDetail[orderDetailIndex].Attributes)) {
+        {
+          this.orderDetail[orderDetailIndex].Qty += this.orderDetail[i].Qty
+          let array1 = this.orderDetail.slice(0,i);
+          let array2 = this.orderDetail.slice(i+1, this.orderDetail.length)
+          this.orderDetail = array1.concat(array2);
+          break;
+        }
+
+
+      }
+    }
+    this.updateCart();
   }
   submitForm(): void {
     for (const i in this.formData.controls) {

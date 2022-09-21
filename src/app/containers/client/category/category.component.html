@@ -12,20 +12,13 @@
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
-                <button
-                  class="dropdown-toggle header-action-btn"
-                  data-bs-toggle="dropdown"
-                >
+                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
                   {{ currentFilterOption || null }}
                   <i class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li *ngFor="let item of filterOption; index as index">
-                    <a
-                      class="dropdown-item"
-                      (click)="filter.orderBy = item.value; getData()"
-                      >{{ item.name }}</a
-                    >
+                    <a class="dropdown-item" (click)="filter.orderBy = item.value; getData()">{{ item.name }}</a>
                   </li>
                 </ul>
               </div>
@@ -36,20 +29,13 @@
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
-                <button
-                  class="dropdown-toggle header-action-btn"
-                  data-bs-toggle="dropdown"
-                >
+                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
                   {{ currentFilterPrice || null }}
                   <i class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li *ngFor="let item of filterPrice; index as index">
-                    <a
-                      class="dropdown-item"
-                      (click)="filter.price = item.value; getData()"
-                      >{{ item.name }}</a
-                    >
+                    <a class="dropdown-item" (click)="filter.price = item.value; getData()">{{ item.name }}</a>
                   </li>
                 </ul>
               </div>
@@ -81,11 +67,7 @@
 
           <!-- Left Side End -->
           <div class="shop-tab nav">
-            <button
-              class="active"
-              data-bs-target="#shop-grid"
-              data-bs-toggle="tab"
-            >
+            <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
               <i class="fa fa-th" aria-hidden="true"></i>
             </button>
             <button data-bs-target="#shop-list" data-bs-toggle="tab">
@@ -105,25 +87,15 @@
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="shop-grid">
                   <div class="row mb-n-30px">
-                    <div
-                      *ngFor="let product of menu.Products"
-                      class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px"
-                    >
-                      <!-- Single Prodect -->
-                      <app-product-template
-                        [product]="product"
-                      ></app-product-template>
+                    <div *ngFor="let product of menu.Products"
+                      class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                      <app-product-template [product]="product"></app-product-template>
                     </div>
                   </div>
                 </div>
                 <div class="tab-pane fade mb-n-30px" id="shop-list">
-                  <div
-                    class="shop-list-wrapper mb-30px"
-                    *ngFor="let item of menu.Products"
-                  >
-                    <app-product-template-list
-                      [product]="item"
-                    ></app-product-template-list>
+                  <div class="shop-list-wrapper mb-30px" *ngFor="let product of menu.Products">
+                    <app-product-template-list [product]="product"></app-product-template-list>
                   </div>
                 </div>
               </div>
@@ -131,11 +103,7 @@
           </div>
           <!-- Tab Content Area End -->
           <!--  Pagination Area Start -->
-          <div
-            class="pro-pagination-style text-center text-lg-end"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
+          <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
             <div class="pages btn-showmore">
               <button (click)="showMore()">Show More</button>
             </div>

@@ -74,7 +74,7 @@ export class CategoryComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.menu = JSON.parse(resp["data"]);
-          console.log(this.menu.Products?.length);
+          console.log(this.menu);
         }, error: (err: any) => {
 
         }

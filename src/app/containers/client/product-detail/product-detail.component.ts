@@ -119,8 +119,14 @@ export class ProductDetailComponent implements OnInit {
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
       if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
-        this.messageService.error("Chọn ít nhất một thuộc tính sản phẩm")
-        return;
+        this.product.Attributes.forEach(x => {
+          if (x.ProductAttributes.length > 0)
+            x.ProductAttributes[0].Checked = true;
+          for (let i = 1; i < x.ProductAttributes.length; i++) {
+            x.ProductAttributes[i].Checked = false;
+          }
+        })
+
       }
     }
     //fix bug product qty when add to cart
@@ -135,8 +141,14 @@ export class ProductDetailComponent implements OnInit {
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
       if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
-        this.messageService.error("Chọn ít nhất một thuộc tính sản phẩm")
-        return;
+        this.product.Attributes.forEach(x => {
+          if (x.ProductAttributes.length > 0)
+            x.ProductAttributes[0].Checked = true;
+          for (let i = 1; i < x.ProductAttributes.length; i++) {
+            x.ProductAttributes[i].Checked = false;
+          }
+        })
+
       }
     }
     this.cartService.addProductToCart(this.product, this.qty);

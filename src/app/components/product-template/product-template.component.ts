@@ -33,7 +33,6 @@ export class ProductTemplateComponent implements OnInit {
     }
     this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
     this.cartService.addProductToCart(this.product);
-    console.log(localStorage.getItem(Constants.LOCAL_STORAGE_KEY.CART))
   }
 }
 

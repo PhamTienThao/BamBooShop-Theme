@@ -30,14 +30,11 @@
         <div class="actions">
           <div class="actions-add-to-card">
             <button (click)="addToCart()">
-              <span>Thêm vào giỏ</span>
+              <span>Add to cart</span>
             </button>
           </div>
           <div class="actions-read-more">
-            <button
-              class="read-more"
-              routerLink="/san-pham/{{ product.Alias }}"
-            >
+            <button class="read-more" routerLink="/san-pham/{{ product.Alias }}">
               <span>Read more</span>
             </button>
           </div>
@@ -45,7 +42,7 @@
       </div>
       <ng-template #QuantityNotAvailable>
         <div class="quantityNotAvailable">
-          <span>Đang hết hàng</span>
+          <span>Out of order</span>
         </div>
       </ng-template>
     </div>
