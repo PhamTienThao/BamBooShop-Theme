@@ -1,1 +1,85 @@
-<p>search works!</p>
+<!-- Shop Page Start  -->
+<div class="shop-category-area pt-100px pb-100px">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Shop Top Area Start -->
+          <div class="shop-top-bar d-flex">
+            <div class="filter-category">
+              <div class="compare-product">
+                <div class="shot-product">
+                  <p>Sort By:</p>
+                </div>
+                <!-- Single Wedge End -->
+                <div class="header-bottom-set dropdown">
+                  <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
+                    {{ currentFilterOption || null }}
+                    <i class="fa fa-angle-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li *ngFor="let item of filterOption; index as index">
+                      <a class="dropdown-item" (click)="filter.orderBy = item.value; getData()">{{ item.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="select-shoing-wrap">
+                <div class="shot-product">
+                  <p>Sort By:</p>
+                </div>
+                <!-- Single Wedge End -->
+                <div class="header-bottom-set dropdown">
+                  <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
+                    {{ currentFilterPrice || null }}
+                    <i class="fa fa-angle-down"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li *ngFor="let item of filterPrice; index as index">
+                      <a class="dropdown-item" (click)="filter.price = item.value; getData()">{{ item.name }}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+            <div class="shop-tab nav">
+              <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
+                <i class="fa fa-th" aria-hidden="true"></i>
+              </button>
+              <button data-bs-target="#shop-list" data-bs-toggle="tab">
+                <i class="fa fa-list" aria-hidden="true"></i>
+              </button>
+            </div>
+  
+          </div>
+          <div class="shop-bottom-area">
+            <div class="row">
+              <div class="col">
+                <div class="tab-content">
+                  <div class="tab-pane fade show active" id="shop-grid">
+                    <div class="row mb-n-30px">
+                      <div *ngFor="let item of products"
+                        class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                        <app-product-template [product]="item"></app-product-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade mb-n-30px" id="shop-list">
+                    <div class="shop-list-wrapper mb-30px" *ngFor="let product of products">
+                      <app-product-template-list [product]="product"></app-product-template-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
+              <div class="pages btn-showmore">
+                <button (click)="showMore()">Show More</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Shop Page End  -->

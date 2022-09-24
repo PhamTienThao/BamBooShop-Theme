@@ -36,8 +36,11 @@ export class CategoryComponent implements OnInit {
     { name: "Best fit", value: "highlight" },
     { name: "Price, low to high", value: "price-asc" },
     { name: "Price, high to low", value: "price-desc" }];
+
   currentFilterPrice: any;
   currentFilterOption: any;
+
+  countAllProducts: number = 0;
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -74,7 +77,9 @@ export class CategoryComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.menu = JSON.parse(resp["data"]);
-          console.log(this.menu);
+          if (this.menu.Products != null) {
+            this.countAllProducts = this.menu.Products.length;
+          }
         }, error: (err: any) => {
 
         }
@@ -93,11 +98,17 @@ export class CategoryComponent implements OnInit {
       )
       .subscribe({
         next: (resp: any) => {
-          this.menu = JSON.parse(resp["data"])
+          this.menu = JSON.parse(resp["data"]);
+          if (this.menu.Products != null) {
+            this.countAllProducts = this.menu.Products.length;
+          }
           setTimeout(() => {
             this.viewportScroller.scrollToPosition(currentLocation)
           }, 10);
-        }, error: (err: any) => { }
+
+        }, error: (err: any) => {
+
+        }
       })
   }
 
