@@ -14,10 +14,10 @@
             <div class="top-nav">
               <ul>
                 <li>
-                  <a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i> {{ website.PhoneNumber }}</a>
+                  <a><i class="fa fa-phone"></i> {{ website.PhoneNumber ||null }}</a>
                 </li>
                 <li>
-                  <a href="mailto:{{ website.Email }}"><i class="fa fa-envelope-o"></i> {{ website.Email }}</a>
+                  <a href="mailto:{{ website.Email ||null }}"><i class="fa fa-envelope-o"></i> {{ website.Email ||null}}</a>
                 </li>
                 <li>
                   <a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a>

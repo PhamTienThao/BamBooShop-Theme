@@ -19,7 +19,19 @@ import { WebsiteService } from 'src/app/core/service/website.service';
 export class LayoutComponent implements OnInit {
 
   formRegistration!: FormGroup;
-  website!: Website;
+  website: Website = {
+    Id: 0,
+    Name: '',
+    Logo: '',
+    PhoneNumber: '',
+    Fax: '',
+    Email: '',
+    Address: '',
+    Location: '',
+    Facebook: '',
+    Youtube: '',
+    Copyright: '',
+  };
   mainMenus: Menu[] = [];
   subMenus: Menu[] = [];
   subBanner: Gallery[] = [];
