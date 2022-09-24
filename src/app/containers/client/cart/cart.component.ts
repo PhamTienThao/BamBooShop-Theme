@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
 
   //hmtien add 29/8
   cities = CityData;
-  district: string[] = ['Quận Huyện'];
+  district: string[] = ['District'];
 
 
   constructor(private orderService: OrderService,
@@ -45,7 +45,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.formData = this.formBuilder.group({
       FullName: [{ value: '', disabled: true }, Validators.required],
-      PhoneNumber: [null, Validators.required],
+      PhoneNumber: [{ value: '', disabled: true }, Validators.required],
+      Email: [{ value: '', disabled: true }, Validators.required],
       Address: [null, Validators.required],
       City: [null, Validators.required],
       District: [null, Validators.required],
@@ -174,10 +175,10 @@ export class CartComponent implements OnInit {
         this.formData.controls[i].updateValueAndValidity();
       }
     }
-
+    debugger;
     if (this.formData.invalid) {
       this.messageService.error("Thiếu thông tin cần thiết");
-      return;
+      return; 
     }
     let orderDetailPost: OrderDetail[] = DataHelper.clone(this.orderDetail);
     orderDetailPost.forEach(x => {
@@ -229,6 +230,7 @@ export class CartComponent implements OnInit {
     // cách 2
     this.district =
       this.cities.find((data) => data.name === city)?.districts || [];
+    this.formData.controls['District'].setValue(this.district[0])
   }
 }
 

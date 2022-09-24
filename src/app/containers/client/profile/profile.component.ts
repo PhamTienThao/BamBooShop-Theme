@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.profile = JSON.parse(resp["data"]);
+          this.profile.Dob = moment(new Date(this.profile.Dob)).format("YYYY-MM-DD")
           this.formData.patchValue(this.profile)
         }, error: (err: any) => {
 
@@ -85,7 +87,7 @@ export class ProfileComponent implements OnInit {
 
     let dataPost = this.formData.getRawValue();
     if (dataPost.Dob != null)
-      dataPost.Dob = moment(new Date(dataPost.Dob)).format("YYYY-MM-DDTHH:mm:ss")
+      dataPost.Dob = moment(new Date(dataPost.Dob)).format("YYYY-MM-DD")
 
     this.nzLoading = true;
     this.customerService.updateProfile(dataPost)
@@ -133,5 +135,4 @@ export class ProfileComponent implements OnInit {
         }
       })
   }
-
 }

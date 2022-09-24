@@ -129,12 +129,6 @@ export class HomeComponent implements OnInit {
   }
 
   getHighlightArticle() {
-    // this.articleService.getHighlight()
-    //   .subscribe((resp: any) => {
-    //     this.highlightArticle = JSON.parse(resp["data"])
-    //   }, error => {
-
-    //   })
     this.articleService.getHighlight().subscribe({
       next: (resp: any) => {
         this.highlightArticle = JSON.parse(resp["data"])
