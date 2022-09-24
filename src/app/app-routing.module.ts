@@ -40,7 +40,7 @@ const routes: Routes = [
         component: LoginComponent
       },
       {
-        path: "dang-ky-tai-khoan",
+        path: "dang-ky",
         component: SignUpComponent
       },
       {
