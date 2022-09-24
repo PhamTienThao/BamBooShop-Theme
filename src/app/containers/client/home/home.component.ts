@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   //   // ],
   // };
   mainBanner: Gallery[] = [];
-  productSellings: Product[] = [];
+  productSelling: Product[] = [];
   menuHomePages: Menu[] = [];
   highlightArticle: Article[] = [];
 
@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
     //   })
     this.productService.getSelling().subscribe({
       next: (resp:any) =>{
-        this.productSellings = JSON.parse(resp["data"]);
+        this.productSelling = JSON.parse(resp["data"]);
       },
       error: (err: any) => {
         this.messageService.error(err);
