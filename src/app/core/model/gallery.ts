@@ -1,6 +1,5 @@
 export interface Gallery {
-    Id: number;
-    Image: string;
-    Type: number;
-
+  Id: number;
+  Image: string;
+  Type: number;
 }

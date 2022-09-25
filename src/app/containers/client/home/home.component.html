@@ -1,43 +1,9 @@
 <!-- Hero/Intro Slider Start -->
 <div class="section">
-  <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
-    <!-- Hero slider Active -->
-    <div class="swiper-wrapper">
-      <!-- Single slider item -->
-      <div class="hero-slide-item slider-height swiper-slide bg-color1"
-        data-bg-image="assets/images/hero/bg/hero-bg-1.webp">
-        <div class="container h-100">
-          <div class="row h-100">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view">
-              <div class="hero-slide-content slider-animated-1">
-                <span class="category">Welcome To Hmart</span>
-                <h2 class="title-1">
-                  Your Home <br />
-                  Smart Devices & <br />
-                  Best Solution
-                </h2>
-                <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
-              </div>
-            </div>
-            <div
-              class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-end">
-              <div class="show-case">
-                <div class="hero-slide-image">
-                  <img src="assets/images/hero/inner-img/hero-1-1.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination swiper-pagination-white"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-buttons">
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+  <div
+    class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1"
+  >
+    <app-carousel [images]="mainBanner" [autoSlide]="true"></app-carousel>
   </div>
 </div>
 <!-- Hero/Intro Slider End -->
@@ -48,20 +14,21 @@
     <div class="row">
       <div class="col-12">
         <div class="section-title text-center pt-70px">
-            <h2 class="title">
-              Highlight Product
-            </h2>
+          <h2 class="title">Highlight Product</h2>
         </div>
       </div>
     </div>
     <!-- Section Title & Tab End -->
     <div class="row">
       <div class="col">
-        <div class="tab-content mt-60px">
+        <div class="tab-content">
           <!-- 1st tab start -->
           <div class="tab-pane fade show active" id="newarrivals">
             <div class="row mb-n-30px">
-              <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" *ngFor="let item of productSelling">
+              <div
+                class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px"
+                *ngFor="let item of productSelling"
+              >
                 <!-- Single Product -->
                 <app-product-template [product]="item"></app-product-template>
               </div>
@@ -88,7 +55,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" *ngFor="let item of menu.Products">
+      <div
+        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px"
+        *ngFor="let item of menu.Products"
+      >
         <!-- Single Product -->
         <app-product-template [product]="item"></app-product-template>
       </div>
@@ -111,7 +81,10 @@
     </div>
     <!-- section title start -->
     <div class="row">
-      <div class="col-lg-6 col-sm-6 mb-xs-30px" *ngFor="let article of highlightArticle">
+      <div
+        class="col-lg-6 col-sm-6 mb-xs-30px"
+        *ngFor="let article of highlightArticle"
+      >
         <app-article-template [article]="article"></app-article-template>
       </div>
     </div>

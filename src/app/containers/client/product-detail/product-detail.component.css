@@ -138,6 +138,8 @@
   border-radius: 5px;
   opacity: 0.5;
 }
+
+.active,
 .small_img:hover {
   border: 1px solid #e2e2e2;
   opacity: 1;

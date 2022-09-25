@@ -1,3 +1,4 @@
+import { CarouselModule } from './components/carousel/carousel.module';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NgModule } from '@angular/core';
@@ -99,7 +100,8 @@ import { ProductTemplateListComponent } from './components/product-template-list
     NgbModule,
     NzFormModule,
     NzStepsModule,
-    MatStepperModule
+    MatStepperModule,
+    CarouselModule
   ],
   providers: [
     AuthGuardService,

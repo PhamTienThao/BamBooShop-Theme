@@ -20,6 +20,8 @@ export class ProductDetailComponent implements OnInit {
   image: string = "./assets/imgs/tivi.png";
   //hmtien add 26/8
   qtyAvailable!: boolean;
+
+  selectedIndex = 0;
   // config: any = {
   //   pagination: {
   //     el: '.swiper-pagination',
@@ -56,6 +58,9 @@ export class ProductDetailComponent implements OnInit {
     this.getData();
   }
 
+  selectImage(index: number): void {
+    this.selectedIndex = index;
+  }
 
   handleMinus() {
     if (this.qty > 1) {
