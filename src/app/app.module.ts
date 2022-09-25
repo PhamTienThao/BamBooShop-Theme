@@ -1,6 +1,8 @@
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,7 +46,6 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
-
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
 
 @NgModule({
@@ -96,7 +97,9 @@ import { ProductTemplateListComponent } from './components/product-template-list
     NgxSpinnerModule,
     MatDialogModule,
     NgbModule,
-    NzFormModule
+    NzFormModule,
+    NzStepsModule,
+    MatStepperModule
   ],
   providers: [
     AuthGuardService,

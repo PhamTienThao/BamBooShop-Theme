@@ -27,7 +27,12 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.facbook-login > button:hover {
+  background-color: #63a5ec !important;
+}
+.google-login > button:hover {
+  background-color: #eb8079 !important;
+}
 .facbook-login > button span {
   color: white;
   margin: 0 auto;

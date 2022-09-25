@@ -1,0 +1,188 @@
+.login-register-form {
+  margin-top: 24px;
+}
+
+.login-button {
+  width: 100%;
+  height: 45px;
+}
+.text-or {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.text-or span {
+  font-weight: 400;
+}
+.social-login-area {
+  display: flex;
+  justify-content: space-between;
+}
+.facbook-login {
+  width: 50%;
+  padding-right: 10px;
+}
+
+.facbook-login > button {
+  width: 100%;
+  height: 45px;
+  background-color: #0572e6 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.facbook-login > button:hover {
+  background-color: #63a5ec !important;
+}
+.google-login > button:hover {
+  background-color: #eb8079 !important;
+}
+.facbook-login > button span {
+  color: white;
+  margin: 0 auto;
+}
+.google-login {
+  width: 50%;
+  padding-left: 10px;
+}
+.google-login > button {
+  width: 100%;
+  height: 45px;
+  background-color: #ea4235 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.google-login > button span {
+  color: white;
+  margin: 0 auto;
+}
+
+.flote-none:hover {
+  color: #000000 !important;
+}
+
+.login-title h4 {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+.text-register {
+  margin-top: 30px;
+  text-align: start;
+}
+.text-register span {
+  color: #000000;
+}
+.text-register a {
+  color: #000000;
+  cursor: pointer;
+}
+
+.text-register a:hover {
+  color: #0572e6;
+}
+::ng-deep .mat-horizontal-stepper-header .mat-step-label {
+  font-family: "Poppins", sans-serif;
+  justify-content: space-around;
+  max-width: 100%;
+}
+::ng-deep .mat-step-text-label {
+  font-size: 14px;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #1890ff;
+  color: #fff;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-done {
+  background-color: #00ff32;
+  color: #fff;
+}
+::ng-deep .mat-step-header {
+  pointer-events: none !important;
+}
+
+::ng-deep .mat-step-label .mat-step-label-active .mat-step-label-selected {
+  display: none;
+}
+
+::ng-deep .mat-stepper-horizontal-line {
+  min-width: 0px !important;
+  margin: 0 -16px 0 -18px !important;
+}
+/* Responsvie */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (max-width: 510px) {
+  ::ng-deep .mat-step-text-label {
+    font-size: 12px !important;
+  }
+  ::ng-deep .mat-step-icon-content {
+    font-size: 12px !important;
+  }
+  ::ng-deep .mat-step-icon {
+    height: 20px !important;
+    width: 20px !important;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  ::ng-deep .mat-horizontal-stepper-header .mat-step-label {
+    display: none;
+  }
+  ::ng-deep .mat-step-icon-content {
+    font-size: 14px !important;
+  }
+  ::ng-deep .mat-step-icon {
+    height: 24px !important;
+    width: 24px !important;
+  }
+  .facbook-login > button i {
+    display: none;
+  }
+  .google-login > button i {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .facbook-login {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+  .google-login {
+    width: 100%;
+    padding: 0;
+  }
+  .social-login-area {
+    display: block;
+  }
+  .login-toggle-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flote-none {
+    margin: 0 0 10px 0 !important;
+  }
+
+  .text-register {
+    margin-top: 30px;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+  }
+}
