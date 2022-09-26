@@ -127,7 +127,6 @@ import { ProductTemplateListComponent } from './components/product-template-list
           },
         ],
         onError: (err) => {
-          console.log(err);
         }
       } as SocialAuthServiceConfig
     },

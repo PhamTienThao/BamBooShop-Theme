@@ -13,8 +13,6 @@ import { ProductService } from 'src/app/core/service/product.service';
 export class CategoryComponent implements OnInit {
 
   menu!: Menu;
-  nzLoading: boolean = false;
-
   filter = {
     menuAlias: "",
     orderBy: "highlight",
@@ -89,13 +87,7 @@ export class CategoryComponent implements OnInit {
   showMore() {
     let currentLocation: [number, number] = this.viewportScroller.getScrollPosition();
     this.filter.take += 20;
-    this.nzLoading = true;
     this.productService.getByMenu(this.filter.menuAlias, this.filter.orderBy, this.filter.price, this.filter.take)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.menu = JSON.parse(resp["data"]);

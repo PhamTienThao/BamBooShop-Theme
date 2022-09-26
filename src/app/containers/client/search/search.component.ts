@@ -13,7 +13,6 @@ import { ProductService } from 'src/app/core/service/product.service';
 export class SearchComponent implements OnInit {
 
   products: Product[] = [];
-  nzLoading: boolean = false;
 
   filter = {
     keySearch: "",
@@ -80,13 +79,7 @@ export class SearchComponent implements OnInit {
   showMore() {
     let currentLocation: [number, number] = this.viewportScroller.getScrollPosition();
     this.filter.take += 20;
-    this.nzLoading = true;
     this.productService.search(this.filter.keySearch, this.filter.orderBy, this.filter.price, this.filter.take)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.products = JSON.parse(resp["data"])

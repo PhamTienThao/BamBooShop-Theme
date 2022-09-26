@@ -57,7 +57,6 @@ export class OrderTemplateComponent implements OnInit {
       })
   }
   review(orderDetail: OrderDetail) {
-    console.log(orderDetail.Id)
     this.orderDetailSelected = orderDetail;
     this.reviewService.getByOrder(this.orderDetailSelected.Id ?? 0)
       .subscribe({

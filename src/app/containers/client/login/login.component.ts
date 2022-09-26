@@ -54,11 +54,9 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           // this.messageService.success("Đăng nhập thành công");
-          console.log("success")
           this.navigate("/");
         }, error: (err: any) => {
           // this.messageService.error(error.error.message);
-          console.log(err.error.message);
         }
       })
   }

@@ -12,7 +12,6 @@ import { CustomerService } from 'src/app/core/service/customer.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   formData!: FormGroup;
-  nzLoading: boolean = false;
 
   constructor(
     private customerService: CustomerService,
@@ -29,6 +28,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
+    debugger;
     for (const i in this.formData.controls) {
       if (this.formData.controls.hasOwnProperty(i)) {
         this.formData.controls[i].markAsDirty();
@@ -39,17 +39,13 @@ export class ForgotPasswordComponent implements OnInit {
       return;
     }
 
-    this.nzLoading = true;
     this.customerService.forgotPassword(this.formData.getRawValue().Email)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
-      .subscribe((resp: any) => {
-        this.messageService.success("Yêu cầu cấp lại mật khẩu thành công. Vui lòng kiểm tra thông tin tại hòm thư của bạn.");
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success("Request completed. Please check your email.");
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
+        }
       })
   }
 

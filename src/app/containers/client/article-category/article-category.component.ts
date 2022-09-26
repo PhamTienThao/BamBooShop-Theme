@@ -15,7 +15,6 @@ import { ArticleService } from 'src/app/core/service/article.service';
 export class ArticleCategoryComponent implements OnInit {
 
   menu!: Menu;
-  nzLoading: boolean = false;
   article: Article[] = [];
   filter = {
     menuAlias: "",
@@ -50,7 +49,6 @@ export class ArticleCategoryComponent implements OnInit {
             Active: true, SubMenus: null, PMenu: null, Products: null, Articles: this.article
           }
           this.menu.Articles = JSON.parse(resp["data"]);  
-          console.log(this.menu.Articles)
         },
         error: (err: any) => {
           this.messageService.error("Error loading article");
@@ -72,13 +70,7 @@ export class ArticleCategoryComponent implements OnInit {
   showMore() {
     let currentLocation: [number, number] = this.viewportScroller.getScrollPosition();
     this.filter.take += 10;
-    this.nzLoading = true;
     this.articleService.getByMenu(this.filter.menuAlias, this.filter.take)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.menu = JSON.parse(resp["data"])

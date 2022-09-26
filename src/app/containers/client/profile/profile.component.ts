@@ -18,7 +18,6 @@ export class ProfileComponent implements OnInit {
   formData!: FormGroup;
   formChangePassword!: FormGroup;
   profile!: Customer;
-  nzLoading: boolean = false;
   orders: Order[] = [];
 
   constructor(
@@ -89,13 +88,7 @@ export class ProfileComponent implements OnInit {
     if (dataPost.Dob != null)
       dataPost.Dob = moment(new Date(dataPost.Dob)).format("YYYY-MM-DD")
 
-    this.nzLoading = true;
     this.customerService.updateProfile(dataPost)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.messageService.success("Update Done");
@@ -118,14 +111,8 @@ export class ProfileComponent implements OnInit {
     }
 
     const dataPost = this.formChangePassword.getRawValue();
-
-    this.nzLoading = true;
+    
     this.customerService.changePassword(dataPost["OldPassword"], dataPost["NewPassword"])
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.messageService.success("Update Done");

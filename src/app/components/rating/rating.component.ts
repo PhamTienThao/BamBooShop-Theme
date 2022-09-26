@@ -18,7 +18,6 @@ export class RatingComponent implements OnInit {
   ngOnInit(): void {
   }
   rating(index: number) {
-    console.log(index);
     this.value = index;
     this.rateChange.emit(index );
     return this.rateValue = index;
