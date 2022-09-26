@@ -99,7 +99,8 @@ import { ProductTemplateListComponent } from './components/product-template-list
     NgbModule,
     NzFormModule,
     NzStepsModule,
-    MatStepperModule
+    MatStepperModule,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthGuardService,

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   formChangePassword!: FormGroup;
   profile!: Customer;
   orders: Order[] = [];
-
+  isConfirmPasswordRight: boolean = true;
   constructor(
     private customerService: CustomerService,
     private messageService: NzMessageService,
@@ -39,7 +39,8 @@ export class ProfileComponent implements OnInit {
     });
     this.formChangePassword = this.formBuilder.group({
       OldPassword: [null, Validators.required],
-      NewPassword: [null, Validators.required]
+      NewPassword: [null, [Validators.required, Validators.minLength(5)]],
+      ConfirmPassword: [null, [Validators.required, Validators.minLength(5)]],
     });
     this.getProfile();
     this.getOrders();
@@ -111,7 +112,7 @@ export class ProfileComponent implements OnInit {
     }
 
     const dataPost = this.formChangePassword.getRawValue();
-    
+    if(dataPost["NewPassword"] != dataPost["ConfirmPassword"]) return;
     this.customerService.changePassword(dataPost["OldPassword"], dataPost["NewPassword"])
       .subscribe({
         next: (resp: any) => {
@@ -121,5 +122,10 @@ export class ProfileComponent implements OnInit {
           this.messageService.error(err.error.message);
         }
       })
+  }
+  rePasswordChange(){
+    if(this.formChangePassword.get('NewPassword')?.value == this.formChangePassword.get('ConfirmPassword')?.value)
+      this.isConfirmPasswordRight = true;
+    else this.isConfirmPasswordRight = false;
   }
 }
