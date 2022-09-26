@@ -29,8 +29,8 @@
 }
 .dot {
   cursor: pointer;
-  height: 13px;
-  width: 13px;
+  height: 11px;
+  width: 11px;
   margin: 0 5px;
   background-color: #fff;
   border-radius: 50%;
@@ -43,19 +43,18 @@
   opacity: 1;
 }
 
-/* .fade {
-  animation-name: fade;
-  animation-duration: 0.1s;
+.slide-image {
+  animation-duration: 1s;
+  animation-name: slidein;
 }
-
-@keyframes fade {
+@keyframes slidein {
   from {
-    opacity: 0.4;
+    opacity: 0.6;
   }
   to {
     opacity: 1;
   }
-} */
+}
 
 .btn-carousel {
   position: absolute;
@@ -94,4 +93,50 @@
 .icon-prev,
 .icon-next {
   font-size: 40px;
+}
+
+/* Responsive */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .carousel-container {
+    height: 400px;
+  }
+  .carousel-container img.image-active {
+    height: 400px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .carousel-container {
+    height: 320px;
+  }
+  .carousel-container img.image-active {
+    height: 320px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .carousel-container {
+    height: 280px;
+  }
+  .carousel-container img.image-active {
+    height: 280px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .carousel-container {
+    height: 250px;
+  }
+  .carousel-container img.image-active {
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 446px) {
+  .carousel-container {
+    height: 220px;
+  }
+  .carousel-container img.image-active {
+    height: 220px;
+  }
 }

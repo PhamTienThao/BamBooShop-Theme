@@ -1,8 +1,10 @@
 <div *ngIf="images && images.length > 0" class="carousel-container">
   <img
     *ngFor="let image of images; let i = index"
-    [src]="image.Image"
+    [src]="image.Image | hostImageBannerClient"
+    alt="banner"
     [ngClass]="{ 'image-active': selectedIndex === i }"
+    class="slide-image"
   />
   <div *ngIf="indicators" class="carousel-dot-container">
     <span

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
 interface CarouselImage {
   Id: number;
   Image: string;
