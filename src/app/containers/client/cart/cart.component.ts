@@ -22,7 +22,6 @@ import { Constants } from 'src/app/core/util/constants';
 export class CartComponent implements OnInit {
   formData!: FormGroup;
   orderDetail: OrderDetail[] = [];
-  nzLoading: boolean = false;
   totalPayPal!: number;
   //quantityRemain!: number | any;
   qtyProductCart!: number | any;
@@ -190,17 +189,10 @@ export class CartComponent implements OnInit {
       }
       x.Attributes = [];
     });
-
-    this.nzLoading = true;
     this.orderService.post({
       Customer: this.formData.getRawValue(),
       OrderDetails: orderDetailPost
     })
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.cartService.clearCart();

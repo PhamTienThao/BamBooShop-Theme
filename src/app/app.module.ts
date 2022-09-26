@@ -130,7 +130,6 @@ import { CarouselComponent } from './components/carousel/carousel.component';
           },
         ],
         onError: (err) => {
-          console.log(err);
         }
       } as SocialAuthServiceConfig
     },

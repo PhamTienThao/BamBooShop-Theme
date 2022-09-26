@@ -1,5 +1,6 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { finalize } from 'rxjs/operators';
@@ -10,9 +11,10 @@ import { CustomerService } from 'src/app/core/service/customer.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
-  currentStep: number = 0;
-  nzLoading: boolean = false;
+export class SignUpComponent implements OnInit, AfterViewInit {
+  @ViewChild('myStepper') myStepper!: MatStepper;
+
+
   formMail!: FormGroup;
   formOTP!: FormGroup;
   formData!: FormGroup;
@@ -27,20 +29,22 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.formMail = this.formBuilder.group({
-      Email: [null, [Validators.email, Validators.required]],
+      Email: ['', [Validators.email, Validators.required]],
     });
     this.formOTP = this.formBuilder.group({
-      OTP: [null, Validators.required],
+      OTP: ['', Validators.required],
     });
     this.formData = this.formBuilder.group({
       Email: [{ value: '', disabled: true }, Validators.required],
       OTP: [{ value: '', disabled: true }, Validators.required],
       Password: [null, Validators.required],
+      RePassword: [null, Validators.required],
       FullName: [null, Validators.required],
       PhoneNumber: [null, Validators.required]
     });
   }
-
+  ngAfterViewInit() {
+  }
   requestOTP() {
     for (const i in this.formMail.controls) {
       if (this.formMail.controls.hasOwnProperty(i)) {
@@ -52,18 +56,14 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    this.nzLoading = true;
     this.customerService.requestOTP(this.formMail.getRawValue().Email)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
-      .subscribe((resp: any) => {
-        this.messageService.success("Mã OTP đã được gửi vào hòm thư của bạn.");
-        this.currentStep = 1;
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success("OTP Has been sent to your email.");
+          this.myStepper.next();
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
+        }
       })
   }
 
@@ -80,28 +80,24 @@ export class SignUpComponent implements OnInit {
 
     const email = this.formMail.getRawValue().Email;
     const otp = this.formOTP.getRawValue().OTP;
-    this.nzLoading = true;
     this.customerService
       .confirmOTP(email, otp)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
-      .subscribe((resp: any) => {
-        let data: boolean = JSON.parse(resp['data']);
-        if (data == true) {
-          this.currentStep = 2;
-          this.formData.patchValue({
-            Email: email,
-            OTP: otp
-          })
+      .subscribe({
+        next: (resp: any) => {
+          let data: boolean = JSON.parse(resp['data']);
+          if (data == true) {
+            this.myStepper.next();
+            this.formData.patchValue({
+              Email: email,
+              OTP: otp
+            })
+          }
+          else {
+            this.messageService.error("Wrong OTP.");
+          }
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
         }
-        else {
-          this.messageService.error("Mã OTP không đúng.");
-        }
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
       })
   }
 
@@ -115,19 +111,23 @@ export class SignUpComponent implements OnInit {
     if (this.formData.invalid) {
       return;
     }
-
-    this.nzLoading = true;
-    this.customerService.post(this.formData.getRawValue())
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
-      .subscribe((resp: any) => {
-        this.messageService.success("Đăng ký thành công");
-        this.navigate("/dang-nhap")
-      }, (error: any) => {
-        this.messageService.error(error.error.message);
+    if (this.formData.value.Password != this.formData.value.RePassword) {
+      return
+    }
+    this.customerService.post({
+      Email: this.formData.get('Email')?.value,
+      OTP: this.formData.get('OTP')?.value,
+      Password: this.formData.value.Password, 
+      FullName: this.formData.value.FullName,
+      PhoneNumber: this.formData.value.PhoneNumber
+    })
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success("Sign in successfully");
+          this.navigate("/dang-nhap")
+        }, error: (err: any) => {
+          this.messageService.error(err.error.message);
+        }
       })
   }
 

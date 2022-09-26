@@ -18,9 +18,8 @@ export class ProfileComponent implements OnInit {
   formData!: FormGroup;
   formChangePassword!: FormGroup;
   profile!: Customer;
-  nzLoading: boolean = false;
   orders: Order[] = [];
-
+  isConfirmPasswordRight: boolean = true;
   constructor(
     private customerService: CustomerService,
     private messageService: NzMessageService,
@@ -40,7 +39,8 @@ export class ProfileComponent implements OnInit {
     });
     this.formChangePassword = this.formBuilder.group({
       OldPassword: [null, Validators.required],
-      NewPassword: [null, Validators.required]
+      NewPassword: [null, [Validators.required, Validators.minLength(5)]],
+      ConfirmPassword: [null, [Validators.required, Validators.minLength(5)]],
     });
     this.getProfile();
     this.getOrders();
@@ -89,13 +89,7 @@ export class ProfileComponent implements OnInit {
     if (dataPost.Dob != null)
       dataPost.Dob = moment(new Date(dataPost.Dob)).format("YYYY-MM-DD")
 
-    this.nzLoading = true;
     this.customerService.updateProfile(dataPost)
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.messageService.success("Update Done");
@@ -118,14 +112,8 @@ export class ProfileComponent implements OnInit {
     }
 
     const dataPost = this.formChangePassword.getRawValue();
-
-    this.nzLoading = true;
+    if(dataPost["NewPassword"] != dataPost["ConfirmPassword"]) return;
     this.customerService.changePassword(dataPost["OldPassword"], dataPost["NewPassword"])
-      .pipe(
-        finalize(() => {
-          this.nzLoading = false;
-        })
-      )
       .subscribe({
         next: (resp: any) => {
           this.messageService.success("Update Done");
@@ -134,5 +122,10 @@ export class ProfileComponent implements OnInit {
           this.messageService.error(err.error.message);
         }
       })
+  }
+  rePasswordChange(){
+    if(this.formChangePassword.get('NewPassword')?.value == this.formChangePassword.get('ConfirmPassword')?.value)
+      this.isConfirmPasswordRight = true;
+    else this.isConfirmPasswordRight = false;
   }
 }

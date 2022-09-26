@@ -11,28 +11,13 @@
               <div class="login-form-container">
                 <div class="login-register-form">
                   <form [formGroup]="formData" (ngSubmit)="onSubmit()">
-                    <input
-                      type="text"
-                      name="user-name"
-                      formControlName="Email"
-                      placeholder="Username"
-                      required
-                    />
-                    <input
-                      type="password"
-                      name="user-password"
-                      formControlName="Password"
-                      placeholder="Password"
-                      required
-                    />
+                    <input type="text" name="user-name" formControlName="Email" placeholder="Username" required />
+                    <input type="password" name="user-password" formControlName="Password" placeholder="Password"
+                      required />
                     <div class="button-box">
                       <div class="login-toggle-btn">
                         <a class="flote-none">
-                          <input
-                            formControlName="Remember"
-                            type="checkbox"
-                            name="remember-user"
-                          />
+                          <input formControlName="Remember" type="checkbox" name="remember-user" />
                           Remember me
                         </a>
                         <a routerLink="/quen-mat-khau">Forgot Password?</a>
@@ -48,19 +33,13 @@
                       <div class="social-login-area">
                         <div class="facbook-login">
                           <button>
-                            <i
-                              class="fa fa-facebook"
-                              style="font-size: 21px; color: white"
-                            ></i>
+                            <i class="fa fa-facebook" style="font-size: 21px; color: white"></i>
                             <span>Facebook</span>
                           </button>
                         </div>
                         <div class="google-login">
                           <button>
-                            <i
-                              class="fa fa-google-plus"
-                              style="font-size: 21px; color: white"
-                            ></i>
+                            <i class="fa fa-google-plus" style="font-size: 21px; color: white"></i>
                             <span>Google</span>
                           </button>
                         </div>

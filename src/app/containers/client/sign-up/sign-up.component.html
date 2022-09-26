@@ -10,34 +10,20 @@
           <div class="tab-content">
             <div id="lg1" class="tab-pane active">
               <div class="login-form-container">
-                <mat-horizontal-stepper linear>
+                <mat-horizontal-stepper linear #myStepper >
                   <mat-step [editable]="false">
                     <ng-template matStepLabel> Register </ng-template>
                     <div class="login-register-form">
-                      <form
-                        nz-form
-                        [formGroup]="formMail"
-                        (ngSubmit)="requestOTP()"
-                      >
+                      <form  [formGroup]="formMail" (ngSubmit)="requestOTP()">
                         <nz-form-item>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="text"
-                              nz-input
-                              formControlName="Email"
-                              placeholder="Email"
-                            />
+                            <input type="text" nz-input formControlName="Email" placeholder="Email" />
                           </nz-form-control>
                         </nz-form-item>
                         <div class="button-box">
                           <div class="login-area-button">
-                            <button
-                              type="submit"
-                              class="login-button"
-                              nz-button
-                              nzType="primary"
-                            >
-                              <span matStepperNext> Next</span>
+                            <button  type="submit" class="login-button">
+                              <span> Next</span>
                             </button>
                           </div>
                           <div class="text-or">
@@ -46,25 +32,20 @@
                           <div class="social-login-area">
                             <div class="facbook-login">
                               <button>
-                                <i
-                                  class="fa fa-facebook"
-                                  style="font-size: 21px; color: white"
-                                ></i>
+                                <i class="fa fa-facebook" style="font-size: 21px; color: white"></i>
                                 <span>Facebook</span>
                               </button>
                             </div>
                             <div class="google-login">
                               <button>
-                                <i
-                                  class="fa fa-google-plus"
-                                  style="font-size: 21px; color: white"
-                                ></i>
+                                <i class="fa fa-google-plus" style="font-size: 21px; color: white"></i>
                                 <span>Google</span>
                               </button>
                             </div>
                           </div>
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>
@@ -72,107 +53,58 @@
                   </mat-step>
                   <mat-step [editable]="false">
                     <ng-template matStepLabel> Email Verification </ng-template>
-
                     <div class="login-register-form">
-                      <form
-                        nz-form
-                        [formGroup]="formMail"
-                        (ngSubmit)="confirmOTP()"
-                      >
+                      <form  [formGroup]="formOTP" (ngSubmit)="confirmOTP()">
                         <nz-form-item>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="text"
-                              nz-input
-                              formControlName="Email"
-                              placeholder="OTP"
-                            />
+                            <input type="text" nz-input formControlName="OTP" placeholder="OTP" />
                           </nz-form-control>
                         </nz-form-item>
                         <div class="button-box">
                           <div class="login-area-button">
-                            <button
-                              type="submit"
-                              class="login-button"
-                              nz-button
-                              nzType="primary"
-                            >
-                              <span matStepperNext>Verify</span>
+                            <button type="submit" class="login-button">
+                              <span >Verify</span>
                             </button>
                           </div>
 
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>
                     </div>
                   </mat-step>
                   <mat-step [editable]="false">
-                    <ng-template matStepLabel class="steps-title"
-                      >Complete</ng-template
-                    >
+                    <ng-template matStepLabel class="steps-title">Complete</ng-template>
                     <div class="login-register-form">
-                      <form
-                        nz-form
-                        [formGroup]="formData"
-                        (ngSubmit)="onSubmit()"
-                      >
+                      <form  [formGroup]="formData" (ngSubmit)="onSubmit()">
                         <nz-form-item>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="text"
-                              nz-input
-                              formControlName="Email"
-                              placeholder="Email"
-                            />
+                            <input type="text" nz-input formControlName="Email" placeholder="Email" />
                           </nz-form-control>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="text"
-                              nz-input
-                              formControlName="FullName"
-                              placeholder="Full Name"
-                            />
+                            <input type="text" nz-input formControlName="FullName" placeholder="Full Name" />
                           </nz-form-control>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="password"
-                              nz-input
-                              formControlName="Password"
-                              placeholder="Password"
-                            />
+                            <input type="password" nz-input formControlName="Password" placeholder="Password" />
                           </nz-form-control>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="password"
-                              nz-input
-                              formControlName="Password"
-                              placeholder="Re-enter Password"
-                            />
+                            <input type="password" nz-input formControlName="RePassword" placeholder="Re-enter Password" />
                           </nz-form-control>
                           <nz-form-control nzErrorTip="Không được để trống!">
-                            <input
-                              type="text"
-                              nz-input
-                              formControlName="PhoneNumber"
-                              placeholder="Phone Number"
-                            />
+                            <input type="text" nz-input formControlName="PhoneNumber" placeholder="Phone Number" />
                           </nz-form-control>
                         </nz-form-item>
                         <div class="button-box">
                           <div class="login-area-button">
-                            <button
-                              type="submit"
-                              class="login-button"
-                              nz-button
-                              nzType="primary"
-                            >
+                            <button type="submit" class="login-button" nz-button nzType="primary">
                               <span>Register</span>
                             </button>
                           </div>
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>

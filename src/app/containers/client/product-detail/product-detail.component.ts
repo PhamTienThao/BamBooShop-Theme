@@ -47,7 +47,6 @@ export class ProductDetailComponent implements OnInit {
         this.getData();
         if (this.product.Quantity > 0) this.qtyAvailable = true;
         else this.qtyAvailable = false;
-        console.log(this.qtyAvailable);
       }
     });
   }
