@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/core/service/customer.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.css']
+  styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
   formData!: FormGroup;
@@ -19,16 +19,15 @@ export class ForgotPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.formData = this.formBuilder.group({
-      Email: [null, [Validators.email, Validators.required]]
+      Email: [null, [Validators.email, Validators.required]],
     });
   }
 
   onSubmit(): void {
-    debugger;
     for (const i in this.formData.controls) {
       if (this.formData.controls.hasOwnProperty(i)) {
         this.formData.controls[i].markAsDirty();
@@ -39,19 +38,21 @@ export class ForgotPasswordComponent implements OnInit {
       return;
     }
 
-    this.customerService.forgotPassword(this.formData.getRawValue().Email)
+    this.customerService
+      .forgotPassword(this.formData.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Request completed. Please check your email.");
-        }, error: (err: any) => {
+          this.messageService.success(
+            'Request completed. Please check your email.'
+          );
+        },
+        error: (err: any) => {
           this.messageService.error(err.error.message);
-        }
-      })
+        },
+      });
   }
 
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
   }
 }
-
-

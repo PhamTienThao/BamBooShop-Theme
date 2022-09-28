@@ -80,6 +80,15 @@
 .text-register a:hover {
   color: #0572e6;
 }
+
+.login-register-wrapper .login-form-container .login-register-form input {
+  margin: 0 !important;
+}
+
+.email-login,
+.password-login {
+  margin-bottom: 30px;
+}
 /* Responsvie */
 
 @media only screen and (max-width: 410px) {

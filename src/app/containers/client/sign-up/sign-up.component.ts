@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  NgZone,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -14,7 +20,6 @@ import { CustomerService } from 'src/app/core/service/customer.service';
 export class SignUpComponent implements OnInit, AfterViewInit {
   @ViewChild('myStepper') myStepper!: MatStepper;
 
-
   formMail!: FormGroup;
   formOTP!: FormGroup;
   formData!: FormGroup;
@@ -25,7 +30,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.formMail = this.formBuilder.group({
@@ -35,16 +40,26 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       OTP: ['', Validators.required],
     });
     this.formData = this.formBuilder.group({
-      Email: [{ value: '', disabled: true }, Validators.required],
+      Email: [
+        { value: '', disabled: true },
+        [Validators.email, Validators.required],
+      ],
       OTP: [{ value: '', disabled: true }, Validators.required],
-      Password: [null, Validators.required],
-      RePassword: [null, Validators.required],
+      Password: [null, [Validators.required, Validators.minLength(5)]],
+      RePassword: [null, [Validators.required, Validators.minLength(5)]],
       FullName: [null, Validators.required],
-      PhoneNumber: [null, Validators.required]
+      PhoneNumber: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            '^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$'
+          ),
+        ],
+      ],
     });
   }
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
   requestOTP() {
     for (const i in this.formMail.controls) {
       if (this.formMail.controls.hasOwnProperty(i)) {
@@ -56,15 +71,17 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.customerService.requestOTP(this.formMail.getRawValue().Email)
+    this.customerService
+      .requestOTP(this.formMail.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("OTP Has been sent to your email.");
+          this.messageService.success('OTP Has been sent to your email.');
           this.myStepper.next();
-        }, error: (err: any) => {
+        },
+        error: (err: any) => {
           this.messageService.error(err.error.message);
-        }
-      })
+        },
+      });
   }
 
   confirmOTP() {
@@ -80,25 +97,23 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
     const email = this.formMail.getRawValue().Email;
     const otp = this.formOTP.getRawValue().OTP;
-    this.customerService
-      .confirmOTP(email, otp)
-      .subscribe({
-        next: (resp: any) => {
-          let data: boolean = JSON.parse(resp['data']);
-          if (data == true) {
-            this.myStepper.next();
-            this.formData.patchValue({
-              Email: email,
-              OTP: otp
-            })
-          }
-          else {
-            this.messageService.error("Wrong OTP.");
-          }
-        }, error: (err: any) => {
-          this.messageService.error(err.error.message);
+    this.customerService.confirmOTP(email, otp).subscribe({
+      next: (resp: any) => {
+        let data: boolean = JSON.parse(resp['data']);
+        if (data == true) {
+          this.myStepper.next();
+          this.formData.patchValue({
+            Email: email,
+            OTP: otp,
+          });
+        } else {
+          this.messageService.error('Wrong OTP.');
         }
-      })
+      },
+      error: (err: any) => {
+        this.messageService.error(err.error.message);
+      },
+    });
   }
 
   onSubmit(): void {
@@ -112,23 +127,25 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       return;
     }
     if (this.formData.value.Password != this.formData.value.RePassword) {
-      return
+      return;
     }
-    this.customerService.post({
-      Email: this.formData.get('Email')?.value,
-      OTP: this.formData.get('OTP')?.value,
-      Password: this.formData.value.Password, 
-      FullName: this.formData.value.FullName,
-      PhoneNumber: this.formData.value.PhoneNumber
-    })
+    this.customerService
+      .post({
+        Email: this.formData.get('Email')?.value,
+        OTP: this.formData.get('OTP')?.value,
+        Password: this.formData.value.Password,
+        FullName: this.formData.value.FullName,
+        PhoneNumber: this.formData.value.PhoneNumber,
+      })
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Sign in successfully");
-          this.navigate("/dang-nhap")
-        }, error: (err: any) => {
+          this.messageService.success('Sign in successfully');
+          this.navigate('/dang-nhap');
+        },
+        error: (err: any) => {
           this.messageService.error(err.error.message);
-        }
-      })
+        },
+      });
   }
 
   navigate(path: string): void {

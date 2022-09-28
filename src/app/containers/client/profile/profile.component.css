@@ -1,0 +1,17 @@
+textarea {
+  padding: 5px 0 0px 20px !important;
+}
+.text-red {
+  color: red;
+  padding-left: 5px;
+  font-size: 15px;
+}
+.title-required {
+  display: flex;
+}
+.dashboard_content p {
+  margin-bottom: 15px !important;
+}
+::ng-deep .mat-radio-label {
+  margin-bottom: 4px !important;
+}

@@ -85,6 +85,11 @@
 .text-register a:hover {
   color: #0572e6;
 }
+
+.login-register-wrapper .login-form-container .login-register-form input {
+  margin: 0 !important;
+}
+
 ::ng-deep .mat-horizontal-stepper-header .mat-step-label {
   font-family: "Poppins", sans-serif;
   justify-content: space-around;

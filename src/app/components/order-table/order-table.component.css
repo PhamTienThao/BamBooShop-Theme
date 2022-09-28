@@ -1,44 +1,48 @@
 :host {
-    max-width: 100%
+  max-width: 100%;
 }
 
 .table-responsive {
-    overflow: auto;
-    display: inline-block;
-    width: 100%;
-    max-height: 60vh;
+  overflow: auto;
+  display: inline-block;
+  width: 100%;
+  max-height: 60vh;
 }
 
 .select-filter-wrap {
-    width: 280px;
-    height: 50px;
-    border: 2px solid #e1e1e1;
-    border-radius: 5px;
-    padding: 0 20px;
-    color: #6c6c6c;
-    max-width: 100%;
+  width: 280px;
+  height: 50px;
+  border: 2px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 0 20px;
+  color: #6c6c6c;
+  max-width: 100%;
 }
 
 .filter-select {
-    margin-left: 10px;
-    border-radius: 5px;
-    width: 100%;
-    color: #484545;
+  margin-left: 10px;
+  border-radius: 5px;
+  width: 100%;
+  color: #484545;
 }
 
 select {
-    word-wrap: normal;
-    border: 0;
-    cursor: pointer;
-    width: 100%;
+  word-wrap: normal;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
 }
 
 .table_page tbody tr td {
-    border-right: 1px solid #ededed;
-    font-weight: 600;
-    text-transform: capitalize;
-    font-size: 14px;
-    text-align: center;
-    min-width: fit-content;
-    max-width: 25vw;
+  border-right: 1px solid #ededed;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 14px;
+  text-align: center;
+  min-width: fit-content;
+  max-width: 25vw;
+}
+
+.view {
+  cursor: pointer;
 }

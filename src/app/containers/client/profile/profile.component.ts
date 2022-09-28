@@ -12,7 +12,7 @@ import { Constants } from 'src/app/core/util/constants';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   formData!: FormGroup;
@@ -24,18 +24,26 @@ export class ProfileComponent implements OnInit {
     private customerService: CustomerService,
     private messageService: NzMessageService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       Code: [{ value: '', disabled: true }, Validators.required],
       Email: [{ value: '', disabled: true }, Validators.required],
       FullName: [null, Validators.required],
-      PhoneNumber: [null, Validators.required],
+      PhoneNumber: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(
+            '^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$'
+          ),
+        ],
+      ],
       Address: [null, Validators.required],
       Dob: [null],
       Gender: [null],
-      timePicker: [null]
+      timePicker: [null],
     });
     this.formChangePassword = this.formBuilder.group({
       OldPassword: [null, Validators.required],
@@ -47,31 +55,29 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile() {
-    this.customerService.getProfile()
-      .subscribe({
-        next: (resp: any) => {
-          this.profile = JSON.parse(resp["data"]);
-          this.profile.Dob = moment(new Date(this.profile.Dob)).format("YYYY-MM-DD")
-          this.formData.patchValue(this.profile)
-        }, error: (err: any) => {
-
-        }
-      })
+    this.customerService.getProfile().subscribe({
+      next: (resp: any) => {
+        this.profile = JSON.parse(resp['data']);
+        this.profile.Dob = moment(new Date(this.profile.Dob)).format(
+          'YYYY-MM-DD'
+        );
+        this.formData.patchValue(this.profile);
+      },
+      error: (err: any) => {},
+    });
   }
 
   getOrders() {
-    this.customerService.getOrders()
-      .subscribe({
-        next: (resp: any) => {
-          this.orders = JSON.parse(resp["data"]);
-        }, error: (err: any) => {
-
-        }
-      })
+    this.customerService.getOrders().subscribe({
+      next: (resp: any) => {
+        this.orders = JSON.parse(resp['data']);
+      },
+      error: (err: any) => {},
+    });
   }
 
   filterOrderByStatus(status: number): Order[] {
-    return this.orders.filter(x => x.Status == status);
+    return this.orders.filter((x) => x.Status == status);
   }
 
   submitForm(): void {
@@ -87,17 +93,17 @@ export class ProfileComponent implements OnInit {
 
     let dataPost = this.formData.getRawValue();
     if (dataPost.Dob != null)
-      dataPost.Dob = moment(new Date(dataPost.Dob)).format("YYYY-MM-DD")
+      dataPost.Dob = moment(new Date(dataPost.Dob)).format('YYYY-MM-DD');
 
-    this.customerService.updateProfile(dataPost)
-      .subscribe({
-        next: (resp: any) => {
-          this.messageService.success("Update Done");
-          this.getProfile();
-        }, error: (err: any) => {
-          this.messageService.error(err.error.message);
-        }
-      })
+    this.customerService.updateProfile(dataPost).subscribe({
+      next: (resp: any) => {
+        this.messageService.success('Update Done');
+        this.getProfile();
+      },
+      error: (err: any) => {
+        this.messageService.error(err.error.message);
+      },
+    });
   }
 
   submitChangePassword(): void {
@@ -112,19 +118,24 @@ export class ProfileComponent implements OnInit {
     }
 
     const dataPost = this.formChangePassword.getRawValue();
-    if(dataPost["NewPassword"] != dataPost["ConfirmPassword"]) return;
-    this.customerService.changePassword(dataPost["OldPassword"], dataPost["NewPassword"])
+    if (dataPost['NewPassword'] != dataPost['ConfirmPassword']) return;
+    this.customerService
+      .changePassword(dataPost['OldPassword'], dataPost['NewPassword'])
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Update Done");
+          this.messageService.success('Update Done');
           this.formChangePassword.reset();
-        }, error: (err: any) => {
+        },
+        error: (err: any) => {
           this.messageService.error(err.error.message);
-        }
-      })
+        },
+      });
   }
-  rePasswordChange(){
-    if(this.formChangePassword.get('NewPassword')?.value == this.formChangePassword.get('ConfirmPassword')?.value)
+  rePasswordChange() {
+    if (
+      this.formChangePassword.get('NewPassword')?.value ==
+      this.formChangePassword.get('ConfirmPassword')?.value
+    )
       this.isConfirmPasswordRight = true;
     else this.isConfirmPasswordRight = false;
   }

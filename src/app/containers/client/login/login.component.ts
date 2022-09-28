@@ -9,10 +9,9 @@ import { AuthenticationService } from '../auth/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   formData!: FormGroup;
   submitted: boolean = false;
   isSocialNetworkLogin: boolean = false;
@@ -24,17 +23,15 @@ export class LoginComponent implements OnInit {
     private ngZone: NgZone,
     private router: Router,
     private socialLoginAuthService: SocialAuthService,
-    private customerService: CustomerService,
-  ) {
-  }
+    private customerService: CustomerService
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       Email: [null, [Validators.email, Validators.required]],
-      Password: ["", Validators.required],
-      Remember: [false]
+      Password: [null, [Validators.required, Validators.minLength(5)]],
+      Remember: [false],
     });
-
   }
 
   onSubmit() {
@@ -45,20 +42,18 @@ export class LoginComponent implements OnInit {
       }
     }
     if (this.formData.invalid) {
-
       return;
     }
-    
 
-    this.authenticationService.login(this.formData.getRawValue())
-      .subscribe({
-        next: (resp: any) => {
-          // this.messageService.success("Đăng nhập thành công");
-          this.navigate("/");
-        }, error: (err: any) => {
-          // this.messageService.error(error.error.message);
-        }
-      })
+    this.authenticationService.login(this.formData.getRawValue()).subscribe({
+      next: (resp: any) => {
+        // this.messageService.success("Đăng nhập thành công");
+        this.navigate('/');
+      },
+      error: (err: any) => {
+        // this.messageService.error(error.error.message);
+      },
+    });
   }
 
   navigate(path: string): void {
@@ -74,20 +69,26 @@ export class LoginComponent implements OnInit {
   //   this.facebookLogin.signIn(FacebookLoginProvider.PROVIDER_ID);
   // }
   loginWithGoogle(): void {
-    this.socialLoginAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
-      console.log(data.authToken);
-      this.user = {
-        email: data.email,
-        fullName: data.firstName + " " + data.lastName,
-        avatar: data.photoUrl,
-        authToken: data.authToken,
-      };
-      this.customerService.signInWithSocialNetwork(this.user).subscribe((resp: any) => {
-        this.messageService.success("Đăng ký thành công");
-      });
-
-    }, error => console.log(error))
-      .catch((data) => console.log(data))
+    this.socialLoginAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(
+        (data) => {
+          console.log(data.authToken);
+          this.user = {
+            email: data.email,
+            fullName: data.firstName + ' ' + data.lastName,
+            avatar: data.photoUrl,
+            authToken: data.authToken,
+          };
+          this.customerService
+            .signInWithSocialNetwork(this.user)
+            .subscribe((resp: any) => {
+              this.messageService.success('Đăng ký thành công');
+            });
+        },
+        (error) => console.log(error)
+      )
+      .catch((data) => console.log(data));
     //this.user = {
     //   email: "email",
     //   fullName: "name",
@@ -99,5 +100,4 @@ export class LoginComponent implements OnInit {
     //   this.messageService.success("Đăng nhập thành công");
     // });
   }
-
 }

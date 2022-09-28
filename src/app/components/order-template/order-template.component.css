@@ -184,3 +184,7 @@ img.img-size {
   color: yellow;
   overflow: hidden;
 }
+
+.view {
+  cursor: pointer;
+}
