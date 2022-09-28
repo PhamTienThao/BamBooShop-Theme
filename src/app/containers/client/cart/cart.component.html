@@ -39,7 +39,8 @@
                         <div class="shop-select">
                           <select class="shop-sort" #attributeSelected
                             (change)="chooseAttribute(index,attributeIndex,$event,attributes.ProductAttributes)">
-                            <option [value]="productAttributeIndex" [selected]="item.Checked" *ngFor="let item of attributes.ProductAttributes; index as productAttributeIndex">
+                            <option [value]="productAttributeIndex" [selected]="item.Checked"
+                              *ngFor="let item of attributes.ProductAttributes; index as productAttributeIndex">
                               {{ item.Value }}
                             </option>
                           </select>
@@ -181,10 +182,7 @@
                           <span class="order-quantity-quantity">
                             X {{ product.Qty }}
                           </span>
-                          <span class="order-price">${{
-                            product.ProductDiscountPrice * product.Qty
-                            | number
-                            }}
+                          <span class="order-price">${{ product.ProductDiscountPrice * product.Qty | number}}
                           </span>
                         </li>
                       </ul>
@@ -219,7 +217,7 @@
                         <div class="panel panel-default single-my-account m-0">
                           <div class="panel-heading my-account-title">
                             <h4 class="panel-title">
-                              <a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false"
+                              <a data-bs-toggle="collapse" href="#my-account-2" (click)="showPaypal()" aria-expanded="false"
                                 class="collapsed">Check payments</a>
                             </h4>
                           </div>
@@ -236,7 +234,7 @@
                         <div class="panel panel-default single-my-account m-0">
                           <div class="panel-heading my-account-title">
                             <h4 class="panel-title">
-                              <a data-bs-toggle="collapse" href="#my-account-3">Cash on delivery</a>
+                              <a data-bs-toggle="collapse" (click)="showCashPayment()" href="#my-account-3">Cash on delivery</a>
                             </h4>
                           </div>
                           <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
@@ -253,10 +251,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="Place-order mt-25">
-                  <button type="submit" nz-button nzType="primary" class="btn-submit">
+                <div class="Place-order mt-25" [style.display]="isCashOnDelivery">
+                  <button type="submit" class="btn-submit">
                     Place Order
                   </button>
+                </div>
+                <br>
+                <div class="place-order mt-25" [style.display]="isPaypalPayment">
+                  <div id="myPaypalButtons" #paypalRef >
+                  </div>
                 </div>
               </div>
             </div>
