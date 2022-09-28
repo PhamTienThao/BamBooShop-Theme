@@ -13,7 +13,7 @@ export interface Order {
 
     OrderDetails: OrderDetail[];
     Customer: Customer;
-
+    isPaid: boolean;
     //hmtien add 29/8
     City: string |null;
     District: string |null;

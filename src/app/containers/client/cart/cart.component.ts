@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -11,18 +11,19 @@ import { OrderService } from 'src/app/core/service/order.service';
 import { DataHelper } from 'src/app/core/util/data-helper';
 // import { render } from 'creditcardpayments/creditCardPayments';
 import { CityData } from 'src/app/containers/client/cart/city'
-import { Constants } from 'src/app/core/util/constants';
-
-
+import { render } from 'creditcardpayments/creditCardPayments';
+declare var paypal: any;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  @ViewChild('paypalRef', { static: true }) paypalElement!: ElementRef;
+
   formData!: FormGroup;
   orderDetail: OrderDetail[] = [];
-  totalPayPal!: number;
+  totalPayPal: number = 0;
   //quantityRemain!: number | any;
   qtyProductCart!: number | any;
 
@@ -31,7 +32,9 @@ export class CartComponent implements OnInit {
   //hmtien add 29/8
   cities = CityData;
   district: string[] = ['District'];
-
+  isCashOnDelivery: string = 'block';
+  isPaypalPayment: string = 'none';
+  isPaid: boolean = false;
 
   constructor(private orderService: OrderService,
     private customerService: CustomerService,
@@ -39,7 +42,9 @@ export class CartComponent implements OnInit {
     private messageService: NzMessageService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
-    private router: Router,) { }
+    private router: Router,) {
+
+  }
 
   ngOnInit(): void {
     this.formData = this.formBuilder.group({
@@ -57,21 +62,35 @@ export class CartComponent implements OnInit {
     // }
     // this.quantityRemain = this.orderDetail[0].QtyRemain;
     this.getProfile();
+    this.getTotalAmount
+    render({
+      id: "#myPaypalButtons",
+      currency: "USD",
+      value: (this.getTotalAmount/100000).toString(),
+      onApprove: (detail) => {
+        if(detail.status =="COMPLETED"){
+          this.isPaid= true;
+          this.submitForm();
+          this.navigate("/dat-hang-thanh-cong");
+          alert(detail.status);
+        }
+          else
+            alert(detail.status);
+      }
+    });
   }
-  // showPaypal() {
-  //   //Paypal test
-  //   render({
-  //     id: "#myPaypalButtons",
-  //     currency: "VND",
-  //     value: "100.00",
-  //     onApprove: (detail) => {
-  //       alert("Transaction successfully")
-  //     }
-  //   });
-  //   this.totalPayPal
-  //   //Paypal test
-  // }
+  showPaypal() {
+    this.isPaypalPayment = 'block';
+    this.isCashOnDelivery = 'none';
+    this.getTotalAmount;
+    this.totalPayPal = 12;
+  }
+  showCashPayment() {
+    this.isPaypalPayment = 'none';
+    this.isCashOnDelivery = 'block';
 
+    
+  }
   getProfile() {
     this.customerService.getProfile()
       .subscribe({
@@ -83,7 +102,6 @@ export class CartComponent implements OnInit {
         }
       });
   }
-
   handleQty(orderDetailIndex: number, checkMath: number, event: any = null) {
     switch (checkMath) {
       case -1:
@@ -113,12 +131,10 @@ export class CartComponent implements OnInit {
     //if (this.orderDetail[orderDetailIndex].Qty == 0) this.updateCart();
     this.updateCart();
   }
-
   getCart() {
     this.orderDetail = this.cartService.getCart();
 
   }
-
   get getTotalAmount(): number {
     let total: number = 0;
     this.orderDetail.forEach(x => {
@@ -127,20 +143,14 @@ export class CartComponent implements OnInit {
     this.totalPayPal = total;
     return total;
   }
-
-
   clearCart() {
     this.cartService.clearCart();
 
   }
-
   updateCart() {
     this.orderDetail = this.orderDetail.filter(x => x.Qty > 0);
     this.cartService.updateCart(this.orderDetail);
   }
-
-
-
   chooseAttribute(orderDetailIndex: number, attributeIndex: number, productAttributeIndex: any, attributes: ProductAttribute[]) {
     let index = Number(productAttributeIndex.target.value);
     for (let i = 0; i < attributes.length; i++) {
@@ -156,8 +166,8 @@ export class CartComponent implements OnInit {
         && JSON.stringify(this.orderDetail[i].Attributes) == JSON.stringify(this.orderDetail[orderDetailIndex].Attributes)) {
         {
           this.orderDetail[orderDetailIndex].Qty += this.orderDetail[i].Qty
-          let array1 = this.orderDetail.slice(0,i);
-          let array2 = this.orderDetail.slice(i+1, this.orderDetail.length)
+          let array1 = this.orderDetail.slice(0, i);
+          let array2 = this.orderDetail.slice(i + 1, this.orderDetail.length)
           this.orderDetail = array1.concat(array2);
           break;
         }
@@ -174,10 +184,9 @@ export class CartComponent implements OnInit {
         this.formData.controls[i].updateValueAndValidity();
       }
     }
-    debugger;
     if (this.formData.invalid) {
-      this.messageService.error("Thiếu thông tin cần thiết");
-      return; 
+      this.messageService.error("Please fill all the information fields");
+      return;
     }
     let orderDetailPost: OrderDetail[] = DataHelper.clone(this.orderDetail);
     orderDetailPost.forEach(x => {
@@ -191,7 +200,8 @@ export class CartComponent implements OnInit {
     });
     this.orderService.post({
       Customer: this.formData.getRawValue(),
-      OrderDetails: orderDetailPost
+      OrderDetails: orderDetailPost,
+      IsPaid: this.isPaid,
     })
       .subscribe({
         next: (resp: any) => {
@@ -202,7 +212,6 @@ export class CartComponent implements OnInit {
         }
       });
   }
-
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
   }
@@ -225,5 +234,4 @@ export class CartComponent implements OnInit {
     this.formData.controls['District'].setValue(this.district[0])
   }
 }
-
 
