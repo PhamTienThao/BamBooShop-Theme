@@ -90,6 +90,10 @@
   margin: 0 !important;
 }
 
+.email-register {
+  margin-bottom: 30px;
+}
+
 ::ng-deep .mat-horizontal-stepper-header .mat-step-label {
   font-family: "Poppins", sans-serif;
   justify-content: space-around;
