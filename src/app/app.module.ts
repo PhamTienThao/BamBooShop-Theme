@@ -29,7 +29,13 @@ import { ThankYouPageComponent } from './containers/client/thank-you-page/thank-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SocialAuthServiceConfig, SocialAuthService, FacebookLoginProvider, SocialLoginModule, GoogleLoginProvider } from 'angularx-social-login';
+import {
+  SocialAuthServiceConfig,
+  SocialAuthService,
+  FacebookLoginProvider,
+  SocialLoginModule,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 import { AuthGuardService } from './containers/client/auth/auth-guard.service';
 import { ErrorInterceptor } from './containers/client/auth/error.interceptor';
 import { JwtInterceptor } from './containers/client/auth/jwt.interceptor';
@@ -48,7 +54,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
-import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +87,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     OrderTableComponent,
     CategoryComponent,
     RatingComponent,
-    ProductTemplateListComponent
+    ProductTemplateListComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +107,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     NzFormModule,
     NzStepsModule,
     MatStepperModule,
-    CarouselModule
+    CarouselModule,
   ],
   providers: [
     AuthGuardService,
@@ -121,20 +126,20 @@ import { CarouselComponent } from './components/carousel/carousel.component';
               '251499186409-9rhhvhr9o1jgnrj4luf7gcro2q5l26r6.apps.googleusercontent.com',
               {
                 scope: 'email',
-                plugin_name: 'login-app'
-              })
+                plugin_name: 'login-app',
+              }
+            ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('601671584841160')
+            provider: new FacebookLoginProvider('601671584841160'),
           },
         ],
-        onError: (err) => {
-        }
-      } as SocialAuthServiceConfig
+        onError: (err) => {},
+      } as SocialAuthServiceConfig,
     },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [OrderTemplateComponent]
+  entryComponents: [OrderTemplateComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -13,7 +13,7 @@
               <img
                 [src]="productImage.Image | hostImageClient"
                 class="small_img"
-                [ngClass]="{ active: selectedIndex === i }"
+                [ngClass]="{ 'active-img': selectedIndex === i }"
                 (click)="showImg(productImage.Image); selectImage(i)"
               />
             </li>
@@ -37,7 +37,10 @@
               <li class="new-price">${{ product.DiscountPrice | number }}</li>
             </ul>
           </div>
-          <div class="pro-details-rating-wrap">
+          <div
+            class="pro-details-rating-wrap"
+            *ngIf="product.RateAvg >= 1; else noRate"
+          >
             <ngb-rating [max]="5" [readonly]="true" [rate]="product.RateAvg">
               <ng-template let-fill="fill">
                 <span class="defaultHert" [class.filled]="fill === 100">
@@ -48,9 +51,23 @@
                 </span>
               </ng-template>
             </ngb-rating>
-
             <span class="rate-avg">({{ product.RateAvg }}) </span>
           </div>
+          <ng-template #noRate>
+            <div class="pro-details-rating-wrap">
+              <ngb-rating [max]="5" [readonly]="true" [rate]="0">
+                <ng-template let-fill="fill">
+                  <span class="defaultHert" [class.filled]="fill === 100">
+                    <span class="paintHeart" [style.width.%]="fill">
+                      &#9733;
+                    </span>
+                    &#9733;
+                  </span>
+                </ng-template>
+              </ngb-rating>
+              <span class="rate-avg">(Not rate)</span>
+            </div>
+          </ng-template>
           <div class="mt-30px">
             <div [innerHTML]="product.ShortDescription"></div>
           </div>

@@ -12,3 +12,27 @@
 .header-action-num-notCard {
   display: none !important;
 }
+
+.pe-7s-menu:before {
+  cursor: pointer;
+}
+
+.offcanvas.offcanvas-mobile-menu .offcanvas-close {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.menu-expand::before,
+.menu-expand::after {
+  position: absolute !important;
+  top: calc(50% - 1px) !important;
+  left: calc(50% - 7px) !important;
+  width: 14px !important;
+  height: 2px !important;
+  content: "" !important;
+  -webkit-transition: all 0.5s ease 0s !important;
+  transition: all 0.5s ease 0s !important;
+  -webkit-transform: scale(0.75) !important;
+  transform: scale(0.75) !important;
+  background-color: #000 !important;
+}

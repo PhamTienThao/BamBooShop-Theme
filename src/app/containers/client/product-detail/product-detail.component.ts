@@ -7,17 +7,16 @@ import { CartService } from 'src/app/core/service/cart.service';
 import { ProductService } from 'src/app/core/service/product.service';
 import { Constants } from 'src/app/core/util/constants';
 
-
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
-  productAlias: string = ""
+  productAlias: string = '';
   product!: Product;
   qty: number = 1;
-  image: string = "./assets/imgs/tivi.png";
+  image: string = './assets/imgs/tivi.png';
   //hmtien add 26/8
   qtyAvailable!: boolean;
 
@@ -34,13 +33,13 @@ export class ProductDetailComponent implements OnInit {
   //   spaceBetween: 30
   // };
   constructor(
-
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
     private messageService: NzMessageService,
     private ngZone: NgZone,
-    private router: Router) {
+    private router: Router
+  ) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
         this.productAlias = this.activatedRoute.snapshot.params['alias'];
@@ -50,7 +49,6 @@ export class ProductDetailComponent implements OnInit {
       }
     });
   }
-
 
   ngOnInit(): void {
     this.productAlias = this.activatedRoute.snapshot.params['alias'];
@@ -64,16 +62,14 @@ export class ProductDetailComponent implements OnInit {
   handleMinus() {
     if (this.qty > 1) {
       this.qty--;
-    }
-    else {
+    } else {
       this.qty = 1;
     }
   }
   handlePlus() {
     if (this.qty < this.product.Quantity) {
       this.qty++;
-    }
-    else {
+    } else {
       this.qty = this.product.Quantity;
     }
   }
@@ -87,14 +83,15 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getData() {
-    this.productService.getByAlias(this.productAlias)
-      .subscribe({
-        next: (resp: any) => {
-          this.product = JSON.parse(resp["data"]);
-        }, error: (err: any) => {
-          this.messageService.error("Thông tin sản phẩm không khả dụng");
-        }
-      });
+    this.productService.getByAlias(this.productAlias).subscribe({
+      next: (resp: any) => {
+        this.product = JSON.parse(resp['data']);
+        console.log(this.product.RateAvg);
+      },
+      error: (err: any) => {
+        this.messageService.error('Thông tin sản phẩm không khả dụng');
+      },
+    });
   }
 
   showImg(src: string) {
@@ -105,32 +102,32 @@ export class ProductDetailComponent implements OnInit {
     let index = Number(event.target.value);
     for (let i = 0; i < attributes.length; i++) {
       if (i == index) {
-        if (attributes[i].Checked == true)
-          attributes[i].Checked = false;
-        else
-          attributes[i].Checked = true;
-      }
-      else
-        attributes[i].Checked = false;
+        if (attributes[i].Checked == true) attributes[i].Checked = false;
+        else attributes[i].Checked = true;
+      } else attributes[i].Checked = false;
     }
   }
 
   addToCart() {
-
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.messageService.error("Số lượng sản phẩm không hợp lệ");
+      this.messageService.error('Số lượng sản phẩm không hợp lệ');
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
-      if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
-        this.product.Attributes.forEach(x => {
+      if (
+        !(
+          this.product.Attributes.findIndex(
+            (x) => x.ProductAttributes.findIndex((y) => y.Checked) >= 0
+          ) >= 0
+        )
+      ) {
+        this.product.Attributes.forEach((x) => {
           if (x.ProductAttributes.length > 0)
             x.ProductAttributes[0].Checked = true;
           for (let i = 1; i < x.ProductAttributes.length; i++) {
             x.ProductAttributes[i].Checked = false;
           }
-        })
-
+        });
       }
     }
     //fix bug product qty when add to cart
@@ -140,27 +137,31 @@ export class ProductDetailComponent implements OnInit {
 
   buyNow() {
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.messageService.error("Số lượng sản phẩm không hợp lệ");
+      this.messageService.error('Số lượng sản phẩm không hợp lệ');
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
-      if (!(this.product.Attributes.findIndex(x => x.ProductAttributes.findIndex(y => y.Checked) >= 0) >= 0)) {
-        this.product.Attributes.forEach(x => {
+      if (
+        !(
+          this.product.Attributes.findIndex(
+            (x) => x.ProductAttributes.findIndex((y) => y.Checked) >= 0
+          ) >= 0
+        )
+      ) {
+        this.product.Attributes.forEach((x) => {
           if (x.ProductAttributes.length > 0)
             x.ProductAttributes[0].Checked = true;
           for (let i = 1; i < x.ProductAttributes.length; i++) {
             x.ProductAttributes[i].Checked = false;
           }
-        })
-
+        });
       }
     }
     this.cartService.addProductToCart(this.product, this.qty);
-    this.navigate("/gio-hang");
+    this.navigate('/gio-hang');
   }
 
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
   }
-
 }

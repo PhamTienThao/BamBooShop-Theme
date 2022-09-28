@@ -9,30 +9,28 @@ import { Constants } from 'src/app/core/util/constants';
 @Component({
   selector: 'app-product-template',
   templateUrl: './product-template.component.html',
-  styleUrls: ['./product-template.component.css']
+  styleUrls: ['./product-template.component.css'],
 })
 export class ProductTemplateComponent implements OnInit {
-  @Input() product!: Product
+  @Input() product!: Product;
   constructor(
     private messageService: NzMessageService,
     private cartService: CartService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addToCart() {
     if (this.product.Attributes != null) {
-      this.product.Attributes.forEach(x => {
+      this.product.Attributes.forEach((x) => {
         if (x.ProductAttributes.length > 0)
           x.ProductAttributes[0].Checked = true;
         for (let i = 1; i < x.ProductAttributes.length; i++) {
           x.ProductAttributes[i].Checked = false;
         }
-      })
+      });
     }
     this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
     this.cartService.addProductToCart(this.product);
   }
 }
-
