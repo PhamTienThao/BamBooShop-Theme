@@ -53,7 +53,8 @@
           </div>
           <br>
           <div class="total-order-wrapper">
-            Total: <span class="total-order"> {{data.TotalAmount}}</span>
+            Total: {{paidStatus(data.IsPaid)}}
+            <span class="total-order"> {{data.TotalAmount}}</span>
           </div>
           <br>
           <div class="review-container" *ngIf="isVisibleModal">
@@ -101,9 +102,6 @@
                             </span>
                           </ng-template>
                         </ngb-rating>
-
-                        <!-- <app-rating style="display:flex;" [value]="reviewModel.Star" [maxRate]="5"
-                          (rateChange)="rateChange($event)"></app-rating> -->
                       </a>
                     </td>
                   </tr>
