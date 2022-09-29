@@ -19,8 +19,6 @@ declare var paypal: any;
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  @ViewChild('paypalRef', { static: true }) paypalElement!: ElementRef;
-
   formData!: FormGroup;
   orderDetail: OrderDetail[] = [];
   totalPayPal: number = 0;
