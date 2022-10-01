@@ -84,6 +84,7 @@ export class CartComponent implements OnInit {
         if (detail.status == 'COMPLETED') {
           this.isPaid = true;
           this.submitForm();
+          this.cartService.clearCart();
           this.navigate('/dat-hang-thanh-cong');
           alert(detail.status);
         } else alert(detail.status);

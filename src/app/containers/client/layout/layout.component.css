@@ -36,3 +36,8 @@
   transform: scale(0.75) !important;
   background-color: #000 !important;
 }
+
+span.sub-menu-text {
+  font-size: 12px;
+  margin-left: 15px;
+}
