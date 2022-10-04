@@ -16,20 +16,8 @@
                     <div class="login-register-form">
                       <form [formGroup]="formMail" (ngSubmit)="requestOTP()">
                         <div class="email-register">
-                          <input
-                            type="text"
-                            email
-                            formControlName="Email"
-                            placeholder="Email"
-                            required
-                          />
-                          <small
-                            *ngIf="
-                              formMail.get('Email')?.invalid &&
-                              formMail.get('Email')?.touched
-                            "
-                            class="text-danger"
-                          >
+                          <input type="text" email formControlName="Email" placeholder="Email" required />
+                          <small *ngIf=" formMail.get('Email')?.invalid && formMail.get('Email')?.touched" class="text-danger">
                             * Please enter the correct email format
                           </small>
                         </div>
@@ -45,25 +33,20 @@
                           <div class="social-login-area">
                             <div class="facbook-login">
                               <button>
-                                <i
-                                  class="fa fa-facebook"
-                                  style="font-size: 21px; color: white"
-                                ></i>
+                                <i class="fa fa-facebook" style="font-size: 21px; color: white"></i>
                                 <span>Facebook</span>
                               </button>
                             </div>
                             <div class="google-login">
-                              <button>
-                                <i
-                                  class="fa fa-google-plus"
-                                  style="font-size: 21px; color: white"
-                                ></i>
+                              <button (click)="signInWithGoogle()">
+                                <i class="fa fa-google-plus" style="font-size: 21px; color: white"></i>
                                 <span>Google</span>
                               </button>
                             </div>
                           </div>
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>
@@ -74,19 +57,8 @@
                     <div class="login-register-form">
                       <form [formGroup]="formOTP" (ngSubmit)="confirmOTP()">
                         <div class="email-register">
-                          <input
-                            type="text"
-                            formControlName="OTP"
-                            placeholder="OTP"
-                            required
-                          />
-                          <small
-                            *ngIf="
-                              formOTP.get('OTP')?.invalid &&
-                              formOTP.get('OTP')?.touched
-                            "
-                            class="text-danger"
-                          >
+                          <input type="text" formControlName="OTP" placeholder="OTP" required />
+                          <small *ngIf="formOTP.get('OTP')?.invalid && formOTP.get('OTP')?.touched" class="text-danger">
                             * OTP is required
                           </small>
                         </div>
@@ -96,96 +68,46 @@
                               <span>Verify</span>
                             </button>
                           </div>
-
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>
                     </div>
                   </mat-step>
                   <mat-step [editable]="false">
-                    <ng-template matStepLabel class="steps-title"
-                      >Complete</ng-template
-                    >
+                    <ng-template matStepLabel class="steps-title">Complete</ng-template>
                     <div class="login-register-form">
                       <form [formGroup]="formData" (ngSubmit)="onSubmit()">
                         <div class="email-register">
-                          <input
-                            type="email"
-                            formControlName="Email"
-                            placeholder="Email"
-                          />
+                          <input type="email" formControlName="Email" placeholder="Email" />
                         </div>
                         <div class="email-register">
-                          <input
-                            type="text"
-                            formControlName="FullName"
-                            placeholder="Full Name"
-                          />
-                          <small
-                            *ngIf="
-                              formData.get('FullName')?.invalid &&
-                              formData.get('FullName')?.touched
-                            "
-                            class="text-danger"
-                          >
+                          <input type="text" formControlName="FullName" placeholder="Full Name" />
+                          <small *ngIf=" formData.get('FullName')?.invalid && formData.get('FullName')?.touched" class="text-danger">
                             * Full Name is required
                           </small>
                         </div>
                         <div class="email-register">
-                          <input
-                            type="password"
-                            formControlName="Password"
-                            placeholder="Password"
-                          />
-                          <small
-                            *ngIf="
-                              formData.get('Password')?.invalid &&
-                              formData.get('Password')?.touched
-                            "
-                            class="text-danger"
-                          >
-                            * Please fill out the Password field and mini length
-                            is 5
+                          <input type="password" formControlName="Password" placeholder="Password" />
+                          <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger">
+                            * Please fill out the Password field and mini length is 5
+                          </small>
+                        </div>
+                        <div class="email-register">
+                          <input type="password" formControlName="RePassword" placeholder="Re-enter Password" />
+                          <small *ngIf="formData.get('RePassword')?.invalid && formData.get('RePassword')?.touched" class="text-danger">
+                            * Please fill out the Re-enter Password field and mini length is 5
                           </small>
                         </div>
 
                         <div class="email-register">
-                          <input
-                            type="password"
-                            formControlName="RePassword"
-                            placeholder="Re-enter Password"
-                          />
-                          <small
-                            *ngIf="
-                              formData.get('RePassword')?.invalid &&
-                              formData.get('RePassword')?.touched
-                            "
-                            class="text-danger"
-                          >
-                            * Please fill out the Re-enter Password field and
-                            mini length is 5
-                          </small>
-                        </div>
-
-                        <div class="email-register">
-                          <input
-                            type="text"
-                            formControlName="PhoneNumber"
-                            placeholder="Phone Number"
-                          />
-                          <small
-                            *ngIf="
-                              formData.get('PhoneNumber')?.invalid &&
-                              formData.get('PhoneNumber')?.touched
-                            "
-                            class="text-danger"
-                          >
+                          <input type="text" formControlName="PhoneNumber" placeholder="Phone Number" />
+                          <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched" class="text-danger">
                             * Please enter the correct phone number format
                           </small>
                         </div>
-
                         <div class="button-box">
                           <div class="login-area-button">
                             <button type="submit" class="login-button">
@@ -193,7 +115,8 @@
                             </button>
                           </div>
                           <div class="text-register">
-                            <a routerLink="/dang-nhap"> < Back to Login </a>
+                            <a routerLink="/dang-nhap">
+                              < Back to Login </a>
                           </div>
                         </div>
                       </form>

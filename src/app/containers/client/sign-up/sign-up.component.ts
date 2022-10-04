@@ -8,6 +8,7 @@ import {
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { finalize } from 'rxjs/operators';
 import { CustomerService } from 'src/app/core/service/customer.service';
@@ -23,13 +24,16 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   formMail!: FormGroup;
   formOTP!: FormGroup;
   formData!: FormGroup;
+  user: any;
 
   constructor(
     private customerService: CustomerService,
     private messageService: NzMessageService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
-    private router: Router
+    private router: Router,
+    private socialLoginAuthService: SocialAuthService,
+
   ) {}
 
   ngOnInit(): void {
@@ -150,5 +154,30 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
+  }
+  signInWithGoogle(): void {
+    this.socialLoginAuthService
+      .signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(
+        (data) => {
+          console.log(data);
+          this.user = {
+            email: data.email,
+            fullName: data.firstName + ' ' + data.lastName,
+            avatar: data.photoUrl,
+            authToken: data.authToken,
+            idToken: data.idToken,
+          };
+          this.customerService
+            .signInWithSocialNetwork(this.user)
+            .subscribe((resp: any) => {
+              console.log(resp.data);
+              this.navigate('/tai-khoan');
+              //this.messageService.success('SignIn Success');
+            });
+        },
+        (error) => console.log(error)
+      )
+      .catch((data) => console.log(data));
   }
 }
