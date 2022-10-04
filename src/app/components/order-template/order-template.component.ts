@@ -102,5 +102,8 @@ export class OrderTemplateComponent implements OnInit {
   close() {
     this.dialogRef.close(this.reloadData);
   }
-
+  paidStatus(isPaid: boolean){
+    if(isPaid) return "Paid"
+    else return "";
+  }
 }

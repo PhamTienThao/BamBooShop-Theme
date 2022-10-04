@@ -13,23 +13,9 @@
           <div class="col d-none d-lg-block">
             <div class="top-nav">
               <ul>
-                <li>
-                  <a
-                    ><i class="fa fa-phone"></i>
-                    {{ website.PhoneNumber || null }}</a
-                  >
-                </li>
-                <li>
-                  <a href="mailto:{{ website.Email || null }}"
-                    ><i class="fa fa-envelope-o"></i>
-                    {{ website.Email || null }}</a
-                  >
-                </li>
-                <li>
-                  <a routerLink="/tai-khoan"
-                    ><i class="fa fa-user"></i> Account</a
-                  >
-                </li>
+                <li><a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i>{{ website.PhoneNumber || null }}</a></li>
+                <li><a href="mailto:{{ website.Email || null }}"><i class="fa fa-envelope-o"></i>{{ website.Email || null }}</a></li>
+                <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
               </ul>
             </div>
           </div>
@@ -44,23 +30,15 @@
           <div class="col-lg-3 col">
             <div class="header-logo">
               <a routerLink="/">
-                <img
-                  src="{{ website.Logo | hostImageClient }}"
-                  alt="Site-logo"
-                />
+                <img src="{{ website.Logo | hostImageClient }}" alt="Site-logo" />
               </a>
             </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input
-                  (keyup.enter)="search()"
-                  [(ngModel)]="keySearch"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  placeholder="Search"
-                />
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
+                  type="text" placeholder="Search" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
             </div>
@@ -68,27 +46,18 @@
           <div class="col-lg-3 col">
             <div class="header-actions">
               <!-- Single Wedge Start -->
-              <a
-                routerLink="dang-nhap"
-                class="header-action-btn offcanvas-toggle"
-              >
+              <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle">
                 <i class="pe-7s-back"></i>
               </a>
               <!-- Single Wedge End -->
-              <a
-                routerLink="/gio-hang"
-                class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
-                *ngIf="getQtyItemInCart > 0; else notCart"
-              >
+              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                *ngIf="getQtyItemInCart > 0; else notCart">
                 <i class="pe-7s-cart"></i>
                 <p class="header-action-num">{{ getQtyItemInCart }}</p>
                 <!-- <span class="cart-amount">€30.00</span> -->
               </a>
               <ng-template #notCart>
-                <a
-                  routerLink="/gio-hang"
-                  class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
-                >
+                <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                   <i class="pe-7s-cart"></i>
                 </a>
               </ng-template>
@@ -104,21 +73,14 @@
         <div class="row justify-content-between align-items-center">
           <div class="col-lg-3 col">
             <div class="header-logo">
-              <a href="index.html"
-                ><img src="assets/images/logo/bamboo.png" alt="Site Logo"
-              /></a>
+              <a href="index.html"><img src="assets/images/logo/bamboo.png" alt="Site Logo" /></a>
             </div>
           </div>
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input
-                  (keyup.enter)="search()"
-                  [(ngModel)]="keySearch"
-                  [ngModelOptions]="{ standalone: true }"
-                  type="text"
-                  placeholder="Search"
-                />
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
+                  type="text" placeholder="Search" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
             </div>
@@ -126,34 +88,20 @@
           <div class="col-lg-3 col">
             <div class="header-actions">
               <!-- Single Wedge Start -->
-              <a
-                routerLink="dang-nhap"
-                class="header-action-btn offcanvas-toggle"
-              >
-                <i class="pe-7s-back"></i>
-              </a>
+              <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle"><i class="pe-7s-back"></i></a>
               <!-- Single Wedge End -->
-              <a
-                routerLink="/gio-hang"
-                class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
-                *ngIf="getQtyItemInCart > 0; else notCart"
-              >
+              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                *ngIf="getQtyItemInCart > 0; else notCart">
                 <i class="pe-7s-cart"></i>
                 <span class="header-action-num">{{ getQtyItemInCart }}</span>
               </a>
               <ng-template #notCart>
-                <a
-                  routerLink="/gio-hang"
-                  class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
-                >
+                <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                   <i class="pe-7s-cart"></i>
                   <!-- <span class="cart-amount">€30.00</span> -->
                 </a>
               </ng-template>
-              <a
-                (click)="openSideNav()"
-                class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none"
-              >
+              <a (click)="openSideNav()" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
                 <i class="pe-7s-menu"></i>
               </a>
             </div>
@@ -170,30 +118,17 @@
           <div class="main-menu position-relative">
             <ul>
               <li class="dropdown" *ngFor="let menu of mainMenus">
-                <ng-container
-                  *ngIf="
-                    menu.SubMenus == null || menu.SubMenus.length == 0;
-                    else elseTemplateMenu
-                  "
-                >
-                  <a
-                    routerLink="/{{
-                      menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''
-                    }}{{ menu.Alias }}"
-                    rel="noopener noreferrer"
-                  >
+                <ng-container *ngIf="menu.SubMenus == null || menu.SubMenus.length == 0;else elseTemplateMenu">
+                  <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" 
+                    rel="noopener noreferrer">
                     {{ menu.Name }}
                   </a>
                 </ng-container>
                 <ng-template #elseTemplateMenu>
-                  <a routerLink="dien-thoai">
-                    {{ menu.Name }} <i class="fa fa-angle-down"></i
-                  ></a>
+                  <a routerLink="{{menu.Alias}}">{{ menu.Name }} <i class="fa fa-angle-down"></i></a>
                   <ul class="sub-menu">
                     <li *ngFor="let item of menu?.SubMenus">
-                      <a routerLink="/{{ item.Alias }}">
-                        {{ item.Name }}
-                      </a>
+                      <a routerLink="/{{ item.Alias }}">{{ item.Name }}</a>
                     </li>
                   </ul>
                 </ng-template>
@@ -209,13 +144,8 @@
         <!-- mobile search start -->
         <div class="search-element max-width-100">
           <form action="#">
-            <input
-              (keyup.enter)="search()"
-              [(ngModel)]="keySearch"
-              [ngModelOptions]="{ standalone: true }"
-              type="text"
-              placeholder="Search"
-            />
+            <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }" type="text"
+              placeholder="Search" />
             <button (click)="search()"><i class="pe-7s-search"></i></button>
           </form>
         </div>
@@ -223,190 +153,37 @@
       </div>
     </div>
   </header>
-  <div
-    class="offcanvas offcanvas-mobile-menu"
-    [ngClass]="{ 'offcanvas-open': menuStatus }"
-  >
+  <div class="offcanvas offcanvas-mobile-menu" [ngClass]="{ 'offcanvas-open': menuStatus }">
     <button (click)="closeSideNav()" class="offcanvas-close"></button>
     <div class="user-panel">
       <ul>
-        <li>
-          <a href="tel:0123456789"><i class="fa fa-phone"></i> +012 3456 789</a>
-        </li>
-        <li>
-          <a href="mailto:demo@example.com"
-            ><i class="fa fa-envelope-o"></i> demo@example.com</a
-          >
-        </li>
-        <li>
-          <a href="my-account.html"><i class="fa fa-user"></i> Account</a>
-        </li>
+        <li><a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i>{{ website.PhoneNumber || null }}</a></li>
+        <li><a href="mailto:{{ website.Email || null }}"><i class="fa fa-envelope-o"></i>{{ website.Email || null }}</a></li>
+        <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
       </ul>
     </div>
     <div class="inner customScroll">
       <div class="offcanvas-menu mb-4">
         <ul>
-          <li>
-            <a href="#"><span class="menu-text">Home</span></a>
-            <ul class="sub-menu">
-              <li>
-                <a href="index.html"><span class="menu-text">Home 1</span></a>
-              </li>
-              <li>
-                <a href="index-2.html"><span class="menu-text">Home 2</span></a>
-              </li>
-            </ul>
-          </li>
-          <li><a href="about.html">About</a></li>
-          <li (click)="subMenu()" [ngClass]="{ active: subMenuStatus }">
-            <a href="#"><span class="menu-text">Pages</span></a>
-            <ul class="sub-menu">
-              <li>
-                <a href="#"><span class="menu-text">Inner Pages</span></a>
-                <ul class="sub-menu">
-                  <li><a href="404.html">404 Page</a></li>
-                  <li><a href="order-tracking.html">Order Tracking</a></li>
-                  <li><a href="faq.html">Faq Page</a></li>
-                  <li><a href="coming-soon.html">Coming Soon Page</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"><span class="menu-text"> Other Shop Pages</span></a>
-                <ul class="sub-menu">
-                  <li><a href="cart.html">Cart Page</a></li>
-                  <li><a href="checkout.html">Checkout Page</a></li>
-                  <li><a href="compare.html">Compare Page</a></li>
-                  <li><a href="wishlist.html">Wishlist Page</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"><span class="menu-text">Related Shop Page</span></a>
-                <ul class="sub-menu">
-                  <li><a href="my-account.html">Account Page</a></li>
-                  <li><a href="login.html">Login & Register Page</a></li>
-                  <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                  <li><a href="thank-you-page.html">Thank You Page</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="menu-text">Shop</span></a>
-            <ul class="sub-menu">
-              <li>
-                <a href="#"><span class="menu-text">Shop Page</span></a>
-                <ul class="sub-menu">
-                  <li><a href="shop-3-column.html">Shop 3 Column</a></li>
-                  <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                  <li>
-                    <a href="shop-left-sidebar.html">Shop Left Sidebar</a>
-                  </li>
-                  <li>
-                    <a href="shop-right-sidebar.html">Shop Right Sidebar</a>
-                  </li>
-                  <li>
-                    <a href="shop-list-left-sidebar.html"
-                      >Shop List Left Sidebar</a
-                    >
-                  </li>
-                  <li>
-                    <a href="shop-list-right-sidebar.html"
-                      >Shop List Right Sidebar</a
-                    >
-                  </li>
-                  <li><a href="cart.html">Cart Page</a></li>
-                  <li><a href="checkout.html">Checkout Page</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"
-                  ><span class="menu-text">product Details Page</span></a
-                >
-                <ul class="sub-menu">
-                  <li><a href="single-product.html">Product Single</a></li>
-                  <li>
-                    <a href="single-product-variable.html">Product Variable</a>
-                  </li>
-                  <li>
-                    <a href="single-product-affiliate.html"
-                      >Product Affiliate</a
-                    >
-                  </li>
-                  <li>
-                    <a href="single-product-group.html">Product Group</a>
-                  </li>
-                  <li>
-                    <a href="single-product-tabstyle-2.html">Product Tab 2</a>
-                  </li>
-                  <li>
-                    <a href="single-product-tabstyle-3.html">Product Tab 3</a>
-                  </li>
-                  <li>
-                    <a href="single-product-slider.html">Product Slider</a>
-                  </li>
-                  <li>
-                    <a href="single-product-gallery-left.html"
-                      >Product Gallery Left</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#"
-                  ><span class="menu-text">Single Product Page</span></a
-                >
-                <ul class="sub-menu">
-                  <li>
-                    <a href="single-product-gallery-right.html"
-                      >Product Gallery Right</a
-                    >
-                  </li>
-                  <li>
-                    <a href="single-product-sticky-left.html"
-                      >Product Sticky Left</a
-                    >
-                  </li>
-                  <li>
-                    <a href="single-product-sticky-right.html"
-                      >Product Sticky Right</a
-                    >
-                  </li>
-                  <li><a href="compare.html">Compare Page</a></li>
-                  <li><a href="wishlist.html">Wishlist Page</a></li>
-                  <li><a href="my-account.html">Account Page</a></li>
-                  <li><a href="login.html">Login & Register Page</a></li>
-                  <li><a href="empty-cart.html">Empty Cart Page</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#"><span class="menu-text">Blog</span></a>
-            <ul class="sub-menu">
-              <li><a href="blog-grid.html">Blog Grid Page</a></li>
-              <li>
-                <a href="blog-grid-left-sidebar.html">Grid Left Sidebar</a>
-              </li>
-              <li>
-                <a href="blog-grid-right-sidebar.html">Grid Right Sidebar</a>
-              </li>
-              <li><a href="blog-list.html">Blog List Page</a></li>
-              <li>
-                <a href="blog-list-left-sidebar.html">List Left Sidebar</a>
-              </li>
-              <li>
-                <a href="blog-list-right-sidebar.html">List Right Sidebar</a>
-              </li>
-              <li><a href="blog-single.html">Blog Single Page</a></li>
-              <li>
-                <a href="blog-single-left-sidebar.html">Single Left Sidebar</a>
-              </li>
-              <li>
-                <a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
-              </li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li *ngFor="let menu of mainMenus">
+            <ng-container *ngIf="menu.SubMenus == null || menu.SubMenus.length == 0;else elseTemplateMenuMobile">
+              <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" 
+                rel="noopener noreferrer">
+                <span class="menu-text">{{ menu.Name }}</span>
+              </a>
+            </ng-container>
+            <ng-template #elseTemplateMenuMobile>
+              <a routerLink="{{menu.Alias}}">{{ menu.Name }}
+                <i class="fa fa-angle-down" style="float: right;" (click)="openSubMenu(menu.Alias)" ></i>
+              </a>
+              <ul style="display: none;" id="{{menu.Alias}}">
+                <li *ngFor="let item of menu?.SubMenus">
+                  <a routerLink="/{{ item.Alias }}"><span class="sub-menu-text">{{ item.Name }}</span>
+                  </a>
+                </li>
+              </ul>
+            </ng-template>
+          </li>       
         </ul>
       </div>
     </div>
@@ -433,40 +210,22 @@
                 </div>
                 <ul class="link-follow">
                   <li>
-                    <a
-                      class="m-0"
-                      title="Twitter"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-facebook" aria-hidden="true"></i
-                    ></a>
+                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#"><i
+                        class="fa fa-facebook" aria-hidden="true"></i></a>
                   </li>
                   <li>
-                    <a
-                      title="Tumblr"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-tumblr" aria-hidden="true"></i>
+                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-tumblr"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a
-                      title="Facebook"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-twitter" aria-hidden="true"></i>
+                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-twitter"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a
-                      title="Instagram"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="#"
-                      ><i class="fa fa-instagram" aria-hidden="true"></i>
+                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-instagram"
+                        aria-hidden="true"></i>
                     </a>
                   </li>
                 </ul>
@@ -481,16 +240,11 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li" *ngFor="let item of subMenus">
-                        <p
-                          *ngIf="
+                        <p *ngIf="
                             item.Articles != null && item.Articles.length > 0
-                          "
-                        >
-                          <a
-                            class="single-link"
-                            routerLink="/thong-tin/{{ item.Articles[0].Alias }}"
-                            >{{ item.Name }}</a
-                          >
+                          ">
+                          <a class="single-link" routerLink="/thong-tin/{{ item.Articles[0].Alias }}">{{ item.Name
+                            }}</a>
                         </p>
                       </li>
                     </ul>
@@ -507,25 +261,19 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li">
-                        <a class="single-link" routerLink="/profile"
-                          >My Account</a
-                        >
+                        <a class="single-link" routerLink="/profile">My Account</a>
                       </li>
                       <li class="li">
                         <a class="single-link" href="contact.html">Contact</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/gio-hang"
-                          >Shopping cart</a
-                        >
+                        <a class="single-link" href="/gio-hang">Shopping cart</a>
                       </li>
                       <li class="li">
                         <a class="single-link" href="/">Shop</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/dang-nhap"
-                          >Services Login</a
-                        >
+                        <a class="single-link" href="/dang-nhap">Services Login</a>
                       </li>
                     </ul>
                   </div>
@@ -539,21 +287,9 @@
                 <h4 class="footer-herading">Contact Info</h4>
                 <div class="footer-links">
                   <!-- News letter area -->
-
-                  <p class="phone">
-                    Phone/Fax:<a href="tel:{{ website.PhoneNumber }}">
-                      {{ website.PhoneNumber }}
-                    </a>
-                  </p>
-                  <p class="mail">
-                    Email:<a href="mailto:{{ website.Email }}">
-                      {{ website.Email }}</a
-                    >
-                  </p>
-                  <p class="mail">
-                    Addresses:
-                    <a href=""> {{ website.Address }}</a>
-                  </p>
+                  <p class="phone">Phone/Fax:<a href="tel:{{ website.PhoneNumber }}">{{ website.PhoneNumber }}</a></p>
+                  <p class="mail">Email:<a href="mailto:{{ website.Email }}">{{ website.Email }}</a></p>
+                  <p class="mail">Addresses:<a href=""> {{ website.Address }}</a></p>
                   <!-- News letter area  End -->
                 </div>
               </div>
@@ -568,12 +304,8 @@
             <div class="row flex-md-row-reverse align-items-center">
               <div class="col-md-6 text-center text-md-end">
                 <div class="payment-mth">
-                  <a href="#"
-                    ><img
-                      class="img img-fluid"
-                      src="assets/images/icons/payment.png"
-                      alt="payment-image"
-                  /></a>
+                  <a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png"
+                      alt="payment-image" /></a>
                 </div>
               </div>
             </div>

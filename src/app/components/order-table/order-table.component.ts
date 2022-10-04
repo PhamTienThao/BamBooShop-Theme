@@ -29,6 +29,8 @@ export class OrderTableComponent implements OnInit {
     { value: 30, name: 'Delivering' },
     { value: 40, name: 'Delivered' },
     { value: 50, name: 'Canceled' },
+    { value: 60, name: 'Paid Order' },
+    { value: 70, name: 'Not Paid Order' },
   ];
   orderFilter: Order[] = [];
   orderFilterIndexValue: number = 0;
@@ -51,7 +53,16 @@ export class OrderTableComponent implements OnInit {
     if (this.orderFilterIndexValue == 0 || this.orderFilterIndexValue == null || this.orderFilterIndexValue == undefined) {
       this.getOrders();
     } else {
-      this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
+      switch (this.orderFilterIndexValue) {
+        case 60:
+          this.orderFilter = this.orders.filter(x => x.IsPaid == true);
+          break;
+        case 70:
+          this.orderFilter = this.orders.filter(x => x.IsPaid == false);
+          break;
+        default:
+          this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
+      }
     }
   }
   filterOrderStatusName(status: number) {
@@ -78,24 +89,23 @@ export class OrderTableComponent implements OnInit {
 
     //pass data
     let openedDialog = this.dialog.open(OrderTemplateComponent, dialogConfig);
-    
+
     //after close dialog and catch data from dialog
     openedDialog.afterClosed().subscribe(result => {
-      if(result){
-        debugger
+      if (result) {
         this.customerService.getOrders()
-        .subscribe({
-          next: (resp: any) => {
-            this.orders = JSON.parse(resp["data"]);
-            this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
-          }, error: (err: any) => {
+          .subscribe({
+            next: (resp: any) => {
+              this.orders = JSON.parse(resp["data"]);
+              this.orderFilter = this.orders.filter(x => x.Status == this.orderFilterIndexValue);
+            }, error: (err: any) => {
 
-          }
-        })
-      }else{
+            }
+          })
+      } else {
 
       }
     })
   }
-  
+
 }

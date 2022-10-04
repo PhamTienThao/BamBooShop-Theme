@@ -25,8 +25,6 @@ declare var paypal: any;
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  @ViewChild('paypalRef', { static: true }) paypalElement!: ElementRef;
-
   formData!: FormGroup;
   orderDetail: OrderDetail[] = [];
   totalPayPal: number = 0;
@@ -86,6 +84,7 @@ export class CartComponent implements OnInit {
         if (detail.status == 'COMPLETED') {
           this.isPaid = true;
           this.submitForm();
+          this.cartService.clearCart();
           this.navigate('/dat-hang-thanh-cong');
           alert(detail.status);
         } else alert(detail.status);

@@ -7,17 +7,13 @@
         <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
           <ul role="tablist" class="nav flex-column dashboard-list">
             <li>
-              <a href="#account-details" data-bs-toggle="tab" class="nav-link"
-                >Account details</a
-              >
+              <a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
             </li>
             <li>
               <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a>
             </li>
             <li>
-              <a href="#change-password" data-bs-toggle="tab" class="nav-link"
-                >Change Password</a
-              >
+              <a href="#change-password" data-bs-toggle="tab" class="nav-link">Change Password</a>
             </li>
             <li><a routerLink="/dang-xuat" class="nav-link">logout</a></li>
           </ul>
@@ -25,11 +21,7 @@
       </div>
       <div class="col-sm-12 col-md-9 col-lg-9">
         <!-- Tab panes -->
-        <div
-          class="tab-content dashboard_content"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
+        <div class="tab-content dashboard_content" data-aos="fade-up" data-aos-delay="200">
           <div class="tab-pane fade show active" id="account-details">
             <div class="login">
               <div class="login_form_container">
@@ -47,19 +39,8 @@
                         <label>Full Name</label>
                         <span class="text-red">(*)</span>
                       </div>
-
-                      <input
-                        type="text"
-                        formControlName="FullName"
-                        name="fullName"
-                      />
-                      <small
-                        *ngIf="
-                          formData.get('FullName')?.invalid &&
-                          formData.get('FullName')?.touched
-                        "
-                        class="text-danger"
-                      >
+                      <input type="text" formControlName="FullName" name="fullName" />
+                      <small *ngIf="formData.get('FullName')?.invalid &&formData.get('FullName')?.touched"class="text-danger">
                         * Full Name is required
                       </small>
                     </div>
@@ -68,19 +49,9 @@
                         <label>Phone Number</label>
                         <span class="text-red">(*)</span>
                       </div>
-
-                      <input
-                        type="text"
-                        formControlName="PhoneNumber"
-                        name="phoneNumber"
-                      />
-                      <small
-                        *ngIf="
-                          formData.get('PhoneNumber')?.invalid &&
-                          formData.get('PhoneNumber')?.touched
-                        "
-                        class="text-danger"
-                      >
+                      <input type="text" formControlName="PhoneNumber" name="phoneNumber" />
+                      <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched"
+                        class="text-danger">
                         * Please enter the correct phone number format
                       </small>
                     </div>
@@ -94,43 +65,22 @@
                       </div>
 
                       <textarea formControlName="Address"></textarea>
-                      <small
-                        *ngIf="
-                          formData.get('Address')?.invalid &&
-                          formData.get('Address')?.touched
-                        "
-                        class="text-danger"
-                      >
+                      <small *ngIf="formData.get('Address')?.invalid && formData.get('Address')?.touched" class="text-danger">
                         * Street Address is required
                       </small>
                     </div>
                     <p>Gender</p>
-                    <mat-radio-group
-                      class="input-radio"
-                      formControlName="Gender"
-                    >
+                    <mat-radio-group class="input-radio" formControlName="Gender">
                       <span class="custom-radio">
-                        <mat-radio-button
-                          type="radio"
-                          value="Nam"
-                          name="id_gender"
-                        ></mat-radio-button>
+                        <mat-radio-button type="radio" value="Nam" name="id_gender"></mat-radio-button>
                         Mr.
                       </span>
                       <span class="custom-radio">
-                        <mat-radio-button
-                          type="radio"
-                          value="Nữ"
-                          name="id_gender"
-                        ></mat-radio-button>
+                        <mat-radio-button type="radio" value="Nữ" name="id_gender"></mat-radio-button>
                         Mrs.
                       </span>
                       <span class="custom-radio">
-                        <mat-radio-button
-                          type="radio"
-                          value="Khác"
-                          name="id_gender"
-                        ></mat-radio-button>
+                        <mat-radio-button type="radio" value="Khác" name="id_gender"></mat-radio-button>
                         Other
                       </span>
                     </mat-radio-group>
@@ -152,91 +102,37 @@
             <div class="login">
               <div class="login_form_container">
                 <div class="account_login_form">
-                  <form
-                    [formGroup]="formChangePassword"
-                    (ngSubmit)="submitChangePassword()"
-                  >
+                  <form [formGroup]="formChangePassword" (ngSubmit)="submitChangePassword()">
                     <div class="default-form-box mb-20">
                       <label>Old Password</label>
-                      <input
-                        type="password"
-                        required
-                        formControlName="OldPassword"
-                        name="oldPassword"
-                        #oldPasswordControl
-                        placeholder="Enter your old password"
-                      />
-                      <small
-                        *ngIf="
-                          formChangePassword.get('OldPassword')?.invalid &&
-                          formChangePassword.get('OldPassword')?.touched
-                        "
-                        class="text-danger"
-                      >
-                        * Please fill out the old password field and mini length
-                        is 5
+                      <input type="password" required formControlName="OldPassword" name="oldPassword"
+                        #oldPasswordControl placeholder="Enter your old password" />
+                      <small *ngIf="formChangePassword.get('OldPassword')?.invalid &&formChangePassword.get('OldPassword')?.touched" class="text-danger">
+                        * Please fill out the old password field and min length is 5
                       </small>
                     </div>
                     <div class="default-form-box mb-20">
                       <label>New Password</label>
-                      <input
-                        type="password"
-                        required
-                        formControlName="NewPassword"
-                        name="newPassword"
-                        placeholder="Enter your new password"
-                      />
-                      <small
-                        *ngIf="
-                          formChangePassword.get('NewPassword')?.invalid &&
-                          formChangePassword.get('NewPassword')?.touched
-                        "
-                        class="text-danger"
-                      >
-                        * Please fill out the new password field and mini length
-                        is 5
+                      <input type="password" required formControlName="NewPassword" name="newPassword"
+                        placeholder="Enter your new password" />
+                      <small *ngIf="formChangePassword.get('NewPassword')?.invalid &&formChangePassword.get('NewPassword')?.touched " class="text-danger">
+                        * Please fill out the new password field and min length is 5
                       </small>
                     </div>
                     <div class="default-form-box mb-20">
                       <label>Confirm Password</label>
-                      <input
-                        type="password"
-                        required
-                        formControlName="ConfirmPassword"
-                        name="confirmPassword"
-                        (change)="rePasswordChange()"
-                        placeholder="Confirm new password"
-                      />
-                      <small
-                        *ngIf="
-                          formChangePassword.get('ConfirmPassword')?.invalid &&
-                          formChangePassword.get('ConfirmPassword')?.touched
-                        "
-                        class="text-danger"
-                      >
-                        * Please fill out the confirm password field and mini
-                        length is 5
+                      <input type="password" required formControlName="ConfirmPassword" name="confirmPassword"
+                        (change)="rePasswordChange()" placeholder="Confirm new password" />
+                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.invalid &&formChangePassword.get('ConfirmPassword')?.touched" class="text-danger">
+                        * Please fill out the confirm password field and minlength is 5
                       </small>
-                      <small
-                        *ngIf="
-                          formChangePassword.get('ConfirmPassword')?.value ==
-                            formChangePassword.get('ConfirmPassword')?.value &&
-                          !isConfirmPasswordRight &&
-                          formChangePassword.get('NewPassword')?.touched
-                        "
-                        class="text-danger"
-                      >
+                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.value == formChangePassword.get('ConfirmPassword')?.value 
+                          && !isConfirmPasswordRight && formChangePassword.get('NewPassword')?.touched" class="text-danger">
                         * Confirm Password and New Password are not matching
                       </small>
                     </div>
                     <div class="save_button mt-3">
-                      <button
-                        class="btn"
-                        type="submit"
-                        [disabled]="
-                          formChangePassword.invalid && isConfirmPasswordRight
-                        "
-                      >
+                      <button class="btn" type="submit" [disabled]="formChangePassword.invalid && isConfirmPasswordRight">
                         Update
                       </button>
                     </div>

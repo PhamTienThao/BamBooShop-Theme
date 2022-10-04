@@ -61,15 +61,15 @@ export class LayoutComponent implements OnInit {
     this.getSubMenuActive();
     this.getBanner();
   }
-  subMenu() {
-    if (this.displaySubMenu == 'none') {
-      this.displaySubMenu = 'block';
-      this.subMenuStatus = true;
-    } else {
-      this.displaySubMenu = 'none';
-      this.subMenuStatus = false;
-    }
-  }
+  // subMenu() {
+  //   if (this.displaySubMenu == 'none') {
+  //     this.displaySubMenu = 'inline-grid';
+  //     this.subMenuStatus = true;
+  //   } else {
+  //     this.displaySubMenu = 'none';
+  //     this.subMenuStatus = false;
+  //   }
+  // }
 
   openSideNav() {
     this.menuStatus = true;
@@ -77,7 +77,14 @@ export class LayoutComponent implements OnInit {
   closeSideNav() {
     this.menuStatus = false;
   }
-
+  openSubMenu(menuAlias: string) {
+    let a  = document.getElementById(menuAlias);
+    if(a!=null)
+      {
+        if(a.style.display == 'none') a.style.display = 'inline-grid';
+        else a.style.display = 'none'
+      }
+  }
   getWebsiteInfo() {
     this.websiteService.get({}).subscribe({
       next: (resp: any) => {
