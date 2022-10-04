@@ -80,6 +80,7 @@
 .text-register a {
   color: #000000;
   cursor: pointer;
+  font-weight: 400;
 }
 
 .text-register a:hover {
