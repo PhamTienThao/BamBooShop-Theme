@@ -5,5 +5,6 @@ export class Constants {
       static TOKEN_ADMIN = "token-admin";
       static SESSION_ADMIN = "session-admin";
       static CART = "cart";
+      static SOCIAL_LOGIN = "social-login";
   }
 }

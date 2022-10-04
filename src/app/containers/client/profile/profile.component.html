@@ -12,7 +12,7 @@
             <li>
               <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a>
             </li>
-            <li>
+            <li *ngIf="!isSocialNetworkAccount">
               <a href="#change-password" data-bs-toggle="tab" class="nav-link">Change Password</a>
             </li>
             <li><a routerLink="/dang-xuat" class="nav-link">logout</a></li>
@@ -63,7 +63,6 @@
                       <div class="title-required">
                         <label>Address</label> <span class="text-red">(*)</span>
                       </div>
-
                       <textarea formControlName="Address"></textarea>
                       <small *ngIf="formData.get('Address')?.invalid && formData.get('Address')?.touched" class="text-danger">
                         * Street Address is required

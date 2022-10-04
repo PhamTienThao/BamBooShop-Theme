@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private socialLoginAuthService: SocialAuthService,
     private customerService: CustomerService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.navigate('/');
       },
       error: (err: any) => {
-        // this.messageService.error(error.error.message);
+        this.messageService.error(err.error.message);
       },
     });
   }
@@ -59,45 +59,37 @@ export class LoginComponent implements OnInit {
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
   }
-  // fbLogin(){
-  //   this.facebookLogin.authState.subscribe(user=>{
-  //     this.user = user;
-  //     console.log(this.user);
-  //   })
-  // }
-  // fbSign(){
-  //   this.facebookLogin.signIn(FacebookLoginProvider.PROVIDER_ID);
-  // }
   loginWithGoogle(): void {
     this.socialLoginAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(
         (data) => {
-          console.log(data.authToken);
           this.user = {
             email: data.email,
             fullName: data.firstName + ' ' + data.lastName,
             avatar: data.photoUrl,
             authToken: data.authToken,
+            idToken: data.idToken,
           };
           this.customerService
-            .signInWithSocialNetwork(this.user)
-            .subscribe((resp: any) => {
-              this.messageService.success('Đăng ký thành công');
+            .loginWithSocialNetwork(this.user)
+            .subscribe({
+              next: (resp: any) => {
+                // this.messageService.success("Đăng nhập thành công");
+                this.navigate('/tai-khoan');
+              },
+              error: (err: any) => {
+                this.messageService.error(err.error.message);
+              }
             });
         },
         (error) => console.log(error)
       )
       .catch((data) => console.log(data));
-    //this.user = {
-    //   email: "email",
-    //   fullName: "name",
-    //   avatar: "photoUrl",
-    //   authToken: "authToken",
-    //   phoneNumber: "phoneNumber"
-    // };
-    // this.customerService.signInWithSocialNetwork(this.user).subscribe((resp: any) => {
-    //   this.messageService.success("Đăng nhập thành công");
-    // });
+  }
+  logoutGoogle(): void {
+    this.socialLoginAuthService.signOut();
+    this.router.navigateByUrl('/dang-xuat');
+
   }
 }

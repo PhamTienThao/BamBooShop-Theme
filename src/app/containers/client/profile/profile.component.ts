@@ -20,11 +20,12 @@ export class ProfileComponent implements OnInit {
   profile!: Customer;
   orders: Order[] = [];
   isConfirmPasswordRight: boolean = true;
+  isSocialNetworkAccount: boolean = false;
   constructor(
     private customerService: CustomerService,
     private messageService: NzMessageService,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
@@ -50,6 +51,11 @@ export class ProfileComponent implements OnInit {
       NewPassword: [null, [Validators.required, Validators.minLength(5)]],
       ConfirmPassword: [null, [Validators.required, Validators.minLength(5)]],
     });
+    let isSocial = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN);
+    if(isSocial!= null && isSocial != "" && isSocial=="true")
+    {
+      this.isSocialNetworkAccount = true;
+    }else this.isSocialNetworkAccount = false;
     this.getProfile();
     this.getOrders();
   }
@@ -63,7 +69,7 @@ export class ProfileComponent implements OnInit {
         );
         this.formData.patchValue(this.profile);
       },
-      error: (err: any) => {},
+      error: (err: any) => { },
     });
   }
 
@@ -72,7 +78,7 @@ export class ProfileComponent implements OnInit {
       next: (resp: any) => {
         this.orders = JSON.parse(resp['data']);
       },
-      error: (err: any) => {},
+      error: (err: any) => { },
     });
   }
 
@@ -132,10 +138,7 @@ export class ProfileComponent implements OnInit {
       });
   }
   rePasswordChange() {
-    if (
-      this.formChangePassword.get('NewPassword')?.value ==
-      this.formChangePassword.get('ConfirmPassword')?.value
-    )
+    if (this.formChangePassword.get('NewPassword')?.value == this.formChangePassword.get('ConfirmPassword')?.value)
       this.isConfirmPasswordRight = true;
     else this.isConfirmPasswordRight = false;
   }

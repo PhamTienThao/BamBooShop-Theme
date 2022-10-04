@@ -12,51 +12,22 @@
                 <div class="login-register-form">
                   <form [formGroup]="formData" (ngSubmit)="onSubmit()">
                     <div class="email-login">
-                      <input
-                        type="text"
-                        name="user-name"
-                        email
-                        formControlName="Email"
-                        placeholder="Email"
-                        required
-                      />
-                      <small
-                        *ngIf="
-                          formData.get('Email')?.invalid &&
-                          formData.get('Email')?.touched
-                        "
-                        class="text-danger"
-                      >
+                      <input type="text" name="user-name" email formControlName="Email" placeholder="Email" required />
+                      <small *ngIf="formData.get('Email')?.invalid && formData.get('Email')?.touched" class="text-danger">
                         * Please enter the correct email format
                       </small>
                     </div>
                     <div class="password-login">
-                      <input
-                        type="password"
-                        name="user-password"
-                        formControlName="Password"
-                        placeholder="Password"
-                        required
-                      />
-                      <small
-                        *ngIf="
-                          formData.get('Password')?.invalid &&
-                          formData.get('Password')?.touched
-                        "
-                        class="text-danger"
-                      >
-                        * Please fill out the password field and mini length is
-                        5
+                      <input type="password" name="user-password" formControlName="Password" placeholder="Password"
+                        required />
+                      <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger">
+                        * Please fill out the password field and mini length is 5
                       </small>
                     </div>
                     <div class="button-box">
                       <div class="login-toggle-btn">
                         <a class="flote-none">
-                          <input
-                            formControlName="Remember"
-                            type="checkbox"
-                            name="remember-user"
-                          />
+                          <input formControlName="Remember" type="checkbox" name="remember-user" />
                           Remember me
                         </a>
                         <a routerLink="/quen-mat-khau">Forgot Password?</a>
@@ -72,19 +43,13 @@
                       <div class="social-login-area">
                         <div class="facbook-login">
                           <button>
-                            <i
-                              class="fa fa-facebook"
-                              style="font-size: 21px; color: white"
-                            ></i>
+                            <i class="fa fa-facebook" style="font-size: 21px; color: white"></i>
                             <span>Facebook</span>
                           </button>
                         </div>
                         <div class="google-login">
-                          <button>
-                            <i
-                              class="fa fa-google-plus"
-                              style="font-size: 21px; color: white"
-                            ></i>
+                          <button (click)="loginWithGoogle()">
+                            <i class="fa fa-google-plus" style="font-size: 21px; color: white"></i>
                             <span>Google</span>
                           </button>
                         </div>
