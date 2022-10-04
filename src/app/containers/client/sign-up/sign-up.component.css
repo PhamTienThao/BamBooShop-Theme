@@ -1,3 +1,8 @@
+::ng-deep .mat-stepper-vertical,
+.mat-stepper-horizontal {
+  font-family: "Quicksand", sans-serif;
+}
+
 .login-register-form {
   margin-top: 24px;
 }
@@ -80,7 +85,6 @@
 .text-register a {
   color: #000000;
   cursor: pointer;
-  font-weight: 400;
 }
 
 .text-register a:hover {
