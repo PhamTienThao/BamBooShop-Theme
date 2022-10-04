@@ -25,7 +25,6 @@ import { ProfileComponent } from './containers/client/profile/profile.component'
 import { SearchComponent } from './containers/client/search/search.component';
 import { SignUpComponent } from './containers/client/sign-up/sign-up.component';
 import { EmptyCardComponent } from './containers/client/empty-card/empty-card.component';
-import { ThankYouPageComponent } from './containers/client/thank-you-page/thank-you-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -75,7 +74,6 @@ import { ProductTemplateListComponent } from './components/product-template-list
     SearchComponent,
     SignUpComponent,
     EmptyCardComponent,
-    ThankYouPageComponent,
     HostImageClientPipe,
     SafePipe,
     // PipeHostImagePipe,
