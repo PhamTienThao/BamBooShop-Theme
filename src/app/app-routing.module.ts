@@ -49,6 +49,7 @@ const routes: Routes = [
       },
       {
         path: "quen-mat-khau",
+        canActivate: [AuthGuardService],
         component: ForgotPasswordComponent
       },
       {
