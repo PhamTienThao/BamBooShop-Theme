@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { Article } from 'src/app/core/model/article';
 import { Gallery } from 'src/app/core/model/gallery';
 import { Menu } from 'src/app/core/model/menu';
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     private articleService: ArticleService,
     private galleryService: GalleryService,
     private productService: ProductService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
         this.mainBanner = datas.filter(x => x.Type == 1);
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       }
     }
     );
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
         this.productSelling = JSON.parse(resp["data"]);
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       }
     });
   }
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
         this.menuHomePages = JSON.parse(resp["data"]);
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       }
     });
   }
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
         this.highlightArticle = JSON.parse(resp["data"])
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       }
     });
   }

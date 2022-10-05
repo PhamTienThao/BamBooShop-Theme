@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { OrderDetail } from 'src/app/core/model/order-detail';
 import { ProductAttribute } from 'src/app/core/model/product-attribute';
@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
     private orderService: OrderService,
     private customerService: CustomerService,
     private cartService: CartService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
@@ -108,7 +108,7 @@ export class CartComponent implements OnInit {
         this.formData.patchValue(profile);
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -210,7 +210,7 @@ export class CartComponent implements OnInit {
       }
     }
     if (this.formData.invalid) {
-      this.messageService.error('Please fill all the information fields');
+      this.toastrService.error('Please fill all the information fields',"",{positionClass :'toast-bottom-right'});
       return;
     }
     let orderDetailPost: OrderDetail[] = DataHelper.clone(this.orderDetail);
@@ -240,7 +240,7 @@ export class CartComponent implements OnInit {
           this.navigate('/dat-hang-thanh-cong');
         },
         error: (err: any) => {
-          this.messageService.error(err);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }

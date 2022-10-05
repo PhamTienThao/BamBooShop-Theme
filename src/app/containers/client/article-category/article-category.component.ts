@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { Article } from 'src/app/core/model/article';
 import { Menu } from 'src/app/core/model/menu';
@@ -26,7 +26,7 @@ export class ArticleCategoryComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private viewportScroller: ViewportScroller,
     private router: Router,
-    private messageService: NzMessageService
+    private toastrService: ToastrService,
   ) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
@@ -51,7 +51,7 @@ export class ArticleCategoryComponent implements OnInit {
           this.menu.Articles = JSON.parse(resp["data"]);  
         },
         error: (err: any) => {
-          this.messageService.error("Error loading article");
+          this.toastrService.error("Error loading article","",{positionClass :'toast-bottom-right'});
         }
       })
     }else{
@@ -60,7 +60,7 @@ export class ArticleCategoryComponent implements OnInit {
         next: (resp: any) => {
           this.menu = JSON.parse(resp["data"])
         }, error: (err: any) => {
-          this.messageService.error("Error loading article");
+          this.toastrService.error("Error loading article","",{positionClass :'toast-bottom-right'});
         }
       })
     };
@@ -79,7 +79,7 @@ export class ArticleCategoryComponent implements OnInit {
           }, 10);
         },
         error: (error: any) => {
-          this.messageService.error("error loading article");
+          this.toastrService.error("error loading article","",{positionClass :'toast-bottom-right'});
         }
       })
   }

@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Order } from 'src/app/core/model/order';
 import { OrderDetail } from 'src/app/core/model/order-detail';
@@ -25,7 +25,7 @@ export class OrderTemplateComponent implements OnInit {
   constructor(
     private reviewService: ReviewService,
     private orderService: OrderService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     public dialogRef: MatDialogRef<OrderTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Order,
   ) {
@@ -48,11 +48,11 @@ export class OrderTemplateComponent implements OnInit {
     this.reviewService.review(this.orderDetailSelected.Id ?? 0, this.reviewModel.Star, this.reviewModel.Content)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Success");
+          this.toastrService.success("Review Saved","",{positionClass :'toast-bottom-right'});
           this.isVisibleModal = false;
           this.orderDetailSelected.IsReview = true;
         }, error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         }
       })
   }
@@ -76,7 +76,7 @@ export class OrderTemplateComponent implements OnInit {
           }
           this.isVisibleModal = true;
         }, error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         }
       })
 
@@ -91,11 +91,11 @@ export class OrderTemplateComponent implements OnInit {
     this.orderService.changeStatus(this.data.Id, 50)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success("Cancel Success");
+          this.toastrService.success("Cancel Success","",{positionClass :'toast-bottom-right'});
           this.reloadData = true;
           this.dialogRef.close(this.reloadData);
         }, error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         }
       });
   }

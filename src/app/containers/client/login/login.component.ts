@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, GoogleLoginProvider } from 'angularx-social-login';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/core/service/customer.service';
 import { AuthenticationService } from '../auth/authentication.service';
 
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private ngZone: NgZone,
     private router: Router,
     private socialLoginAuthService: SocialAuthService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
   ) { }
 
   ngOnInit() {
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService.login(this.formData.getRawValue()).subscribe({
       next: (resp: any) => {
-        // this.messageService.success("Đăng nhập thành công");
+        this.toastrService.success("Đăng nhập thành công","",{positionClass :'toast-bottom-right'});
         this.navigate('/');
       },
       error: (err: any) => {
-        this.messageService.error(err.error.message);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -75,11 +75,11 @@ export class LoginComponent implements OnInit {
             .loginWithSocialNetwork(this.user)
             .subscribe({
               next: (resp: any) => {
-                // this.messageService.success("Đăng nhập thành công");
+                this.toastrService.success("Đăng nhập thành công");
                 this.navigate('/tai-khoan');
               },
               error: (err: any) => {
-                this.messageService.error(err.error.message);
+                this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
               }
             });
         },

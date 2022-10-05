@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as moment from 'moment';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { Customer } from 'src/app/core/model/customer';
 import { Order } from 'src/app/core/model/order';
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   isSocialNetworkAccount: boolean = false;
   constructor(
     private customerService: CustomerService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -103,11 +103,11 @@ export class ProfileComponent implements OnInit {
 
     this.customerService.updateProfile(dataPost).subscribe({
       next: (resp: any) => {
-        this.messageService.success('Update Done');
+        this.toastrService.success('Update Done',"",{positionClass :'toast-bottom-right'});
         this.getProfile();
       },
       error: (err: any) => {
-        this.messageService.error(err.error.message);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -129,11 +129,11 @@ export class ProfileComponent implements OnInit {
       .changePassword(dataPost['OldPassword'], dataPost['NewPassword'])
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success('Update Done');
+          this.toastrService.success('Update Done',"",{positionClass :'toast-bottom-right'});
           this.formChangePassword.reset();
         },
         error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }

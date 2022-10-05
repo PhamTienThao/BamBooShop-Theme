@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { CustomerService } from 'src/app/core/service/customer.service';
 
@@ -15,7 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
@@ -42,12 +42,10 @@ export class ForgotPasswordComponent implements OnInit {
       .forgotPassword(this.formData.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success(
-            'Request completed. Please check your email.'
-          );
+          this.toastrService.success('Request completed. Please check your email.',"",{positionClass :'toast-bottom-right'});
         },
         error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }

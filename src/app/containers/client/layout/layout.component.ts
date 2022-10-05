@@ -1,7 +1,7 @@
 import { Component, EventEmitter, NgZone, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { Gallery } from 'src/app/core/model/gallery';
 import { Menu } from 'src/app/core/model/menu';
 import { Website } from 'src/app/core/model/website';
@@ -45,7 +45,7 @@ export class LayoutComponent implements OnInit {
     private emailRegistrationService: EmailRegistrationService,
     private menuService: MenuService,
     private cartService: CartService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
@@ -91,7 +91,7 @@ export class LayoutComponent implements OnInit {
         this.website = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        this.messageService.error('Error loading Website information');
+        this.toastrService.error('Error loading Website information',"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -102,7 +102,7 @@ export class LayoutComponent implements OnInit {
         this.mainMenus = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        //this.messageService.error(err)
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'})
       },
     });
   }
@@ -113,7 +113,7 @@ export class LayoutComponent implements OnInit {
         this.subMenus = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        //this.messageService.error(err)
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'})
       },
     });
   }
@@ -125,7 +125,7 @@ export class LayoutComponent implements OnInit {
         this.subBanner = datas.filter((x) => x.Type == 2);
       },
       error: (err: any) => {
-        //this.messsageService.error(err);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -150,11 +150,11 @@ export class LayoutComponent implements OnInit {
       .post(this.formRegistration.getRawValue())
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success('Đăng ký thành công.');
+          this.toastrService.success('Đăng ký thành công.',"",{positionClass :'toast-bottom-right'});
           this.formRegistration.reset();
         },
         error: (err: any) => {
-          this.messageService.error(err);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }

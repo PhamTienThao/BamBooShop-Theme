@@ -1,6 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/core/model/product';
 import { ProductAttribute } from 'src/app/core/model/product-attribute';
 import { CartService } from 'src/app/core/service/cart.service';
@@ -36,7 +36,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private ngZone: NgZone,
     private router: Router
   ) {
@@ -89,7 +89,7 @@ export class ProductDetailComponent implements OnInit {
         console.log(this.product.RateAvg);
       },
       error: (err: any) => {
-        this.messageService.error('Thông tin sản phẩm không khả dụng');
+        this.toastrService.error('Thông tin sản phẩm không khả dụng',"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -110,7 +110,7 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.messageService.error('Số lượng sản phẩm không hợp lệ');
+      this.toastrService.error('Số lượng sản phẩm không hợp lệ',"",{positionClass :'toast-bottom-right'});
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
@@ -131,13 +131,13 @@ export class ProductDetailComponent implements OnInit {
       }
     }
     //fix bug product qty when add to cart
-    this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
+    this.toastrService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`,"",{positionClass :'toast-bottom-right'});
     this.cartService.addProductToCart(this.product, this.qty);
   }
 
   buyNow() {
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.messageService.error('Số lượng sản phẩm không hợp lệ');
+      this.toastrService.error('Số lượng sản phẩm không hợp lệ',"",{positionClass :'toast-bottom-right'});
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {

@@ -53,7 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,6 +106,7 @@ import { ProductTemplateListComponent } from './components/product-template-list
     NzStepsModule,
     MatStepperModule,
     CarouselModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthGuardService,

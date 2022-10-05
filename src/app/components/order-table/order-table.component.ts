@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs';
 import { Order, OrderStatus } from 'src/app/core/model/order';
@@ -37,7 +37,7 @@ export class OrderTableComponent implements OnInit {
   constructor(
     private reviewService: ReviewService,
     private orderService: OrderService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private spinner: NgxSpinnerService,
     private customerService: CustomerService,
     private dialog: MatDialog

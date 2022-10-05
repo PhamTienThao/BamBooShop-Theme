@@ -9,7 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { CustomerService } from 'src/app/core/service/customer.service';
 
@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   constructor(
     private customerService: CustomerService,
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
@@ -79,11 +79,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       .requestOTP(this.formMail.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success('OTP Has been sent to your email.');
+          this.toastrService.success('OTP Has been sent to your email.',"",{positionClass :'toast-bottom-right'});
           this.myStepper.next();
         },
         error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }
@@ -111,11 +111,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
             OTP: otp,
           });
         } else {
-          this.messageService.error('Wrong OTP.');
+          this.toastrService.error('Wrong OTP.',"",{positionClass :'toast-bottom-right'});
         }
       },
       error: (err: any) => {
-        this.messageService.error(err.error.message);
+        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
       },
     });
   }
@@ -143,11 +143,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       })
       .subscribe({
         next: (resp: any) => {
-          this.messageService.success('Sign in successfully');
+          this.toastrService.success('Sign in successfully',"",{positionClass :'toast-bottom-right'});
           this.navigate('/dang-nhap');
         },
         error: (err: any) => {
-          this.messageService.error(err.error.message);
+          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
         },
       });
   }
@@ -173,11 +173,9 @@ export class SignUpComponent implements OnInit, AfterViewInit {
             .subscribe((resp: any) => {
               console.log(resp.data);
               this.navigate('/tai-khoan');
-              //this.messageService.success('SignIn Success');
+              this.toastrService.success('SignIn Success',"",{positionClass :'toast-bottom-right'});
             });
         },
-        (error) => console.log(error)
-      )
-      .catch((data) => console.log(data));
+      );
   }
 }

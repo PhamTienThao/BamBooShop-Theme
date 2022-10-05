@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/core/model/product';
 import { CartService } from 'src/app/core/service/cart.service';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -14,7 +14,7 @@ import { Constants } from 'src/app/core/util/constants';
 export class ProductTemplateComponent implements OnInit {
   @Input() product!: Product;
   constructor(
-    private messageService: NzMessageService,
+    private toastrService: ToastrService,
     private cartService: CartService
   ) {}
 
@@ -30,7 +30,7 @@ export class ProductTemplateComponent implements OnInit {
         }
       });
     }
-    this.messageService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`);
+    this.toastrService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`,"",{positionClass :'toast-bottom-right'});
     this.cartService.addProductToCart(this.product);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { ToastrService } from 'ngx-toastr';
 import { Article } from 'src/app/core/model/article';
 import { Menu } from 'src/app/core/model/menu';
 import { ArticleService } from 'src/app/core/service/article.service';
@@ -19,7 +19,7 @@ export class ArticleComponent implements OnInit {
     private articleService: ArticleService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private messageService: NzMessageService
+    private toastrService: ToastrService,
   ) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
@@ -42,7 +42,7 @@ export class ArticleComponent implements OnInit {
           this.getArticleRelated();
         }, 
         error: (err: any) => {
-          this.messageService.error("Error loading article");
+          this.toastrService.error("Error loading article","",{positionClass :'toast-bottom-right'});
         }
       })
   }
@@ -55,7 +55,7 @@ export class ArticleComponent implements OnInit {
             this.menu = JSON.parse(resp["data"])
           },
           error: (err: any) => {
-            this.messageService.error("Error loading article");
+            this.toastrService.error("Error loading article","",{positionClass :'toast-bottom-right'});
           }
         })
     }
