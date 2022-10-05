@@ -1,4 +1,3 @@
-import { ThankYouPageComponent } from './containers/client/thank-you-page/thank-you-page.component';
 import { EmptyCardComponent } from './containers/client/empty-card/empty-card.component';
 import { ArticleCategoryComponent } from './containers/client/article-category/article-category.component';
 import { LoginComponent } from './containers/client/login/login.component';
@@ -22,30 +21,31 @@ import { SearchComponent } from './containers/client/search/search.component';
 import { ArticleExtComponent } from './containers/client/article-ext/article-ext.component';
 
 const routes: Routes = [
-  // {
-  //   path: "admin",
-  //   loadChildren: () => import('./containers/admin/admin.module').then(m => m.AdminModule),
-  // },
   {
-    path: "",
+    path: 'admin',
+    loadChildren: () =>
+      import('./containers/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: '',
     component: LayoutComponent,
     children: [
       {
-        path: "tai-khoan",
+        path: 'tai-khoan',
         canActivate: [AuthGuardService],
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       {
-        path: "dang-nhap",
-        component: LoginComponent
+        path: 'dang-nhap',
+        component: LoginComponent,
       },
       {
-        path: "dang-ky",
-        component: SignUpComponent
+        path: 'dang-ky',
+        component: SignUpComponent,
       },
       {
-        path: "dang-xuat",
-        component: LogoutComponent
+        path: 'dang-xuat',
+        component: LogoutComponent,
       },
       {
         path: "quen-mat-khau",
@@ -53,70 +53,69 @@ const routes: Routes = [
         component: ForgotPasswordComponent
       },
       {
-        path: "gio-hang",
+        path: 'gio-hang',
         canActivate: [AuthGuardService],
-        component: CartComponent
+        component: CartComponent,
       },
       {
-        path: "dat-hang-thanh-cong",
+        path: 'dat-hang-thanh-cong',
         canActivate: [AuthGuardService],
-        component: OrderSuccessfulComponent
+        component: OrderSuccessfulComponent,
       },
       {
-        path: "not-found",
-        component: PageNotFoundComponent
+        path: 'not-found',
+        component: PageNotFoundComponent,
       },
       {
-        path: "danh-sach-bai-viet",
-        component: ArticleCategoryComponent
+        path: 'danh-sach-bai-viet',
+        component: ArticleCategoryComponent,
       },
       {
-        path: "bai-viet",
-        component: ArticleComponent
+        path: 'bai-viet',
+        component: ArticleComponent,
       },
       {
-        path: "gio-hang-trong",
-        component: EmptyCardComponent
+        path: 'gio-hang-trong',
+        component: EmptyCardComponent,
       },
       {
-        path: "danh-muc-bai-viet",
-        component: ArticleCategoryComponent
+        path: 'danh-muc-bai-viet',
+        component: ArticleCategoryComponent,
       },
       {
-        path: "tim-kiem/:alias",
-        component: SearchComponent
+        path: 'tim-kiem/:alias',
+        component: SearchComponent,
       },
       {
-        path: "danh-muc-bai-viet/:alias",
-        component: ArticleCategoryComponent
+        path: 'danh-muc-bai-viet/:alias',
+        component: ArticleCategoryComponent,
       },
       {
-        path: "bai-viet/:alias",
-        component: ArticleComponent
+        path: 'bai-viet/:alias',
+        component: ArticleComponent,
       },
       {
-        path: "thong-tin/:alias",
-        component: ArticleExtComponent
+        path: 'thong-tin/:alias',
+        component: ArticleExtComponent,
       },
       {
-        path: "san-pham/:alias", //:alias
-        component: ProductDetailComponent
+        path: 'san-pham/:alias', //:alias
+        component: ProductDetailComponent,
       },
       {
-        path: "",
-        component: HomeComponent
+        path: '',
+        component: HomeComponent,
       },
       {
-        path: ":alias",
-        component: CategoryComponent
+        path: ':alias',
+        component: CategoryComponent,
       },
-
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

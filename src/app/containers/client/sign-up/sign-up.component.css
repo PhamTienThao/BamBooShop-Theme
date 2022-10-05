@@ -1,3 +1,8 @@
+::ng-deep .mat-stepper-vertical,
+.mat-stepper-horizontal {
+  font-family: "Quicksand", sans-serif;
+}
+
 .login-register-form {
   margin-top: 24px;
 }
@@ -95,7 +100,7 @@
 }
 
 ::ng-deep .mat-horizontal-stepper-header .mat-step-label {
-  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
   justify-content: space-around;
   max-width: 100%;
 }

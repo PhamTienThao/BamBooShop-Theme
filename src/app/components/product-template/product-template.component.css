@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 *,
 *::after,
 *::before {
@@ -174,7 +174,7 @@ body {
 }
 .product .content .title {
   font-size: 16px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 .product .content .title a {
   text-decoration: none;
@@ -202,7 +202,7 @@ body {
 }
 .product .content .price {
   font-size: 18px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
   line-height: 1;
   font-weight: 500;
   color: #8b8b8b;
@@ -301,7 +301,7 @@ body {
   }
   .product .content .price {
     font-size: 18px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Quicksand", sans-serif;
     line-height: 1;
     font-weight: 500;
     color: #8b8b8b;
@@ -331,7 +331,7 @@ body {
   }
   .product .content .price {
     font-size: 18px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Quicksand", sans-serif;
     line-height: 1;
     font-weight: 500;
     color: #8b8b8b;
@@ -361,7 +361,7 @@ body {
   }
   .product .content .price {
     font-size: 18px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Quicksand", sans-serif;
     line-height: 1;
     font-weight: 500;
     color: #8b8b8b;
