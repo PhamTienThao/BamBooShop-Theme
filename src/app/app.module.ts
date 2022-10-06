@@ -53,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
+import { AdminModule } from './containers/admin/admin.module';
 
 @NgModule({
   declarations: [
