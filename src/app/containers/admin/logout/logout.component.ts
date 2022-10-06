@@ -9,7 +9,9 @@ export class LogoutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    localStorage.clear();
+    location.href = '/admin/dang-nhap';
   }
 
 }
