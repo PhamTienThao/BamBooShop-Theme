@@ -54,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DENgZorroAntdModule } from './ng-zorro-antd.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +108,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatStepperModule,
     CarouselModule,
     ToastrModule.forRoot(),
+    DENgZorroAntdModule
   ],
   providers: [
     AuthGuardService,
