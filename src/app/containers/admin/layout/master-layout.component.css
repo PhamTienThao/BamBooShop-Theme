@@ -7,9 +7,22 @@ nz-layout {
   border-bottom: 1px solid #9c9c9c;
   padding: 8px 20px;
 }
-
+nz-sider {
+  background: #266bf9 !important;
+  border-top: 1px solid #9c9c9c;
+}
+nz-sider ul{
+  background: #266bf9 !important;
+  color: white !important;
+}
+li.ant-menu-item{
+  color: white! important;
+}
+div.ant-menu-submenu-title{
+  color: white !important;
+}
 nz-header {
-  background: #394868 !important;
+  background: #266bf9 !important;
   padding: 0 !important;
   border-left: 1px solid #9c9c9c;
 }

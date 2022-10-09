@@ -8,14 +8,14 @@
                 <i nz-icon nzType="dashboard"></i>
                 <span> Tổng quan </span>
             </li>
-            <li nz-submenu nzTitle="Đơn hàng" nzIcon="shopping-cart" nzOpen>
+            <li nz-submenu nzTitle="Đơn hàng" nzIcon="shopping-cart">
                 <ul>
                     <li (click)="navigate('/admin/don-hang/don-hang-can-xu-ly')" nz-menu-item>Đơn hàng cần xử lý
                     </li>
                     <li (click)="navigate('/admin/don-hang')" nz-menu-item>Danh sách đơn hàng</li>
                 </ul>
             </li>
-            <li nz-submenu nzTitle="Sản phẩm" nzIcon="appstore" nzOpen>
+            <li nz-submenu nzTitle="Sản phẩm" nzIcon="appstore">
                 <ul>
                     <li (click)="navigate('/admin/san-pham')" nz-menu-item>Danh sách sản phẩm</li>
                     <li (click)="navigate('/admin/thuoc-tinh-san-pham')" nz-menu-item>Thuộc tính sản phẩm</li>

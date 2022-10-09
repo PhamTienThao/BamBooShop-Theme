@@ -157,6 +157,7 @@ const routes: Routes = [
         path: "danh-gia",
         component: ReviewComponent
       },
+
       {
         path: "",
         component: DashboardComponent
@@ -202,7 +203,7 @@ const routes: Routes = [
     ReportRevenueComponent,
     EmailRegistrationComponent,
     ReviewComponent,
-    ReviewDetailComponent
+    ReviewDetailComponent,
   ],
   imports: [
     CommonModule,
