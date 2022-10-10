@@ -55,6 +55,8 @@ import { RatingComponent } from './components/rating/rating.component';
 import { ProductTemplateListComponent } from './components/product-template-list/product-template-list.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DENgZorroAntdModule } from './ng-zorro-antd.module';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +110,8 @@ import { DENgZorroAntdModule } from './ng-zorro-antd.module';
     MatStepperModule,
     CarouselModule,
     ToastrModule.forRoot(),
-    DENgZorroAntdModule
+    DENgZorroAntdModule,
+    MatAutocompleteModule
   ],
   providers: [
     AuthGuardService,

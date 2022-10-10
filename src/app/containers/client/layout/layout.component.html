@@ -38,8 +38,14 @@
             <div class="search-element">
               <form action="#">
                 <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
-                  type="text" placeholder="Search" />
+                  type="text" placeholder="Search"  (ngModelChange)="getAutoSearchData($event)"
+                  [matAutocomplete]="auto" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
               </form>
             </div>
           </div>

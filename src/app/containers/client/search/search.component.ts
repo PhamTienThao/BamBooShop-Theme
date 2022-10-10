@@ -43,8 +43,11 @@ export class SearchComponent implements OnInit {
     private router: Router
   ) {
     this.router.events.forEach((event) => {
+      debugger
       if (event instanceof NavigationEnd) {
         this.filter.keySearch = this.activatedRoute.snapshot.params['alias'];
+        // if(this.router.getCurrentNavigation()!= undefined && this.router.getCurrentNavigation() != null)
+        //   this.filter.keySearch =(this.router.getCurrentNavigation()?.extras.state?.['example']); // should log out 'bar'
         this.filter.take = 20;
         this.getData();
       }
@@ -53,6 +56,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.filter.keySearch = this.activatedRoute.snapshot.params['alias'];
+    // if(this.router.getCurrentNavigation()!= undefined && this.router.getCurrentNavigation() != null)
+    //       this.filter.keySearch =(this.router.getCurrentNavigation()?.extras.state?.['example']);
+    //       else this.filter.keySearch = "";
     this.getData();
   }
 
