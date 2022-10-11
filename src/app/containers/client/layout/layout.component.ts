@@ -1,3 +1,4 @@
+import { DataHelper } from 'src/app/core/util/data-helper';
 import { Component, EventEmitter, NgZone, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
@@ -163,7 +164,8 @@ export class LayoutComponent implements OnInit {
   search() {
     debugger
     if (this.keySearch != null && this.keySearch != '') {
-      this.navigate('/tim-kiem/' + encodeURIComponent(this.keySearch));
+      //this.navigate('/tim-kiem/' + encodeURIComponent(this.keySearch));
+      this.navigate('/tim-kiem/' + DataHelper.unsign(this.keySearch))
     }
   }
   getAutoSearchData(event : any) {
