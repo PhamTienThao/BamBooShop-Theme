@@ -17,7 +17,6 @@ export class ProductTemplateListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.product);
   }
 
   addToCart() {

@@ -48,4 +48,9 @@ export class ProductService extends BaseService {
       }
     });
   }
+  searchAutoFill(keySearch : string) {
+    return this.http.get(this.routerPrefix + "/search-product-autofill/"+ 
+        keySearch
+    )
+  }
 }
