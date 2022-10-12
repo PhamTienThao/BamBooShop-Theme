@@ -7,7 +7,7 @@
     </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="10">
+  <!-- <div nz-col nzSpan="10">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
       <nz-form-control>
@@ -24,6 +24,25 @@
           <i nz-icon nzType="plus" nzTheme="outline"></i> Thêm mới </button>
       </nz-form-control>
     </nz-form-item>
+  </div> -->
+  <div class="header-content">
+    <!-- <input nz-input type="text" placeholder="Basic usage" nzSize="default" (keyup.enter)=" getData()" [(ngModel)]="filter.keySearch" /> -->
+    <div class="input-product-header">
+      <div class="m-b-10 m-r-20 search-product">
+        <nz-input-group [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Tên tài khoản" [(ngModel)]="filter.keySearch">
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search" class="opacity-05"></i>
+        </ng-template>
+      </div>
+    </div>
+    <div class="add-product-wrap">
+      <button (click)="addNew()" nz-button nzType="primary" class="add-product">
+        <i nz-icon nzType="plus-circle" theme="outline"></i>
+        <span>Thêm mới</span>
+      </button>
+    </div>
   </div>
   <div nz-col nzSpan="24">
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">

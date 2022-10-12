@@ -5,7 +5,7 @@
   <nz-breadcrumb-item> Thống kê đơn hàng </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="8">
+  <!-- <div nz-col nzSpan="8">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
       <nz-form-control>
@@ -43,6 +43,34 @@
         <button (click)="getData()" nz-button nzType="primary" nzSize="small">Tìm kiếm</button>
       </nz-form-control>
     </nz-form-item>
+  </div> -->
+  <div class="header-content">
+    <div class="input-product-header">
+      <div class="m-b-10 m-r-20 search-product">
+        <nz-input-group [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Mã đơn hàng, tên KH" [(ngModel)]="filter.keySearch">
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search" class="opacity-05"></i>
+        </ng-template>
+      </div>
+      <div class="select-product">
+        <nz-select [(ngModel)]="filter.status" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Tất cả">
+          <nz-option nzValue="10" nzLabel="Chờ xác nhận"></nz-option>
+          <nz-option nzValue="20" nzLabel="Đã xác nhận"></nz-option>
+          <nz-option nzValue="30" nzLabel="Đang vận chuyển"></nz-option>
+          <nz-option nzValue="40" nzLabel="Đã giao"></nz-option>
+          <nz-option nzValue="50" nzLabel="Đã hủy"></nz-option>
+        </nz-select>
+      </div>
+      <div class="order-date">
+        <span style="font-size: 15px;
+        margin-right: 10px;
+        width: 30%;
+        align-self: center;"> Ngày đặt hàng</span>
+        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
+      </div>
+    </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">

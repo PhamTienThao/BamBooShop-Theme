@@ -5,7 +5,7 @@
   <nz-breadcrumb-item> Quản lý đánh giá sản phẩm </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="10">
+  <!-- <div nz-col nzSpan="10">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
       <nz-form-control>
@@ -33,6 +33,26 @@
           <i nz-icon nzType="search" nzTheme="outline"></i> Tìm kiếm </button>
       </nz-form-control>
     </nz-form-item>
+  </div> -->
+  <div class="header-content">
+    <!-- <input nz-input type="text" placeholder="Basic usage" nzSize="default" (keyup.enter)=" getData()" [(ngModel)]="filter.keySearch" /> -->
+    <div class="input-product-header">
+      <div class="m-b-10 m-r-20 search-product">
+        <nz-input-group [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Tìm kiếm" [(ngModel)]="filter.keySearch">
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search" class="opacity-05"></i>
+        </ng-template>
+      </div>
+      <div class="select-product">
+        <nz-select [(ngModel)]="filter.status" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Trạng thái">
+          <nz-option nzLabel="Chờ duyệt" [nzValue]="10"> </nz-option>
+          <nz-option nzLabel="Đã duyệt" [nzValue]="20"> </nz-option>
+          <nz-option nzLabel="Cập nhật lại - Chờ duyệt" [nzValue]="30"> </nz-option>
+        </nz-select>
+      </div>
+    </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">

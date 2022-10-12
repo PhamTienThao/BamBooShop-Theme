@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
+import { TableService } from 'src/app/core/admin/table.service';
 import { Menu } from 'src/app/core/model/menu';
 import { Product } from 'src/app/core/model/product';
 import { MenuService } from 'src/app/core/service/menu.service';
@@ -11,25 +12,30 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: ProductDetailComponent
+  @ViewChild('frmDetail', { static: true }) frmDetail!: ProductDetailComponent;
 
   datas: Product[] = [];
   menus: Menu[] = [];
+  // searchInput: any;
+  // displayData: any = [];
 
   filter = {
-    keySearch: "",
+    keySearch: '',
     menuId: null,
-  }
+  };
 
   constructor(
     private menuService: MenuService,
     private productService: ProductService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) // private tableSvc: TableService
+  {
+    // this.displayData = this.datas;
+  }
 
   ngOnInit() {
     this.getData();
@@ -37,44 +43,56 @@ export class ProductComponent implements OnInit {
   }
 
   getMenu() {
-    this.menuService.getByType(['san-pham'])
-      .subscribe((resp: any) => {
-        this.menus = JSON.parse(resp["data"]);
-      })
+    this.menuService.getByType(['san-pham']).subscribe((resp: any) => {
+      this.menus = JSON.parse(resp['data']);
+    });
   }
 
   getData() {
     this.spinner.show();
-    this.productService.get({
-      keySearch: this.filter.keySearch,
-      menuId: this.filter.menuId ?? ""
-    })
+    this.productService
+      .get({
+        keySearch: this.filter.keySearch,
+        menuId: this.filter.menuId ?? '',
+      })
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe(
+        (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        (error) => {
+          this.messageService.error(error.error.message);
+        }
+      );
   }
+
+  // search(): void {
+  //   const data = this.datas;
+  //   this.displayData = this.tableSvc.search(this.searchInput, data);
+  // }
 
   delete(product: Product) {
     this.spinner.show();
-    this.productService.deleteById(product.Id)
+    this.productService
+      .deleteById(product.Id)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.messageService.success("Xóa thành công");
-        this.getData();
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe(
+        (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+        },
+        (error) => {
+          this.messageService.error(error.error.message);
+        }
+      );
   }
 
   addNew() {
@@ -92,54 +110,64 @@ export class ProductComponent implements OnInit {
 
   showDetail(product: Product) {
     this.spinner.show();
-    this.productService.getById(product.Id)
+    this.productService
+      .getById(product.Id)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.frmDetail.isAddNew = false;
-        this.frmDetail.visible = true;
-        this.frmDetail.setForm(JSON.parse(resp['data']));
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe(
+        (resp: any) => {
+          this.frmDetail.isAddNew = false;
+          this.frmDetail.visible = true;
+          this.frmDetail.setForm(JSON.parse(resp['data']));
+        },
+        (error) => {
+          this.messageService.error(error.error.message);
+        }
+      );
   }
 
   onSubmit(product: Product) {
     if (this.frmDetail.isAddNew) {
       this.spinner.show();
-      this.productService.post(product)
+      this.productService
+        .post(product)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Thêm mới thành công");
-          this.frmDetail.visible = false;
-          this.getData();
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
-    }
-    else {
+        .subscribe(
+          (resp: any) => {
+            this.messageService.success('Thêm mới thành công');
+            this.frmDetail.visible = false;
+            this.getData();
+          },
+          (error) => {
+            this.messageService.error(error.error.message);
+          }
+        );
+    } else {
       this.spinner.show();
-      this.productService.put(product.Id, product)
+      this.productService
+        .put(product.Id, product)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          this.frmDetail.visible = false;
-          this.getData();
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
+        .subscribe(
+          (resp: any) => {
+            this.messageService.success('Cập nhật thành công');
+            this.frmDetail.visible = false;
+            this.getData();
+          },
+          (error) => {
+            this.messageService.error(error.error.message);
+          }
+        );
     }
-
   }
 }

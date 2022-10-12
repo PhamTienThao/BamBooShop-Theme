@@ -9,6 +9,7 @@ nz-layout {
 }
 nz-sider {
   background: #fff !important;
+  box-shadow: 0 7px 14px 0 rgb(65 69 88 / 10%), 0 3px 6px 0 rgba(0, 0, 0, 0.014);
 }
 nz-sider ul {
   background: #fff !important;
@@ -41,6 +42,7 @@ nz-header {
   padding: 0 !important;
   border-bottom: 0.1px solid #00000012;
   overflow: hidden;
+  box-shadow: 0 7px 14px 0 rgb(65 69 88 / 5%), 0 3px 6px 0 rgb(0 0 0 / 1%);
 }
 .ant-layout-header .ant-menu {
   line-height: 50px !important;
@@ -77,6 +79,7 @@ nz-content {
   overflow: auto;
   border: 0.1px solid #00000012;
   border-radius: 5px;
+  box-shadow: 0 7px 14px 0 rgb(65 69 88 / 10%), 0 3px 6px 0 rgba(0, 0, 0, 0.014);
 }
 
 nz-content::-webkit-scrollbar {

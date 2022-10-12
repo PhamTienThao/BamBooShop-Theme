@@ -180,7 +180,7 @@ body {
   text-decoration: none;
   color: #000000;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -211,14 +211,14 @@ body {
   margin-bottom: 20px;
 }
 .product .content .price span.new {
-  font-weight: 500;
+  font-weight: 600;
   color: #ff0000;
   font-size: 16px;
   padding-left: 12px;
 }
 .product .content .price span.old {
   margin-right: 15px;
-  font-weight: 300;
+  font-weight: 500;
   text-decoration: line-through;
   position: relative;
   font-size: 14px;

@@ -7,9 +7,18 @@
     </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="24">
+  <!-- <div nz-col nzSpan="24">
     <button (click)="getData()" nz-button nzSize="small" nzType="primary">
       <i nz-icon nzType="search" nzTheme="outline"></i> Refresh </button>
+  </div> -->
+  <div class="header-content">
+    <!-- <input nz-input type="text" placeholder="Basic usage" nzSize="default" (keyup.enter)=" getData()" [(ngModel)]="filter.keySearch" /> -->
+    <div class="add-product-wrap">
+      <button (click)="getData()" nz-button nzType="primary" class="add-product">
+        <i nz-icon nzType="sync" theme="outline"></i>
+        <span>Reload</span>
+      </button>
+    </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">

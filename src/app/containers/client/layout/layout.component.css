@@ -41,3 +41,11 @@ span.sub-menu-text {
   font-size: 12px;
   margin-left: 15px;
 }
+::ng-deep address,
+dl,
+ol,
+p,
+pre,
+ul {
+  margin-bottom: 0px !important;
+}

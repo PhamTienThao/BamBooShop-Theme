@@ -7,7 +7,7 @@
     </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="10">
+  <!-- <div nz-col nzSpan="10">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
       <nz-form-control>
@@ -22,6 +22,18 @@
           <i nz-icon nzType="search" nzTheme="outline"></i> Tìm kiếm </button>
       </nz-form-control>
     </nz-form-item>
+  </div> -->
+  <div class="header-content">
+    <div class="input-product-header">
+      <div class="m-b-10 m-r-20 search-product">
+        <nz-input-group [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Email" [(ngModel)]="filter.keySearch">
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search" class="opacity-05"></i>
+        </ng-template>
+      </div>
+    </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">

@@ -15,7 +15,7 @@
 }
 .title-des {
   font-family: "Quicksand", sans-serif;
-  font-weight: 550;
+  font-weight: 700;
   display: inline-block;
   color: #000000;
   margin: 0 0 28px;
@@ -26,12 +26,18 @@
   font-size: 30px !important;
   color: #000000;
   line-height: 37px !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   padding-right: 40px;
   opacity: 0.4;
   text-decoration: line-through;
 }
-
+.section-title .title {
+  font-weight: 700;
+  margin: 0px !important;
+}
+.section-title {
+  padding: 0px !important;
+}
 /* Star rating */
 .pro-details-rating-wrap {
   position: relative !important;
@@ -114,7 +120,26 @@
 .out-of-stock {
   font-weight: 500;
 }
-
+.description-review-bottom .product-anotherinfo-wrapper li span {
+  font-weight: 700;
+}
+.description-review-bottom
+  .single-review
+  .review-top-wrap
+  .review-left
+  .review-name
+  h4,
+.description-review-topbar.nav button {
+  font-weight: 700;
+}
+.product-details-content .pro-details-same-style span,
+.pro-details-color-size p {
+  font-weight: 600;
+}
+.pro-details-color-size select {
+  font-weight: 500;
+  font-size: 17px;
+}
 /* Swiper */
 
 .swiper {
@@ -362,4 +387,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #505050;
   left: -5px;
   z-index: 1;
+}
+.new-price {
+  color: #ff0000 !important;
+  font-weight: 600 !important;
 }

@@ -7,7 +7,7 @@
     </nz-breadcrumb-item>
 </nz-breadcrumb> -->
 <div nz-row class="mg-t">
-  <div nz-col nzSpan="10">
+  <!-- <div nz-col nzSpan="10">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
       <nz-form-control>
@@ -24,13 +24,31 @@
           <i nz-icon nzType="plus" nzTheme="outline"></i> Thêm mới </button>
       </nz-form-control>
     </nz-form-item>
+  </div> -->
+  <div class="header-content">
+    <div class="input-product-header">
+      <div class="m-b-10 m-r-20 search-product">
+        <nz-input-group [nzPrefix]="prefixTemplate">
+          <input type="text" nz-input placeholder="Tìm kiếm" [(ngModel)]="filter.keySearch">
+        </nz-input-group>
+        <ng-template #prefixTemplate>
+          <i nz-icon nzType="search" class="opacity-05"></i>
+        </ng-template>
+      </div>
+    </div>
+    <div class="add-product-wrap">
+      <button (click)="addNew()" nz-button nzType="primary" class="add-product">
+        <i nz-icon nzType="plus-circle" theme="outline"></i>
+        <span>Thêm mới</span>
+      </button>
+    </div>
   </div>
   <div nz-col nzSpan="24">
     <nz-table #tblData [nzData]="datas">
       <thead>
         <tr>
-          <th>Tên menu</th>
-          <th>Danh mục cha</th>
+          <th style="width:300px">Tên menu</th>
+          <th style="width:300px">Danh mục cha</th>
           <th class="text-center" style="width:140px">Thứ tự hiển thị</th>
           <th class="text-center" style="width:140px">Trạng thái hiển thị</th>
           <th class="text-center" style="width:140px">Hiển thị trang chủ</th>
@@ -48,7 +66,10 @@
           <td class="text-center">
             <i *ngIf="data.ShowHomePage" nz-icon nzType="check" nzTheme="outline"></i>
           </td>
-          <td class="no-wrap">
+          <td class="no-wrap" style="display: flex;
+          justify-content: space-around;
+          padding: 0 40px 0 40px !important;
+          align-items: center;">
             <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
             <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
               nzType="primary" nzSize="small"> Xóa </button> -->

@@ -3,3 +3,85 @@
   border: 1px solid #dcdcdc;
   padding: 2px;
 }
+.header-content {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+::ng-deep .ant-input-prefix {
+  margin-right: 0px !important;
+}
+.ant-input-affix-wrapper {
+  border-radius: 5px;
+  font-size: 15px !important;
+  height: 40px;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  height: auto;
+}
+::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 5px !important;
+}
+::ng-deep
+  .ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector {
+  height: 40px !important;
+  padding: 4px 16px;
+}
+.add-product {
+  height: 40px;
+  font-size: 15px;
+}
+
+.input-product-header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.search-product {
+  position: relative;
+  width: 30%;
+}
+.select-product {
+  position: relative;
+  width: 30%;
+}
+.add-product-wrap {
+  position: relative;
+}
+.ant-row {
+  display: block !important;
+}
+.ant-picker {
+  border-radius: 5px !important;
+  height: 40px;
+  width: 100%;
+}
+::ng-deep
+  .ant-picker-cell-in-view.ant-picker-cell-today
+  .ant-picker-cell-inner::before {
+  border-radius: 5px !important;
+}
+::ng-deep .ant-picker-dropdown {
+  font-size: 15px;
+}
+::ng-deep .ant-picker-header-view {
+  font-weight: 700 !important;
+}
+::ng-deep .ant-picker-date-panel .ant-picker-content th {
+  font-weight: 700;
+}
+.ant-select-selection-item {
+  font-weight: 400 !important;
+}
+::ng-deep .ant-picker-input > input:placeholder-shown {
+  font-size: 15px;
+}
+.order-date {
+  display: flex;
+  width: 33.33%;
+}
