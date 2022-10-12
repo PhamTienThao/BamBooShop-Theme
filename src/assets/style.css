@@ -72,22 +72,46 @@ button + button {
 }
 
 .ant-table {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 .ant-table-thead > tr > th {
-  background: #5189b9 !important;
-  color: white !important;
+  background: #fff !important;
+  color: #2a2a2a !important;
 }
 .ant-table-thead > tr > th,
 .ant-table-tbody > tr > td {
   padding: 4px 10px !important;
-  border: 1px solid #dcdcdc !important;
+  border: none;
 }
 .ant-table-tbody > tr > td {
   color: #262729 !important;
 }
+.ant-pagination-item {
+  border-radius: 50% !important;
+}
 table {
   border-collapse: collapse !important;
+}
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  height: 50px;
+}
+.ant-table-thead > tr > th {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+}
+.ant-pagination-next .ant-pagination-item-link,
+.ant-pagination-prev .ant-pagination-item-link {
+  display: flex !important;
+  justify-content: center;
+  flex-direction: column;
+  border: 0.1px solid #e9e9e9 !important;
+  align-items: center;
+  border-radius: 50% !important;
 }
 .img-upload {
   max-width: 100%;
@@ -139,8 +163,29 @@ table {
   background: #2b354a !important;
 }
 .ant-layout-header {
-  height: 50px !important;
+  height: 60px !important;
 }
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item {
+  top: 0;
+  margin-top: 0;
+  padding: 0 20px;
+  border-color: #001529;
+  border-bottom: 0;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
+  color: #3f87f5 !important;
+}
+
+.ant-menu-dark .ant-menu-submenu-selected {
+  color: #2a2a2abf !important;
+}
+
 .ant-menu-vertical .ant-menu-item,
 .ant-menu-vertical-left .ant-menu-item,
 .ant-menu-vertical-right .ant-menu-item,
@@ -149,8 +194,63 @@ table {
 .ant-menu-vertical-left .ant-menu-submenu-title,
 .ant-menu-vertical-right .ant-menu-submenu-title,
 .ant-menu-inline .ant-menu-submenu-title {
-  height: 38px !important;
+  height: 50px !important;
   margin: 0 !important;
+}
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background: transparent;
+}
+
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected,
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  color: #3f87f5 !important;
+  background-color: #e9f1ff !important;
+}
+.ant-menu-dark
+  .ant-menu-submenu-open
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow::before,
+.ant-menu-dark
+  .ant-menu-submenu-open
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow::after,
+.ant-menu.ant-menu-dark .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+.ant-menu.ant-menu-dark .ant-menu-submenu-title .ant-menu-submenu-arrow::after {
+  background: #2a2a2abf !important;
+}
+
+.ant-menu-dark .ant-menu-submenu-title:hover,
+.ant-menu-dark
+  .ant-menu-submenu-open
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow:hover::before,
+.ant-menu-dark
+  .ant-menu-submenu-open
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow:hover::after,
+.ant-menu.ant-menu-dark
+  .ant-menu-submenu-title
+  .ant-menu-submenu-arrow:hover::before,
+.ant-menu.ant-menu-dark
+  .ant-menu-submenu-title
+  .ant-menu-submenu-arrow:hover::after {
+  color: #3f87f5 !important;
+  background-color: #3f87f51a !important;
+}
+
+.ant-menu-vertical.ant-menu-sub .ant-menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ant-menu {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+.ant-input {
+  height: 24px;
 }
 
 .ant-row {
@@ -198,6 +298,29 @@ table {
   border-radius: 5px;
 }
 
+a.ant-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px !important;
+  align-items: center;
+}
+
+.anticon svg {
+  position: relative;
+  display: flex !important;
+  justify-content: center;
+}
+
+.ant-modal-content {
+  border-radius: 5px !important;
+  overflow: hidden;
+}
+
+.ant-btn-primary {
+  border-radius: 5px !important;
+}
 /* auth */
 
 .body-auth {
@@ -242,8 +365,9 @@ table {
 
 /* ----------------------------------------------- */
 .img-product {
-  height: 30px;
-  border: 1px solid #dcdcdc;
+  height: 60px;
+  width: 60px;
+  border: 0.1px solid #dcdcdc;
   padding: 2px;
 }
 
