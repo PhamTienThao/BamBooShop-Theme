@@ -12,7 +12,7 @@
       <div nz-row>
         <div nz-col nzSpan="24" class="mg-b">
           <nz-form-item>
-            <nz-form-label>Logo</nz-form-label>
+            <nz-form-label class="text-center" style="margin-top: 0;">Logo</nz-form-label>
             <nz-form-control>
               <button-upload (onload)="onloadLogo($event)" [srcDefault]="srcLogo">
               </button-upload>
@@ -25,7 +25,7 @@
       <div nz-row>
         <div nz-col nzSpan="12">
           <nz-form-item>
-            <nz-form-label nzRequired>Tên website</nz-form-label>
+            <nz-form-label nzRequired style="margin-top: 0;">Tên website</nz-form-label>
             <nz-form-control nzErrorTip="Không được để trống!">
               <input type="text" nz-input nzSize="small" formControlName="Name" />
             </nz-form-control>
@@ -33,7 +33,7 @@
         </div>
         <div nz-col nzSpan="6">
           <nz-form-item>
-            <nz-form-label>Số điện thoại</nz-form-label>
+            <nz-form-label style="margin-top: 0;">Số điện thoại</nz-form-label>
             <nz-form-control>
               <input type="text" nz-input nzSize="small" formControlName="PhoneNumber" />
             </nz-form-control>
@@ -41,7 +41,7 @@
         </div>
         <div nz-col nzSpan="6">
           <nz-form-item>
-            <nz-form-label>Fax</nz-form-label>
+            <nz-form-label style="margin-top: 0;">Fax</nz-form-label>
             <nz-form-control>
               <input type="text" nz-input nzSize="small" formControlName="Fax" />
             </nz-form-control>
@@ -99,7 +99,7 @@
     </div>
   </div>
   <div class="text-center mg-t">
-    <button type="submit" class="ant-btn ant-btn-primary"><span>Lưu lại</span></button>
+    <button type="submit" class="ant-btn ant-btn-primary" style="height: 40px; margin-top: 20px"><span>Lưu lại</span></button>
   </div>
 </form>
 <ngx-spinner></ngx-spinner>

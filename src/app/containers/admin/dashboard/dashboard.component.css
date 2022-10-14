@@ -1,22 +1,57 @@
 .box-highlight-dashboard {
   margin: 10px 5px;
-  border: 1px solid #e8e8e8;
+  border: 0.1px solid #00000012;
   text-align: center;
-  min-height: 80px;
+  min-height: 110px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f9f9f9;
-  box-shadow: 0 1px 4px #efefef;
+  background: #fff;
+  box-shadow: 0 7px 14px 0 rgb(0 0 0 / 5%), 0 3px 6px 0 rgb(0 0 0 / 1%);
 }
 .box-highlight-dashboard .box-highlight-dashboard-title {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   color: #394868;
 }
 .box-highlight-dashboard .box-highlight-dashboard-value {
   font-size: 18px;
   color: #de8905;
+}
+.ant-col-4 {
+  flex: 0 0 24% !important;
+  max-width: 100% !important;
+}
+::ng-deep .ant-picker-cell .ant-picker-cell-inner {
+  border-radius: 5px !important;
+}
+::ng-deep .ant-picker-dropdown {
+  font-size: 15px;
+}
+
+::ng-deep .ant-picker-content td,
+.ant-picker-content th {
+  font-weight: 500;
+}
+::ng-deep .ant-picker-header-view {
+  font-weight: 700 !important;
+}
+::ng-deep .ant-picker-date-panel .ant-picker-content th {
+  font-weight: 700;
+}
+.ant-select-selection-item {
+  font-weight: 400 !important;
+}
+::ng-deep .ant-picker-input > input:placeholder-shown {
+  font-size: 15px;
+}
+::ng-deep .ant-picker {
+  border-radius: 5px !important;
+  height: 40px;
+}
+::ng-deep .ant-picker-input > input {
+  font-size: 15px;
+  font-weight: 500;
 }

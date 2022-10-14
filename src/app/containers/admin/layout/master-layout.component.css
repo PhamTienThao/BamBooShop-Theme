@@ -138,3 +138,7 @@ nz-content::-webkit-scrollbar-thumb {
 .ant-breadcrumb {
   margin: 20px 0 0 30px;
 }
+::ng-deep .ant-breadcrumb-separator {
+  font-size: 14px;
+  font-weight: 700;
+}

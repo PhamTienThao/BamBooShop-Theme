@@ -64,8 +64,8 @@
       <div class="order-date">
         <span style="font-size: 15px;
         margin-right: 10px;
-        width: 30%;
-        align-self: center;"> Ngày đặt hàng</span>
+        width: 28%;
+        align-self: center;  font-weight: 500;"> Ngày đặt hàng</span>
         <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
       </div>
     </div>
@@ -81,7 +81,7 @@
           <th>Địa chỉ liên hệ</th>
           <th>Tổng tiền</th>
           <th>Trạng thái</th>
-          <th></th>
+          <th class="text-center">Hành động</th>
         </tr>
       </thead>
       <tbody>
@@ -93,7 +93,7 @@
           <td>{{ data.Address }}</td>
           <td class=" no-wrap">{{ data.TotalAmount | number }}</td>
           <td class="no-wrap">{{ data.Status | orderStatus }}</td>
-          <td class="no-wrap">
+          <td class="no-wrap text-center">
             <!-- <a (click)="showOrderDetail(data)">Xem chi tiết</a> -->
             <button nz-button nzSize="small" (click)="showOrderDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>

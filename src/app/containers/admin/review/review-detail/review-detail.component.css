@@ -1,0 +1,13 @@
+/* Label */
+.ant-form-item-label {
+  margin-top: 0px;
+}
+::ng-deep .ant-form-item-label > label {
+  font-size: 15px !important;
+  font-weight: 600;
+}
+/* Drawer */
+::ng-deep .ant-drawer-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}

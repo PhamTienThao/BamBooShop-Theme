@@ -82,8 +82,13 @@
 }
 ::ng-deep .ant-picker-input > input:placeholder-shown {
   font-size: 15px;
+  font-weight: 500;
 }
 .order-date {
   display: flex;
   width: 33.33%;
+}
+::ng-deep .ant-picker-content td,
+.ant-picker-content th {
+  font-weight: 500 !important;
 }

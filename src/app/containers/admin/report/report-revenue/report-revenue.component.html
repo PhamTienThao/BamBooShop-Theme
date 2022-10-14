@@ -6,14 +6,14 @@
         Báo cáo doanh thu
     </nz-breadcrumb-item>
 </nz-breadcrumb> -->
-<div *ngIf="dataReport != null" nz-row class="mg-t-md">
+<div *ngIf="dataReport != null" nz-row>
   <div nz-col nzSpan="12" style="padding-right: 10px !important;">
     <div nz-row>
       <div nz-col nzSpan="18">
-        <h4>Thống kê lượng đơn hàng</h4>
+        <span style="font-size: 18px; font-weight: 700">Thống kê đơn hàng</span>
       </div>
       <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzSize="small" nzPlaceHolder="Chọn năm">
+        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
         </nz-year-picker>
       </div>
       <div nz-col nzSpan="24">
@@ -26,10 +26,10 @@
   <div nz-col nzSpan="12">
     <div nz-row>
       <div nz-col nzSpan="18">
-        <h4>Thống kê doanh thu</h4>
+        <span style="font-size: 18px; font-weight: 700">Thống kê doanh thu</span>
       </div>
       <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzSize="small" nzPlaceHolder="Chọn năm">
+        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
         </nz-year-picker>
       </div>
       <div nz-col nzSpan="24">
@@ -41,10 +41,10 @@
   </div>
   <div nz-col nzSpan="24" class="mg-t-md">
     <div style="font-size: 13px;">
-      <table class="table table-bordered">
+      <nz-table class="table table-bordered">
         <thead>
-          <tr style="background: #5189B9;color: white;">
-            <th class="text-center">Tháng</th>
+          <tr>
+            <th class="text-left">Tháng</th>
             <th class="text-center" *ngFor="let month of [1,2,3,4,5,6,7,8,9,10,11,12]"> {{month}} </th>
           </tr>
         </thead>
@@ -55,10 +55,10 @@
           </tr>
           <tr>
             <td>Doanh thu</td>
-            <td *ngFor="let item of dataReport.revenues" class="text-right"> {{item | number}} </td>
+            <td *ngFor="let item of dataReport.revenues" class="text-center"> {{item | number}} </td>
           </tr>
         </tbody>
-      </table>
+      </nz-table>
     </div>
   </div>
 </div>

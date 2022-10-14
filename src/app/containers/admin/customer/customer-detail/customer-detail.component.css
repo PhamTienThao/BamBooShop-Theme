@@ -1,3 +1,36 @@
 .ant-btn-primary {
   border-radius: 5px !important;
 }
+/* Label */
+.ant-form-item-label {
+  margin-top: 30px;
+}
+::ng-deep .ant-form-item-label > label {
+  font-size: 15px !important;
+  font-weight: 600;
+}
+/* Drawer */
+::ng-deep .ant-drawer-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+h4 {
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+/* Table */
+.table th {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+::ng-deep b {
+  font-weight: 700 !important;
+}
+
+/* Modal */
+::ng-deep .ant-modal-title {
+  font-size: 18px !important;
+  font-weight: 600;
+}

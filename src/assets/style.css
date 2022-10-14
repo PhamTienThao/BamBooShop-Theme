@@ -73,10 +73,7 @@ button + button {
 
 .ant-table {
   font-size: 14px !important;
-}
-.ant-table-thead > tr > th {
-  background: #fff !important;
-  color: #2a2a2a !important;
+  font-weight: 600;
 }
 .ant-table-thead > tr > th,
 .ant-table-tbody > tr > td {
@@ -103,6 +100,9 @@ tr {
 .ant-table-thead > tr > th {
   font-weight: 700 !important;
   font-size: 15px !important;
+  background: #1890ff !important;
+  color: #fff !important;
+  height: 60px;
 }
 .ant-pagination-next .ant-pagination-item-link,
 .ant-pagination-prev .ant-pagination-item-link {
@@ -121,7 +121,7 @@ tr {
   border-radius: 5px;
   margin: 0 auto;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 25px;
 }
 .no-wrap {
   white-space: nowrap !important;
@@ -254,10 +254,11 @@ tr {
   border-radius: 5px !important;
   height: 40px;
   font-size: 15px !important;
+  font-weight: 500;
 }
 .ant-select {
   font-size: 15px !important;
-  font-weight: 400;
+  font-weight: 500;
 }
 .ant-row {
   margin-left: -2px;
@@ -314,7 +315,16 @@ a.ant-btn {
   padding: 0px !important;
   align-items: center;
 }
+.ant-btn {
+  font-weight: 500 !important;
+}
 
+.ant-btn-sm {
+  height: 32px !important;
+  padding: 4px 15px !important;
+  font-size: 15px !important;
+  border-radius: 5px !important;
+}
 .anticon svg {
   position: relative;
   display: flex !important;
@@ -329,6 +339,21 @@ a.ant-btn {
 .ant-btn-primary {
   border-radius: 5px !important;
 }
+
+.ant-select-item {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .ant-picker-content td,
+.ant-picker-content th {
+  font-weight: 500 !important;
+}
+
+.ant-popover-message {
+  font-size: 16px !important;
+}
+
 /* auth */
 
 .body-auth {

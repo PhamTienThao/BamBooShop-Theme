@@ -1,4 +1,5 @@
-<div *ngIf="dataHighlight != null" nz-row>
+<div *ngIf="dataHighlight != null" nz-row style="
+justify-content: space-between;">
   <div nz-col nzSpan="4">
     <div class="box-highlight-dashboard">
       <div class="box-highlight-dashboard-title"> Tổng đơn hàng <small>(ngày)</small>
@@ -40,10 +41,10 @@
   <div nz-col nzSpan="8" style="padding-right: 10px !important;">
     <div nz-row>
       <div nz-col nzSpan="16">
-        <h4>Tình trạng đơn hàng</h4>
+        <span style="font-size: 20px; font-weight: 700">Tình trạng đơn hàng</span>
       </div>
       <div nz-col nzSpan="8" class="text-right">
-        <nz-month-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn tháng" nzSize="small" nzFormat="MM/yyyy">
+        <nz-month-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn tháng" nzFormat="MM/yyyy">
         </nz-month-picker>
       </div>
       <div nz-col nzSpan="24">
@@ -59,10 +60,10 @@
   <div nz-col nzSpan="8" style="padding-right: 10px !important;">
     <div nz-row>
       <div nz-col nzSpan="18">
-        <h4>Thống kê lượng đơn hàng</h4>
+        <span style="font-size: 20px; font-weight: 700">Thống kê đơn hàng</span>
       </div>
       <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzSize="small" nzPlaceHolder="Chọn năm">
+        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
         </nz-year-picker>
       </div>
       <div nz-col nzSpan="24">
@@ -75,10 +76,10 @@
   <div nz-col nzSpan="8">
     <div nz-row>
       <div nz-col nzSpan="18">
-        <h4>Thống kê doanh thu</h4>
+        <span style="font-size: 20px; font-weight: 700">Thống kê doanh thu</span>
       </div>
       <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzSize="small" nzPlaceHolder="Chọn năm">
+        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
         </nz-year-picker>
       </div>
       <div nz-col nzSpan="24">

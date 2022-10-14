@@ -1,0 +1,23 @@
+/* Selector */
+::ng-deep
+  .ant-select-single.ant-select-sm:not(.ant-select-customize-input)
+  .ant-select-selector {
+  padding: 8px 16px;
+  height: 40px !important;
+}
+::ng-deep .ant-select-selection-item {
+  font-weight: 500 !important;
+}
+/* Drawer */
+::ng-deep .ant-drawer-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+/* Label */
+.ant-form-item-label {
+  margin-top: 30px;
+}
+::ng-deep .ant-form-item-label > label {
+  font-size: 15px !important;
+  font-weight: 600;
+}

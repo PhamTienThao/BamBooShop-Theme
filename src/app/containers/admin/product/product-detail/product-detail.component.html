@@ -1,4 +1,4 @@
-<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="'90%'" [nzVisible]="visible"
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="'70%'" [nzVisible]="visible"
   [nzTitle]="isAddNew?'Thêm mới':'Thông tin chi tiết'" [nzFooter]="footerTpl" (nzOnClose)="close()">
   <form nz-form *nzDrawerContent nzLayout="vertical" [formGroup]="formData" (ngSubmit)="submit()">
     <div nz-row>
@@ -6,7 +6,7 @@
         <div nz-row>
           <div nz-col nzSpan="24" class="mg-b">
             <nz-form-item>
-              <nz-form-label>Hình ảnh</nz-form-label>
+              <nz-form-label class="text-center" style="margin-top: 0;">Hình ảnh</nz-form-label>
               <nz-form-control>
                 <button-upload (onload)="onloadImage($event)" [srcDefault]="srcImage">
                 </button-upload>
@@ -29,7 +29,7 @@
         <div nz-row>
           <div nz-col nzSpan="6">
             <nz-form-item>
-              <nz-form-label nzRequired>Danh mục sản phẩm </nz-form-label>
+              <nz-form-label nzRequired style="margin-top: 0;">Danh mục sản phẩm </nz-form-label>
               <nz-form-control nzErrorTip="Không được để trống!">
                 <nz-select formControlName="MenuId" nzSize="small" nzPlaceHolder="------" class="width-full">
                   <nz-option *ngFor="let item of menus" [nzValue]="item.Id" [nzLabel]="item.ParentMenu == null?item.Name:' &emsp;__'+item.Name">
@@ -40,7 +40,7 @@
           </div>
           <div nz-col nzSpan="6">
             <nz-form-item>
-              <nz-form-label nzRequired>Trạng thái </nz-form-label>
+              <nz-form-label nzRequired style="margin-top: 0;">Trạng thái </nz-form-label>
               <nz-form-control nzErrorTip="Không được để trống!">
                 <nz-select formControlName="Status" nzSize="small" nzPlaceHolder="------" class="width-full">
                   <nz-option [nzValue]="10" nzLabel="Đang bán"> </nz-option>
@@ -52,7 +52,7 @@
           </div>
           <div nz-col nzSpan="4">
             <nz-form-item>
-              <nz-form-label>Thứ tự hiển thị</nz-form-label>
+              <nz-form-label style="margin-top: 0;">Thứ tự hiển thị</nz-form-label>
               <nz-form-control class="width-full">
                 <nz-input-number nzSize="small" formControlName="Index" [nzMin]="1" [nzStep]="1">
                 </nz-input-number>
@@ -61,7 +61,7 @@
           </div>
           <div nz-col nzSpan="4">
             <nz-form-item>
-              <nz-form-label>Sản phẩm nổi bật</nz-form-label>
+              <nz-form-label style="margin-top: 0;">Sản phẩm nổi bật</nz-form-label>
               <nz-form-control>
                 <label nz-checkbox formControlName="Selling"></label>
               </nz-form-control>
@@ -126,27 +126,28 @@
                   </nz-tab>
                   <nz-tab nzTitle="Thuộc tính sản phẩm">
                     <nz-form-item>
-                      <nz-form-label>Thuộc tính sản phẩm</nz-form-label>
+                      <nz-form-label style="margin-top: 0;">Thêm thuộc tính cho sản phẩm dưới đây </nz-form-label>
                       <nz-form-control formArrayName="ProductAttributes">
                         <div>
                           <table class="table">
                             <thead>
-                              <tr>
-                                <td style="width: 50px;"></td>
-                                <td style="width: 130px;">Thuộc tính</td>
+                              <tr class="text-center" style="background-color: #1890ff;">
+                                <td style="width: 120px;">Hành động</td>
+                                <td style="width: 150px;">Thuộc tính</td>
                                 <td>Giá trị</td>
                               </tr>
                             </thead>
                             <tbody>
                               <tr *ngFor="let item of ProductAttributes.controls; let index = index">
                                 <ng-container [formGroupName]="index">
-                                  <td>
+                                  <td class="text-center">
                                     <!-- <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="deleteAttribute(index)"
                                       nzPopconfirmPlacement="topRight" nz-button nzDanger nzType="primary" nzSize="small">
                                       <i nz-icon nzType="delete" nzTheme="outline"></i>
                                     </button> -->
-                                    <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="deleteAttribute(index)"
-                                      nzPopconfirmPlacement="topRight" nzType="default" nzDanger nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
+                                    <button style="border-radius: 50%; height: 32px;" nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?"
+                                      (nzOnConfirm)="deleteAttribute(index)" nzPopconfirmPlacement="topRight" nzType="default" nzDanger
+                                      nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
                                       <i nz-icon nzType="delete" theme="outline"></i>
                                     </button>
                                   </td>
@@ -163,9 +164,10 @@
                                 </ng-container>
                               </tr>
                               <tr>
-                                <td colSpan="3">
+                                <td colSpan="3" class="text-center">
                                   <button (click)="addAttribute()" type="button" nz-button nzSize="small" nzType="primary">
                                     <i nz-icon nzType="plus" nzTheme="outline"></i>
+                                    <span>Thêm thuộc tính</span>
                                   </button>
                                 </td>
                               </tr>
@@ -177,7 +179,7 @@
                   </nz-tab>
                   <nz-tab nzTitle="Cài đặt sản phẩm liên quan">
                     <nz-form-item>
-                      <nz-form-label>Chọn sản phẩm liên quan trong danh sách dưới đây </nz-form-label>
+                      <nz-form-label style="margin-top: 0;">Chọn sản phẩm liên quan trong danh sách dưới đây </nz-form-label>
                       <nz-form-control nzErrorTip="Không được để trống!">
                         <nz-select nzMode="multiple" formControlName="ProductRelateds">
                           <nz-option *ngFor="let product of allProducts" nzCustomContent [nzValue]="product.Id" [nzLabel]="product.Name">

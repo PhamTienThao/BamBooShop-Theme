@@ -1,0 +1,90 @@
+/* Selector */
+::ng-deep
+  .ant-select-single.ant-select-sm:not(.ant-select-customize-input)
+  .ant-select-selector {
+  padding: 8px 16px;
+  height: 40px !important;
+}
+::ng-deep .ant-select-selection-item {
+  font-weight: 500 !important;
+}
+
+/* Label */
+.ant-form-item-label {
+  margin-top: 30px;
+}
+::ng-deep .ant-form-item-label > label {
+  font-size: 15px !important;
+  font-weight: 600;
+}
+
+/* Input number */
+.ant-input-number {
+  height: 40px;
+  font-size: 15px !important;
+  font-weight: 500;
+  border-radius: 5px !important;
+}
+::ng-deep.ant-input-number-sm input {
+  height: 40px;
+}
+
+/* Tab */
+::ng-deep .ant-tabs > .ant-tabs-nav {
+  margin-top: 30px;
+}
+::ng-deep .ant-tabs-tab-btn {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+/* Button */
+.ant-btn-primary {
+  height: 40px;
+}
+::ng-deep .ant-btn-sm {
+  padding: 4px 15px !important;
+  font-size: 15px !important;
+  border-radius: 5px !important;
+}
+.ant-btn {
+  height: 40px;
+  border-radius: 5px;
+}
+/* Checkbox */
+
+::ng-deep .ant-checkbox-inner::after {
+  left: 30% !important;
+}
+
+::ng-deep .ant-checkbox-inner {
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 5px !important;
+}
+
+/* Drawer */
+::ng-deep .ant-drawer-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* Upload */
+::ng-deep .ant-upload {
+  font-size: 15px !important;
+  border-radius: 5px !important;
+}
+::ng-deep .ant-upload.ant-upload-select-picture-card {
+  margin-top: 25px;
+}
+/* Select Selector */
+::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 40px;
+}
+::ng-deep .ant-select-multiple .ant-select-selector {
+  padding: 1px 8px !important;
+}
+::ng-deep .ant-select-multiple.ant-select-sm .ant-select-selection-item {
+  height: 22px !important;
+  line-height: 22px !important;
+}

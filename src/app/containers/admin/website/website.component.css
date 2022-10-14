@@ -1,0 +1,8 @@
+/* Label */
+.ant-form-item-label {
+  margin-top: 30px;
+}
+::ng-deep .ant-form-item-label > label {
+  font-size: 15px !important;
+  font-weight: 600;
+}

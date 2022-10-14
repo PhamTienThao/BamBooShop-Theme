@@ -26,14 +26,14 @@
         <tr>
           <th style="width:300px">Mẫu gửi mail</th>
           <th>Subject</th>
-          <th style="width:160px"></th>
+          <th style="width:160px" class="text-center">Hành động</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of tblData.data">
           <td>{{ data.Type }}</td>
           <td>{{ data.Subject }}</td>
-          <td class="no-wrap">
+          <td class="no-wrap text-center">
             <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button> -->
             <button nz-button nzSize="small" (click)="showDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>
