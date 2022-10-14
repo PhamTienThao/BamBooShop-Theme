@@ -78,13 +78,13 @@
   </div>
   <ng-template #footerTpl>
     <div style="float: right">
-      <button nz-button (click)="close()" style="border-radius: 5px;">Đóng</button>
+      <button nz-button (click)="close()" style="border-radius: 5px;height: 40px;">Đóng</button>
       <ng-container *ngIf="order != null">
-        <button *ngIf="order.Status == 10 || order.Status == 20 || order.Status == 30" (click)="updateStatus(50)" nz-button nzType="primary" nzDanger>
-          Hủy đơn hàng </button>
-        <button *ngIf="order.Status == 10" (click)="updateStatus(20)" nz-button nzType="primary"> Xác nhận đơn hàng </button>
-        <button *ngIf="order.Status == 20" (click)="updateStatus(30)" nz-button nzType="primary"> Chuyển vận chuyển </button>
-        <button *ngIf="order.Status == 30" (click)="updateStatus(40)" nz-button nzType="primary"> Hoàn thành giao hàng </button>
+        <button *ngIf="order.Status == 10 || order.Status == 20 || order.Status == 30" (click)="updateStatus(50)" nz-button nzType="primary" nzDanger
+          style="height: 40px;"> Hủy đơn hàng </button>
+        <button *ngIf="order.Status == 10" (click)="updateStatus(20)" nz-button nzType="primary" style="height: 40px;"> Xác nhận đơn hàng </button>
+        <button *ngIf="order.Status == 20" (click)="updateStatus(30)" nz-button nzType="primary" style="height: 40px;"> Chuyển vận chuyển </button>
+        <button *ngIf="order.Status == 30" (click)="updateStatus(40)" nz-button nzType="primary" style="height: 40px;"> Hoàn thành giao hàng </button>
       </ng-container>
     </div>
   </ng-template>
