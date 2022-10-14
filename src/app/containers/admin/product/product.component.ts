@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
-import { TableService } from 'src/app/core/admin/table.service';
 import { Menu } from 'src/app/core/model/menu';
 import { Product } from 'src/app/core/model/product';
 import { MenuService } from 'src/app/core/service/menu.service';
@@ -31,9 +30,8 @@ export class ProductComponent implements OnInit {
     private menuService: MenuService,
     private productService: ProductService,
     private spinner: NgxSpinnerService,
-    private messageService: NzMessageService
-  ) // private tableSvc: TableService
-  {
+    private messageService: NzMessageService // private tableSvc: TableService
+  ) {
     // this.displayData = this.datas;
   }
 
