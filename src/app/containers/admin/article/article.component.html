@@ -67,16 +67,13 @@
             <i *ngIf="data.Active" nz-icon nzType="check" nzTheme="outline"></i>
           </td>
           <td class="text-center">{{ data.Created | date:'HH:mm dd-MM-yyyy' }}</td>
-          <td class="no-wrap" style="display: flex;
-          justify-content: space-around;
-          padding: 0 40px 0 40px !important;
-          align-items: center;">
+          <td class="text-center">
             <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
             <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
               nzType="primary" nzSize="small"> Xóa </button> -->
-            <a class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
+            <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
               <i nz-icon nzType="edit" theme="outline"></i>
-            </a>
+            </button>
             <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight"
               nzType="default" nzDanger nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
               <i nz-icon nzType="delete" theme="outline"></i>
