@@ -103,3 +103,14 @@ ng::deep .table > :not(:last-child) > :last-child > * {
   border-color: #d9d0d1;
   border-radius: 5px;
 }
+
+/* Editor */
+::ng-deep .angular-editor-toolbar,
+::ng-deep .angular-editor .angular-editor-wrapper .angular-editor-textarea,
+::ng-deep
+  .angular-editor-toolbar
+  .angular-editor-toolbar-set
+  .angular-editor-button,
+::ng-deep .ae-font .ae-picker-label {
+  border-radius: 5px !important;
+}

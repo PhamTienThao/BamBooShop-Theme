@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Article } from 'src/app/core/model/article';
 import { Menu } from 'src/app/core/model/menu';
 import { MenuService } from 'src/app/core/service/menu.service';
@@ -9,7 +9,7 @@ import { DataHelper } from 'src/app/core/util/data-helper';
 @Component({
   selector: 'app-article-detail',
   templateUrl: './article-detail.component.html',
-  styleUrls: ['./article-detail.component.css']
+  styleUrls: ['./article-detail.component.css'],
 })
 export class ArticleDetailComponent implements OnInit {
   @Input() isAddNew: boolean = true;
@@ -18,32 +18,32 @@ export class ArticleDetailComponent implements OnInit {
   menus: Menu[] = [];
   formData!: FormGroup;
   visible = false;
-  srcImage: string = "no_img.jpg";
-  // config: AngularEditorConfig = {
-  //   editable: true,
-  //   spellcheck: true,
-  //   height: '350px',
-  //   minHeight: '5rem',
-  //   placeholder: '',
-  //   translate: 'no',
-  //   defaultParagraphSeparator: 'p',
-  // };
+  srcImage: string = 'no_img.jpg';
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '350px',
+    minHeight: '5rem',
+    placeholder: '',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+  };
   constructor(
     private menuService: MenuService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       Id: [0],
       MenuId: [0, Validators.required],
-      Title: ["", Validators.required],
-      Alias: ["", Validators.required],
-      Image: [""],
+      Title: ['', Validators.required],
+      Alias: ['', Validators.required],
+      Image: [''],
       Index: [1],
-      ShortDescription: [""],
-      Description: [""],
-      Active: [true]
+      ShortDescription: [''],
+      Description: [''],
+      Active: [true],
     });
   }
 
@@ -55,22 +55,22 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   getMenu() {
-    this.menuService.getByType(['bai-viet', 'chi-tiet-bai-viet'])
+    this.menuService
+      .getByType(['bai-viet', 'chi-tiet-bai-viet'])
       .subscribe((resp: any) => {
-        this.menus = JSON.parse(resp["data"]);
-      })
-
+        this.menus = JSON.parse(resp['data']);
+      });
   }
 
   changeTitle(e: any) {
     this.formData.patchValue({
-      Alias: DataHelper.unsign(this.formData.get("Title")?.value ?? "")
-    })
+      Alias: DataHelper.unsign(this.formData.get('Title')?.value ?? ''),
+    });
   }
 
   onloadImage(src: string) {
     this.srcImage = src;
-    this.formData.get("Image")?.setValue(src);
+    this.formData.get('Image')?.setValue(src);
   }
 
   close() {
@@ -90,5 +90,4 @@ export class ArticleDetailComponent implements OnInit {
 
     this.onSubmit.emit(this.formData.getRawValue());
   }
-
 }

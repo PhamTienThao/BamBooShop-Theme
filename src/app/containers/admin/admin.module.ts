@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { RouterModule, Routes } from '@angular/router';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 // import { CurrencyMaskConfig, CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 import { AuthGuardAdminService } from './auth/auth-guard-admin.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -49,7 +49,7 @@ import { EmailTemplateDetailComponent } from './email-template/email-template-de
 import { CustomerDetailComponent } from './customer/customer-detail/customer-detail.component';
 import { EmailRegistrationComponent } from './email-registration/email-registration.component';
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 registerLocaleData(en);
 
@@ -68,102 +68,102 @@ registerLocaleData(en);
 
 const routes: Routes = [
   {
-    path: "dang-nhap",
-    component: LoginComponent
+    path: 'dang-nhap',
+    component: LoginComponent,
   },
   {
-    path: "dang-xuat",
-    component: LogoutComponent
+    path: 'dang-xuat',
+    component: LogoutComponent,
   },
   {
-    path: "",
+    path: '',
     component: MasterLayoutComponent,
     canActivate: [AuthGuardAdminService],
     children: [
       {
-        path: "don-hang",
+        path: 'don-hang',
         children: [
           {
-            path: "don-hang-can-xu-ly",
-            component: OrderWipComponent
+            path: 'don-hang-can-xu-ly',
+            component: OrderWipComponent,
           },
           {
-            path: "",
-            component: OrderComponent
-          }
-        ]
+            path: '',
+            component: OrderComponent,
+          },
+        ],
       },
       {
-        path: "menu-chinh",
-        component: MenuComponent
+        path: 'menu-chinh',
+        component: MenuComponent,
       },
       {
-        path: "menu-phu",
-        component: SubMenuComponent
+        path: 'menu-phu',
+        component: SubMenuComponent,
       },
       {
-        path: "website",
-        component: WebsiteComponent
+        path: 'website',
+        component: WebsiteComponent,
       },
       {
-        path: "khach-hang",
-        component: CustomerComponent
+        path: 'khach-hang',
+        component: CustomerComponent,
       },
       {
-        path: "email-template",
-        component: EmailTemplateComponent
+        path: 'email-template',
+        component: EmailTemplateComponent,
       },
       {
-        path: "email-config",
-        component: EmailConfigurationComponent
+        path: 'email-config',
+        component: EmailConfigurationComponent,
       },
       {
-        path: "tai-khoan-quan-tri",
-        component: UserComponent
+        path: 'tai-khoan-quan-tri',
+        component: UserComponent,
       },
       {
-        path: "san-pham",
-        component: ProductComponent
+        path: 'san-pham',
+        component: ProductComponent,
       },
       {
-        path: "thuoc-tinh-san-pham",
-        component: AttributeComponent
+        path: 'thuoc-tinh-san-pham',
+        component: AttributeComponent,
       },
       {
-        path: "banner",
-        component: GalleryComponent
+        path: 'banner',
+        component: GalleryComponent,
       },
       {
-        path: "bai-viet",
-        component: ArticleComponent
+        path: 'bai-viet',
+        component: ArticleComponent,
       },
       {
-        path: "thong-ke-don-hang",
-        component: ReportComponent
+        path: 'thong-ke-don-hang',
+        component: ReportComponent,
       },
       {
-        path: "bao-cao-theo-san-pham",
-        component: ReportProductComponent
+        path: 'bao-cao-theo-san-pham',
+        component: ReportProductComponent,
       },
       {
-        path: "bao-cao-doanh-thu",
-        component: ReportRevenueComponent
+        path: 'bao-cao-doanh-thu',
+        component: ReportRevenueComponent,
       },
       {
-        path: "email-dang-ky-nhan-tin",
-        component: EmailRegistrationComponent
+        path: 'email-dang-ky-nhan-tin',
+        component: EmailRegistrationComponent,
       },
       {
-        path: "danh-gia",
-        component: ReviewComponent
+        path: 'danh-gia',
+        component: ReviewComponent,
       },
 
       {
-        path: "",
-        component: DashboardComponent
-      }
-    ]
-  }
+        path: '',
+        component: DashboardComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -213,14 +213,18 @@ const routes: Routes = [
     NgxSpinnerModule,
     //NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     DENgZorroAntdModule,
-    //AngularEditorModule,
+    AngularEditorModule,
     //GoogleChartsModule
   ],
   providers: [
     AuthGuardAdminService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtAdminInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorAdminInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorAdminInterceptor,
+      multi: true,
+    },
     { provide: NZ_I18N, useValue: en_US },
-  ]
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

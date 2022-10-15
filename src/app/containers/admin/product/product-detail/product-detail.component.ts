@@ -1,6 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
-// import { AngularEditorConfig } from '@kolkov/angular-editor';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Menu } from 'src/app/core/model/menu';
 import { Product } from 'src/app/core/model/product';
 import { MenuService } from 'src/app/core/service/menu.service';
@@ -20,13 +26,13 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
   @Input() isAddNew: boolean = true;
@@ -38,18 +44,18 @@ export class ProductDetailComponent implements OnInit {
 
   formData!: FormGroup;
   visible = false;
-  srcImage: string = "no_img.jpg";
+  srcImage: string = 'no_img.jpg';
   fileList: NzUploadFile[] = [];
 
-  // config: AngularEditorConfig = {
-  //   editable: true,
-  //   spellcheck: true,
-  //   height: '350px',
-  //   minHeight: '5rem',
-  //   placeholder: '',
-  //   translate: 'no',
-  //   defaultParagraphSeparator: 'p',
-  // };
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '350px',
+    minHeight: '5rem',
+    placeholder: '',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+  };
   constructor(
     private menuService: MenuService,
     private productService: ProductService,
@@ -57,32 +63,32 @@ export class ProductDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     //hmtien add 26/8
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       Id: [0],
       MenuId: [0, Validators.required],
-      Name: ["", Validators.required],
-      Alias: ["", Validators.required],
-      Image: [""],
+      Name: ['', Validators.required],
+      Alias: ['', Validators.required],
+      Image: [''],
       Index: [1],
       Status: [10, Validators.required],
       Price: [0, Validators.required],
       DiscountPrice: [0, Validators.required],
       Selling: [true],
-      ShortDescription: [""],
-      Description: [""],
+      ShortDescription: [''],
+      Description: [''],
       ProductRelateds: [[]],
       ProductAttributes: this.formBuilder.array([]),
       //hmtien add 26/8
-      Quantity: ["", Validators.required],
+      Quantity: ['', Validators.required],
     });
     this.getAttribute();
   }
 
   get ProductAttributes(): FormArray {
-    return this.formData.get("ProductAttributes") as FormArray;
+    return this.formData.get('ProductAttributes') as FormArray;
   }
 
   setForm(product: Product | any) {
@@ -92,18 +98,27 @@ export class ProductDetailComponent implements OnInit {
     this.srcImage = product.Image;
     this.formData.patchValue(product);
 
-    if (product != null && product.ProductImages != null && product.ProductImages.length > 0) {
-      this.fileList = product.ProductImages.map((x: ProductImage, i: number) => {
-        return {
-          uid: i.toString(),
-          name: i.toString(),
-          status: 'done',
-          url: environment.hostImage + x.Image
+    if (
+      product != null &&
+      product.ProductImages != null &&
+      product.ProductImages.length > 0
+    ) {
+      this.fileList = product.ProductImages.map(
+        (x: ProductImage, i: number) => {
+          return {
+            uid: i.toString(),
+            name: i.toString(),
+            status: 'done',
+            url: environment.hostImage + x.Image,
+          };
         }
-      })
+      );
     }
 
-    if (product.ProductAttributes != null && product.ProductAttributes.length > 0) {
+    if (
+      product.ProductAttributes != null &&
+      product.ProductAttributes.length > 0
+    ) {
       product.ProductAttributes.forEach((x: ProductAttribute) => {
         const id = x.AttributeId;
         const attr = x.Value?.split(',') ?? [];
@@ -113,12 +128,14 @@ export class ProductDetailComponent implements OnInit {
             Attributes: new FormControl(attr),
           })
         );
-      })
+      });
     }
 
     if (product.ProductRelateds != null && product.ProductRelateds.length > 0) {
       this.formData.patchValue({
-        ProductRelateds: product.ProductRelateds.map((x: ProductRelated) => x.ProductRelatedId)
+        ProductRelateds: product.ProductRelateds.map(
+          (x: ProductRelated) => x.ProductRelatedId
+        ),
       });
     }
 
@@ -127,38 +144,38 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getAllProduct() {
-    this.productService.getAll()
-      .subscribe((resp: any) => {
-        this.allProducts = JSON.parse(resp["data"]);
-      }, error => {
-      })
+    this.productService.getAll().subscribe(
+      (resp: any) => {
+        this.allProducts = JSON.parse(resp['data']);
+      },
+      (error) => {}
+    );
   }
 
   getAttribute() {
-    this.attributeService.get({})
-      .subscribe((resp: any) => {
-        this.attribute = JSON.parse(resp["data"])
-      }, (error) => {
-
-      })
+    this.attributeService.get({}).subscribe(
+      (resp: any) => {
+        this.attribute = JSON.parse(resp['data']);
+      },
+      (error) => {}
+    );
   }
 
   getMenu() {
-    this.menuService.getByType(['san-pham'])
-      .subscribe((resp: any) => {
-        this.menus = JSON.parse(resp["data"]);
-      })
+    this.menuService.getByType(['san-pham']).subscribe((resp: any) => {
+      this.menus = JSON.parse(resp['data']);
+    });
   }
 
   changeName(e: any) {
     this.formData.patchValue({
-      Alias: DataHelper.unsign(this.formData.get("Name")?.value ?? "")
-    })
+      Alias: DataHelper.unsign(this.formData.get('Name')?.value ?? ''),
+    });
   }
 
   onloadImage(src: string) {
     this.srcImage = src;
-    this.formData.get("Image")?.setValue(src);
+    this.formData.get('Image')?.setValue(src);
   }
 
   close() {
@@ -169,7 +186,7 @@ export class ProductDetailComponent implements OnInit {
     this.ProductAttributes.push(
       this.formBuilder.group({
         AttributeId: null,
-        Attributes: []
+        Attributes: [],
       })
     );
   }
@@ -189,47 +206,49 @@ export class ProductDetailComponent implements OnInit {
       return;
     }
     //hmtien add 26/8
-    if(this.formData.get("Quantity")?.value<0){
-      this.messageService.error("Số lượng không hợp lệ");
+    if (this.formData.get('Quantity')?.value < 0) {
+      this.messageService.error('Số lượng không hợp lệ');
       return;
     }
 
     let dataForm = this.formData.getRawValue();
 
     if (dataForm.ProductAttributes != null) {
-      let productAttributes: ProductAttribute[] = dataForm.ProductAttributes.map((x: any) => {
-        return {
-          AttributeId: x.AttributeId,
-          Value: x.Attributes.join(',')
-        }
-      });
+      let productAttributes: ProductAttribute[] =
+        dataForm.ProductAttributes.map((x: any) => {
+          return {
+            AttributeId: x.AttributeId,
+            Value: x.Attributes.join(','),
+          };
+        });
 
       dataForm.ProductAttributes = productAttributes;
     }
 
-    let productImages: ProductImage[] = this.fileList.map(x => {
+    let productImages: ProductImage[] = this.fileList.map((x) => {
       return {
         Id: 0,
         ProductId: 0,
-        Image: x.thumbUrl ?? (x.url?.toString().split('/').pop() ?? "")
-      }
+        Image: x.thumbUrl ?? x.url?.toString().split('/').pop() ?? '',
+      };
     });
 
     dataForm.ProductImages = productImages;
 
     if (dataForm.ProductRelateds != null) {
-      let productRelateds: ProductRelated[] = dataForm.ProductRelateds.map((x: any) => {
-        return {
-          Id: 0,
-          ProductId: 0,
-          ProductRelatedId: x
+      let productRelateds: ProductRelated[] = dataForm.ProductRelateds.map(
+        (x: any) => {
+          return {
+            Id: 0,
+            ProductId: 0,
+            ProductRelatedId: x,
+          };
         }
-      });
+      );
 
       dataForm.ProductRelateds = productRelateds;
     }
 
     this.onSubmit.emit(dataForm);
   }
-
 }

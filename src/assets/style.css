@@ -353,7 +353,16 @@ a.ant-btn {
 .ant-popover-message {
   font-size: 16px !important;
 }
-
+/* Editor */
+::ng-deep .angular-editor-toolbar,
+::ng-deep .angular-editor .angular-editor-wrapper .angular-editor-textarea,
+::ng-deep
+  .angular-editor-toolbar
+  .angular-editor-toolbar-set
+  .angular-editor-button,
+::ng-deep .ae-font .ae-picker-label {
+  border-radius: 5px !important;
+}
 /* auth */
 
 .body-auth {
