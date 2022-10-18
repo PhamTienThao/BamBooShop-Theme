@@ -9,22 +9,22 @@ import { SubMenuDetailComponent } from './sub-menu-detail/sub-menu-detail.compon
 @Component({
   selector: 'app-sub-menu',
   templateUrl: './sub-menu.component.html',
-  styleUrls: ['./sub-menu.component.css']
+  styleUrls: ['./sub-menu.component.css'],
 })
 export class SubMenuComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: SubMenuDetailComponent
+  @ViewChild('frmDetail', { static: true }) frmDetail!: SubMenuDetailComponent;
 
   datas: Menu[] = [];
 
   filter = {
-    keySearch: ""
-  }
+    keySearch: '',
+  };
 
   constructor(
     private menuService: MenuService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -32,7 +32,8 @@ export class SubMenuComponent implements OnInit {
 
   getData() {
     this.spinner.show();
-    this.menuService.getSubMenu(this.filter)
+    this.menuService
+      .getSubMenu(this.filter)
       .pipe(
         finalize(() => {
           this.spinner.hide();
@@ -40,26 +41,32 @@ export class SubMenuComponent implements OnInit {
       )
       .subscribe(
         (resp: any) => {
-          this.datas = JSON.parse(resp["data"]);
-        }, error => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        (error) => {
           this.messageService.error(error.error.message);
-        })
+        }
+      );
   }
 
   delete(menu: Menu) {
     this.spinner.show();
-    this.menuService.deleteById(menu.Id)
+    this.menuService
+      .deleteById(menu.Id)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.messageService.success("Xóa thành công");
-        this.getData();
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   addNew() {
@@ -69,7 +76,7 @@ export class SubMenuComponent implements OnInit {
       Id: 0,
       Active: true,
       Index: 1,
-      ShowHomePage: true
+      ShowHomePage: true,
     });
   }
 
@@ -81,37 +88,44 @@ export class SubMenuComponent implements OnInit {
 
   onSubmit(menu: Menu) {
     if (this.frmDetail.isAddNew) {
-      menu.Group = "sub";
+      menu.Group = 'sub';
       this.spinner.show();
-      this.menuService.post(menu)
+      this.menuService
+        .post(menu)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Thêm mới thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
-    }
-    else {
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Thêm mới thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
+    } else {
       this.spinner.show();
-      this.menuService.put(menu.Id, menu)
+      this.menuService
+        .put(menu.Id, menu)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Cập nhật thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     }
   }
 }

@@ -144,21 +144,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getAllProduct() {
-    this.productService.getAll().subscribe(
-      (resp: any) => {
+    this.productService.getAll().subscribe({
+      next: (resp: any) => {
         this.allProducts = JSON.parse(resp['data']);
       },
-      (error) => {}
-    );
+      error: (err) => {
+        this.messageService.error(err);
+      },
+    });
   }
 
   getAttribute() {
-    this.attributeService.get({}).subscribe(
-      (resp: any) => {
+    this.attributeService.get({}).subscribe({
+      next: (resp: any) => {
         this.attribute = JSON.parse(resp['data']);
       },
-      (error) => {}
-    );
+      error: (err) => {
+        this.messageService.error(err);
+      },
+    });
   }
 
   getMenu() {

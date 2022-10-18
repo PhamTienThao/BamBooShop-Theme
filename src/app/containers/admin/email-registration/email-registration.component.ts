@@ -7,38 +7,41 @@ import { EmailRegistrationService } from 'src/app/core/service/email-registratio
 @Component({
   selector: 'app-email-registration',
   templateUrl: './email-registration.component.html',
-  styleUrls: ['./email-registration.component.css']
+  styleUrls: ['./email-registration.component.css'],
 })
 export class EmailRegistrationComponent implements OnInit {
-  datas: { Email: string, Created: Date }[] = [];
+  datas: { Email: string; Created: Date }[] = [];
 
   filter = {
-    keySearch: ""
-  }
+    keySearch: '',
+  };
 
   constructor(
     private emailRegistrationService: EmailRegistrationService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
   }
 
-
   getData() {
     this.spinner.show();
-    this.emailRegistrationService.get(this.filter)
+    this.emailRegistrationService
+      .get(this.filter)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

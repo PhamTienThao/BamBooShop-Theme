@@ -64,16 +64,16 @@
     <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
-          <th class="text-center" style=" width:120px">Hình ảnh</th>
+          <th class="text-center">Hình ảnh</th>
           <th>Tên sản phẩm</th>
-          <th style="width:160px">Danh mục</th>
+          <th>Danh mục</th>
           <th class="text-center">Giá niêm yết</th>
           <th class="text-center">Giá bán</th>
-          <th class="text-center" style="width:180px">Sản phẩm nổi bật</th>
-          <th class="text-center" style="width:100px">Trạng thái</th>
+          <th class="text-center">Sản phẩm nổi bật</th>
+          <th class="text-left">Trạng thái</th>
           <th class="text-center">Thứ tự hiển thị</th>
           <th class="text-center">Số lượng còn</th>
-          <th style="width:160px" class="text-center">Hành động</th>
+          <th style="width:120px" class="text-center">Hành động</th>
         </tr>
       </thead>
       <tbody>
@@ -104,9 +104,6 @@
           <td class="text-center">{{ data.Index }}</td>
           <td class="text-center">{{ data.Quantity}}</td>
           <td class="text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
-            <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
-              nzType="primary" nzSize="small"> Xóa </button> -->
             <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
               <i nz-icon nzType="edit" theme="outline"></i>
             </button>

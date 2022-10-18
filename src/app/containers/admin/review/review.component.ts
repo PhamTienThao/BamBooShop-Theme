@@ -9,23 +9,23 @@ import { ReviewDetailComponent } from './review-detail/review-detail.component';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
-  styleUrls: ['./review.component.css']
+  styleUrls: ['./review.component.css'],
 })
 export class ReviewComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: ReviewDetailComponent
+  @ViewChild('frmDetail', { static: true }) frmDetail!: ReviewDetailComponent;
 
   datas: Review[] = [];
 
   filter = {
-    keySearch: "",
-    status: null
-  }
+    keySearch: '',
+    status: null,
+  };
 
   constructor(
     private reviewService: ReviewService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -33,20 +33,24 @@ export class ReviewComponent implements OnInit {
 
   getData() {
     this.spinner.show();
-    this.reviewService.get({
-      keySearch: this.filter.keySearch,
-      status: this.filter.status ?? -1,
-    })
+    this.reviewService
+      .get({
+        keySearch: this.filter.keySearch,
+        status: this.filter.status ?? -1,
+      })
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   showDetail(review: Review) {
@@ -56,18 +60,22 @@ export class ReviewComponent implements OnInit {
 
   onSubmit(review: Review) {
     this.spinner.show();
-    this.reviewService.updateStatus(review.Id ?? 0, review.Status)
+    this.reviewService
+      .updateStatus(review.Id ?? 0, review.Status)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.messageService.success("Cập nhật thành công");
-        this.getData();
-        this.frmDetail.visible = false;
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Cập nhật thành công');
+          this.getData();
+          this.frmDetail.visible = false;
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

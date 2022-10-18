@@ -7,7 +7,7 @@ import { UserService } from 'src/app/core/service/user.service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  styleUrls: ['./user-detail.component.css'],
 })
 export class UserDetailComponent implements OnInit {
   @Input() isAddNew: boolean = true;
@@ -19,17 +19,17 @@ export class UserDetailComponent implements OnInit {
   constructor(
     private userService: UserService,
     private messageService: NzMessageService,
-    private formBuilder: FormBuilder,
-  ) { }
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
-      UserName: ["", Validators.required],
-      Password: ["", Validators.required],
-      FullName: ["", Validators.required],
+      UserName: ['', Validators.required],
+      Password: ['', Validators.required],
+      FullName: ['', Validators.required],
       Phone: [null],
       Email: [null],
-      Active: [true]
+      Active: [true],
     });
   }
 
@@ -40,8 +40,7 @@ export class UserDetailComponent implements OnInit {
     if (this.isAddNew) {
       this.formData.controls['Password']?.setValidators([Validators.required]);
       this.formData.controls['Password']?.updateValueAndValidity();
-    }
-    else {
+    } else {
       this.formData.controls['Password']?.clearValidators();
       this.formData.controls['Password']?.updateValueAndValidity();
     }
@@ -66,14 +65,18 @@ export class UserDetailComponent implements OnInit {
   }
 
   resetPassword() {
-    let newPassword = prompt("Mật khẩu mới:", "");
-    if (newPassword != null && newPassword != "") {
-      this.userService.resetPassword(this.user.UserName, newPassword)
-        .subscribe((resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-        }, error => {
-
-        })
+    let newPassword = prompt('Mật khẩu mới:', '');
+    if (newPassword != null && newPassword != '') {
+      this.userService
+        .resetPassword(this.user.UserName, newPassword)
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Cập nhật thành công');
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     }
   }
 }

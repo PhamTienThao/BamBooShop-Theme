@@ -6,7 +6,7 @@ import { Constants } from '../util/constants';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CustomerService extends BaseService {
   constructor(public override http: HttpClient) {
@@ -14,62 +14,77 @@ export class CustomerService extends BaseService {
   }
 
   requestOTP(email: string) {
-    return this.http.get(this.routerPrefix + "/request-otp", {
+    return this.http.get(this.routerPrefix + '/request-otp', {
       params: {
-        email
-      }
-    })
+        email,
+      },
+    });
   }
 
   confirmOTP(email: string, otp: string) {
-    return this.http.get(this.routerPrefix + "/confirm-otp", {
+    return this.http.get(this.routerPrefix + '/confirm-otp', {
       params: {
         email,
-        otp
-      }
-    })
+        otp,
+      },
+    });
   }
 
   forgotPassword(email: string) {
-    return this.http.get(this.routerPrefix + "/forgot-password", {
+    return this.http.get(this.routerPrefix + '/forgot-password', {
       params: {
-        email
-      }
-    })
+        email,
+      },
+    });
   }
 
   getProfile() {
-    return this.http.get(this.routerPrefix + "/get-profile");
+    return this.http.get(this.routerPrefix + '/get-profile');
+  }
+
+  getTopOrderCustomer() {
+    return this.http.get(this.routerPrefix + '/get-top-order-customer');
   }
 
   updateProfile(entity: any) {
-    return this.http.put(this.routerPrefix + "/update-profile", entity);
+    return this.http.put(this.routerPrefix + '/update-profile', entity);
   }
 
   getOrders() {
-    return this.http.get(this.routerPrefix + "/get-orders");
+    return this.http.get(this.routerPrefix + '/get-orders');
   }
 
   changePassword(oldPassword: string, newPassword: string) {
-    return this.http.get(this.routerPrefix + "/change-password", {
+    return this.http.get(this.routerPrefix + '/change-password', {
       params: {
         oldPassword,
-        newPassword
-      }
+        newPassword,
+      },
     });
   }
 
   signInWithSocialNetwork(entity: any) {
-    return this.http.post(this.routerPrefix + "/socialNetwork-signIn", entity)
+    return this.http.post(this.routerPrefix + '/socialNetwork-signIn', entity);
   }
   loginWithSocialNetwork(entity: any) {
-    return this.http.post(this.routerPrefix + "/socialNetwork-login", entity).pipe(
-      map((resp: any) => {
-        localStorage.setItem(Constants.LOCAL_STORAGE_KEY.SESSION, resp["data"]);
-        localStorage.setItem(Constants.LOCAL_STORAGE_KEY.TOKEN, JSON.parse(resp["data"])["Token"]);
-        localStorage.setItem(Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN, "true");
-        return resp;
-      })
-    );
+    return this.http
+      .post(this.routerPrefix + '/socialNetwork-login', entity)
+      .pipe(
+        map((resp: any) => {
+          localStorage.setItem(
+            Constants.LOCAL_STORAGE_KEY.SESSION,
+            resp['data']
+          );
+          localStorage.setItem(
+            Constants.LOCAL_STORAGE_KEY.TOKEN,
+            JSON.parse(resp['data'])['Token']
+          );
+          localStorage.setItem(
+            Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN,
+            'true'
+          );
+          return resp;
+        })
+      );
   }
 }

@@ -9,7 +9,7 @@ import { EmailConfigurationService } from 'src/app/core/service/email-configurat
 @Component({
   selector: 'app-email-configuration',
   templateUrl: './email-configuration.component.html',
-  styleUrls: ['./email-configuration.component.css']
+  styleUrls: ['./email-configuration.component.css'],
 })
 export class EmailConfigurationComponent implements OnInit {
   formData!: FormGroup;
@@ -20,7 +20,7 @@ export class EmailConfigurationComponent implements OnInit {
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -30,26 +30,29 @@ export class EmailConfigurationComponent implements OnInit {
   initForm() {
     this.formData = this.formBuilder.group({
       Id: [0],
-      Email: ["", Validators.required],
-      Password: ["", Validators.required]
+      Email: ['', Validators.required],
+      Password: ['', Validators.required],
     });
   }
 
   getData() {
     this.spinner.show();
-    this.emailConfigurationService.get({})
+    this.emailConfigurationService
+      .get({})
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp: any) => {
-          let config: EmailConfiguration = JSON.parse(resp["data"]);
+      .subscribe({
+        next: (resp: any) => {
+          let config: EmailConfiguration = JSON.parse(resp['data']);
           this.formData.patchValue(config);
-        }, (error: any) => {
-          this.messageService.error(error.error.message);
-        })
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   submit() {
@@ -72,13 +75,14 @@ export class EmailConfigurationComponent implements OnInit {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp) => {
-          this.messageService.success("Cập nhật thành công");
-          this.getData()
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Cập nhật thành công');
+          this.getData();
         },
-        (error) => {
-        }
-      );
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

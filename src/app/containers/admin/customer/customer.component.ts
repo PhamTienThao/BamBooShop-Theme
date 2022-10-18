@@ -9,22 +9,22 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: CustomerDetailComponent
+  @ViewChild('frmDetail', { static: true }) frmDetail!: CustomerDetailComponent;
 
   datas: Customer[] = [];
 
   filter = {
-    keySearch: ""
-  }
+    keySearch: '',
+  };
 
   constructor(
     private customerService: CustomerService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -32,32 +32,40 @@ export class CustomerComponent implements OnInit {
 
   getData() {
     this.spinner.show();
-    this.customerService.get(this.filter)
+    this.customerService
+      .get(this.filter)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err: any) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   showDetail(customer: Customer) {
     this.spinner.show();
-    this.customerService.getById(customer.Code)
+    this.customerService
+      .getById(customer.Code)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.frmDetail.visible = true;
-        this.frmDetail.setForm(JSON.parse(resp['data']));
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.frmDetail.visible = true;
+          this.frmDetail.setForm(JSON.parse(resp['data']));
+        },
+        error: (err: any) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

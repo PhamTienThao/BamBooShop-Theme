@@ -1,5 +1,4 @@
 .box-highlight-dashboard {
-  margin: 10px 5px;
   border: 0.1px solid #00000012;
   text-align: center;
   min-height: 110px;
@@ -49,9 +48,120 @@
 }
 ::ng-deep .ant-picker {
   border-radius: 5px !important;
-  height: 40px;
+  height: 32px;
 }
 ::ng-deep .ant-picker-input > input {
   font-size: 15px;
   font-weight: 500;
+}
+
+/* PieChart */
+
+::ng-deep .ant-badge-status-dot {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* Card */
+.header-card-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.card-box {
+  padding: 0 15px 0 15px !important;
+  margin: 15px 0 15px 0;
+  height: auto;
+}
+.card-box-style {
+  height: 100%;
+  padding: 24px !important;
+  border: 0.1px solid #00000012;
+  border-radius: 5px;
+  box-shadow: 0 7px 14px 0 rgb(0 0 0 / 5%), 0 3px 6px 0 rgb(0 0 0 / 1%);
+}
+
+/* Top Product */
+.product-wrap {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #edf2f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-title-wrap {
+  display: flex;
+  align-items: center;
+}
+.product-image {
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgb(143, 137, 137);
+  background-color: #00efef5c;
+}
+.product-title {
+  display: grid;
+}
+.product-name-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  width: 300px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.product-name-title:hover {
+  color: #3f87f5;
+  cursor: pointer;
+}
+
+.product-category {
+  font-size: 13px;
+  font-weight: 500;
+  color: #72849ab3;
+}
+.product-tag-up {
+  padding: 1px 10px 1px 10px;
+  background-color: #44ff001c;
+  border-radius: 20px;
+}
+.product-tag-value-up {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0ac90f;
+}
+
+/* Revenue Chart */
+.revenue-label {
+  margin: 10px 0;
+}
+.revenue-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #72849aa3;
+}
+.revanue-value-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+.revenue-value-tag {
+  margin-left: 10px;
+  color: #00c9a7;
+  font-size: 14px;
+  font-weight: 600;
+}
+.up {
+  color: #0ac90f;
+}
+.down {
+  color: red;
+}
+
+/* Page Table */
+::ng-deep .ant-table-pagination.ant-pagination {
+  display: none;
 }

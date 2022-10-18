@@ -32,8 +32,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router,
-    private socialLoginAuthService: SocialAuthService,
-
+    private socialLoginAuthService: SocialAuthService
   ) {}
 
   ngOnInit(): void {
@@ -79,11 +78,15 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       .requestOTP(this.formMail.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.toastrService.success('OTP Has been sent to your email.',"",{positionClass :'toast-bottom-right'});
+          this.toastrService.success('OTP Has been sent to your email.', '', {
+            positionClass: 'toast-bottom-right',
+          });
           this.myStepper.next();
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }
@@ -111,11 +114,15 @@ export class SignUpComponent implements OnInit, AfterViewInit {
             OTP: otp,
           });
         } else {
-          this.toastrService.error('Wrong OTP.',"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error('Wrong OTP.', '', {
+            positionClass: 'toast-bottom-right',
+          });
         }
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -143,11 +150,15 @@ export class SignUpComponent implements OnInit, AfterViewInit {
       })
       .subscribe({
         next: (resp: any) => {
-          this.toastrService.success('Sign in successfully',"",{positionClass :'toast-bottom-right'});
+          this.toastrService.success('Sign in successfully', '', {
+            positionClass: 'toast-bottom-right',
+          });
           this.navigate('/dang-nhap');
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }
@@ -158,24 +169,24 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   signInWithGoogle(): void {
     this.socialLoginAuthService
       .signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then(
-        (data) => {
-          console.log(data);
-          this.user = {
-            email: data.email,
-            fullName: data.firstName + ' ' + data.lastName,
-            avatar: data.photoUrl,
-            authToken: data.authToken,
-            idToken: data.idToken,
-          };
-          this.customerService
-            .signInWithSocialNetwork(this.user)
-            .subscribe((resp: any) => {
-              console.log(resp.data);
-              this.navigate('/tai-khoan');
-              this.toastrService.success('SignIn Success',"",{positionClass :'toast-bottom-right'});
+      .then((data) => {
+        console.log(data);
+        this.user = {
+          email: data.email,
+          fullName: data.firstName + ' ' + data.lastName,
+          avatar: data.photoUrl,
+          authToken: data.authToken,
+          idToken: data.idToken,
+        };
+        this.customerService
+          .signInWithSocialNetwork(this.user)
+          .subscribe((resp: any) => {
+            console.log(resp.data);
+            this.navigate('/tai-khoan');
+            this.toastrService.success('SignIn Success', '', {
+              positionClass: 'toast-bottom-right',
             });
-        },
-      );
+          });
+      });
   }
 }

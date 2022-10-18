@@ -108,7 +108,9 @@ export class CartComponent implements OnInit {
         this.formData.patchValue(profile);
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -210,7 +212,9 @@ export class CartComponent implements OnInit {
       }
     }
     if (this.formData.invalid) {
-      this.toastrService.error('Please fill all the information fields',"",{positionClass :'toast-bottom-right'});
+      this.toastrService.error('Please fill all the information fields', '', {
+        positionClass: 'toast-bottom-right',
+      });
       return;
     }
     let orderDetailPost: OrderDetail[] = DataHelper.clone(this.orderDetail);
@@ -240,7 +244,9 @@ export class CartComponent implements OnInit {
           this.navigate('/dat-hang-thanh-cong');
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }

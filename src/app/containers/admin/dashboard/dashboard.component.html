@@ -1,92 +1,260 @@
-<div *ngIf="dataHighlight != null" nz-row style="
-justify-content: space-between;">
-  <div nz-col nzSpan="4">
-    <div class="box-highlight-dashboard">
-      <div class="box-highlight-dashboard-title"> Tổng đơn hàng <small>(ngày)</small>
-      </div>
-      <div class="box-highlight-dashboard-value">
-        <strong>{{dataHighlight.TotalNewOrder | number}}</strong>
-      </div>
-    </div>
-  </div>
-  <div nz-col nzSpan="4">
-    <div class="box-highlight-dashboard">
-      <div class="box-highlight-dashboard-title"> Tổng đơn hàng <small>(tháng)</small>
-      </div>
-      <div class="box-highlight-dashboard-value">
-        <strong>{{dataHighlight.TotalOrder | number}}</strong>
-      </div>
-    </div>
-  </div>
-  <div nz-col nzSpan="4">
-    <div class="box-highlight-dashboard">
-      <div class="box-highlight-dashboard-title"> Doanh thu <small>(ngày)</small>
-      </div>
-      <div class="box-highlight-dashboard-value">
-        <strong>{{dataHighlight.DailySales | number}} ₫</strong>
-      </div>
-    </div>
-  </div>
-  <div nz-col nzSpan="4">
-    <div class="box-highlight-dashboard">
-      <div class="box-highlight-dashboard-title"> Doanh thu <small>(tháng)</small>
-      </div>
-      <div class="box-highlight-dashboard-value">
-        <strong>{{dataHighlight.SalesRevenue | number}} ₫</strong>
-      </div>
-    </div>
-  </div>
-</div>
-<div *ngIf="dataHighlight != null" nz-row class="mg-t-md">
-  <div nz-col nzSpan="8" style="padding-right: 10px !important;">
-    <div nz-row>
-      <div nz-col nzSpan="16">
-        <span style="font-size: 20px; font-weight: 700">Tình trạng đơn hàng</span>
-      </div>
-      <div nz-col nzSpan="8" class="text-right">
-        <nz-month-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn tháng" nzFormat="MM/yyyy">
-        </nz-month-picker>
-      </div>
-      <div nz-col nzSpan="24">
-        <div style="overflow: hidden;">
-          <!-- <google-chart [type]="chartStatus.type" [height]="300"
-                        style="width: calc(100% + 150px);margin-top: -10px;margin-left: -90px;"
-                        [options]="chartStatus.options" [data]="chartStatus.data">
-                    </google-chart> -->
+<div *ngIf="dataHighlight != null" nz-row>
+  <div nz-col nzSpan="6" class="card-box">
+    <div nz-col nzSpan="24">
+      <div class="box-highlight-dashboard">
+        <div class="box-highlight-dashboard-title"> Tổng đơn hàng <small>(ngày)</small>
+        </div>
+        <div class="box-highlight-dashboard-value">
+          <strong>{{dataHighlight.TotalNewOrder | number}}</strong>
         </div>
       </div>
     </div>
   </div>
-  <div nz-col nzSpan="8" style="padding-right: 10px !important;">
-    <div nz-row>
-      <div nz-col nzSpan="18">
-        <span style="font-size: 20px; font-weight: 700">Thống kê đơn hàng</span>
-      </div>
-      <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
-        </nz-year-picker>
-      </div>
-      <div nz-col nzSpan="24">
-        <!-- <google-chart [type]="chartOrder.type" [height]="300" style="width: 100%;"
-                    [options]="chartOrder.options" [data]="chartOrder.data">
-                </google-chart> -->
+  <div nz-col nzSpan="6" class="card-box">
+    <div nz-col nzSpan="24">
+      <div class="box-highlight-dashboard">
+        <div class="box-highlight-dashboard-title"> Tổng đơn hàng <small>(tháng)</small>
+        </div>
+        <div class="box-highlight-dashboard-value">
+          <strong>{{dataHighlight.TotalOrder | number}}</strong>
+        </div>
       </div>
     </div>
   </div>
-  <div nz-col nzSpan="8">
-    <div nz-row>
-      <div nz-col nzSpan="18">
-        <span style="font-size: 20px; font-weight: 700">Thống kê doanh thu</span>
+  <div nz-col nzSpan="6" class="card-box">
+    <div nz-col nzSpan="24">
+      <div class="box-highlight-dashboard">
+        <div class="box-highlight-dashboard-title"> Doanh thu <small>(ngày)</small>
+        </div>
+        <div class="box-highlight-dashboard-value">
+          <strong>{{dataHighlight.DailySales | number}} ₫</strong>
+        </div>
       </div>
-      <div nz-col nzSpan="6" class="text-right">
-        <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
-        </nz-year-picker>
-      </div>
-      <div nz-col nzSpan="24">
-        <!-- <google-chart [type]="chartRevenue.type" [height]="300" style="width: 100%;"
-                    [options]="chartRevenue.options" [data]="chartRevenue.data">
-                </google-chart> -->
+    </div>
+  </div>
+  <div nz-col nzSpan="6" class="card-box">
+    <div nz-col nzSpan="24">
+      <div class="box-highlight-dashboard">
+        <div class="box-highlight-dashboard-title"> Doanh thu <small>(tháng)</small>
+        </div>
+        <div class="box-highlight-dashboard-value">
+          <strong>{{dataHighlight.SalesRevenue | number}} ₫</strong>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<div *ngIf="dataHighlight != null" nz-row style="height: fit-content;">
+  <div nz-col nzSpan="8" class="card-box">
+    <div nz-col nzSpan="24" class="card-box-style">
+      <div nz-row>
+        <div nz-col nzSpan="16" class="text-left">
+          <span class="header-card-title">Tình trạng đơn hàng</span>
+        </div>
+        <div nz-col nzSpan="8" class="text-right">
+          <nz-month-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn tháng" nzFormat="MM/yyyy">
+          </nz-month-picker>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col nzSpan="24" style="overflow: hidden; margin: 45px 0 45px 0; height: 210px;">
+          <!-- <google-chart [type]="chartStatus.type" [height]="300"
+                            style="width: calc(100% + 150px);margin-top: -10px;margin-left: -90px;"
+                            [options]="chartStatus.options" [data]="chartStatus.data">
+                        </google-chart> -->
+          <canvas ngChartjs [data]="chartStatus.data" [labels]="chartStatus.labels" [chartType]="chartStatus.type" [colors]="chartStatus.color"
+            [options]="chartStatus.options" [legend]="false">
+          </canvas>
+        </div>
+      </div>
+      <div nz-row style="justify-content: center;">
+        <div nz-col nzSpan="16">
+          <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+            <div class="m-b-0 d-flex align-items-center">
+              <nz-badge nzStatus="default" [nzColor]="'#6bcc21'"></nz-badge>
+              <span style="font-weight: 600; font-size: 16px">Tạo mới</span>
+            </div>
+            <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+            <div class="m-b-0 d-flex align-items-center">
+              <nz-badge nzStatus="default" [nzColor]="'#3ca5ff'"></nz-badge>
+              <span style="font-weight: 600; font-size: 16px">Đã xác nhận</span>
+            </div>
+            <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+            <div class="m-b-0 d-flex align-items-center">
+              <nz-badge nzStatus="default" [nzColor]="'#0097a7'"></nz-badge>
+              <span style="font-weight: 600; font-size: 16px">Đang vận chuyển</span>
+            </div>
+            <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+            <div class="m-b-0 d-flex align-items-center">
+              <nz-badge nzStatus="default" [nzColor]="'#ffa924'"></nz-badge>
+              <span style="font-weight: 600; font-size: 16px">Đã hoàn thành</span>
+            </div>
+            <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
+            <div class="m-b-0 d-flex align-items-center">
+              <nz-badge nzStatus="default" [nzColor]="'#e20606'"></nz-badge>
+              <span style="font-weight: 600; font-size: 16px">Đã hủy</span>
+            </div>
+            <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzSpan="16" class="card-box">
+    <div nz-col nzSpan="24" class="card-box-style">
+      <div nz-row>
+        <div nz-col nzSpan="16" class="text-left">
+          <span class="header-card-title">Thống kê đơn hàng</span>
+        </div>
+        <div nz-col nzSpan="8" class="text-right">
+          <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
+          </nz-year-picker>
+        </div>
+      </div>
+      <div nz-row style="margin-top: 30px;">
+        <div class="m-b-0 d-flex align-items-center" style="margin: 10px 0;">
+          <nz-badge nzStatus="default" [nzColor]="'#3ca5ff'"></nz-badge>
+          <span style="font-weight: 600; font-size: 16px; color: #72849a;">Sản phẩm đã bán</span>
+        </div>
+        <div class="m-b-0 d-flex align-items-center" style="margin-left: 20px;">
+          <nz-badge nzStatus="default" [nzColor]="' #3ca5ac'"></nz-badge>
+          <span style="font-weight: 600; font-size: 16px;color: #72849a;">Số lượng đơn hàng</span>
+        </div>
+      </div>
+      <div nz-row style="margin-top: 30px;">
+        <div nz-col nzSpan="24">
+          <!-- <google-chart [type]="chartOrder.type" [height]="300" style="width: 100%;"
+                        [options]="chartOrder.options" [data]="chartOrder.data">
+                    </google-chart> -->
+          <canvas ngChartjs [height]="300" [datasets]="salesChartData" [labels]="salesChartLabels" [options]="salesChartOptions"
+            [colors]="salesChartColors" [legend]="false" [chartType]="'bar'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="dataHighlight != null" nz-row>
+  <div nz-col nzSpan="16" class="card-box">
+    <div nz-col nzSpan="24" class="card-box-style">
+      <div nz-row>
+        <div nz-col nzSpan="18" class="text-left">
+          <span class="header-card-title">Thống kê doanh thu</span>
+        </div>
+        <div nz-col nzSpan="6" class="text-right">
+          <nz-year-picker (ngModelChange)="date = $event;getData()" [ngModel]="date" nzPlaceHolder="Chọn năm">
+          </nz-year-picker>
+        </div>
+      </div>
+      <div nz-row style="margin-top: 30px;">
+        <div class="revenue-label" style="padding-right: 30px;border-right: 1px solid #edf2f9">
+          <span class="revenue-title">Lợi nhuận</span>
+          <div class="revenue-value">
+            <span class="revanue-value-title">10.000.000đ</span>
+            <span class="revenue-value-tag up">+6.17%</span>
+          </div>
+        </div>
+        <div class="revenue-label" style="padding: 0 30px 0 30px; border-right: 1px solid #edf2f9;">
+          <span class="revenue-title">Bán ra</span>
+          <div class="revenue-value">
+            <span class="revanue-value-title">5.000.000đ</span>
+            <span class="revenue-value-tag down">-16.17%</span>
+          </div>
+        </div>
+        <div class="revenue-label" style="padding-left: 30px;">
+          <span class="revenue-title">Chi phí</span>
+          <div class="revenue-value">
+            <span class="revanue-value-title">2.500.000đ</span>
+            <span class="revenue-value-tag up">+18.19%</span>
+          </div>
+        </div>
+      </div>
+      <div nz-row style="margin-top: 30px;">
+        <div nz-col nzSpan="24">
+          <!-- <google-chart [type]="chartRevenue.type" [height]="300" style="width: 100%;"
+                    [options]="chartRevenue.options" [data]="chartRevenue.data">
+                </google-chart> -->
+          <canvas ngChartjs [height]="290" [datasets]="revenueChartData" [labels]="revenueChartLabels" [options]="revenueChartOptions"
+            [colors]="revenueChartColors" [legend]="false" [chartType]="'line'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div nz-col nzSpan="8" class="card-box">
+    <div nz-col nzSpan="24" class="card-box-style">
+      <div nz-row>
+        <div nz-col nzSpan="16" class="text-left">
+          <span class="header-card-title">Sản phẩm nổi bật</span>
+        </div>
+        <div nz-col nzSpan="8" class="text-right">
+          <button nz-button nzType="default" nzSize="small" routerLink="/admin/san-pham">Xem tất cả</button>
+        </div>
+      </div>
+      <div nz-row style="margin-top: 30px;">
+        <div nz-col nzSpan="24" *ngFor="let product of productsList">
+          <div class="product-wrap">
+            <div class="product-title-wrap">
+              <img class="product-image" [src]="product.ProductImage| pipeHostImage" />
+              <div class="product-title">
+                <span class="product-name-title" (click)="showDetail(product.ProductId)">{{product.ProductName}}</span>
+                <span class="product-category">{{product.MenuName}}</span>
+              </div>
+            </div>
+            <div class="product-tag-up">
+              <span class="product-tag-value-up">{{product.TotalProductBestSeller}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="dataHighlight != null" nz-row>
+  <div nz-col nzSpan="24" class="card-box">
+    <div nz-col nzSpan="24" class="card-box-style">
+      <div nz-row>
+        <div nz-col nzSpan="18" class="text-left">
+          <span class="header-card-title">Khách hàng mua nhiều nhất</span>
+        </div>
+        <div nz-col nzSpan="6" class="text-right">
+          <button nz-button nzType="default" nzSize="small" routerLink="/admin/khach-hang">Xem tất cả</button>
+        </div>
+      </div>
+      <div nz-row class="mt-30px">
+        <div nz-col nzSpan="24">
+          <nz-table #tblData [nzData]="datas">
+            <thead>
+              <tr>
+                <th>Tên khách hàng</th>
+                <th class="text-center">Số điện thoại</th>
+                <th>Email</th>
+                <th>Địa chỉ</th>
+                <th style="width:100px" class="text-left">Tổng cộng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of tblData.data">
+                <td class="no-wrap">{{ data.FullName }}</td>
+                <td class="text-center">{{ data.PhoneNumber }}</td>
+                <td class="no-wrap">{{ data.Email }}</td>
+                <td>{{ data.Address }}</td>
+                <td class="text-left">{{ data.TotalAmountOrder | number}}đ</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-product-detail #frmDetail (onSubmit)="onSubmit($event)"></app-product-detail>
+<ngx-spinner></ngx-spinner>

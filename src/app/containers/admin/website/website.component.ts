@@ -9,18 +9,18 @@ import { WebsiteService } from 'src/app/core/service/website.service';
 @Component({
   selector: 'app-website',
   templateUrl: './website.component.html',
-  styleUrls: ['./website.component.css']
+  styleUrls: ['./website.component.css'],
 })
 export class WebsiteComponent implements OnInit {
   formData!: FormGroup;
-  srcLogo: string = "no_img.jpg";
+  srcLogo: string = 'no_img.jpg';
 
   constructor(
     private websiteService: WebsiteService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -30,39 +30,42 @@ export class WebsiteComponent implements OnInit {
   initForm() {
     this.formData = this.formBuilder.group({
       Id: [0],
-      Name: ["", Validators.required],
+      Name: ['', Validators.required],
       Logo: [this.srcLogo],
-      PhoneNumber: [""],
-      Fax: [""],
-      Email: [""],
-      Address: [""],
-      Location: [""],
-      Facebook: [""],
-      Youtube: [""],
-      Copyright: [""],
+      PhoneNumber: [''],
+      Fax: [''],
+      Email: [''],
+      Address: [''],
+      Location: [''],
+      Facebook: [''],
+      Youtube: [''],
+      Copyright: [''],
     });
   }
 
   getData() {
     this.spinner.show();
-    this.websiteService.get({})
+    this.websiteService
+      .get({})
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp: any) => {
-          let website: Website = JSON.parse(resp["data"]);
+      .subscribe({
+        next: (resp: any) => {
+          let website: Website = JSON.parse(resp['data']);
           this.srcLogo = website.Logo;
           this.formData.patchValue(website);
-        }, (error: any) => {
-          this.messageService.error(error.error.message);
-        })
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   onloadLogo(src: string) {
-    this.formData.get("Logo")?.setValue(src);
+    this.formData.get('Logo')?.setValue(src);
   }
 
   submit() {
@@ -85,13 +88,14 @@ export class WebsiteComponent implements OnInit {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp) => {
-          this.messageService.success("Cập nhật thành công");
-          this.getData()
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Cập nhật thành công');
+          this.getData();
         },
-        (error) => {
-        }
-      );
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

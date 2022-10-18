@@ -58,14 +58,14 @@ export class ProductComponent implements OnInit {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp: any) => {
+      .subscribe({
+        next: (resp: any) => {
           this.datas = JSON.parse(resp['data']);
         },
-        (error) => {
-          this.messageService.error(error.error.message);
-        }
-      );
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   // search(): void {
@@ -82,15 +82,15 @@ export class ProductComponent implements OnInit {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp: any) => {
+      .subscribe({
+        next: (resp: any) => {
           this.messageService.success('Xóa thành công');
           this.getData();
         },
-        (error) => {
-          this.messageService.error(error.error.message);
-        }
-      );
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   addNew() {
@@ -115,16 +115,16 @@ export class ProductComponent implements OnInit {
           this.spinner.hide();
         })
       )
-      .subscribe(
-        (resp: any) => {
+      .subscribe({
+        next: (resp: any) => {
           this.frmDetail.isAddNew = false;
           this.frmDetail.visible = true;
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
-        (error) => {
-          this.messageService.error(error.error.message);
-        }
-      );
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   onSubmit(product: Product) {
@@ -137,16 +137,16 @@ export class ProductComponent implements OnInit {
             this.spinner.hide();
           })
         )
-        .subscribe(
-          (resp: any) => {
+        .subscribe({
+          next: (resp: any) => {
             this.messageService.success('Thêm mới thành công');
             this.frmDetail.visible = false;
             this.getData();
           },
-          (error) => {
-            this.messageService.error(error.error.message);
-          }
-        );
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     } else {
       this.spinner.show();
       this.productService
@@ -156,16 +156,16 @@ export class ProductComponent implements OnInit {
             this.spinner.hide();
           })
         )
-        .subscribe(
-          (resp: any) => {
+        .subscribe({
+          next: (resp: any) => {
             this.messageService.success('Cập nhật thành công');
             this.frmDetail.visible = false;
             this.getData();
           },
-          (error) => {
-            this.messageService.error(error.error.message);
-          }
-        );
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     }
   }
 }

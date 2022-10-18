@@ -9,52 +9,60 @@ import { ReportService } from 'src/app/core/service/report.service';
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  styleUrls: ['./report.component.css'],
 })
 export class ReportComponent implements OnInit {
   datas: Order[] = [];
 
   filter = {
-    keySearch: "",
+    keySearch: '',
     status: null,
-    rangeDate: []
-  }
+    rangeDate: [],
+  };
 
   constructor(
     private reportService: ReportService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
   }
 
   getData() {
-    let fDate: string = "";
-    let tDate: string = "";
+    let fDate: string = '';
+    let tDate: string = '';
 
     if (this.filter.rangeDate != null && this.filter.rangeDate.length == 2) {
-      fDate = moment(new Date(this.filter.rangeDate[0])).format("YYYY-MM-DDTHH:mm:ss")
-      tDate = moment(new Date(this.filter.rangeDate[1])).format("YYYY-MM-DDTHH:mm:ss")
+      fDate = moment(new Date(this.filter.rangeDate[0])).format(
+        'YYYY-MM-DDTHH:mm:ss'
+      );
+      tDate = moment(new Date(this.filter.rangeDate[1])).format(
+        'YYYY-MM-DDTHH:mm:ss'
+      );
     }
 
     this.spinner.show();
-    this.reportService.getGeneralReport({
-      keySearch: this.filter.keySearch,
-      status: this.filter.status ?? -1,
-      fDate,
-      tDate
-    })
+    this.reportService
+      .getGeneralReport({
+        keySearch: this.filter.keySearch,
+        status: this.filter.status ?? -1,
+        fDate,
+        tDate,
+      })
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 }

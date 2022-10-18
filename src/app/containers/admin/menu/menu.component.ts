@@ -9,22 +9,22 @@ import { MenuDetailComponent } from './menu-detail/menu-detail.component';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: MenuDetailComponent
+  @ViewChild('frmDetail', { static: true }) frmDetail!: MenuDetailComponent;
 
   datas: Menu[] = [];
 
   filter = {
-    keySearch: ""
-  }
+    keySearch: '',
+  };
 
   constructor(
     private menuService: MenuService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -32,33 +32,41 @@ export class MenuComponent implements OnInit {
 
   getData() {
     this.spinner.show();
-    this.menuService.getMainMenu(this.filter)
+    this.menuService
+      .getMainMenu(this.filter)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   delete(menu: Menu) {
     this.spinner.show();
-    this.menuService.deleteById(menu.Id)
+    this.menuService
+      .deleteById(menu.Id)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.messageService.success("Xóa thành công");
-        this.getData();
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   addNew() {
@@ -68,7 +76,7 @@ export class MenuComponent implements OnInit {
       Id: 0,
       Active: true,
       Index: 1,
-      ShowHomePage: true
+      ShowHomePage: true,
     });
   }
 
@@ -80,37 +88,44 @@ export class MenuComponent implements OnInit {
 
   onSubmit(menu: Menu) {
     if (this.frmDetail.isAddNew) {
-      menu.Group = "main";
+      menu.Group = 'main';
       this.spinner.show();
-      this.menuService.post(menu)
+      this.menuService
+        .post(menu)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Thêm mới thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
-    }
-    else {
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Thêm mới thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
+    } else {
       this.spinner.show();
-      this.menuService.put(menu.Id, menu)
+      this.menuService
+        .put(menu.Id, menu)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Cập nhật thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     }
   }
 }

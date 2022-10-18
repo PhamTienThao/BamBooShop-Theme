@@ -42,10 +42,16 @@ export class ForgotPasswordComponent implements OnInit {
       .forgotPassword(this.formData.getRawValue().Email)
       .subscribe({
         next: (resp: any) => {
-          this.toastrService.success('Request completed. Please check your email.',"",{positionClass :'toast-bottom-right'});
+          this.toastrService.success(
+            'Request completed. Please check your email.',
+            '',
+            { positionClass: 'toast-bottom-right' }
+          );
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }

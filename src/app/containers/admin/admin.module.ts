@@ -50,7 +50,7 @@ import { CustomerDetailComponent } from './customer/customer-detail/customer-det
 import { EmailRegistrationComponent } from './email-registration/email-registration.component';
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import { NgChartjsModule } from 'ng-chartjs';
 registerLocaleData(en);
 
 // export const customCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -215,6 +215,7 @@ const routes: Routes = [
     DENgZorroAntdModule,
     AngularEditorModule,
     //GoogleChartsModule
+    NgChartjsModule,
   ],
   providers: [
     AuthGuardAdminService,

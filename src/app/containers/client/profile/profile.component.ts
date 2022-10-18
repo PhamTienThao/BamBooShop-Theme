@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     private customerService: CustomerService,
     private toastrService: ToastrService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
@@ -51,11 +51,12 @@ export class ProfileComponent implements OnInit {
       NewPassword: [null, [Validators.required, Validators.minLength(5)]],
       ConfirmPassword: [null, [Validators.required, Validators.minLength(5)]],
     });
-    let isSocial = localStorage.getItem(Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN);
-    if(isSocial!= null && isSocial != "" && isSocial=="true")
-    {
+    let isSocial = localStorage.getItem(
+      Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN
+    );
+    if (isSocial != null && isSocial != '' && isSocial == 'true') {
       this.isSocialNetworkAccount = true;
-    }else this.isSocialNetworkAccount = false;
+    } else this.isSocialNetworkAccount = false;
     this.getProfile();
     this.getOrders();
   }
@@ -69,7 +70,7 @@ export class ProfileComponent implements OnInit {
         );
         this.formData.patchValue(this.profile);
       },
-      error: (err: any) => { },
+      error: (err: any) => {},
     });
   }
 
@@ -78,7 +79,7 @@ export class ProfileComponent implements OnInit {
       next: (resp: any) => {
         this.orders = JSON.parse(resp['data']);
       },
-      error: (err: any) => { },
+      error: (err: any) => {},
     });
   }
 
@@ -103,11 +104,15 @@ export class ProfileComponent implements OnInit {
 
     this.customerService.updateProfile(dataPost).subscribe({
       next: (resp: any) => {
-        this.toastrService.success('Update Done',"",{positionClass :'toast-bottom-right'});
+        this.toastrService.success('Update Done', '', {
+          positionClass: 'toast-bottom-right',
+        });
         this.getProfile();
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -129,16 +134,23 @@ export class ProfileComponent implements OnInit {
       .changePassword(dataPost['OldPassword'], dataPost['NewPassword'])
       .subscribe({
         next: (resp: any) => {
-          this.toastrService.success('Update Done',"",{positionClass :'toast-bottom-right'});
+          this.toastrService.success('Update Done', '', {
+            positionClass: 'toast-bottom-right',
+          });
           this.formChangePassword.reset();
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message,"",{positionClass :'toast-bottom-right'});
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }
   rePasswordChange() {
-    if (this.formChangePassword.get('NewPassword')?.value == this.formChangePassword.get('ConfirmPassword')?.value)
+    if (
+      this.formChangePassword.get('NewPassword')?.value ==
+      this.formChangePassword.get('ConfirmPassword')?.value
+    )
       this.isConfirmPasswordRight = true;
     else this.isConfirmPasswordRight = false;
   }

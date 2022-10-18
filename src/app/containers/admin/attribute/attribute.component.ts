@@ -9,22 +9,23 @@ import { AttributeDetailComponent } from './attribute-detail/attribute-detail.co
 @Component({
   selector: 'app-attribute',
   templateUrl: './attribute.component.html',
-  styleUrls: ['./attribute.component.css']
+  styleUrls: ['./attribute.component.css'],
 })
 export class AttributeComponent implements OnInit {
-  @ViewChild("frmDetail", { static: true }) frmDetail!: AttributeDetailComponent
+  @ViewChild('frmDetail', { static: true })
+  frmDetail!: AttributeDetailComponent;
 
   datas: Attribute[] = [];
 
   filter = {
-    keySearch: ""
-  }
+    keySearch: '',
+  };
 
   constructor(
     private attributeService: AttributeService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -32,40 +33,48 @@ export class AttributeComponent implements OnInit {
 
   getData() {
     this.spinner.show();
-    this.attributeService.get(this.filter)
+    this.attributeService
+      .get(this.filter)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.datas = JSON.parse(resp["data"]);
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.datas = JSON.parse(resp['data']);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   delete(attribute: Attribute) {
     this.spinner.show();
-    this.attributeService.deleteById(attribute.Id)
+    this.attributeService
+      .deleteById(attribute.Id)
       .pipe(
         finalize(() => {
           this.spinner.hide();
         })
       )
-      .subscribe((resp: any) => {
-        this.messageService.success("Xóa thành công");
-        this.getData();
-      }, error => {
-        this.messageService.error(error.error.message);
-      })
+      .subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
   }
 
   addNew() {
     this.frmDetail.isAddNew = true;
     this.frmDetail.visible = true;
     this.frmDetail.setForm({
-      Id: 0
+      Id: 0,
     });
   }
 
@@ -78,35 +87,42 @@ export class AttributeComponent implements OnInit {
   onSubmit(attribute: Attribute) {
     if (this.frmDetail.isAddNew) {
       this.spinner.show();
-      this.attributeService.post(attribute)
+      this.attributeService
+        .post(attribute)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Thêm mới thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
-    }
-    else {
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Thêm mới thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
+    } else {
       this.spinner.show();
-      this.attributeService.put(attribute.Id, attribute)
+      this.attributeService
+        .put(attribute.Id, attribute)
         .pipe(
           finalize(() => {
             this.spinner.hide();
           })
         )
-        .subscribe((resp: any) => {
-          this.messageService.success("Cập nhật thành công");
-          this.getData();
-          this.frmDetail.visible = false;
-        }, error => {
-          this.messageService.error(error.error.message);
-        })
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Cập nhật thành công');
+            this.getData();
+            this.frmDetail.visible = false;
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
     }
   }
 }

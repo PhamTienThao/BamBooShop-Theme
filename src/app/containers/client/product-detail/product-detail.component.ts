@@ -89,7 +89,9 @@ export class ProductDetailComponent implements OnInit {
         console.log(this.product.RateAvg);
       },
       error: (err: any) => {
-        this.toastrService.error('Thông tin sản phẩm không khả dụng',"",{positionClass :'toast-bottom-right'});
+        this.toastrService.error('Thông tin sản phẩm không khả dụng', '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -110,7 +112,9 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.toastrService.error('Số lượng sản phẩm không hợp lệ',"",{positionClass :'toast-bottom-right'});
+      this.toastrService.error('Số lượng sản phẩm không hợp lệ', '', {
+        positionClass: 'toast-bottom-right',
+      });
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {
@@ -131,13 +135,19 @@ export class ProductDetailComponent implements OnInit {
       }
     }
     //fix bug product qty when add to cart
-    this.toastrService.success(`Đã thêm ${this.product.Name} vào giỏ hàng`,"",{positionClass :'toast-bottom-right'});
+    this.toastrService.success(
+      `Đã thêm ${this.product.Name} vào giỏ hàng`,
+      '',
+      { positionClass: 'toast-bottom-right' }
+    );
     this.cartService.addProductToCart(this.product, this.qty);
   }
 
   buyNow() {
     if (this.qty > this.product.Quantity || this.qty < 1) {
-      this.toastrService.error('Số lượng sản phẩm không hợp lệ',"",{positionClass :'toast-bottom-right'});
+      this.toastrService.error('Số lượng sản phẩm không hợp lệ', '', {
+        positionClass: 'toast-bottom-right',
+      });
       return;
     }
     if (this.product.Attributes != null && this.product.Attributes.length > 0) {

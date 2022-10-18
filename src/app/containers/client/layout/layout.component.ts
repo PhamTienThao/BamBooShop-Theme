@@ -52,7 +52,7 @@ export class LayoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.formRegistration = this.formBuilder.group({
@@ -84,7 +84,7 @@ export class LayoutComponent implements OnInit {
     let a = document.getElementById(menuAlias);
     if (a != null) {
       if (a.style.display == 'none') a.style.display = 'inline-grid';
-      else a.style.display = 'none'
+      else a.style.display = 'none';
     }
   }
   getWebsiteInfo() {
@@ -93,7 +93,9 @@ export class LayoutComponent implements OnInit {
         this.website = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        this.toastrService.error('Error loading Website information', "", { positionClass: 'toast-bottom-right' });
+        this.toastrService.error('Error loading Website information', '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -104,7 +106,9 @@ export class LayoutComponent implements OnInit {
         this.mainMenus = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message, "", { positionClass: 'toast-bottom-right' })
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -115,7 +119,9 @@ export class LayoutComponent implements OnInit {
         this.subMenus = JSON.parse(resp['data']);
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message, "", { positionClass: 'toast-bottom-right' })
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -127,7 +133,9 @@ export class LayoutComponent implements OnInit {
         this.subBanner = datas.filter((x) => x.Type == 2);
       },
       error: (err: any) => {
-        this.toastrService.error(err.error.message, "", { positionClass: 'toast-bottom-right' });
+        this.toastrService.error(err.error.message, '', {
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
@@ -152,27 +160,34 @@ export class LayoutComponent implements OnInit {
       .post(this.formRegistration.getRawValue())
       .subscribe({
         next: (resp: any) => {
-          this.toastrService.success('Đăng ký thành công.', "", { positionClass: 'toast-bottom-right' });
+          this.toastrService.success('Đăng ký thành công.', '', {
+            positionClass: 'toast-bottom-right',
+          });
           this.formRegistration.reset();
         },
         error: (err: any) => {
-          this.toastrService.error(err.error.message, "", { positionClass: 'toast-bottom-right' });
+          this.toastrService.error(err.error.message, '', {
+            positionClass: 'toast-bottom-right',
+          });
         },
       });
   }
 
   search() {
-    debugger
+    debugger;
     if (this.keySearch != null && this.keySearch != '') {
       //this.navigate('/tim-kiem/' + encodeURIComponent(this.keySearch));
-      this.navigate('/tim-kiem/' + DataHelper.unsign(this.keySearch))
+      this.navigate('/tim-kiem/' + DataHelper.unsign(this.keySearch));
     }
   }
-  getAutoSearchData(event : any) {
+  getAutoSearchData(event: any) {
     this.productService.searchAutoFill(event).subscribe({
       next: (data: any) => {
-        if (data.data != null) this.options = JSON.parse(data["data"]);
-      }, error: (err: any) => { this.options = [] }
+        if (data.data != null) this.options = JSON.parse(data['data']);
+      },
+      error: (err: any) => {
+        this.options = [];
+      },
     });
   }
   navigate(path: any): void {

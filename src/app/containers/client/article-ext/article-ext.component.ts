@@ -6,11 +6,12 @@ import { ArticleService } from 'src/app/core/service/article.service';
 @Component({
   selector: 'app-article-ext',
   templateUrl: './article-ext.component.html',
-  styleUrls: ['./article-ext.component.css']
+  styleUrls: ['./article-ext.component.css'],
 })
 export class ArticleExtComponent implements OnInit {
-  articleAlias: string = "";
+  articleAlias: string = '';
   article!: Article;
+  messageService: any;
 
   constructor(
     private articleService: ArticleService,
@@ -31,11 +32,13 @@ export class ArticleExtComponent implements OnInit {
   }
 
   getData() {
-    this.articleService.getByAlias(this.articleAlias)
-      .subscribe((resp: any) => {
-        this.article = JSON.parse(resp["data"])
-      }, error => {
-
-      })
+    this.articleService.getByAlias(this.articleAlias).subscribe({
+      next: (resp: any) => {
+        this.article = JSON.parse(resp['data']);
+      },
+      error: (err) => {
+        this.messageService.error(err);
+      },
+    });
   }
 }
