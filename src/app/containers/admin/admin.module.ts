@@ -51,6 +51,7 @@ import { EmailRegistrationComponent } from './email-registration/email-registrat
 import { ArticleDetailComponent } from './article/article-detail/article-detail.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgChartjsModule } from 'ng-chartjs';
+import { NgxEchartsModule } from 'ngx-echarts';
 registerLocaleData(en);
 
 // export const customCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -211,11 +212,17 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    //NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     DENgZorroAntdModule,
     AngularEditorModule,
-    //GoogleChartsModule
     NgChartjsModule,
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    }),
   ],
   providers: [
     AuthGuardAdminService,

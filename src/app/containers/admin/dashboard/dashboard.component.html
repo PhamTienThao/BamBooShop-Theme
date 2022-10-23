@@ -57,17 +57,11 @@
         </div>
       </div>
       <div nz-row>
-        <div nz-col nzSpan="24" style="overflow: hidden; margin: 45px 0 45px 0; height: 210px;">
-          <!-- <google-chart [type]="chartStatus.type" [height]="300"
-                            style="width: calc(100% + 150px);margin-top: -10px;margin-left: -90px;"
-                            [options]="chartStatus.options" [data]="chartStatus.data">
-                        </google-chart> -->
-          <canvas ngChartjs [data]="chartStatus.data" [labels]="chartStatus.labels" [chartType]="chartStatus.type" [colors]="chartStatus.color"
-            [options]="chartStatus.options" [legend]="false">
-          </canvas>
+        <div nz-col nzSpan="24" style="overflow: hidden;">
+          <div echarts [options]="pieChartOption" class="demo-chart"></div>
         </div>
       </div>
-      <div nz-row style="justify-content: center;">
+      <!-- <div nz-row style="justify-content: center;">
         <div nz-col nzSpan="16">
           <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 10px;">
             <div class="m-b-0 d-flex align-items-center">
@@ -105,7 +99,7 @@
             <span class="m-b-0" style="font-weight: 600; font-size: 16px">350</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div nz-col nzSpan="16" class="card-box">
@@ -129,14 +123,9 @@
           <span style="font-weight: 600; font-size: 16px;color: #72849a;">Số lượng đơn hàng</span>
         </div>
       </div>
-      <div nz-row style="margin-top: 30px;">
-        <div nz-col nzSpan="24">
-          <!-- <google-chart [type]="chartOrder.type" [height]="300" style="width: 100%;"
-                        [options]="chartOrder.options" [data]="chartOrder.data">
-                    </google-chart> -->
-          <canvas ngChartjs [height]="300" [datasets]="salesChartData" [labels]="salesChartLabels" [options]="salesChartOptions"
-            [colors]="salesChartColors" [legend]="false" [chartType]="'bar'">
-          </canvas>
+      <div nz-row>
+        <div nz-col nzSpan="24" style="overflow: hidden;">
+          <div echarts [options]="barChartOption"></div>
         </div>
       </div>
     </div>
@@ -155,7 +144,7 @@
         </div>
       </div>
       <div nz-row style="margin-top: 30px;">
-        <div class="revenue-label" style="padding-right: 30px;border-right: 1px solid #edf2f9">
+        <div class="revenue-label" style="padding: 0 30px;border-right: 1px solid #edf2f9">
           <span class="revenue-title">Lợi nhuận</span>
           <div class="revenue-value">
             <span class="revanue-value-title">10.000.000đ</span>
@@ -177,14 +166,9 @@
           </div>
         </div>
       </div>
-      <div nz-row style="margin-top: 30px;">
+      <div nz-row>
         <div nz-col nzSpan="24">
-          <!-- <google-chart [type]="chartRevenue.type" [height]="300" style="width: 100%;"
-                    [options]="chartRevenue.options" [data]="chartRevenue.data">
-                </google-chart> -->
-          <canvas ngChartjs [height]="290" [datasets]="revenueChartData" [labels]="revenueChartLabels" [options]="revenueChartOptions"
-            [colors]="revenueChartColors" [legend]="false" [chartType]="'line'">
-          </canvas>
+          <div echarts [options]="lineChartOption"></div>
         </div>
       </div>
     </div>
