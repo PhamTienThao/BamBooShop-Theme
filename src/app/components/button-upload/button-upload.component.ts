@@ -14,7 +14,8 @@ export class ButtonUploadComponent implements OnInit {
   @ViewChild('inpFile', { static: true }) inpFileElement!: ElementRef;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   chooseFile() {
     this.inpFileElement.nativeElement.click()

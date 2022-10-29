@@ -41,15 +41,21 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Tên sản phẩm" [(ngModel)]="filter.keySearch">
+          <input type="text" nz-input placeholder="Tên sản phẩm"  [(ngModel)]="filter.keySearch" 
+          (ngModelChange)="searchProduct()">
         </nz-input-group>
         <ng-template #prefixTemplate>
-          <i nz-icon nzType="search" class="opacity-05"></i>
+          <i nz-icon nzType="search" class="opacity-05" (click)="searchProduct()"></i>
         </ng-template>
       </div>
       <div class="select-product">
-        <nz-select [(ngModel)]="filter.menuId" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Danh mục">
+        <nz-select [(ngModel)]="filter.menuId" (ngModelChange)="getData()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Danh mục">
           <nz-option *ngFor="let item of menus" [nzValue]="item.Id" [nzLabel]="item.ParentMenu == null?item.Name:' &emsp;__'+item.Name"></nz-option>
+        </nz-select>
+      </div>
+      <div class="high-light-product">
+        <nz-select [(ngModel)]="filter.highLight" (ngModelChange)="searchProduct()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Nổi bật">
+          <nz-option *ngFor="let item of highLightProductStatus" [nzValue]="item.value" [nzLabel]="item.display"></nz-option>
         </nz-select>
       </div>
     </div>
@@ -61,7 +67,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12">
       <thead>
         <tr>
           <th class="text-center">Hình ảnh</th>

@@ -1,4 +1,4 @@
-<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="'70%'" [nzVisible]="visible"
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" [nzMaskClosable]="false" [nzWidth]="'80%'" [nzVisible]="visible"
   [nzTitle]="isAddNew?'Thêm mới':'Thông tin chi tiết'" [nzFooter]="footerTpl" (nzOnClose)="close()">
   <form nz-form *nzDrawerContent nzLayout="vertical" [formGroup]="formData" (ngSubmit)="submit()">
     <div nz-row>
@@ -15,7 +15,7 @@
           </div>
           <div nz-col nzSpan="24">
             <div class="clearfix">
-              <nz-upload nzListType="picture-card" [(nzFileList)]="fileList">
+              <nz-upload nzListType="picture-card" [(nzFileList)]="fileList" nzAccept=".jpg, .png, .jpeg, .gif, .bmp|image/*">
                 <div>
                   <i nz-icon nzType="plus"></i>
                   <div style="margin-top: 8px">Thêm ảnh</div>
@@ -67,6 +67,14 @@
               </nz-form-control>
             </nz-form-item>
           </div>
+        </div>
+        <div>
+          <nz-form-item>
+            <nz-form-label nzRequired>Link ảnh: >><a [href]="srcCloudImg" target="_blank" rel="noopener noreferrer">Click here</a>  </nz-form-label>
+            <nz-form-control nzErrorTip="Không được để trống!">
+              <input currencyMask nz-input nzSize="small" formControlName="ImageCloudLink" />
+            </nz-form-control>
+          </nz-form-item>
         </div>
         <div nz-row>
           <div nz-col nzSpan="12">

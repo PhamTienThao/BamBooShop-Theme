@@ -45,8 +45,8 @@ export class ProductDetailComponent implements OnInit {
   formData!: FormGroup;
   visible = false;
   srcImage: string = 'no_img.jpg';
+  srcCloudImg: string = '';
   fileList: NzUploadFile[] = [];
-
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -79,6 +79,7 @@ export class ProductDetailComponent implements OnInit {
       Selling: [true],
       ShortDescription: [''],
       Description: [''],
+      ImageCloudLink: [{ value: '', disabled: true }],
       ProductRelateds: [[]],
       ProductAttributes: this.formBuilder.array([]),
       //hmtien add 26/8
@@ -96,6 +97,8 @@ export class ProductDetailComponent implements OnInit {
     this.ProductAttributes.clear();
     this.fileList = [];
     this.srcImage = product.Image;
+    this.srcCloudImg = product.ImageCloudLink;
+    if(this.srcCloudImg != null && this.srcCloudImg.length > 0) this.srcImage = this.srcCloudImg;
     this.formData.patchValue(product);
 
     if (
@@ -105,11 +108,16 @@ export class ProductDetailComponent implements OnInit {
     ) {
       this.fileList = product.ProductImages.map(
         (x: ProductImage, i: number) => {
+          debugger
+          var imgUrl = '';
+          if(x.ImageCloudLink != null && x.ImageCloudLink.length > 0) 
+            imgUrl = x.ImageCloudLink;
+          else imgUrl = environment.hostImage + x.Image;
           return {
             uid: i.toString(),
             name: i.toString(),
             status: 'done',
-            url: environment.hostImage + x.Image,
+            url: imgUrl,
           };
         }
       );
@@ -228,15 +236,15 @@ export class ProductDetailComponent implements OnInit {
 
       dataForm.ProductAttributes = productAttributes;
     }
-
-    let productImages: ProductImage[] = this.fileList.map((x) => {
+    let productImages: ProductImage[] = this.fileList.map(x => {
       return {
         Id: 0,
         ProductId: 0,
         Image: x.thumbUrl ?? x.url?.toString().split('/').pop() ?? '',
+        ImageCloudLink: '',
       };
     });
-
+    console.log(productImages)
     dataForm.ProductImages = productImages;
 
     if (dataForm.ProductRelateds != null) {

@@ -17,13 +17,16 @@ export class ProductComponent implements OnInit {
   @ViewChild('frmDetail', { static: true }) frmDetail!: ProductDetailComponent;
 
   datas: Product[] = [];
+  filterDatas: Product[] = [];
   menus: Menu[] = [];
   // searchInput: any;
-  // displayData: any = [];
+  highLightProductStatus= [{value: true, display: 'Nổi bật'},
+                {value: false, display: 'Không nổi bật'}];
 
   filter = {
     keySearch: '',
     menuId: null,
+    highLight: null
   };
 
   constructor(
@@ -45,12 +48,12 @@ export class ProductComponent implements OnInit {
       this.menus = JSON.parse(resp['data']);
     });
   }
-
+  
   getData() {
     this.spinner.show();
     this.productService
       .get({
-        keySearch: this.filter.keySearch,
+        keySearch: '',
         menuId: this.filter.menuId ?? '',
       })
       .pipe(
@@ -61,18 +64,39 @@ export class ProductComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.datas = JSON.parse(resp['data']);
+          this.filterDatas = this.datas;
+          this.searchProduct();
         },
-        error: (err) => {
-          this.messageService.error(err);
-        },
-      });
+        error: (error) => {
+          this.messageService.error(error.error.message);
+        }}
+      );
   }
 
   // search(): void {
   //   const data = this.datas;
   //   this.displayData = this.tableSvc.search(this.searchInput, data);
   // }
-
+  searchProduct(){
+    var keySearch = this.filter.keySearch.toLowerCase();
+    if(this.filter.highLight!==null){
+      this.filterDatas = this.datas.filter(x => x.Selling == this.filter.highLight)
+      this.filterDatas = this.filterDatas.filter(x => x.Name.toLowerCase().includes(keySearch) 
+                                            || x.Alias.toLowerCase().includes(keySearch) 
+                                            || x.Price.toString().toLowerCase().includes(keySearch) )
+    }
+    else {
+      this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch) 
+      || x.Alias.toLowerCase().includes(keySearch) 
+      || x.Price.toString().toLowerCase().includes(keySearch) )
+    }
+  }
+  changeMenuItem(){
+    this.getData();
+    debugger
+    this.searchProduct();
+    console.log(this.filterDatas)
+  }
   delete(product: Product) {
     this.spinner.show();
     this.productService

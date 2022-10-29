@@ -20,7 +20,7 @@ export interface Product {
   Description: string;
   //hmtien add 26/7
   Quantity: number;
-
+  ImageCloudLink: string;
   ProductImages: ProductImage[];
   ProductRelateds: ProductRelated[];
   ProductAttributes: ProductAttribute[];

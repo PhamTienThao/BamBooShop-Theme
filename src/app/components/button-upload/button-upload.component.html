@@ -1,3 +1,7 @@
+<!-- <img *ngIf="srcCloud !=''; else noCloudSrc" class="img-upload" nz-image [nzSrc]="srcCloud" alt="" />
+<ng-template #noCloudSrc>
+    <img class="img-upload" nz-image [nzSrc]="srcDefault | pipeHostImage" alt="" />
+</ng-template> -->
 <img class="img-upload" nz-image [nzSrc]="srcDefault | pipeHostImage" alt="" />
 <div class="text-center">
     <button nz-button (click)="chooseFile()" type="button" class="ant-btn ant-btn-success" nzSize="small">

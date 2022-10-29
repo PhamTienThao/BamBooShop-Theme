@@ -192,7 +192,7 @@ export class DashboardComponent implements OnInit {
         name: 'Evaporation',
         type: 'bar',
         tooltip: {
-          valueFormatter: function (value) {
+          valueFormatter: function (value: any) {
             return value + ' ml';
           },
         },
@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit {
         name: 'Precipitation',
         type: 'bar',
         tooltip: {
-          valueFormatter: function (value) {
+          valueFormatter: function (value: any) {
             return value + ' ml';
           },
         },
