@@ -48,7 +48,14 @@ export class ProductComponent implements OnInit {
       this.menus = JSON.parse(resp['data']);
     });
   }
-  
+  reload(){
+    this.filter = {
+      keySearch: '',
+      menuId: null,
+      highLight: null
+    };
+    this.getData();
+  }
   getData() {
     this.spinner.show();
     this.productService

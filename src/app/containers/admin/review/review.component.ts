@@ -15,7 +15,7 @@ export class ReviewComponent implements OnInit {
   @ViewChild('frmDetail', { static: true }) frmDetail!: ReviewDetailComponent;
 
   datas: Review[] = [];
-
+  displayData: Review[] = [];
   filter = {
     keySearch: '',
     status: null,
@@ -25,12 +25,18 @@ export class ReviewComponent implements OnInit {
     private reviewService: ReviewService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getData();
   }
-
+  reload() {
+    this.filter = {
+      keySearch: '',
+      status: null,
+    };
+    this.getData();
+  }
   getData() {
     this.spinner.show();
     this.reviewService
@@ -46,6 +52,7 @@ export class ReviewComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.datas = JSON.parse(resp['data']);
+          this.displayData = this.datas;
         },
         error: (err) => {
           this.messageService.error(err);
@@ -77,5 +84,21 @@ export class ReviewComponent implements OnInit {
           this.messageService.error(err);
         },
       });
+  }
+
+  filterChange() {
+    var keySearch = this.filter.keySearch.toLowerCase()
+    if (this.filter.status == null) {
+      this.displayData = this.datas.filter(x => x.Product?.Name.toLowerCase().includes(keySearch)
+        || x.Product?.Alias.toLowerCase().includes(keySearch)
+        || x.CreatedBy?.toLowerCase().includes(keySearch))
+    }
+    else {
+      this.displayData = this.datas.filter(d => d.Status == this.filter.status);
+      this.displayData = this.displayData.filter(d => d.Product?.Name.toLowerCase().includes(keySearch)
+        || d.Product?.Alias.toLowerCase().includes(keySearch)
+        || d.CreatedBy?.toLowerCase().includes(keySearch))
+    }
+
   }
 }

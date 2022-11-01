@@ -60,6 +60,12 @@
       </div>
     </div>
     <div class="add-product-wrap">
+      <button (click)="reload()" nz-button nzType="primary" class="add-product">
+        <i nz-icon nzType="sync" theme="outline"></i>
+        <span>Làm mới</span>
+      </button>
+    </div>
+    <div class="add-product-wrap">
       <button (click)="addNew()" nz-button nzType="primary" class="add-product">
         <i nz-icon nzType="plus-circle" theme="outline"></i>
         <span>Thêm mới</span>

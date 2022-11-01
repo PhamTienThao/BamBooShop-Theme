@@ -28,7 +28,7 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Tiêu đề, danh mục" [(ngModel)]="filter.keySearch">
+          <input type="text" nz-input placeholder="Tiêu đề, danh mục" [(ngModel)]="filter.keySearch" (ngModelChange)="getData()">
         </nz-input-group>
         <ng-template #prefixTemplate>
           <i nz-icon nzType="search" class="opacity-05"></i>

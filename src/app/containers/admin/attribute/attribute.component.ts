@@ -16,7 +16,7 @@ export class AttributeComponent implements OnInit {
   frmDetail!: AttributeDetailComponent;
 
   datas: Attribute[] = [];
-
+  
   filter = {
     keySearch: '',
   };
