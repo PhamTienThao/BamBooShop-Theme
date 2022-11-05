@@ -23,6 +23,7 @@
     "@kolkov/angular-editor": "^3.0.0-beta.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.11.6",
+    "@swimlane/ngx-datatable": "^20.1.0",
     "angularx-social-login": "^4.1.0",
     "chart.js": "^3.9.1",
     "creditcardpayments": "^1.0.3",

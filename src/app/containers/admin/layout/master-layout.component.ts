@@ -133,7 +133,12 @@ export class MasterLayoutComponent implements OnInit {
         {
           sub_nav: '/admin/tai-khoan-quan-tri',
           sub_title: 'Tài khoản quản trị',
-        }]
+        },
+        {
+          sub_nav: '/admin/table',
+          sub_title: 'Table',
+        }
+      ]
     },];
 
   ngOnInit() {

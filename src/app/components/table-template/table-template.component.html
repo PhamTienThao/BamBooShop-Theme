@@ -1,0 +1,32 @@
+<div class="send-request">
+    <!-- <button nz-button nzType="primary" [disabled]="setOfCheckedId.size === 0" [nzLoading]="loading"
+        (click)="sendRequest()">
+        Send Request
+    </button> -->
+    <span>Selected {{ setOfCheckedId.size }} items</span>
+</div>
+<nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData"  nzTableLayout="fixed"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+    <thead>
+        <tr>
+            <th [nzChecked]="checked" [nzIndeterminate]="indeterminate"  width="40px" (nzCheckedChange)="onAllChecked($event)"></th>
+            <th *ngFor="let item of columnsTable" width="{{item.width}}" [(nzSortOrder)]="item.sortOrder"
+                [nzSortFn]="item.sortFn" [nzFilters]="item.listOfFilter" [nzFilterFn]="item.filterFn"> {{item.name}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of  rowSelectionTable.data">
+            <td [nzChecked]="setOfCheckedId.has(data.id)" [nzDisabled]="data.disabled"
+                (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+            <th *ngFor="let item of columnsTable" class="text-center">
+                <div *ngIf=" item.type == 'image'; else notImage">
+                    <img [src]="data.Image | sharePipeHostImage" alt="" class="img-product">
+                </div>
+                <ng-template #notImage>
+                    {{item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop]}}
+                </ng-template>
+            </th>
+        </tr>
+    </tbody>
+</nz-table>

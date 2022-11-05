@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { Menu } from 'src/app/core/model/menu';
 import { Product } from 'src/app/core/model/product';
 import { MenuService } from 'src/app/core/service/menu.service';
@@ -18,10 +18,85 @@ export class ProductComponent implements OnInit {
 
   datas: Product[] = [];
   filterDatas: Product[] = [];
+  menuData : any;
+  dataColumns = 
+  [
+    {
+      name: 'Hình ảnh',
+      prop: 'Image',
+      type: 'image',
+      sortOrder: null,
+    },
+    {
+      name: 'Tên hàng',
+      prop: 'Name',
+      type: 'text',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.name.localeCompare(b.name),
+      // listOfFilter: [
+      //   { text: 'laptop', value: 'a' },
+      //   { text: 'Jim', value: 'HMTien' }
+      // ],
+      filterFn: (list: string[], item: any) => list.some(name => item.Name.indexOf(name) !== -1)
+    },
+    {
+      name: 'Danh mục',
+      prop: 'Menu',
+      _subprop: 'Name',
+      type: 'text',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.Menu?.Name.localeCompare(b.Menu?.Name),
+      filterFn: (list: string[], item: any) => list.some(name => item.Menu?.Name.indexOf(name) !== -1)
+    },
+    {
+      name: 'Giá niêm yết',
+      prop: 'Price',
+      type: 'number',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.Price - b.Price,
+    },
+    {
+      name: 'Giá bán',
+      prop: 'DiscountPrice',
+      type: 'number',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.DiscountPrice - b.DiscountPrice,
+    },
+    {
+      name: 'Nổi bật',
+      prop: 'Selling',
+      type: 'bool',
+      listOfFilter: [
+        { text: 'True', value: true },
+        { text: 'False', value: false }
+      ],
+      filterFn: (list: string[], item: any) => list.some(name => item.Selling == name)
+    },
+    {
+      name: 'Trạng thái',
+      prop: 'Status',
+      type: 'number',
+      sortOrder: null,
+    },
+    {
+      name: 'Thứ tự',
+      prop: 'Index',
+      type: 'number',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.Index - b.Index,
+    },
+    {
+      name: 'Số lượng',
+      prop: 'Quantity',
+      type: 'number',
+      sortOrder: null,
+      sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
+    }
+  ];
   menus: Menu[] = [];
   // searchInput: any;
-  highLightProductStatus= [{value: true, display: 'Nổi bật'},
-                {value: false, display: 'Không nổi bật'}];
+  highLightProductStatus = [{ value: true, display: 'Nổi bật' },
+  { value: false, display: 'Không nổi bật' }];
 
   filter = {
     keySearch: '',
@@ -48,7 +123,7 @@ export class ProductComponent implements OnInit {
       this.menus = JSON.parse(resp['data']);
     });
   }
-  reload(){
+  reload() {
     this.filter = {
       keySearch: '',
       menuId: null,
@@ -76,7 +151,8 @@ export class ProductComponent implements OnInit {
         },
         error: (error) => {
           this.messageService.error(error.error.message);
-        }}
+        }
+      }
       );
   }
 
@@ -84,21 +160,21 @@ export class ProductComponent implements OnInit {
   //   const data = this.datas;
   //   this.displayData = this.tableSvc.search(this.searchInput, data);
   // }
-  searchProduct(){
+  searchProduct() {
     var keySearch = this.filter.keySearch.toLowerCase();
-    if(this.filter.highLight!==null){
+    if (this.filter.highLight !== null) {
       this.filterDatas = this.datas.filter(x => x.Selling == this.filter.highLight)
-      this.filterDatas = this.filterDatas.filter(x => x.Name.toLowerCase().includes(keySearch) 
-                                            || x.Alias.toLowerCase().includes(keySearch) 
-                                            || x.Price.toString().toLowerCase().includes(keySearch) )
+      this.filterDatas = this.filterDatas.filter(x => x.Name.toLowerCase().includes(keySearch)
+        || x.Alias.toLowerCase().includes(keySearch)
+        || x.Price.toString().toLowerCase().includes(keySearch))
     }
     else {
-      this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch) 
-      || x.Alias.toLowerCase().includes(keySearch) 
-      || x.Price.toString().toLowerCase().includes(keySearch) )
+      this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch)
+        || x.Alias.toLowerCase().includes(keySearch)
+        || x.Price.toString().toLowerCase().includes(keySearch))
     }
   }
-  changeMenuItem(){
+  changeMenuItem() {
     this.getData();
     debugger
     this.searchProduct();

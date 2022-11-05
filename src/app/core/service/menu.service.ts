@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AppRoutingApi } from 'src/app/app-routing-api';
+import { Menu } from '../model/menu';
 import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService extends BaseService {
+  private _menus = new BehaviorSubject<Menu[]>([]);
+  private dataStore: { menus: any } = { menus: [] };
+  readonly menus = this._menus.asObservable();
+
   constructor(public override http: HttpClient) {
     super(http, AppRoutingApi.Menu.Router_Prefix);
   }
@@ -47,4 +53,12 @@ export class MenuService extends BaseService {
         }
       });
   }
+  getByTypeMenu(types: string[]) {
+    return this.http.get(this.routerPrefix + "/get-by-type",
+      { params: { types } }).subscribe(data=>{
+        this.dataStore.menus = data;
+        this._menus.next(Object.assign({}, this.dataStore).menus);
+      })
+  };
 }
+

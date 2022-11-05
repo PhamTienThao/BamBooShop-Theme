@@ -52,6 +52,8 @@ import { ArticleDetailComponent } from './article/article-detail/article-detail.
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgChartjsModule } from 'ng-chartjs';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { TableTemplateComponent } from 'src/app/components/table-template/table-template.component';
+import { SharedModule } from 'src/app/components/share-module';
 registerLocaleData(en);
 
 // export const customCurrencyMaskConfig: CurrencyMaskConfig = {
@@ -158,7 +160,10 @@ const routes: Routes = [
         path: 'danh-gia',
         component: ReviewComponent,
       },
-
+      {
+        path: 'table',
+        component: TableTemplateComponent,
+      },
       {
         path: '',
         component: DashboardComponent,
@@ -207,6 +212,7 @@ const routes: Routes = [
     ReviewDetailComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,

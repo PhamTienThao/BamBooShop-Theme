@@ -127,6 +127,7 @@
         </tr>
       </tbody>
     </nz-table>
+    <app-table-template [listOfData]="filterDatas" [columnsTable]="dataColumns"></app-table-template>
   </div>
 </div>
 <app-product-detail #frmDetail (onSubmit)="onSubmit($event)"></app-product-detail>

@@ -56,6 +56,8 @@ import { ProductTemplateListComponent } from './components/product-template-list
 import { ToastrModule } from 'ngx-toastr';
 import { DENgZorroAntdModule } from './ng-zorro-antd.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TableTemplateComponent } from './components/table-template/table-template.component';
+import { SharedModule } from './components/share-module';
 
 @NgModule({
   declarations: [
@@ -111,7 +113,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     CarouselModule,
     ToastrModule.forRoot(),
     DENgZorroAntdModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    SharedModule
   ],
   providers: [
     AuthGuardService,
