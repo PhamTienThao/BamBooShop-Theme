@@ -5,3 +5,11 @@
 .send-request span {
     margin-left: 8px;
 }
+
+.ant-table-header {
+    margin-right: 15px;
+}
+
+:host nz-table-measure-row {
+    display: none !important;
+}

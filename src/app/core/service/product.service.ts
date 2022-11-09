@@ -57,4 +57,13 @@ export class ProductService extends BaseService {
       this.routerPrefix + '/search-product-autofill/' + keySearch
     );
   }
+  deleteByListId(id: number[]) {
+    return this.http.get(
+      this.routerPrefix + '/delete-by-list-id',{
+        params: {
+          id,
+        }
+      }
+    );
+  }
 }

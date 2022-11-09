@@ -42,14 +42,15 @@ export class LoginComponent implements OnInit {
 
     this.authenticationAdminService
       .login(this.formData.getRawValue())
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.messageService.success("Đăng nhập thành công");
           this.navigate("/admin")
         },
-        (error) => {
+        error: (error) => {
           this.messageService.error(error.error.message);
         }
+      }
       );
   }
 

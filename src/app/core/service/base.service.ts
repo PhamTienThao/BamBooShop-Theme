@@ -20,6 +20,7 @@ export class BaseService {
   }
 
   deleteById(key: any) {
+    debugger
     return this.http.delete(this.routerPrefix + "/" + key);
   }
 }

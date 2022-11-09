@@ -55,10 +55,21 @@ export class MenuService extends BaseService {
   }
   getByTypeMenu(types: string[]) {
     return this.http.get(this.routerPrefix + "/get-by-type",
-      { params: { types } }).subscribe(data=>{
+      { params: { types } }).subscribe(data => {
         this.dataStore.menus = data;
         this._menus.next(Object.assign({}, this.dataStore).menus);
       })
   };
+  loadAllProductMenu(): Observable<any[]> {
+    return this.http.get<any[]>(this.routerPrefix + "/get-all-product-menu");
+  }
+  deleteByListId(listId: number[]) {
+    return this.http.get(this.routerPrefix + "/delete-by-list-id", 
+    {
+      params: { 
+        listId 
+      }
+    });
+  }
 }
 

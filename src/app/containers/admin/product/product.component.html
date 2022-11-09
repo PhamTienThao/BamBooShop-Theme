@@ -73,7 +73,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12">
+     <!-- <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12"> 
       <thead>
         <tr>
           <th class="text-center">Hình ảnh</th>
@@ -119,16 +119,19 @@
             <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
               <i nz-icon nzType="edit" theme="outline"></i>
             </button>
-            <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight"
+            <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="onDelete(data)" nzPopconfirmPlacement="topRight"
               nzType="default" nzDanger nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
               <i nz-icon nzType="delete" theme="outline"></i>
             </button>
           </td>
         </tr>
       </tbody>
-    </nz-table>
-    <app-table-template [listOfData]="filterDatas" [columnsTable]="dataColumns"></app-table-template>
+    </nz-table>  -->
+    <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()" 
+        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" [columnsTable]="dataColumns"
+        [multiColSelect]="true" [tableSize]="'small'">
+    </app-table-template>
   </div>
 </div>
-<app-product-detail #frmDetail (onSubmit)="onSubmit($event)"></app-product-detail>
+<app-product-detail #frmDetail (onSubmit)="onSubmit($event) "></app-product-detail>
 <ngx-spinner></ngx-spinner>

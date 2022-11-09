@@ -127,6 +127,9 @@ const routes: Routes = [
       {
         path: 'san-pham',
         component: ProductComponent,
+        // resolve: {
+        //   menu: MenuResolver,
+        // }
       },
       {
         path: 'thuoc-tinh-san-pham',

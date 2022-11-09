@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Data } from './data-model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-table-template',
@@ -10,6 +11,17 @@ export class TableTemplateComponent implements OnInit {
 
   @Input() columnsTable: any[] = [];
 
+  @Input() addEditComponent: any;
+  
+  @Input() refreshTable: boolean = true;
+
+  @Input() multiColSelect: boolean = false;
+  @Input() tableSize: any = 'default';
+  @Output() onDelete = new EventEmitter<any>();
+  @Output() onRefresh = new EventEmitter<any>();
+  @Output() onEdit = new EventEmitter<any>();
+  @Output() onAddnew = new EventEmitter<any>();
+  @Output() onMultiSelect = new EventEmitter<any>();
   checked = false;
   loading = false;
   indeterminate = false;
@@ -17,7 +29,9 @@ export class TableTemplateComponent implements OnInit {
   listOfCurrentPageData: readonly any[] = [];
   setOfCheckedId = new Set<number>();
   
-  constructor() { }
+  constructor(private dialog: MatDialog, private activatedRoute: ActivatedRoute) { 
+
+  }
 
   ngOnInit(): void {
     this.listOfData.forEach(x => {
@@ -25,49 +39,56 @@ export class TableTemplateComponent implements OnInit {
         y.prop == typeof(x)
       })
     })
-  }
-  updateCheckedSet(id: number, checked: boolean): void {
-    if (checked) {
-      this.setOfCheckedId.add(id);
-    } else {
-      this.setOfCheckedId.delete(id);
+    if(this.refreshTable){
+      this.setOfCheckedId = new Set<number>();
     }
   }
-
-  onCurrentPageDataChange(listOfCurrentPageData: readonly Data[]): void {
+  updateCheckedSet(Id: number, checked: boolean): void {
+    if (checked) {
+      this.setOfCheckedId.add(Id);
+    } else {
+      this.setOfCheckedId.delete(Id);
+    }
+  }
+  log(value: any){
+    console.log(value);
+  }
+  onCurrentPageDataChange(listOfCurrentPageData: readonly any[]): void {
     this.listOfCurrentPageData = listOfCurrentPageData;
     this.refreshCheckedStatus();
   }
 
   refreshCheckedStatus(): void {
     const listOfEnabledData = this.listOfCurrentPageData.filter(({ disabled }) => !disabled);
-    this.checked = listOfEnabledData.every(({ id }) => this.setOfCheckedId.has(id));
-    this.indeterminate = listOfEnabledData.some(({ id }) => this.setOfCheckedId.has(id)) && !this.checked;
+    this.checked = listOfEnabledData.every(({ Id }) => this.setOfCheckedId.has(Id));
+    this.indeterminate = listOfEnabledData.some(({ Id }) => this.setOfCheckedId.has(Id)) && !this.checked;
   }
 
-  onItemChecked(id: number, checked: boolean): void {
-    this.updateCheckedSet(id, checked);
+  onItemChecked(Id: number, checked: boolean): void {
+    this.updateCheckedSet(Id, checked);
     this.refreshCheckedStatus();
   }
 
   onAllChecked(checked: boolean): void {
     this.listOfCurrentPageData
       .filter(({ disabled }) => !disabled)
-      .forEach(({ id }) => this.updateCheckedSet(id, checked));
+      .forEach(({ Id }) => this.updateCheckedSet(Id, checked));
     this.refreshCheckedStatus();
   }
   trackByName(_: number, item: any): string {
     return item.name;
   }
-  
-  // sendRequest(): void {
-  //   this.loading = true;
-  //   const requestData = this.listOfData.filter(data => this.setOfCheckedId.has(data['id']));
-  //   console.log(requestData);
-  //   setTimeout(() => {
-  //     this.setOfCheckedId.clear();
-  //     this.refreshCheckedStatus();
-  //     this.loading = false;
-  //   }, 1000);
+  onClickDelete(data: any) {
+    this.onDelete.emit(data);
+  }
+  showDetail(data:any){
+    this.onEdit.emit(data);
+  }
+  // refreshTable(reset: boolean = false) {
+  //   this.onRefresh.emit(reset);
   // }
+  deleteList(): void {
+    const requestData = this.listOfData.filter(data => this.setOfCheckedId.has(data.Id));
+    this.onMultiSelect.emit(requestData);
+  }
 }
