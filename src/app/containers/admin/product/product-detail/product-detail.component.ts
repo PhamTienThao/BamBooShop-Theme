@@ -108,9 +108,8 @@ export class ProductDetailComponent implements OnInit {
     ) {
       this.fileList = product.ProductImages.map(
         (x: ProductImage, i: number) => {
-          debugger
           var imgUrl = '';
-          if(x.ImageCloudLink != null && x.ImageCloudLink.length > 0) 
+          if(x.ImageCloudLink != null && x.ImageCloudLink.length > 0)
             imgUrl = x.ImageCloudLink;
           else imgUrl = environment.hostImage + x.Image;
           return {
