@@ -42,6 +42,14 @@
             </nz-form-item>
           </div>
         </div>
+        <div>
+          <nz-form-item>
+            <nz-form-label nzRequired>Link ảnh: >><a [href]="srcCloudImg" target="_blank" rel="noopener noreferrer">Click here</a> </nz-form-label>
+            <nz-form-control nzErrorTip="Không được để trống!">
+              <input currencyMask nz-input nzSize="small" formControlName="ImageCloudLink" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
         <div nz-row>
           <div nz-col nzSpan="12">
             <nz-form-item>

@@ -19,6 +19,7 @@ export class ArticleDetailComponent implements OnInit {
   formData!: FormGroup;
   visible = false;
   srcImage: string = 'no_img.jpg';
+  srcCloudImg: string = '';
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -43,6 +44,7 @@ export class ArticleDetailComponent implements OnInit {
       Index: [1],
       ShortDescription: [''],
       Description: [''],
+      ImageCloudLink: [{ value: '', disabled: true }],
       Active: [true],
     });
   }
@@ -50,6 +52,9 @@ export class ArticleDetailComponent implements OnInit {
   setForm(article: Article | any) {
     this.formData.reset();
     this.srcImage = article.Image;
+    this.srcCloudImg = article.ImageCloudLink;
+    if (this.srcCloudImg != null && this.srcCloudImg.length > 0)
+      this.srcImage = this.srcCloudImg;
     this.formData.patchValue(article);
     this.getMenu();
   }
