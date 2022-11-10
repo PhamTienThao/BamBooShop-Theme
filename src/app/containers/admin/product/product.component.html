@@ -48,7 +48,7 @@
           <i nz-icon nzType="search" class="opacity-05" (click)="searchProduct()"></i>
         </ng-template>
       </div>
-      <div class="select-product">
+      <!-- <div class="select-product">
         <nz-select [(ngModel)]="filter.menuId" (ngModelChange)="getData()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Danh mục">
           <nz-option *ngFor="let item of menus" [nzValue]="item.Id" [nzLabel]="item.ParentMenu == null?item.Name:' &emsp;__'+item.Name"></nz-option>
         </nz-select>
@@ -57,7 +57,7 @@
         <nz-select [(ngModel)]="filter.highLight" (ngModelChange)="searchProduct()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Nổi bật">
           <nz-option *ngFor="let item of highLightProductStatus" [nzValue]="item.value" [nzLabel]="item.display"></nz-option>
         </nz-select>
-      </div>
+      </div> -->
     </div>
     <div class="add-product-wrap">
       <button (click)="reload()" nz-button nzType="primary" class="add-product">

@@ -6,9 +6,9 @@
     <span>Đã chọn {{ setOfCheckedId.size }}</span>
 </div>
 <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData"  nzTableLayout="fixed" [nzSize]="tableSize"
-    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" [nzScroll]="{ x: '80vh', y: '45vh' }">
     <thead>
-        <tr >
+        <tr>
             <th *ngIf="multiColSelect" [nzChecked]="checked" [nzIndeterminate]="indeterminate" class="text-center"  
                 width="40px" (nzCheckedChange)="onAllChecked($event)"></th>
             <th *ngFor="let item of columnsTable" width="{{item.width}}" [(nzSortOrder)]="item.sortOrder" class="text-center"

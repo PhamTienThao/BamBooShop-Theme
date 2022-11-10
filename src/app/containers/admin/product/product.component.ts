@@ -27,8 +27,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   menus: Menu[] = [];
   // searchInput: any;
-  highLightProductStatus = [{ value: true, display: 'Nổi bật' },
-  { value: false, display: 'Không nổi bật' }];
+  // highLightProductStatus = [{ value: true, display: 'Nổi bật' },
+  // { value: false, display: 'Không nổi bật' }];
 
   filter = {
     keySearch: '',
@@ -73,7 +73,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       }
     });
   }
-  tableInit(){
+  tableInit() {
     this.dataColumns = [
       {
         name: 'Hình ảnh',
@@ -148,12 +148,11 @@ export class ProductComponent implements OnInit, OnDestroy {
         sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
       }
     ];
-    this.menuService.loadAllProductMenu();
-    this.menuService.loadAllProductMenu().subscribe(resp =>{
-      if(resp){
-        var menuFilterList : any[] =[];
+    this.menuService.loadAllProductMenu().subscribe(resp => {
+      if (resp) {
+        var menuFilterList: any[] = [];
         resp.forEach(item => {
-          menuFilterList.push({text: item.name, value: item.id})
+          menuFilterList.push({ text: item.name, value: item.id })
         })
         this.dataColumns = [
           {
@@ -229,7 +228,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
           }
         ];
-      }else{
+      } else {
         this.dataColumns = [
           {
             name: 'Hình ảnh',
@@ -351,17 +350,20 @@ export class ProductComponent implements OnInit, OnDestroy {
   // }
   searchProduct() {
     var keySearch = this.filter.keySearch.toLowerCase();
-    if (this.filter.highLight !== null) {
-      this.filterDatas = this.datas.filter(x => x.Selling == this.filter.highLight)
-      this.filterDatas = this.filterDatas.filter(x => x.Name.toLowerCase().includes(keySearch)
-        || x.Alias.toLowerCase().includes(keySearch)
-        || x.Price.toString().toLowerCase().includes(keySearch))
-    }
-    else {
-      this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch)
-        || x.Alias.toLowerCase().includes(keySearch)
-        || x.Price.toString().toLowerCase().includes(keySearch))
-    }
+    // if (this.filter.highLight !== null) {
+    //   this.filterDatas = this.datas.filter(x => x.Selling == this.filter.highLight)
+    //   this.filterDatas = this.filterDatas.filter(x => x.Name.toLowerCase().includes(keySearch)
+    //     || x.Alias.toLowerCase().includes(keySearch)
+    //     || x.Price.toString().toLowerCase().includes(keySearch))
+    // }
+    // else {
+    //   this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch)
+    //     || x.Alias.toLowerCase().includes(keySearch)
+    //     || x.Price.toString().toLowerCase().includes(keySearch))
+    // }
+    this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch)
+      || x.Alias.toLowerCase().includes(keySearch)
+      || x.Price.toString().toLowerCase().includes(keySearch))
   }
   changeMenuItem() {
     this.getData();
@@ -387,28 +389,28 @@ export class ProductComponent implements OnInit, OnDestroy {
         },
       });
   }
-  deleteListProduct(productId: Product[]){
+  deleteListProduct(productId: Product[]) {
     var listOfProducts: number[] = [];
     productId.forEach(item => {
       listOfProducts.push(item.Id)
     })
-    if(listOfProducts.length <=1){
+    if (listOfProducts.length <= 1) {
       this.productService
-      .deleteByListId(listOfProducts)
-      .subscribe({
-        next: (resp: any) => {
-          this.messageService.success('Xóa thành công');
-          this.getData();
-          this.refreshTable(true);
-        },
-        error: (err) => {
-          this.messageService.error(err);
-        },
-      });
-    }else{
+        .deleteByListId(listOfProducts)
+        .subscribe({
+          next: (resp: any) => {
+            this.messageService.success('Xóa thành công');
+            this.getData();
+            this.refreshTable(true);
+          },
+          error: (err) => {
+            this.messageService.error(err);
+          },
+        });
+    } else {
       this.messageService.success('Đã xảy ra lỗi');
     }
-    
+
   }
   addNew() {
     this.frmDetail.isAddNew = true;

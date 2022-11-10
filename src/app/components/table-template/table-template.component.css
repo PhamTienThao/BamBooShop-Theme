@@ -10,6 +10,6 @@
     margin-right: 15px;
 }
 
-:host nz-table-measure-row {
-    display: none !important;
+:host ::ng-deep tbody tr {
+    height: auto ; 
 }
