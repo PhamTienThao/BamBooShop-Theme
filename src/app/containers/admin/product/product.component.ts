@@ -82,6 +82,12 @@ export class ProductComponent implements OnInit, OnDestroy {
         //sortOrder: null,
       },
       {
+        name: 'Cloud Image',
+        prop: 'ImageCloudLink',
+        type: 'image',
+        //sortOrder: null,
+      },
+      {
         name: 'Tên hàng',
         prop: 'Name',
         type: 'text',
@@ -162,6 +168,12 @@ export class ProductComponent implements OnInit, OnDestroy {
             //sortOrder: null,
           },
           {
+            name: 'Cloud Image',
+            prop: 'ImageCloudLink',
+            type: 'image',
+            //sortOrder: null,
+          },
+          {
             name: 'Tên hàng',
             prop: 'Name',
             type: 'text',
@@ -233,6 +245,12 @@ export class ProductComponent implements OnInit, OnDestroy {
           {
             name: 'Hình ảnh',
             prop: 'Image',
+            type: 'image',
+            //sortOrder: null,
+          },
+          {
+            name: 'Cloud Image',
+            prop: 'ImageCloudLink',
             type: 'image',
             //sortOrder: null,
           },

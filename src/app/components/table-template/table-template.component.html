@@ -23,7 +23,10 @@
                 (nzCheckedChange)="onItemChecked(data.Id, $event)" ></td>
             <td *ngFor="let item of columnsTable" class="text-center">
                 <div *ngIf=" item.type == 'image'; else notImage">
-                    <img [src]="data.Image | sharePipeHostImage" alt="" class="img-product">
+                    <img *ngIf="item.prop == 'ImageCloudLink'; else notCloudImg" [src]="data.ImageCloudLink | sharePipeHostImage" alt="" class="img-product">
+                    <ng-template #notCloudImg>
+                        <img [src]="data.Image | sharePipeHostImage" alt="" class="img-product">
+                    </ng-template>
                 </div>
                 <ng-template #notImage>
                     {{item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop]}}

@@ -5,11 +5,26 @@
       <div class="col-lg-6 col-sm-12 col-xs-12 mb-sm-30px">
         <!-- Swiper -->
         <div class="swiper">
-          <img [src]="product.Image | hostImageClient" class="big_img" />
+          <img [src]="mainImage | hostImageClient" class="big_img" />
           <ul class="small_img_prev">
-            <li *ngFor="let productImage of product.ProductImages; let i = index">
-              <img [src]="productImage.Image | hostImageClient" class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
-                (click)="showImg(productImage.Image); selectImage(i)" />
+            <!-- <img [src]="product.ImageCloudLink === null? product.Image : product.ImageCloudLink | hostImageClient"
+            (click)="showImg(product.ImageCloudLink === null? product.Image : product.ImageCloudLink)" class="small_img" /> -->
+            <img *ngIf="product.ImageCloudLink == null; else cloudImg" [src]="product.Image | hostImageClient" class="small_img" />
+            <ng-template #cloudImg>
+              <img [src]="product.ImageCloudLink | hostImageClient" class="small_img">
+            </ng-template>
+            <li *ngFor="let productImage of product.ProductImages; let i = index" >
+              <img *ngIf="productImage.ImageCloudLink == null; else cloudImg"
+              [src]="productImage.Image | hostImageClient"
+              class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
+              (click)="showImg(productImage.Image)" />
+            <ng-template #cloudImg>
+              <img [src]="productImage.ImageCloudLink | hostImageClient"
+              class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
+              (click)="showImg(productImage.ImageCloudLink)" />
+            </ng-template>
+              <!-- <img [src]="productImage.Image != null ? productImage.Image : productImage.ImageCloudLink | hostImageClient" class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
+                (click)="showImg(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink)" /> -->
             </li>
           </ul>
         </div>
@@ -55,13 +70,10 @@
                 <p>{{ attributes.Name }}:</p>
               </div>
               <div class="shop-select">
-                <select class="shop-sort" #attributeSelected (change)="
-                    chooseAttribute(attributes.ProductAttributes, $event)
-                  ">
-                  <option [value]="index" *ngFor="
-                      let item of attributes.ProductAttributes;
-                      index as index
-                    "> {{ item.Value }} </option>
+                <select class="shop-sort" #attributeSelected (change)="  chooseAttribute(attributes.ProductAttributes, $event)">
+                  <option [value]="index" *ngFor="let item of attributes.ProductAttributes; index as index"> 
+                    {{ item.Value }} 
+                  </option>
                 </select>
               </div>
             </div>

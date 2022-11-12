@@ -44,7 +44,6 @@ export class SearchComponent implements OnInit {
     private router: Router
   ) {
     this.router.events.forEach((event) => {
-      debugger;
       if (event instanceof NavigationEnd) {
         this.filter.keySearch = this.activatedRoute.snapshot.params['alias'];
         // if(this.router.getCurrentNavigation()!= undefined && this.router.getCurrentNavigation() != null)
@@ -91,6 +90,7 @@ export class SearchComponent implements OnInit {
       .subscribe({
         next: (resp: any) => {
           this.products = JSON.parse(resp['data']);
+          console.log(this.products)
         },
         error: (err: any) => {},
       });

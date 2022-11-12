@@ -17,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   product!: Product;
   qty: number = 1;
   image: string = './assets/imgs/tivi.png';
+  mainImage!: string;
   //hmtien add 26/8
   qtyAvailable!: boolean;
 
@@ -55,9 +56,9 @@ export class ProductDetailComponent implements OnInit {
     this.getData();
   }
 
-  selectImage(index: number): void {
-    this.selectedIndex = index;
-  }
+  // selectImage(index: number): void {
+  //   this.selectedIndex = index;
+  // }
 
   handleMinus() {
     if (this.qty > 1) {
@@ -86,7 +87,8 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getByAlias(this.productAlias).subscribe({
       next: (resp: any) => {
         this.product = JSON.parse(resp['data']);
-        console.log(this.product.RateAvg);
+        if(this.product.ImageCloudLink !=null) this.mainImage = this.product.ImageCloudLink;
+        else this.mainImage = this.product.Image;
       },
       error: (err: any) => {
         this.toastrService.error('Thông tin sản phẩm không khả dụng', '', {
@@ -96,8 +98,8 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  showImg(src: string) {
-    this.product.Image = src;
+  showImg(src: string ) {
+    this.mainImage = src;
   }
 
   chooseAttribute(attributes: ProductAttribute[], event: any) {

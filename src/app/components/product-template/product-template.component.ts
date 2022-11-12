@@ -18,7 +18,9 @@ export class ProductTemplateComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.product)
+  }
 
   addToCart() {
     if (this.product.Attributes != null) {

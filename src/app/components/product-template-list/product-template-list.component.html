@@ -3,7 +3,10 @@
     <div class="product">
       <div class="thumb">
         <a routerLink="/san-pham/{{ product.Alias }}" class="image">
-          <img [src]="product.Image | hostImageClient" alt="Product" />
+          <img *ngIf="product.ImageCloudLink == null; else cloudImg"[src]="product.Image | hostImageClient" alt="Product" />
+          <ng-template #cloudImg>
+            <img [src]="product.ImageCloudLink | hostImageClient" alt="Product" />
+          </ng-template> 
         </a>
       </div>
     </div>

@@ -3,7 +3,7 @@
 <div class="product">
   <div class="thumb">
     <a routerLink="/san-pham/{{ product.Alias }}" class="image">
-      <img [src]="product.Image | hostImageClient" alt="Product" />
+      <img [src]="product.ImageCloudLink != null ? product.ImageCloudLink : product.Image | hostImageClient" alt="Product" />
     </a>
   </div>
   <div class="content">
