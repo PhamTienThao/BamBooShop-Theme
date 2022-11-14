@@ -5,35 +5,39 @@ import { Gallery } from 'src/app/core/model/gallery';
 @Component({
   selector: 'app-gallery-detail',
   templateUrl: './gallery-detail.component.html',
-  styleUrls: ['./gallery-detail.component.css']
+  styleUrls: ['./gallery-detail.component.css'],
 })
 export class GalleryDetailComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Gallery>();
 
   formData!: FormGroup;
   visible = false;
-  srcBanner: string = "no_img.jpg";
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  srcBanner: string = 'no_img.jpg';
+  srcCloudBaner: string = '';
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
       Id: [0],
       Type: [1, Validators.required],
-      Image: [""],
+      Image: [''],
+      BanerCloudLink: [{ value: '', disabled: true }],
     });
   }
 
   setForm(gallery: Gallery | any) {
     this.formData.reset();
     this.srcBanner = gallery.Image;
+    this.srcCloudBaner = gallery.BanerCloudLink;
+    if (this.srcCloudBaner != null && this.srcCloudBaner.length > 0)
+      this.srcBanner = this.srcCloudBaner;
     this.formData.patchValue(gallery);
   }
 
   onloadBanner(src: string) {
     this.srcBanner = src;
-    this.formData.get("Image")?.setValue(src);
+    this.formData.get('Image')?.setValue(src);
   }
 
   close() {

@@ -92,7 +92,6 @@ export class ArticleDetailComponent implements OnInit {
     if (this.formData.invalid) {
       return;
     }
-
     this.onSubmit.emit(this.formData.getRawValue());
   }
 }

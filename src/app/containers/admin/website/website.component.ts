@@ -14,6 +14,7 @@ import { WebsiteService } from 'src/app/core/service/website.service';
 export class WebsiteComponent implements OnInit {
   formData!: FormGroup;
   srcLogo: string = 'no_img.jpg';
+  srcCloudLogo: string = '';
 
   constructor(
     private websiteService: WebsiteService,
@@ -40,6 +41,7 @@ export class WebsiteComponent implements OnInit {
       Facebook: [''],
       Youtube: [''],
       Copyright: [''],
+      LogoCloudLink: [{ value: '', disabled: true }],
     });
   }
 
@@ -56,6 +58,9 @@ export class WebsiteComponent implements OnInit {
         next: (resp: any) => {
           let website: Website = JSON.parse(resp['data']);
           this.srcLogo = website.Logo;
+          this.srcCloudLogo = website.LogoCloudLink;
+          if (this.srcCloudLogo != null && this.srcCloudLogo.length > 0)
+            this.srcLogo = this.srcCloudLogo;
           this.formData.patchValue(website);
         },
         error: (err) => {
@@ -65,6 +70,7 @@ export class WebsiteComponent implements OnInit {
   }
 
   onloadLogo(src: string) {
+    this.srcLogo = src;
     this.formData.get('Logo')?.setValue(src);
   }
 
