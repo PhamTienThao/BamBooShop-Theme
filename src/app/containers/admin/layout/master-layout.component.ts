@@ -57,7 +57,7 @@ export class MasterLayoutComponent implements OnInit {
       sub: false,
     },
     {
-      navigate: '/admin/khanh-hang',
+      navigate: '/admin/khach-hang',
       title: 'Khách hàng',
       icon: 'user',
       sub: false,

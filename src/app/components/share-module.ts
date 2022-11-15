@@ -7,8 +7,8 @@ import { ShareHostImagePipe } from '../core/pipe/share-host-image-pipe';
 
 @NgModule({
     imports: [CommonModule,DENgZorroAntdModule],
-    declarations: [TableTemplateComponent,ShareHostImagePipe],
+    declarations: [ShareHostImagePipe],
     providers: [],
-    exports: [TableTemplateComponent],
+    exports: [],
  })
  export class SharedModule { }

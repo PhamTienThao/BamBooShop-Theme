@@ -178,7 +178,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             prop: 'Name',
             type: 'text',
             //sortOrder: null,
-            sortFn: (a: any, b: any) => a.name.localeCompare(b.name),
+            sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
             // listOfFilter: [
             //   { text: 'laptop', value: 'a' },
             //   { text: 'Jim', value: 'HMTien' }
@@ -190,6 +190,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             prop: 'Menu',
             _subprop: 'Name',
             type: 'text',
+            with: '200px',
             listOfFilter: menuFilterList,
             //sortOrder: null,
             sortFn: (a: any, b: any) => a.Menu?.Name.localeCompare(b.Menu?.Name),
