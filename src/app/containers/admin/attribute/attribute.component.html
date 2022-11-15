@@ -49,7 +49,7 @@
       <thead>
         <tr>
           <th>Tên thuộc tính</th>
-          <th style="width:160px" class="text-center">Hành động</th>
+          <th style="width:160px !important" class="text-center">Hành động</th>
         </tr>
       </thead>
       <tbody>
@@ -70,6 +70,7 @@
         </tr>
       </tbody>
     </nz-table>
+    <app-table-template [columnsTable]="tableColumns" [listOfData]="datas"></app-table-template>
   </div>
 </div>
 <app-attribute-detail #frmDetail (onSubmit)="onSubmit($event)"></app-attribute-detail>

@@ -128,8 +128,8 @@
       </tbody>
     </nz-table>  -->
     <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()" 
-        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" [columnsTable]="dataColumns"
-        [multiColSelect]="true" [tableSize]="'small'">
+        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" 
+        [columnsTable]="dataColumns" [multiColSelect]="true" [tableSize]="'small'">
     </app-table-template>
   </div>
 </div>

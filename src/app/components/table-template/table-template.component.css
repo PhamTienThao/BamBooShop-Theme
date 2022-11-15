@@ -13,3 +13,34 @@
 :host ::ng-deep tbody tr {
     height: auto ; 
 }
+a.ant-btn {
+    display: inline-block;
+  }
+  .header-content {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  ::ng-deep .ant-input-prefix {
+    margin-right: 0px !important;
+  }
+  .ant-input-affix-wrapper {
+    border-radius: 5px;
+    font-size: 15px !important;
+    height: 40px;
+  }
+  
+  .ant-input-affix-wrapper > input.ant-input {
+    height: auto;
+  }
+  ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 5px !important;
+  }
+  ::ng-deep
+    .ant-select-single:not(.ant-select-customize-input)
+    .ant-select-selector {
+    height: 40px !important;
+    padding: 4px 16px;
+  }
+  

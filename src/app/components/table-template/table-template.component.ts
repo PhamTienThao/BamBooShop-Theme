@@ -22,10 +22,14 @@ export class TableTemplateComponent implements OnInit {
   @Output() onEdit = new EventEmitter<any>();
   @Output() onAddnew = new EventEmitter<any>();
   @Output() onMultiSelect = new EventEmitter<any>();
+
+  @Input() listOfData: readonly any[] = [];
+
+  @Input() editDeleteAction: boolean = true;
+
   checked = false;
   loading = false;
   indeterminate = false;
-  @Input() listOfData: readonly any[] = [];
   listOfCurrentPageData: readonly any[] = [];
   setOfCheckedId = new Set<number>();
   

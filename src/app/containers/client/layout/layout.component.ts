@@ -175,7 +175,6 @@ export class LayoutComponent implements OnInit {
   }
 
   search() {
-    debugger;
     if (this.keySearch != null && this.keySearch != '') {
       //this.navigate('/tim-kiem/' + encodeURIComponent(this.keySearch));
       this.navigate('/tim-kiem/' + DataHelper.unsign(this.keySearch));

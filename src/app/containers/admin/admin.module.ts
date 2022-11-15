@@ -213,9 +213,9 @@ const routes: Routes = [
     EmailRegistrationComponent,
     ReviewComponent,
     ReviewDetailComponent,
+    TableTemplateComponent
   ],
   imports: [
-    SharedModule,
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
