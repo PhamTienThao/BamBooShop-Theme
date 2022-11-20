@@ -35,7 +35,7 @@ export class LayoutComponent implements OnInit {
     Facebook: '',
     Youtube: '',
     Copyright: '',
-    LogoCloudLink: '',
+    ImageCloudLink: '',
   };
   mainMenus: Menu[] = [];
   subMenus: Menu[] = [];

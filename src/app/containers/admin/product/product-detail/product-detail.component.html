@@ -191,7 +191,9 @@
                       <nz-form-control nzErrorTip="Không được để trống!">
                         <nz-select nzMode="multiple" formControlName="ProductRelateds">
                           <nz-option *ngFor="let product of allProducts" nzCustomContent [nzValue]="product.Id" [nzLabel]="product.Name">
-                            <img class="img-product-select" nz-image [nzSrc]="product.Image | pipeHostImage" alt="" /> {{product.Name}}
+                            <img class="img-product-select" nz-image 
+                            [nzSrc]="(product.ImageCloudLink == null? product.Image: product.ImageCloudLink) | pipeHostImage" alt="" /> 
+                            {{product.Name}}
                           </nz-option>
                         </nz-select>
                       </nz-form-control>

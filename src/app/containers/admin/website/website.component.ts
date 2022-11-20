@@ -58,7 +58,7 @@ export class WebsiteComponent implements OnInit {
         next: (resp: any) => {
           let website: Website = JSON.parse(resp['data']);
           this.srcLogo = website.Logo;
-          this.srcCloudLogo = website.LogoCloudLink;
+          this.srcCloudLogo = website.ImageCloudLink;
           if (this.srcCloudLogo != null && this.srcCloudLogo.length > 0)
             this.srcLogo = this.srcCloudLogo;
           this.formData.patchValue(website);

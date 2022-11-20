@@ -5,6 +5,7 @@ interface CarouselImage {
   Id: number;
   Image: string;
   Type: number;
+  ImageCloudLink: string;
 }
 @Component({
   selector: 'app-carousel',

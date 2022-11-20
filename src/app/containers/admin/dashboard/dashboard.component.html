@@ -187,7 +187,7 @@
         <div nz-col nzSpan="24" *ngFor="let product of productsList">
           <div class="product-wrap">
             <div class="product-title-wrap">
-              <img class="product-image" [src]="product.ProductImage| pipeHostImage" />
+              <img class="product-image" [src]="(product.ImageCloudLink == null? product.ProductImage : product.ImageCloudLink)| pipeHostImage" />
               <div class="product-title">
                 <span class="product-name-title" (click)="showDetail(product.ProductId)">{{product.ProductName}}</span>
                 <span class="product-category">{{product.MenuName}}</span>

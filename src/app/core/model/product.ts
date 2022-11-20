@@ -40,6 +40,7 @@ export interface BestSellProductDetail {
   OrderId: string;
   ProductId: number;
   ProductImage: string;
+  ImageCloudLink: string;
   ProductName: string;
   TotalProductBestSeller: number;
 }

@@ -83,7 +83,8 @@ export class CartService {
         ProductPrice: product.Price,
         Qty: qty,
         Attributes: product.Attributes,
-        QtyRemain: product.Quantity
+        QtyRemain: product.Quantity,
+        ImageCloudLink: product.ImageCloudLink,
       });
     }
 

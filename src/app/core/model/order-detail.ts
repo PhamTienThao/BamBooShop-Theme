@@ -7,6 +7,7 @@ export interface OrderDetail {
     ProductId: number;
     ProductName: string;
     ProductImage: string;
+    ImageCloudLink: string;
     ProductPrice: number;
     ProductDiscountPrice: number;
     Qty: number;

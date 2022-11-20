@@ -1,7 +1,7 @@
 <div class="thumb-side">
     <a routerLink="/bai-viet/{{article.Alias}}">
         <div class="article-image">
-            <img [src]="article.Image | hostImageClient" />
+            <img [src]="(article.ImageCloudLink == null? article.Image: article.ImageCloudLink ) | hostImageClient" />
         </div>
     </a>
 </div>

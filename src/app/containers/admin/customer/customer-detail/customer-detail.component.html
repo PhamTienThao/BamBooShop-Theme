@@ -109,7 +109,7 @@
             </tr>
             <tr *ngFor="let orderDetail of orderSelected.OrderDetails" style="font-size: 15px; font-weight: 500;">
               <td class="text-center">
-                <img [src]="orderDetail.ProductImage | pipeHostImage"
+                <img [src]="(orderDetail.ImageCloudLink == null? orderDetail.ProductImage : orderDetail.ImageCloudLink) | pipeHostImage"
                   style="width: 60px; height: 50px; border: 1px solid #dcdcdc; padding: 1px; min-width: 50px;" />
               </td>
               <td>

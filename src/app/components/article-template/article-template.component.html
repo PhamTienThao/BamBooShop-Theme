@@ -1,7 +1,7 @@
 <div class="single-blog">
     <div class="blog-image">
         <a routerLink="/bai-viet/{{article.Alias}}">
-            <img [src]="article.Image | hostImageClient" class="img-responsive w-100" alt="" />
+            <img [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink) | hostImageClient" class="img-responsive w-100" alt="" />
         </a>
     </div>
     <div class="blog-text">

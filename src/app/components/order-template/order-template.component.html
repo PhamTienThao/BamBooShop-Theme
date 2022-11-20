@@ -20,7 +20,8 @@
                 <tr *ngFor="let item of data.OrderDetails">
                   <td class="product-thumbnail">
                     <a>
-                      <img class="img-responsive img-size ml-15px" [src]="item.ProductImage | hostImageClient" alt="" />
+                      <img class="img-responsive img-size ml-15px" 
+                      [src]="(item.ImageCloudLink == null ? item.ProductImage : item.ImageCloudLink) | hostImageClient" alt="" />
                     </a>
                   </td>
                   <td class="product-name">
@@ -75,8 +76,10 @@
                 <tbody>
                   <tr>
                     <td class="product-thumbnail">
-                      <a><img class="img-responsive img-size ml-15px"
-                          [src]="orderDetailSelected.ProductImage | hostImageClient" alt="" /></a>
+                      <a>
+                        <img class="img-responsive img-size ml-15px" alt=""
+                          [src]="(orderDetailSelected.ImageCloudLink == null? orderDetailSelected.ProductImage : orderDetailSelected.ImageCloudLink) | hostImageClient"/>
+                        </a>
                     </td>
                     <td class="product-name">
                       <a>{{orderDetailSelected.ProductName}}</a>
