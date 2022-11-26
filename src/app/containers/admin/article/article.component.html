@@ -58,7 +58,7 @@
       <tbody>
         <tr *ngFor="let data of tblData.data">
           <td class="text-center">
-            <img [src]="data.Image | pipeHostImage" alt="" class="img-article">
+            <img [src]="(data.ImageCloudLink == null? data.Image : data.ImageCloudLink) | pipeHostImage" alt="" class="img-article">
           </td>
           <td>{{ data.Title }}</td>
           <td>{{ data.Menu?.Name }}</td>

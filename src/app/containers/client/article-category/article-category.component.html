@@ -4,21 +4,23 @@
 
 <div class="blog-grid pb-100px pt-100px main-blog-page single-blog-page">
   <div class="container">
-    <div class="row" >
+    <div class="row">
       <div class="col-lg-6 col-md-6 col-xl-4 mb-50px" *ngFor="let item of menu?.Articles">
         <div class="single-blog">
           <div class="blog-image">
             <a routerLink="/bai-viet/{{item.Alias}}">
-              <img [src]="item.Image | hostImageClient" class="img-responsive w-100" alt="" />
+              <img [src]="(item.ImageCloudLink==null? item.Image: item.ImageCloudLink)| hostImageClient"
+                class="img-responsive w-100" alt="" />
             </a>
           </div>
           <div class="blog-text">
             <div class="blog-athor-date line-height-1">
               <span class="blog-date">
-                <i class="fa fa-calendar" aria-hidden="true"></i> 
+                <i class="fa fa-calendar" aria-hidden="true"></i>
                 {{item.Created | date:'dd/MM/yyyy'}}
               </span>
-              <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i> Wild Nick</a></span>
+              <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i> Wild
+                  Nick</a></span>
             </div>
             <h5 class="blog-heading">
               <a class="blog-heading-link" routerLink="/bai-viet/{{item.Alias}}">{{ item.Title }}</a>

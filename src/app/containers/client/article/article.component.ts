@@ -23,12 +23,12 @@ export class ArticleComponent implements OnInit {
     private toastrService: ToastrService,
     private formBuilder: FormBuilder
   ) {
-    this.router.events.forEach((event) => {
-      if (event instanceof NavigationEnd) {
-        this.articleAlias = this.activatedRoute.snapshot.params['alias'];
-        this.getData();
-      }
-    });
+    // this.router.events.forEach((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.articleAlias = this.activatedRoute.snapshot.params['alias'];
+    //     this.getData();
+    //   }
+    // });
   }
 
   ngOnInit() {
@@ -43,6 +43,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getByAlias(this.articleAlias).subscribe({
       next: (resp: any) => {
         this.article = JSON.parse(resp['data']);
+        console.log(this.article)
         this.getArticleRelated();
       },
       error: (err: any) => {

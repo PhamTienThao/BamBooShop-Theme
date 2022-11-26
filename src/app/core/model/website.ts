@@ -10,5 +10,5 @@ export interface Website {
   Facebook: string;
   Youtube: string;
   Copyright: string;
-  LogoCloudLink: string;
+  ImageCloudLink: string;
 }

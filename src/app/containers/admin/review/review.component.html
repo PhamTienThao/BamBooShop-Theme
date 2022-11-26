@@ -70,7 +70,7 @@
       <tbody>
         <tr *ngFor="let data of tblData.data">
           <td class="text-center">
-            <img [src]="data.Product?.Image | pipeHostImage" alt="" class="img-product">
+            <img [src]="(data.Product?.ImageCloudLink == null? data.Product?.Image:data.Product?.ImageCloudLink) | pipeHostImage" alt="" class="img-product">
           </td>
           <td>
             <a href="/san-pham/{{data.Product?.Alias}}" target="_blank"> {{ data.Product?.Name }} </a>

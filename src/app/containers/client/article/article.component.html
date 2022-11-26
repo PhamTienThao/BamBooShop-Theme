@@ -7,8 +7,10 @@
         <div class="blog-posts">
           <div class="single-blog-post blog-grid-post">
             <div class="blog-image single-blog">
-              <img class="img-fluid h-auto border-radius-10px" [src]="article.Image || null | hostImageClient"
-                alt="blog" />
+              <img class="img-fluid h-auto border-radius-10px" 
+              [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink)| hostImageClient" 
+              alt="blog" />
+              <!-- <img class="img-fluid h-auto border-radius-10px" [src]="article.Image || null | hostImageClient" alt="blog" /> -->
             </div>
             <div class="blog-post-content-inner mt-30px">
               <div class="blog-athor-date">

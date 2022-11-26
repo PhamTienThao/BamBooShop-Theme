@@ -62,7 +62,7 @@
       <tbody>
         <tr *ngFor="let data of tblData.data">
           <td class="text-center">
-            <img [src]="data.Image | pipeHostImage" alt="" class="img-product">
+            <img [src]="(data.ImageCloudLink == null? data.Image:data.ImageCloudLink) | pipeHostImage" alt="" class="img-product">
           </td>
           <td>{{ data.Name }}</td>
           <td class="text-center">{{ data.TotalQty | number }}</td>

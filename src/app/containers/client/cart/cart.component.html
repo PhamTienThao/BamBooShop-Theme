@@ -20,8 +20,10 @@
               <tbody *ngFor="let product of orderDetail; index as index">
                 <tr>
                   <td class="product-thumbnail">
-                    <a routerLink="/san-pham/{{ product.ProductAlias }}"><img class="img-responsive"
-                        [src]="product.ProductImage | hostImageClient" alt="" /></a>
+                    <a routerLink="/san-pham/{{ product.ProductAlias }}">
+                      <img class="img-responsive"
+                        [src]="(product.ImageCloudLink == null?product.ProductImage: product.ImageCloudLink)| hostImageClient"
+                        alt="" /></a>
                   </td>
                   <td class="product-name">
                     <a routerLink="/san-pham/{{ product.ProductAlias }}">

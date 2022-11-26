@@ -40,7 +40,7 @@
       <tbody>
         <tr *ngFor="let data of tblData.data">
           <td>
-            <img class="img-gallery" nz-image [nzSrc]="data.Image | pipeHostImage" alt="" />
+            <img class="img-gallery" nz-image [nzSrc]="(data.ImageCloudLink == null? data.Image:data.ImageCloudLink) | pipeHostImage" alt="" />
           </td>
           <td class="text-center">
             <ng-container *ngIf="data.Type == 1; else elseTemplate"> Chính </ng-container>
