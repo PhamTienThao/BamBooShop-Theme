@@ -58,12 +58,10 @@ export class ProductService extends BaseService {
     );
   }
   deleteByListId(id: number[]) {
-    return this.http.get(
-      this.routerPrefix + '/delete-by-list-id',{
-        params: {
-          id,
-        }
-      }
-    );
+    return this.http.get(this.routerPrefix + '/delete-by-list-id', {
+      params: {
+        id,
+      },
+    });
   }
 }

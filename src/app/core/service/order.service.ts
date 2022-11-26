@@ -4,7 +4,7 @@ import { AppRoutingApi } from 'src/app/app-routing-api';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderService extends BaseService {
   constructor(public override http: HttpClient) {
@@ -12,14 +12,21 @@ export class OrderService extends BaseService {
   }
 
   getWIP(filter: {}) {
-    return this.http.get(this.routerPrefix + "/get-wip", { params: filter });
+    return this.http.get(this.routerPrefix + '/get-wip', { params: filter });
   }
   changeStatus(id: number, status: number) {
-    return this.http.get(this.routerPrefix + "/change-status", {
+    return this.http.get(this.routerPrefix + '/change-status', {
       params: {
         id,
-        status
-      }
-    })
+        status,
+      },
+    });
+  }
+  deleteByListId(id: number[]) {
+    return this.http.get(this.routerPrefix + '/delete-by-list-id', {
+      params: {
+        id,
+      },
+    });
   }
 }

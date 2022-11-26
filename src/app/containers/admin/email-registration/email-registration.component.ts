@@ -11,7 +11,8 @@ import { EmailRegistrationService } from 'src/app/core/service/email-registratio
 })
 export class EmailRegistrationComponent implements OnInit {
   datas: { Email: string; Created: Date }[] = [];
-
+  dataColumns: any[] = [];
+  filterDatas: { Email: string; Created: Date }[] = [];
   filter = {
     keySearch: '',
   };
@@ -24,6 +25,7 @@ export class EmailRegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -43,5 +45,20 @@ export class EmailRegistrationComponent implements OnInit {
           this.messageService.error(err);
         },
       });
+  }
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Email',
+        prop: 'Email',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.Email.localeCompare(b.Email),
+      },
+      {
+        name: 'Ngày đăng ký',
+        prop: 'Created',
+        type: 'text',
+      },
+    ];
   }
 }

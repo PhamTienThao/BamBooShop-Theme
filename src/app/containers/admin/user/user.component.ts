@@ -15,7 +15,8 @@ export class UserComponent implements OnInit {
   @ViewChild('frmDetail', { static: true }) frmDetail!: UserDetailComponent;
 
   datas: User[] = [];
-
+  dataColumns: any[] = [];
+  filterDatas: User[] = [];
   filter = {
     keySearch: '',
   };
@@ -28,6 +29,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -82,7 +84,37 @@ export class UserComponent implements OnInit {
     this.frmDetail.visible = true;
     this.frmDetail.setForm(user);
   }
-
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Tên tài khoản',
+        prop: 'UserName',
+        type: 'number',
+        sortFn: (a: any, b: any) => a.UserName.localeCompare(b.UserName),
+      },
+      {
+        name: 'Họ tên',
+        prop: 'FullName',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.FullName.localeCompare(b.FullName),
+      },
+      {
+        name: 'Số điện thoại',
+        prop: 'Phone',
+        type: 'number',
+      },
+      {
+        name: 'Email',
+        prop: 'Email',
+        type: 'text',
+      },
+      {
+        name: 'Trạng thái',
+        prop: 'Active',
+        type: 'number',
+      },
+    ];
+  }
   onSubmit(user: User) {
     if (this.frmDetail.isAddNew) {
       this.spinner.show();

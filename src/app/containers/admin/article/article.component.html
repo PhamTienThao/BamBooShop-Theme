@@ -4,7 +4,7 @@
   </nz-breadcrumb-item>
   <nz-breadcrumb-item> Quản lý bài viết </nz-breadcrumb-item>
 </nz-breadcrumb> -->
-<div nz-row class="mg-t">
+<div nz-row>
   <!-- <div nz-col nzSpan="10">
     <nz-form-item>
       <nz-form-label>Từ khóa tìm kiếm</nz-form-label>
@@ -43,7 +43,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
           <th class="text-center" style="width:120px">Hình ảnh</th>
@@ -68,9 +68,6 @@
           </td>
           <td class="text-center">{{ data.Created | date:'HH:mm dd-MM-yyyy' }}</td>
           <td class="text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
-            <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
-              nzType="primary" nzSize="small"> Xóa </button> -->
             <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
               <i nz-icon nzType="edit" theme="outline"></i>
             </button>
@@ -81,7 +78,10 @@
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="delete($event)" (onEdit)="showDetail($event)"
+      (onMultiSelect)="deleteListArtical($event)" [columnsTable]="dataColumns" [listOfData]="datas" [editDeleteAction]="true" [multiColSelect]="true">
+    </app-table-template>
   </div>
 </div>
 <app-article-detail #frmDetail (onSubmit)="onSubmit($event)"></app-article-detail>

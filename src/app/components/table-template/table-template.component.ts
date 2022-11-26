@@ -5,45 +5,44 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-table-template',
   templateUrl: './table-template.component.html',
-  styleUrls: ['./table-template.component.css']
+  styleUrls: ['./table-template.component.css'],
 })
 export class TableTemplateComponent implements OnInit {
-
   @Input() columnsTable: any[] = [];
-
   @Input() addEditComponent: any;
-  
   @Input() refreshTable: boolean = true;
-
+  @Input() listOfData: readonly any[] = [];
+  @Input() editDeleteAction: boolean = false;
+  @Input() showDetailAction: boolean = false;
   @Input() multiColSelect: boolean = false;
+  @Input() deleteAction: boolean = false;
   @Input() tableSize: any = 'default';
+
   @Output() onDelete = new EventEmitter<any>();
   @Output() onRefresh = new EventEmitter<any>();
   @Output() onEdit = new EventEmitter<any>();
+  @Output() onShowDetail = new EventEmitter<any>();
   @Output() onAddnew = new EventEmitter<any>();
   @Output() onMultiSelect = new EventEmitter<any>();
-
-  @Input() listOfData: readonly any[] = [];
-
-  @Input() editDeleteAction: boolean = true;
 
   checked = false;
   loading = false;
   indeterminate = false;
   listOfCurrentPageData: readonly any[] = [];
   setOfCheckedId = new Set<number>();
-  
-  constructor(private dialog: MatDialog, private activatedRoute: ActivatedRoute) { 
 
-  }
+  constructor(
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.listOfData.forEach(x => {
-      this.columnsTable.forEach(y => {
-        y.prop == typeof(x)
-      })
-    })
-    if(this.refreshTable){
+    this.listOfData.forEach((x) => {
+      this.columnsTable.forEach((y) => {
+        y.prop == typeof x;
+      });
+    });
+    if (this.refreshTable) {
       this.setOfCheckedId = new Set<number>();
     }
   }
@@ -54,7 +53,7 @@ export class TableTemplateComponent implements OnInit {
       this.setOfCheckedId.delete(Id);
     }
   }
-  log(value: any){
+  log(value: any) {
     console.log(value);
   }
   onCurrentPageDataChange(listOfCurrentPageData: readonly any[]): void {
@@ -63,9 +62,15 @@ export class TableTemplateComponent implements OnInit {
   }
 
   refreshCheckedStatus(): void {
-    const listOfEnabledData = this.listOfCurrentPageData.filter(({ disabled }) => !disabled);
-    this.checked = listOfEnabledData.every(({ Id }) => this.setOfCheckedId.has(Id));
-    this.indeterminate = listOfEnabledData.some(({ Id }) => this.setOfCheckedId.has(Id)) && !this.checked;
+    const listOfEnabledData = this.listOfCurrentPageData.filter(
+      ({ disabled }) => !disabled
+    );
+    this.checked = listOfEnabledData.every(({ Id }) =>
+      this.setOfCheckedId.has(Id)
+    );
+    this.indeterminate =
+      listOfEnabledData.some(({ Id }) => this.setOfCheckedId.has(Id)) &&
+      !this.checked;
   }
 
   onItemChecked(Id: number, checked: boolean): void {
@@ -85,14 +90,16 @@ export class TableTemplateComponent implements OnInit {
   onClickDelete(data: any) {
     this.onDelete.emit(data);
   }
-  showDetail(data:any){
+  showEdit(data: any) {
     this.onEdit.emit(data);
   }
-  // refreshTable(reset: boolean = false) {
-  //   this.onRefresh.emit(reset);
-  // }
+  showDetail(data: any) {
+    this.onShowDetail.emit(data);
+  }
   deleteList(): void {
-    const requestData = this.listOfData.filter(data => this.setOfCheckedId.has(data.Id));
+    const requestData = this.listOfData.filter((data) =>
+      this.setOfCheckedId.has(data.Id)
+    );
     this.onMultiSelect.emit(requestData);
   }
 }

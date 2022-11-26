@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { finalize } from 'rxjs/operators';
+import { TableTemplateComponent } from 'src/app/components/table-template/table-template.component';
 import { Attribute } from 'src/app/core/model/attribute';
 import { AttributeService } from 'src/app/core/service/attribule.service';
 import { AttributeDetailComponent } from './attribute-detail/attribute-detail.component';
@@ -14,9 +15,11 @@ import { AttributeDetailComponent } from './attribute-detail/attribute-detail.co
 export class AttributeComponent implements OnInit {
   @ViewChild('frmDetail', { static: true })
   frmDetail!: AttributeDetailComponent;
+  @ViewChild('attributeTable', { static: true })
+  attributeTable!: TableTemplateComponent;
 
   datas: Attribute[] = [];
-  tableColumns: any[] =[];
+  tableColumns: any[] = [];
   filter = {
     keySearch: '',
   };
@@ -38,7 +41,7 @@ export class AttributeComponent implements OnInit {
         textClass: 'text-left',
         //sortOrder: null,
         sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
-      }
+      },
     ];
   }
 
@@ -60,7 +63,31 @@ export class AttributeComponent implements OnInit {
         },
       });
   }
-
+  refreshTable(value: boolean) {
+    if (value) {
+      this.attributeTable.setOfCheckedId = new Set<number>();
+    }
+  }
+  deleteListAttribute(attributeId: Attribute[]) {
+    var listOfAttribute: number[] = [];
+    attributeId.forEach((item) => {
+      listOfAttribute.push(item.Id);
+    });
+    if (listOfAttribute.length <= 1) {
+      this.attributeService.deleteByListId(listOfAttribute).subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+          this.refreshTable(true);
+        },
+        error: (err) => {
+          this.messageService.error(err);
+        },
+      });
+    } else {
+      this.messageService.success('Đã xảy ra lỗi');
+    }
+  }
   delete(attribute: Attribute) {
     this.spinner.show();
     this.attributeService

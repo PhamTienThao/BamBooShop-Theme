@@ -52,26 +52,17 @@
           <i nz-icon nzType="search" class="opacity-05"></i>
         </ng-template>
       </div>
-      <div class="select-product">
-        <nz-select [(ngModel)]="filter.status" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Tất cả">
-          <nz-option nzValue="10" nzLabel="Chờ xác nhận"></nz-option>
-          <nz-option nzValue="20" nzLabel="Đã xác nhận"></nz-option>
-          <nz-option nzValue="30" nzLabel="Đang vận chuyển"></nz-option>
-          <nz-option nzValue="40" nzLabel="Đã giao"></nz-option>
-          <nz-option nzValue="50" nzLabel="Đã hủy"></nz-option>
-        </nz-select>
-      </div>
       <div class="order-date">
         <span style="font-size: 15px;
         margin-right: 10px;
-        width: 28%;
+        width: 30%;
         align-self: center;  font-weight: 500;"> Ngày đặt hàng</span>
         <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
       </div>
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
           <th class="no-wrap">Mã đơn hàng</th>
@@ -94,12 +85,14 @@
           <td class=" no-wrap">{{ data.TotalAmount | number }}</td>
           <td class="no-wrap">{{ data.Status | orderStatus }}</td>
           <td class="no-wrap text-center">
-            <!-- <a (click)="showOrderDetail(data)">Xem chi tiết</a> -->
             <button nz-button nzSize="small" (click)="showOrderDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" (onShowDetail)="showOrderDetail($event)" [columnsTable]="dataColumns"
+      [listOfData]="datas" [showDetailAction]="true">
+    </app-table-template>
   </div>
 </div>
 <app-order-detail #frmDetail (onChangeStatus)="onChangeStatus($event)"></app-order-detail>

@@ -45,14 +45,6 @@
           <i nz-icon nzType="search" class="opacity-05"></i>
         </ng-template>
       </div>
-      <div class="select-product">
-        <nz-select [(ngModel)]="filter.status" class="width-full" (ngModelChange)="filterChange()"
-                    nzAllowClear nzSize="default" nzPlaceHolder="Trạng thái">
-          <nz-option nzLabel="Chờ duyệt" [nzValue]="10"> </nz-option>
-          <nz-option nzLabel="Đã duyệt" [nzValue]="20"> </nz-option>
-          <nz-option nzLabel="Cập nhật lại - Chờ duyệt" [nzValue]="30"> </nz-option>
-        </nz-select>
-      </div>
     </div>
     <div class="add-product-wrap">
       <button (click)="reload()" nz-button nzType="primary" class="add-product">
@@ -62,7 +54,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="displayData" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="displayData" [nzPageSize]="12">
       <thead>
         <tr>
           <th style="width:120px" class="text-center">Hình ảnh</th>
@@ -101,12 +93,14 @@
             </span>
           </td>
           <td class="no-wrap text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button> -->
             <button nz-button nzSize="small" (click)="showDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" (onShowDetail)="showDetail($event)" [columnsTable]="dataColumns" [listOfData]="datas"
+      [showDetailAction]="true" [editDeleteAction]="false">
+    </app-table-template>
   </div>
 </div>
 <app-review-detail #frmDetail (onSubmit)="onSubmit($event)"></app-review-detail>

@@ -16,7 +16,8 @@ export class GalleryComponent implements OnInit {
   @ViewChild('frmDetail', { static: true }) frmDetail!: GalleryDetailComponent;
 
   datas: Gallery[] = [];
-
+  dataColumns: any[] = [];
+  filterDatas: Gallery[] = [];
   constructor(
     private galleryService: GalleryService,
     private spinner: NgxSpinnerService,
@@ -25,6 +26,7 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -74,7 +76,26 @@ export class GalleryComponent implements OnInit {
       Image: 'no_img.jpg',
     });
   }
-
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Hình ảnh',
+        prop: 'Image',
+        type: 'image',
+      },
+      {
+        name: 'Loại',
+        prop: 'Type',
+        type: 'text',
+        listOfFilter: [
+          { text: 'Chính', value: 1 },
+          { text: 'Phụ', value: 2 },
+        ],
+        filterFn: (list: string[], item: any) =>
+          list.some((name) => item.Type == name),
+      },
+    ];
+  }
   onSubmit(gallery: Gallery | any) {
     this.spinner.show();
     this.galleryService

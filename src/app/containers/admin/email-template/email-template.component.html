@@ -21,7 +21,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
           <th style="width:300px">Mẫu gửi mail</th>
@@ -34,12 +34,14 @@
           <td>{{ data.Type }}</td>
           <td>{{ data.Subject }}</td>
           <td class="no-wrap text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button> -->
             <button nz-button nzSize="small" (click)="showDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" [columnsTable]="dataColumns" (onShowDetail)="showDetail($event)" [listOfData]="datas"
+      [showDetailAction]="true" [editDeleteAction]="false">
+    </app-table-template>
   </div>
 </div>
 <app-email-template-detail #frmDetail (onSubmit)="onSubmit($event)"></app-email-template-detail>

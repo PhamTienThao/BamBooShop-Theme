@@ -4,11 +4,17 @@ import { AppRoutingApi } from 'src/app/app-routing-api';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AttributeService extends BaseService {
   constructor(public override http: HttpClient) {
     super(http, AppRoutingApi.Attribute.Router_Prefix);
   }
-
+  deleteByListId(id: number[]) {
+    return this.http.get(this.routerPrefix + '/delete-by-list-id-attributes', {
+      params: {
+        id,
+      },
+    });
+  }
 }

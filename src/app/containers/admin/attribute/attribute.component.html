@@ -45,32 +45,8 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
-      <thead>
-        <tr>
-          <th>Tên thuộc tính</th>
-          <th style="width:160px !important" class="text-center">Hành động</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of tblData.data">
-          <td>{{ data.Name }}</td>
-          <td class="text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
-            <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
-              nzType="primary" nzSize="small"> Xóa </button> -->
-            <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
-              <i nz-icon nzType="edit" theme="outline"></i>
-            </button>
-            <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight"
-              nzType="default" nzDanger nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
-              <i nz-icon nzType="delete" theme="outline"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>
-    <app-table-template [columnsTable]="tableColumns" [listOfData]="datas"></app-table-template>
+    <app-table-template [columnsTable]="tableColumns" [listOfData]="datas" (onMultiSelect)="deleteListAttribute($event)" [multiColSelect]="true"
+      [editDeleteAction]="true" (onEdit)="showDetail($event)" (onDelete)="delete($event)"></app-table-template>
   </div>
 </div>
 <app-attribute-detail #frmDetail (onSubmit)="onSubmit($event)"></app-attribute-detail>

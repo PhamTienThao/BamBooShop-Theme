@@ -36,7 +36,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
           <th>Tên khách hàng</th>
@@ -57,12 +57,14 @@
           <td class="no-wrap">{{ data.Gender }}</td>
           <td>{{ data.Address }}</td>
           <td class="no-wrap text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button> -->
             <button nz-button nzSize="small" (click)="showDetail(data)" nzType="primary">Xem chi tiết</button>
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" (onShowDetail)="showDetail($event)" [columnsTable]="dataColumns" [listOfData]="datas"
+      [showDetailAction]="true" [editDeleteAction]="false">
+    </app-table-template>
   </div>
 </div>
 <app-customer-detail #frmDetail></app-customer-detail>

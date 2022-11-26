@@ -16,7 +16,8 @@ export class EmailTemplateComponent implements OnInit {
   frmDetail!: EmailTemplateDetailComponent;
 
   datas: EmailTemplate[] = [];
-
+  dataColumns: any[] = [];
+  filterDatas: EmailTemplate[] = [];
   filter = {
     keySearch: '',
   };
@@ -29,6 +30,7 @@ export class EmailTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -69,7 +71,22 @@ export class EmailTemplateComponent implements OnInit {
         },
       });
   }
-
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Mẫu gửi Email',
+        prop: 'Type',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.Type.localeCompare(b.Type),
+      },
+      {
+        name: 'Subject',
+        prop: 'Subject',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.Subject.localeCompare(b.Subject),
+      },
+    ];
+  }
   onSubmit(emailTemplate: EmailTemplate) {
     this.spinner.show();
     this.emailTemplateService

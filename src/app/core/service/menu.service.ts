@@ -6,7 +6,7 @@ import { Menu } from '../model/menu';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuService extends BaseService {
   private _menus = new BehaviorSubject<Menu[]>([]);
@@ -18,58 +18,60 @@ export class MenuService extends BaseService {
   }
 
   getMainMenu(filter: {}) {
-    return this.http.get(this.routerPrefix + "/get-main-menu", { params: filter });
+    return this.http.get(this.routerPrefix + '/get-main-menu', {
+      params: filter,
+    });
   }
 
   getSubMenu(filter: {}) {
-    return this.http.get(this.routerPrefix + "/get-sub-menu", { params: filter });
+    return this.http.get(this.routerPrefix + '/get-sub-menu', {
+      params: filter,
+    });
   }
 
   getParentMainMenu() {
-    return this.http.get(this.routerPrefix + "/get-parent-main-menu");
+    return this.http.get(this.routerPrefix + '/get-parent-main-menu');
   }
 
   getParentSubMenu() {
-    return this.http.get(this.routerPrefix + "/get-parent-sub-menu");
+    return this.http.get(this.routerPrefix + '/get-parent-sub-menu');
   }
 
   getMainMenuActive() {
-    return this.http.get(this.routerPrefix + "/get-main-menu-active");
+    return this.http.get(this.routerPrefix + '/get-main-menu-active');
   }
 
   getSubMenuActive() {
-    return this.http.get(this.routerPrefix + "/get-sub-menu-active");
+    return this.http.get(this.routerPrefix + '/get-sub-menu-active');
   }
 
   getAllMenuHomePage() {
-    return this.http.get(this.routerPrefix + "/get-all-menu-homepage");
+    return this.http.get(this.routerPrefix + '/get-all-menu-homepage');
   }
 
   getByType(types: string[]) {
-    return this.http.get(this.routerPrefix + "/get-by-type",
-      {
-        params: {
-          types
-        }
-      });
+    return this.http.get(this.routerPrefix + '/get-by-type', {
+      params: {
+        types,
+      },
+    });
   }
   getByTypeMenu(types: string[]) {
-    return this.http.get(this.routerPrefix + "/get-by-type",
-      { params: { types } }).subscribe(data => {
+    return this.http
+      .get(this.routerPrefix + '/get-by-type', { params: { types } })
+      .subscribe((data) => {
         this.dataStore.menus = data;
         this._menus.next(Object.assign({}, this.dataStore).menus);
-      })
-  };
+      });
+  }
   loadAllProductMenu(): Observable<any[]> {
-    return this.http.get<any[]>(this.routerPrefix + "/get-all-product-menu");
+    return this.http.get<any[]>(this.routerPrefix + '/get-all-product-menu');
   }
   deleteByListId(listId: number[]) {
-    return this.http.get(this.routerPrefix + "/delete-by-list-id", 
-    {
-      params: { 
-        listId 
-      }
+    return this.http.get(this.routerPrefix + '/delete-by-list-id-menu', {
+      params: {
+        listId,
+      },
     });
   }
 }
-

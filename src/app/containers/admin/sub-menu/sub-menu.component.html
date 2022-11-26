@@ -44,7 +44,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24">
-    <nz-table #tblData [nzData]="datas">
+    <!-- <nz-table #tblData [nzData]="datas">
       <thead>
         <tr>
           <th style="width:300px">Tên menu</th>
@@ -67,9 +67,6 @@
             <i *ngIf="data.ShowHomePage" nz-icon nzType="check" nzTheme="outline"></i>
           </td>
           <td class="text-center">
-            <!-- <button (click)="showDetail(data)" nz-button nzSize="small" class="mg-r"> Xem chi tiết </button>
-            <button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="delete(data)" nzPopconfirmPlacement="topRight" nz-button nzDanger
-              nzType="primary" nzSize="small"> Xóa </button> -->
             <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
               <i nz-icon nzType="edit" theme="outline"></i>
             </button>
@@ -80,7 +77,9 @@
           </td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #menuTable [listOfData]="filterDatas" (onDelete)="delete($event)" (onEdit)="showDetail($event)" [columnsTable]="dataColumns"
+      [listOfData]="datas" [editDeleteAction]="true" (onMultiSelect)="deleteListMenu($event)" [multiColSelect]="true"></app-table-template>
   </div>
 </div>
 <app-sub-menu-detail #frmDetail (onSubmit)="onSubmit($event)"></app-sub-menu-detail>

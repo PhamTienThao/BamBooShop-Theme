@@ -4,7 +4,7 @@ import { AppRoutingApi } from 'src/app/app-routing-api';
 import { BaseService } from './base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticleService extends BaseService {
   constructor(public override http: HttpClient) {
@@ -12,25 +12,32 @@ export class ArticleService extends BaseService {
   }
 
   getHighlight() {
-    return this.http.get(this.routerPrefix + "/get-highlight")
+    return this.http.get(this.routerPrefix + '/get-highlight');
   }
 
   getByMenu(menuAlias: string, take: number) {
-    return this.http.get(this.routerPrefix + "/get-by-menu", {
+    return this.http.get(this.routerPrefix + '/get-by-menu', {
       params: {
         menuAlias,
-        take
-      }
-    })
+        take,
+      },
+    });
   }
 
   getByAlias(alias: string) {
-    return this.http.get(this.routerPrefix + "/get-by-alias/" + alias);
+    return this.http.get(this.routerPrefix + '/get-by-alias/' + alias);
   }
-  getAll(){
-    return this.http.get(this.routerPrefix + "/get-all-article");
+  getAll() {
+    return this.http.get(this.routerPrefix + '/get-all-article');
   }
-  getArticleByKeySearch(key: string){
-    return this.http.get(this.routerPrefix + "/search-article/"+ key);
+  getArticleByKeySearch(key: string) {
+    return this.http.get(this.routerPrefix + '/search-article/' + key);
+  }
+  deleteByListId(id: number[]) {
+    return this.http.get(this.routerPrefix + '/delete-by-list-id-article', {
+      params: {
+        id,
+      },
+    });
   }
 }

@@ -41,31 +41,18 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Tên sản phẩm"  [(ngModel)]="filter.keySearch" 
-          (ngModelChange)="searchProduct()">
+          <input type="text" nz-input placeholder="Tên sản phẩm" [(ngModel)]="filter.keySearch" (ngModelChange)="searchProduct()">
         </nz-input-group>
         <ng-template #prefixTemplate>
           <i nz-icon nzType="search" class="opacity-05" (click)="searchProduct()"></i>
         </ng-template>
       </div>
-      <!-- <div class="select-product">
-        <nz-select [(ngModel)]="filter.menuId" (ngModelChange)="getData()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Danh mục">
-          <nz-option *ngFor="let item of menus" [nzValue]="item.Id" [nzLabel]="item.ParentMenu == null?item.Name:' &emsp;__'+item.Name"></nz-option>
-        </nz-select>
-      </div>
-      <div class="high-light-product">
-        <nz-select [(ngModel)]="filter.highLight" (ngModelChange)="searchProduct()" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Nổi bật">
-          <nz-option *ngFor="let item of highLightProductStatus" [nzValue]="item.value" [nzLabel]="item.display"></nz-option>
-        </nz-select>
-      </div> -->
     </div>
     <div class="add-product-wrap">
       <button (click)="reload()" nz-button nzType="primary" class="add-product">
         <i nz-icon nzType="sync" theme="outline"></i>
         <span>Làm mới</span>
       </button>
-    </div>
-    <div class="add-product-wrap">
       <button (click)="addNew()" nz-button nzType="primary" class="add-product">
         <i nz-icon nzType="plus-circle" theme="outline"></i>
         <span>Thêm mới</span>
@@ -73,63 +60,9 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-     <!-- <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12"> 
-      <thead>
-        <tr>
-          <th class="text-center">Hình ảnh</th>
-          <th>Tên sản phẩm</th>
-          <th>Danh mục</th>
-          <th class="text-center">Giá niêm yết</th>
-          <th class="text-center">Giá bán</th>
-          <th class="text-center">Sản phẩm nổi bật</th>
-          <th class="text-left">Trạng thái</th>
-          <th class="text-center">Thứ tự hiển thị</th>
-          <th class="text-center">Số lượng còn</th>
-          <th style="width:120px" class="text-center">Hành động</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of tblData.data">
-          <td class="text-center">
-            <img [src]="data.Image | pipeHostImage" alt="" class="img-product">
-          </td>
-          <td>{{ data.Name }}</td>
-          <td>{{ data.Menu?.Name }}</td>
-          <td class="text-center">{{ data.Price | number }}</td>
-          <td class="text-center">{{ data.DiscountPrice | number}}</td>
-          <td class="text-center">
-            <i *ngIf="data.Selling" nz-icon nzType="check" nzTheme="outline"></i>
-          </td>
-          <td>
-            <span [ngSwitch]="data.Status">
-              <span *ngSwitchCase="10">
-                <nz-badge nzStatus="success" nzText="Đang bán"></nz-badge>
-              </span>
-              <span *ngSwitchCase="20">
-                <nz-badge nzStatus="error" nzText="Dừng bán"></nz-badge>
-              </span>
-              <span *ngSwitchCase="30">
-                <nz-badge nzStatus="warning" nzText="Hết hàng"></nz-badge>
-              </span>
-            </span>
-          </td>
-          <td class="text-center">{{ data.Index }}</td>
-          <td class="text-center">{{ data.Quantity}}</td>
-          <td class="text-center">
-            <button class="m-r-5" (click)="showDetail(data)" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit">
-              <i nz-icon nzType="edit" theme="outline"></i>
-            </button>
-            <button nz-button nz-popconfirm nzPopconfirmTitle="Xác nhận xóa?" (nzOnConfirm)="onDelete(data)" nzPopconfirmPlacement="topRight"
-              nzType="default" nzDanger nzShape="circle" nz-tooltip nzTooltipTitle="Delete">
-              <i nz-icon nzType="delete" theme="outline"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>  -->
-    <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()" 
-        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" 
-        [columnsTable]="dataColumns" [multiColSelect]="true" [tableSize]="'small'">
+    <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()" (onEdit)="showDetail($event)"
+      (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" [columnsTable]="dataColumns" [multiColSelect]="true"
+      [editDeleteAction]="true">
     </app-table-template>
   </div>
 </div>

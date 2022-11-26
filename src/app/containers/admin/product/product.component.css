@@ -1,5 +1,4 @@
 .header-content {
-  margin-top: 20px;
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
@@ -38,7 +37,7 @@
 }
 .search-product {
   position: relative;
-  width: 30%;
+  width: 50%;
 }
 .select-product {
   position: relative;

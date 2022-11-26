@@ -13,7 +13,8 @@ import { ReportService } from 'src/app/core/service/report.service';
 })
 export class ReportComponent implements OnInit {
   datas: Order[] = [];
-
+  dataColumns: any[] = [];
+  filterDatas: Order[] = [];
   filter = {
     keySearch: '',
     status: null,
@@ -28,6 +29,7 @@ export class ReportComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -64,5 +66,57 @@ export class ReportComponent implements OnInit {
           this.messageService.error(err);
         },
       });
+  }
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Mã đơn hàng',
+        prop: 'Id',
+        type: 'number',
+      },
+      {
+        name: 'Ngày đặt hàng',
+        prop: 'Created',
+        type: 'text',
+      },
+      {
+        name: 'Tên khách hàng',
+        prop: 'Customer',
+        _subprop: 'FullName',
+        type: 'text',
+        sortFn: (a: any, b: any) =>
+          a.Customer?.FullName.localeCompare(b.Customer?.FullName),
+      },
+      {
+        name: 'Số điện thoại',
+        prop: 'PhoneNumber',
+        type: 'number',
+      },
+      {
+        name: 'Địa chỉ',
+        prop: 'Address',
+        type: 'text',
+      },
+      {
+        name: 'Tổng tiền',
+        prop: 'TotalAmount',
+        type: 'number',
+        sortFn: (a: any, b: any) => a.TotalAmount - b.TotalAmount,
+      },
+      {
+        name: 'Trạng thái',
+        prop: 'Status',
+        type: 'text',
+        listOfFilter: [
+          { text: 'Chờ xác nhận', value: 10 },
+          { text: 'Đã xác nhận', value: 20 },
+          { text: 'Đang vận chuyển', value: 30 },
+          { text: 'Đã giao', value: 40 },
+          { text: 'Đã hủy', value: 50 },
+        ],
+        filterFn: (list: string[], item: any) =>
+          list.some((name) => item.Status == name),
+      },
+    ];
   }
 }

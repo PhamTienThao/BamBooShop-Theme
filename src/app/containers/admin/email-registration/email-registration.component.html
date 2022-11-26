@@ -36,7 +36,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-    <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
+    <!-- <nz-table #tblData [nzData]="datas" [nzPageSize]="12">
       <thead>
         <tr>
           <th>Email</th>
@@ -49,7 +49,10 @@
           <td>{{ data.Created | date:'HH:mm dd-MM-yyyy' }}</td>
         </tr>
       </tbody>
-    </nz-table>
+    </nz-table> -->
+    <app-table-template #productTable [listOfData]="filterDatas" [columnsTable]="dataColumns" [listOfData]="datas" [showDetailAction]="false"
+      [editDeleteAction]="false">
+    </app-table-template>
   </div>
 </div>
 <ngx-spinner></ngx-spinner>

@@ -15,6 +15,8 @@ import { ReportService } from 'src/app/core/service/report.service';
 })
 export class ReportProductComponent implements OnInit {
   datas: Product[] = [];
+  dataColumns: any[] = [];
+  filterDatas: Product[] = [];
 
   filter = {
     keySearch: '',
@@ -29,6 +31,7 @@ export class ReportProductComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.tableInit();
   }
 
   getData() {
@@ -64,5 +67,37 @@ export class ReportProductComponent implements OnInit {
           this.messageService.error(err);
         },
       });
+  }
+  tableInit() {
+    this.dataColumns = [
+      {
+        name: 'Hình ảnh',
+        prop: 'Image',
+        type: 'image',
+      },
+      {
+        name: 'Image Cloud',
+        prop: 'ImageCloudLink',
+        type: 'image',
+      },
+      {
+        name: 'Tên sản phẩm',
+        prop: 'Name',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
+      },
+      {
+        name: 'Số lượng bán',
+        prop: 'TotalQty',
+        type: 'number',
+        sortFn: (a: any, b: any) => a.TotalAmount - b.TotalAmount,
+      },
+      {
+        name: 'Doanh thu',
+        prop: 'TotalAmount',
+        type: 'text',
+        sortFn: (a: any, b: any) => a.TotalAmount - b.TotalAmount,
+      },
+    ];
   }
 }
