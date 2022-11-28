@@ -31,10 +31,7 @@
                     </a>
                   </td>
                   <td class="product-attribute-cart" *ngIf="product.Attributes.length >= 1; else noAttribute">
-                    <div class="pro-details-color-size d-flex" *ngFor="
-                        let attributes of product?.Attributes;
-                        index as attributeIndex
-                      ">
+                    <div class="pro-details-color-size d-flex" *ngFor="let attributes of product?.Attributes;index as attributeIndex">
                       <!-- Right Side Start -->
                       <div class="select-shoing-wrap d-flex align-items-center">
                         <div class="shot-product">

@@ -258,7 +258,7 @@ export class CartComponent implements OnInit {
     if (!city) {
       return;
     }
-
+    console.log(city)
     // cách 1
     // const search = this.vietnamData.filter((data) => data.city === city);
     // console.log('search', search);

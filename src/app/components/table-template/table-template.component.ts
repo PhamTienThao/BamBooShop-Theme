@@ -86,6 +86,7 @@ export class TableTemplateComponent implements OnInit {
     this.onDelete.emit(data);
   }
   showDetail(data:any){
+    
     this.onEdit.emit(data);
   }
   // refreshTable(reset: boolean = false) {

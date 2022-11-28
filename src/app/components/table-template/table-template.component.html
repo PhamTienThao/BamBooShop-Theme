@@ -38,8 +38,21 @@
                     </ng-template>
                 </ng-container>
                 <ng-template #notImage>
-                    {{item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop]}}
+                    <ng-container *ngIf="item.type == 'datetime'">
+                        {{(item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop]) |  date:'HH:mm dd-MM-yyyy' }} 
+                    </ng-container>
+                    <ng-container *ngIf="item.type == 'number'">
+                        {{(item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop]) |  number }} 
+                    </ng-container>
+                    <ng-container *ngIf="item.type == 'bool'">
+                        <i *ngIf="data?.[item.prop] == true || data?.[item.prop]?.[item._subprop] == true" class="fa fa-check"></i>
+                        <i *ngIf="data?.[item.prop] == false || !data?.[item.prop]?.[item._subprop] == false" class="fa fa-times"></i>
+                    </ng-container>
+                    <ng-container *ngIf="item.type == 'text'">
+                        {{(item._subprop == null? data?.[item.prop] : data?.[item.prop]?.[item._subprop])}}
+                    </ng-container>
                 </ng-template>
+
             </td>
             <ng-container *ngIf="editDeleteAction">
                 <td class="text-center">

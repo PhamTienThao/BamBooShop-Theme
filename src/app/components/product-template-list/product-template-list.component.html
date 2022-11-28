@@ -7,7 +7,7 @@
           <ng-template #cloudImg>
             <img [src]="product.ImageCloudLink | hostImageClient" alt="Product" />
           </ng-template>  -->
-          <img [src]="(product.ImageCloudLink == null? product.Image : product.ImageCloudLink)" alt="">
+          <img [src]="(product.ImageCloudLink == null? product.Image : product.ImageCloudLink) | hostImageClient" alt="">
         </a>
       </div>
     </div>
