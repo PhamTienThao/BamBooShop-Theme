@@ -15,9 +15,9 @@
               <img [src]="product.ImageCloudLink | hostImageClient" class="small_img">
             </ng-template> -->
             <li *ngFor="let productImage of product.ProductImages; let i = index">
-              <img [src]="(product.ImageCloudLink == null? product.Image : product.ImageCloudLink) | hostImageClient"
+              <img [src]="(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink) | hostImageClient"
                 class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
-                (click)="showImg(productImage.Image)" />
+                (click)="showImg(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink) ; selectImage(i)" />
               <!-- <ng-template #cloudImg>
               <img [src]="productImage.ImageCloudLink | hostImageClient"
               class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
