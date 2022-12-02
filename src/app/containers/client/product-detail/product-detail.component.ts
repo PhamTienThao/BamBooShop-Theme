@@ -56,9 +56,9 @@ export class ProductDetailComponent implements OnInit {
     this.getData();
   }
 
-  // selectImage(index: number): void {
-  //   this.selectedIndex = index;
-  // }
+  selectImage(index: number): void {
+    this.selectedIndex = index;
+  }
 
   handleMinus() {
     if (this.qty > 1) {
