@@ -61,7 +61,7 @@
             <img [src]="(data.ImageCloudLink == null? data.Image : data.ImageCloudLink) | pipeHostImage" alt="" class="img-article">
           </td>
           <td>{{ data.Title }}</td>
-          <td>{{ data.Menu?.Name }}</td>
+          <td>{{ data.Menu.Name }}</td>
           <td class="text-center">{{ data.Index }}</td>
           <td class="text-center">
             <i *ngIf="data.Active" nz-icon nzType="check" nzTheme="outline"></i>

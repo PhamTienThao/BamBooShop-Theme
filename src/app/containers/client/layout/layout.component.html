@@ -211,7 +211,7 @@
                     <img src="{{ website.Logo | hostImageClient }}" />
                   </a>
                 </div>
-                <div class="mg-t about-text">
+                <div class="mg-t single-wedge map-container">
                   <div [innerHTML]="website.Location | safe: 'html'"></div>
                 </div>
                 <ul class="link-follow">
@@ -246,11 +246,8 @@
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li" *ngFor="let item of subMenus">
-                        <p *ngIf="
-                            item.Articles != null && item.Articles.length > 0
-                          ">
-                          <a class="single-link" routerLink="/thong-tin/{{ item.Articles[0].Alias }}">{{ item.Name
-                            }}</a>
+                        <p *ngIf="item.Articles != null && item.Articles.length > 0">
+                          <a class="single-link" routerLink="/thong-tin/{{ item.Articles[0].Alias }}">{{ item.Name}}</a>
                         </p>
                       </li>
                     </ul>
