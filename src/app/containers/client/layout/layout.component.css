@@ -49,3 +49,7 @@ pre,
 ul {
   margin-bottom: 0px !important;
 }
+:host ::ng-deep .map-container iframe { 
+  max-width: max-content;
+  max-height: 20vh;
+}
