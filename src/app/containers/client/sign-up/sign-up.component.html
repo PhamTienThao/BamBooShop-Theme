@@ -17,9 +17,8 @@
                       <form [formGroup]="formMail" (ngSubmit)="requestOTP()">
                         <div class="email-register">
                           <input type="text" email formControlName="Email" placeholder="Email" required />
-                          <small *ngIf=" formMail.get('Email')?.invalid && formMail.get('Email')?.touched" class="text-danger">
-                            * Please enter the correct email format
-                          </small>
+                          <small *ngIf=" formMail.get('Email')?.invalid && formMail.get('Email')?.touched" class="text-danger"> * Please enter the
+                            correct email format </small>
                         </div>
                         <div class="button-box">
                           <div class="login-area-button">
@@ -58,8 +57,7 @@
                       <form [formGroup]="formOTP" (ngSubmit)="confirmOTP()">
                         <div class="email-register">
                           <input type="text" formControlName="OTP" placeholder="OTP" required />
-                          <small *ngIf="formOTP.get('OTP')?.invalid && formOTP.get('OTP')?.touched" class="text-danger">
-                            * OTP is required
+                          <small *ngIf="formOTP.get('OTP')?.invalid && formOTP.get('OTP')?.touched" class="text-danger"> * OTP không được bỏ trống!
                           </small>
                         </div>
                         <div class="button-box">
@@ -84,39 +82,34 @@
                           <input type="email" formControlName="Email" placeholder="Email" />
                         </div>
                         <div class="email-register">
-                          <input type="text" formControlName="FullName" placeholder="Full Name" />
-                          <small *ngIf=" formData.get('FullName')?.invalid && formData.get('FullName')?.touched" class="text-danger">
-                            * Full Name is required
-                          </small>
+                          <input type="text" formControlName="FullName" placeholder="Họ và tên" />
+                          <small *ngIf=" formData.get('FullName')?.invalid && formData.get('FullName')?.touched" class="text-danger"> * Họ và tên
+                            không được bỏ trống! </small>
                         </div>
                         <div class="email-register">
-                          <input type="password" formControlName="Password" placeholder="Password" />
-                          <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger">
-                            * Please fill out the Password field and mini length is 5
-                          </small>
+                          <input type="password" formControlName="Password" placeholder="Nhập mật khẩu" />
+                          <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger"> * Nhập mật khẩu
+                            với ít nhất 5 ký tự </small>
                         </div>
                         <div class="email-register">
-                          <input type="password" formControlName="RePassword" placeholder="Re-enter Password" />
-                          <small *ngIf="formData.get('RePassword')?.invalid && formData.get('RePassword')?.touched" class="text-danger">
-                            * Please fill out the Re-enter Password field and mini length is 5
-                          </small>
+                          <input type="password" formControlName="Nhập lại mật khẩu" placeholder="Re-enter Password" />
+                          <small *ngIf="formData.get('RePassword')?.invalid && formData.get('RePassword')?.touched" class="text-danger"> * Nhập lại
+                            mật khẩu với ít nhất 5 ký tự </small>
                         </div>
-
                         <div class="email-register">
-                          <input type="text" formControlName="PhoneNumber" placeholder="Phone Number" />
-                          <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched" class="text-danger">
-                            * Please enter the correct phone number format
-                          </small>
+                          <input type="text" formControlName="PhoneNumber" placeholder="Số điện thoại" />
+                          <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched" class="text-danger"> * Nhập đúng
+                            định dạng số điện thoại</small>
                         </div>
                         <div class="button-box">
                           <div class="login-area-button">
                             <button type="submit" class="login-button">
-                              <span>Register</span>
+                              <span>Đăng ký</span>
                             </button>
                           </div>
                           <div class="text-register">
                             <a routerLink="/dang-nhap">
-                              < Back to Login </a>
+                              < Trở lại Đăng nhập </a>
                           </div>
                         </div>
                       </form>

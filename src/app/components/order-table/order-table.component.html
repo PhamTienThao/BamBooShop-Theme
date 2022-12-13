@@ -1,13 +1,9 @@
 <div class="select-filter-wrap d-flex align-items-center">
-  <div class="shot-product">
-     Filter:  
-  </div>
+  <div class="shot-product"> Lọc: </div>
   <div class="filter-select">
     <select class="shop-sort" (change)="chooseAttribute($event)">
       <!-- <option data-display="Balck">Balck</option> -->
-      <option [value]="item.value" *ngFor=" let item of orderStatus">
-        {{ item.name }}
-      </option>
+      <option [value]="item.value" *ngFor=" let item of orderStatus"> {{ item.name }} </option>
     </select>
   </div>
 </div>
@@ -17,11 +13,11 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Total</th>
-        <th>Paid</th>
-        <th>Actions</th>
+        <th>Ngày tháng</th>
+        <th>Trạng thái</th>
+        <th>Tổng tiền</th>
+        <th>Thanh toán</th>
+        <th>Hành động</th>
       </tr>
     </thead>
     <tbody *ngFor="let item of orderFilter">
@@ -31,8 +27,9 @@
         <td><span class="success">{{filterOrderStatusName(item.Status)}}</span></td>
         <td>{{item.TotalAmount}}</td>
         <td><i *ngIf="item.IsPaid; else notPaid" class="fa fa-check"></i>
-            <ng-template #notPaid><i class="fa fa-times"></i></ng-template></td>
-        <td><a (click)="view(item)" class="view">view</a></td>
+          <ng-template #notPaid><i class="fa fa-times"></i></ng-template>
+        </td>
+        <td><a (click)="view(item)" class="view">Xem</a></td>
       </tr>
     </tbody>
   </table>

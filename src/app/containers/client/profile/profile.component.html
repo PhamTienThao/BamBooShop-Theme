@@ -7,15 +7,15 @@
         <div class="dashboard_tab_button" data-aos="fade-up" data-aos-delay="0">
           <ul role="tablist" class="nav flex-column dashboard-list">
             <li>
-              <a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
+              <a href="#account-details" data-bs-toggle="tab" class="nav-link">Thông tin tài khoản</a>
             </li>
             <li>
-              <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a>
+              <a href="#orders" data-bs-toggle="tab" class="nav-link">Đơn hàng của tôi</a>
             </li>
             <li *ngIf="!isSocialNetworkAccount">
-              <a href="#change-password" data-bs-toggle="tab" class="nav-link">Change Password</a>
+              <a href="#change-password" data-bs-toggle="tab" class="nav-link">Đổi mật khẩu</a>
             </li>
-            <li><a routerLink="/dang-xuat" class="nav-link">logout</a></li>
+            <li><a routerLink="/dang-xuat" class="nav-link">Đăng xuất</a></li>
           </ul>
         </div>
       </div>
@@ -36,56 +36,49 @@
                     </div>
                     <div class="default-form-box mb-20">
                       <div class="title-required">
-                        <label>Full Name</label>
+                        <label>Họ và tên</label>
                         <span class="text-red">(*)</span>
                       </div>
                       <input type="text" formControlName="FullName" name="fullName" />
-                      <small *ngIf="formData.get('FullName')?.invalid &&formData.get('FullName')?.touched"class="text-danger">
-                        * Full Name is required
-                      </small>
+                      <small *ngIf="formData.get('FullName')?.invalid &&formData.get('FullName')?.touched" class="text-danger"> * Họ và tên không được
+                        bỏ trống! </small>
                     </div>
                     <div class="default-form-box mb-20">
                       <div class="title-required">
-                        <label>Phone Number</label>
+                        <label>Số diện thoại</label>
                         <span class="text-red">(*)</span>
                       </div>
                       <input type="text" formControlName="PhoneNumber" name="phoneNumber" />
-                      <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched"
-                        class="text-danger">
-                        * Please enter the correct phone number format
-                      </small>
+                      <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched" class="text-danger"> * Nhập đúng
+                        định dạng số điện thoại </small>
                     </div>
                     <div class="default-form-box mb-20">
-                      <label>Birthdate</label>
+                      <label>Ngày sinh</label>
                       <input type="date" formControlName="Dob" name="dob" />
                     </div>
                     <div class="default-form-box mb-20">
                       <div class="title-required">
-                        <label>Address</label> <span class="text-red">(*)</span>
+                        <label>Địa chỉ</label> <span class="text-red">(*)</span>
                       </div>
                       <textarea formControlName="Address"></textarea>
-                      <small *ngIf="formData.get('Address')?.invalid && formData.get('Address')?.touched" class="text-danger">
-                        * Street Address is required
-                      </small>
+                      <small *ngIf="formData.get('Address')?.invalid && formData.get('Address')?.touched" class="text-danger"> * Địa chỉ không được bỏ
+                        trống! </small>
                     </div>
-                    <p>Gender</p>
+                    <p>Giới tính</p>
                     <mat-radio-group class="input-radio" formControlName="Gender">
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Nam" name="id_gender"></mat-radio-button>
-                        Mr.
+                        <mat-radio-button type="radio" value="Nam" name="id_gender"></mat-radio-button> Nam
                       </span>
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Nữ" name="id_gender"></mat-radio-button>
-                        Mrs.
+                        <mat-radio-button type="radio" value="Nữ" name="id_gender"></mat-radio-button> Nữ
                       </span>
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Khác" name="id_gender"></mat-radio-button>
-                        Other
+                        <mat-radio-button type="radio" value="Khác" name="id_gender"></mat-radio-button> Khác
                       </span>
                     </mat-radio-group>
                     <br />
                     <div class="save_button mt-3">
-                      <button class="btn" type="submit">Save</button>
+                      <button class="btn" type="submit">Lưu lại</button>
                     </div>
                   </form>
                 </div>
@@ -103,37 +96,30 @@
                 <div class="account_login_form">
                   <form [formGroup]="formChangePassword" (ngSubmit)="submitChangePassword()">
                     <div class="default-form-box mb-20">
-                      <label>Old Password</label>
-                      <input type="password" required formControlName="OldPassword" name="oldPassword"
-                        #oldPasswordControl placeholder="Enter your old password" />
-                      <small *ngIf="formChangePassword.get('OldPassword')?.invalid &&formChangePassword.get('OldPassword')?.touched" class="text-danger">
-                        * Please fill out the old password field and min length is 5
-                      </small>
+                      <label>Mật khẩu cũ</label>
+                      <input type="password" required formControlName="OldPassword" name="oldPassword" #oldPasswordControl
+                        placeholder="Nhập mật khẩu cũ của bạn" />
+                      <small *ngIf="formChangePassword.get('OldPassword')?.invalid &&formChangePassword.get('OldPassword')?.touched"
+                        class="text-danger"> * Nhập mật khẩu cũ với ít nhất 5 ký tự! </small>
                     </div>
                     <div class="default-form-box mb-20">
-                      <label>New Password</label>
-                      <input type="password" required formControlName="NewPassword" name="newPassword"
-                        placeholder="Enter your new password" />
-                      <small *ngIf="formChangePassword.get('NewPassword')?.invalid &&formChangePassword.get('NewPassword')?.touched " class="text-danger">
-                        * Please fill out the new password field and min length is 5
-                      </small>
+                      <label>Mật khẩu mới</label>
+                      <input type="password" required formControlName="NewPassword" name="newPassword" placeholder="Nhập mật khẩu mới của bạn" />
+                      <small *ngIf="formChangePassword.get('NewPassword')?.invalid &&formChangePassword.get('NewPassword')?.touched "
+                        class="text-danger"> * Nhập mật khẩu mới với ít nhất 5 ký tự! </small>
                     </div>
                     <div class="default-form-box mb-20">
-                      <label>Confirm Password</label>
-                      <input type="password" required formControlName="ConfirmPassword" name="confirmPassword"
-                        (change)="rePasswordChange()" placeholder="Confirm new password" />
-                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.invalid &&formChangePassword.get('ConfirmPassword')?.touched" class="text-danger">
-                        * Please fill out the confirm password field and minlength is 5
-                      </small>
-                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.value == formChangePassword.get('ConfirmPassword')?.value 
-                          && !isConfirmPasswordRight && formChangePassword.get('NewPassword')?.touched" class="text-danger">
-                        * Confirm Password and New Password are not matching
-                      </small>
+                      <label>Xác nhận mật khẩu</label>
+                      <input type="password" required formControlName="ConfirmPassword" name="confirmPassword" (change)="rePasswordChange()"
+                        placeholder="Xác nhận mật khẩu mới của bạn" />
+                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.invalid &&formChangePassword.get('ConfirmPassword')?.touched"
+                        class="text-danger"> * Nhập lại mật khẩu với ít nhất 5 ký tự! </small>
+                      <small *ngIf="formChangePassword.get('ConfirmPassword')?.value == formChangePassword.get('ConfirmPassword')?.value
+                          && !isConfirmPasswordRight && formChangePassword.get('NewPassword')?.touched" class="text-danger"> * Mật khẩu không trùng
+                        khớp! </small>
                     </div>
                     <div class="save_button mt-3">
-                      <button class="btn" type="submit" [disabled]="formChangePassword.invalid && isConfirmPasswordRight">
-                        Update
-                      </button>
+                      <button class="btn" type="submit" [disabled]="formChangePassword.invalid && isConfirmPasswordRight"> Lưu lại </button>
                     </div>
                   </form>
                 </div>

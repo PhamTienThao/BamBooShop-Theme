@@ -7,21 +7,21 @@
             <table>
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Product Name</th>
-                  <th>Until Price</th>
-                  <th>Attributes</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
-                  <th *ngIf="data.Status == 40">Review</th>
+                  <th>Hình ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Đơn vị giá</th>
+                  <th>Thuộc tính</th>
+                  <th>Số lượng</th>
+                  <th>Tổng cộng</th>
+                  <th *ngIf="data.Status == 40">Nhận xét</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of data.OrderDetails">
                   <td class="product-thumbnail">
                     <a>
-                      <img class="img-responsive img-size ml-15px" 
-                      [src]="(item.ImageCloudLink == null ? item.ProductImage : item.ImageCloudLink) | hostImageClient" alt="" />
+                      <img class="img-responsive img-size ml-15px"
+                        [src]="(item.ImageCloudLink == null ? item.ProductImage : item.ImageCloudLink) | hostImageClient" alt="" />
                     </a>
                   </td>
                   <td class="product-name">
@@ -36,15 +36,12 @@
                   <td class="product-quantity">
                     <a>{{item.Qty}}</a>
                   </td>
-                  <td class="product-subtotal">
-                    {{item.Qty * item.ProductPrice}}
-                  </td>
+                  <td class="product-subtotal"> {{item.Qty * item.ProductPrice}} </td>
                   <td *ngIf="data.Status == 40">
-                    <a class="view" (click)="review(item)"> View
-                      <a
-                        *ngIf="(item.Reviews != null && item.Reviews.length > 0) || item.IsReview; else elseTemplate">/Reviewed</a>
+                    <a class="view" (click)="review(item)"> Nhận xét <a
+                        *ngIf="(item.Reviews != null && item.Reviews.length > 0) || item.IsReview; else elseTemplate">/Đã nhận xét</a>
                       <ng-template #elseTemplate>
-                        <a>/No review</a>
+                        <a>/Không nhận xét</a>
                       </ng-template>
                     </a>
                   </td>
@@ -53,24 +50,22 @@
             </table>
           </div>
           <br>
-          <div class="total-order-wrapper">
-            Total: {{paidStatus(data.IsPaid)}}
-            <span class="total-order"> {{data.TotalAmount}}</span>
+          <div class="total-order-wrapper"> Tổng cộng: {{paidStatus(data.IsPaid)}} <span class="total-order"> {{data.TotalAmount}}</span>
           </div>
           <br>
           <div class="review-container" *ngIf="isVisibleModal">
-            <div class="review-title"><span>Review</span></div>
+            <div class="review-title"><span>Nhận xét</span></div>
             <br>
             <div class="table-content table-responsive cart-table-content">
               <table>
                 <thead>
                   <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Until Price</th>
-                    <th>Attributes</th>
-                    <th>Qty</th>
-                    <th>Rating</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn vị giá</th>
+                    <th>Thuộc tính</th>
+                    <th>Số lượng</th>
+                    <th>Đánh giá</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -78,8 +73,8 @@
                     <td class="product-thumbnail">
                       <a>
                         <img class="img-responsive img-size ml-15px" alt=""
-                          [src]="(orderDetailSelected.ImageCloudLink == null? orderDetailSelected.ProductImage : orderDetailSelected.ImageCloudLink) | hostImageClient"/>
-                        </a>
+                          [src]="(orderDetailSelected.ImageCloudLink == null? orderDetailSelected.ProductImage : orderDetailSelected.ImageCloudLink) | hostImageClient" />
+                      </a>
                     </td>
                     <td class="product-name">
                       <a>{{orderDetailSelected.ProductName}}</a>
@@ -98,11 +93,7 @@
                         <ngb-rating [max]="5" [(rate)]="reviewModel.Star">
                           <ng-template let-fill="fill">
                             <span class="defaultHert-review" [class.filled]="fill === 100">
-                              <span class="paintHeart" [style.width.%]="fill">
-                                &#9733;
-                              </span>
-                              &#9733;
-                            </span>
+                              <span class="paintHeart" [style.width.%]="fill"> &#9733; </span> &#9733; </span>
                           </ng-template>
                         </ngb-rating>
                       </a>
@@ -112,26 +103,23 @@
               </table>
             </div>
             <div>
-              <textarea cols="80" rows="4" [(ngModel)]="reviewModel.Content" name="ProductReview"
-                placeholder="Place your review here ...">
-            </textarea>
+              <textarea cols="80" rows="4" [(ngModel)]="reviewModel.Content" name="ProductReview" placeholder="Đặt nhận xét của bạn ở đây ...">
+              </textarea>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-12">
               <div class="order-shiping-update-wrapper">
                 <div class="order-shiping-update">
-                  <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30; else delivered"
-                    (click)="cancelOrder()">Cancel Order</button>
+                  <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30; else delivered" (click)="cancelOrder()">Hủy đơn
+                    hàng</button>
                   <ng-template #delivered>
-                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="confirmReview()"
-                      style="margin-right: 30px;">Review</button>
-                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="closeReview()">Close Review</button>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="confirmReview()" style="margin-right: 30px;">Nhận xét</button>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="closeReview()">Đóng nhận xét</button>
                   </ng-template>
-
                 </div>
                 <div class="order-close">
-                  <button (click)="close()">Close</button>
+                  <button (click)="close()">Đóng</button>
                 </div>
               </div>
             </div>

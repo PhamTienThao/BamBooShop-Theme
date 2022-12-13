@@ -1,7 +1,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px" *ngIf="getTotalAmount > 0; else noCart">
   <div class="container">
-    <h3 class="cart-page-title">Your cart items</h3>
+    <h3 class="cart-page-title">Giỏ hàng của bạn</h3>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-12">
         <form action="#">
@@ -9,12 +9,12 @@
             <table>
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Product Name</th>
-                  <th>Attributes</th>
-                  <th>Until Price</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
+                  <th>Hình ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Thuộc tính</th>
+                  <th>Đơn vị giá</th>
+                  <th>Số lượng</th>
+                  <th>Tổng cộng</th>
                 </tr>
               </thead>
               <tbody *ngFor="let product of orderDetail; index as index">
@@ -22,13 +22,10 @@
                   <td class="product-thumbnail">
                     <a routerLink="/san-pham/{{ product.ProductAlias }}">
                       <img class="img-responsive"
-                        [src]="(product.ImageCloudLink == null?product.ProductImage: product.ImageCloudLink)| hostImageClient"
-                        alt="" /></a>
+                        [src]="(product.ImageCloudLink == null?product.ProductImage: product.ImageCloudLink)| hostImageClient" alt="" /></a>
                   </td>
                   <td class="product-name">
-                    <a routerLink="/san-pham/{{ product.ProductAlias }}">
-                      {{ product.ProductName }}
-                    </a>
+                    <a routerLink="/san-pham/{{ product.ProductAlias }}"> {{ product.ProductName }} </a>
                   </td>
                   <td class="product-attribute-cart" *ngIf="product.Attributes.length >= 1; else noAttribute">
                     <div class="pro-details-color-size d-flex" *ngFor="let attributes of product?.Attributes;index as attributeIndex">
@@ -49,39 +46,29 @@
                             <option [value]="productAttributeIndex" [selected]="item.Checked" *ngFor="
                                 let item of attributes.ProductAttributes;
                                 index as productAttributeIndex
-                              ">
-                              {{ item.Value }}
-                            </option>
+                              "> {{ item.Value }} </option>
                           </select>
                         </div>
                       </div>
                       <!-- Right Side End -->
                     </div>
                   </td>
-
                   <ng-template #noAttribute>
                     <td class="product-attribute-cart">
-                      <span>None</span>
+                      <span>Không</span>
                     </td>
                   </ng-template>
                   <td class="product-price-cart">
-                    <span class="amount">${{ product.ProductDiscountPrice | number }}</span>
+                    <span class="amount">{{ product.ProductDiscountPrice | number }}đ</span>
                   </td>
                   <td class="product-quantity">
                     <div class="wrapper">
-                      <button class="plusminus-minus" (click)="handleQty(index, -1)">
-                        -
-                      </button>
-                      <input type="number" class="number-input" [value]="product.Qty"
-                        (change)="handleQty(index, 0, $event)" />
-                      <button class="plusminus-plus" (click)="handleQty(index, 1)">
-                        +
-                      </button>
+                      <button class="plusminus-minus" (click)="handleQty(index, -1)"> - </button>
+                      <input type="number" class="number-input" [value]="product.Qty" (change)="handleQty(index, 0, $event)" />
+                      <button class="plusminus-plus" (click)="handleQty(index, 1)"> + </button>
                     </div>
                   </td>
-                  <td class="product-subtotal">
-                    ${{ product.ProductDiscountPrice * product.Qty | number }}
-                  </td>
+                  <td class="product-subtotal"> {{ product.ProductDiscountPrice * product.Qty | number }}đ </td>
                 </tr>
               </tbody>
             </table>
@@ -90,12 +77,10 @@
             <div class="col-lg-12">
               <div class="cart-shiping-update-wrapper">
                 <div class="cart-shiping-update">
-                  <a routerLink="/">Continue Shopping</a>
+                  <a routerLink="/">Tiếp tục mua hàng</a>
                 </div>
                 <div class="cart-clear">
-                  <button routerLink="/gio-hang-trong" (click)="clearCart()">
-                    Clear Shopping Cart
-                  </button>
+                  <button routerLink="/gio-hang-trong" (click)="clearCart()"> Xóa toàn bộ sản phẩm </button>
                 </div>
               </div>
             </div>
@@ -105,32 +90,28 @@
           <div class="row row-detail-order">
             <div class="col-lg-7">
               <div class="billing-info-wrap">
-                <h3>Billing Details</h3>
+                <h3>Thông tin mua hàng</h3>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="billing-info mb-4">
-                      <label>Full Name</label>
+                      <label>Họ và tên</label>
                       <span class="text-red">(*)</span>
                       <input formControlName="FullName" required />
                       <small *ngIf="
                           formData.get('FullName')?.invalid &&
                           formData.get('FullName')?.touched
-                        " class="text-danger">
-                        * Full Name is required
-                      </small>
+                        " class="text-danger"> * Họ và tên không được bỏ trống! </small>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6">
                     <div class="billing-info mb-4">
-                      <label>Phone</label>
+                      <label>Số điện thoại</label>
                       <span class="text-red">(*)</span>
                       <input formControlName="PhoneNumber" required />
                       <small *ngIf="
                           formData.get('PhoneNumber')?.invalid &&
                           formData.get('PhoneNumber')?.touched
-                        " class="text-danger">
-                        * Please enter the correct phone number format
-                      </small>
+                        " class="text-danger"> * Phải nhập đúng định dạng số điện thoại </small>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6">
@@ -140,63 +121,50 @@
                       <small *ngIf="
                           formData.get('Email')?.invalid &&
                           formData.get('Email')?.touched
-                        " class="text-danger">
-                        * Please enter the correct email format
-                      </small>
+                        " class="text-danger"> * Phải nhập đúng định dạng email </small>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="billing-select mb-4">
-                      <label>City</label>
+                      <label>Thành phố</label>
                       <span class="text-red">(*)</span>
                       <select formControlName="City" (change)="changeCity($event)">
-                        <option *ngFor="let city of cities" value="{{ city.name }}">
-                          {{ city.name }}
-                        </option>
+                        <option *ngFor="let city of cities" value="{{ city.name }}"> {{ city.name }} </option>
                       </select>
                       <small *ngIf="
                           formData.get('City')?.invalid &&
                           formData.get('City')?.touched
-                        " class="text-danger">
-                        * City is required
-                      </small>
+                        " class="text-danger"> * Thành phố không được bỏ trống! </small>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="billing-select mb-4">
-                      <label>District</label>
+                      <label>Quận/Huyện</label>
                       <span class="text-red">(*)</span>
                       <select formControlName="District">
-                        <option *ngFor="let data of district" value="{{ data }}">
-                          {{ data }}
-                        </option>
+                        <option *ngFor="let data of district" value="{{ data }}"> {{ data }} </option>
                       </select>
                       <small *ngIf="
                           formData.get('District')?.invalid &&
                           formData.get('District')?.touched
-                        " class="text-danger">
-                        * District is required
-                      </small>
+                        " class="text-danger"> * Quận/Huyện không được bỏ trống! </small>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="billing-info mb-4">
-                      <label>Street Address</label>
+                      <label>Địa chỉ cụ thể</label>
                       <span class="text-red">(*)</span>
                       <input formControlName="Address" required />
                       <small *ngIf="
                           formData.get('Address')?.invalid &&
                           formData.get('Address')?.touched
-                        " class="text-danger">
-                        * Street Address is required
-                      </small>
+                        " class="text-danger"> * Địa chỉ cụ thể không được bỏ trống! </small>
                     </div>
                   </div>
                 </div>
                 <div class="additional-info-wrap">
-                  <h4>Additional information</h4>
+                  <label>Lưu ý cho người bán</label>
                   <div class="additional-info">
-                    <label>Order notes</label>
                     <nz-form-control>
                       <textarea formControlName="Note" rows="2"></textarea>
                     </nz-form-control>
@@ -206,35 +174,28 @@
             </div>
             <div class="col-lg-5 mt-md-30px mt-lm-30px">
               <div class="your-order-area">
-                <h3>Your order</h3>
+                <h3>Đơn hàng của bạn</h3>
                 <div class="your-order-wrap gray-bg-4">
                   <div class="your-order-product-info">
                     <div class="your-order-top">
                       <ul>
-                        <li>Product</li>
-                        <li>Total</li>
+                        <li>Sản phẩm</li>
+                        <li>Tổng</li>
                       </ul>
                     </div>
                     <div class="your-order-middle">
                       <ul>
                         <li *ngFor="let product of orderDetail">
-                          <span class="order-middle-left">{{ product.ProductName }}
-                          </span>
-                          <span class="order-quantity-quantity">
-                            X {{ product.Qty }}
-                          </span>
-                          <span class="order-price">${{
-                            product.ProductDiscountPrice * product.Qty
-                            | number
-                            }}
-                          </span>
+                          <span class="order-middle-left">{{ product.ProductName }} </span>
+                          <span class="order-quantity-quantity"> X {{ product.Qty }} </span>
+                          <span class="order-price">{{ product.ProductDiscountPrice * product.Qty | number }}đ </span>
                         </li>
                       </ul>
                     </div>
                     <div class="your-order-total">
                       <ul>
-                        <li class="order-total">Total</li>
-                        <li>${{ getTotalAmount | number }}</li>
+                        <li class="order-total">Tổng cộng</li>
+                        <li>{{ getTotalAmount | number }}đ</li>
                       </ul>
                     </div>
                   </div>
@@ -243,53 +204,26 @@
                       <div id="faq" class="panel-group">
                         <div class="panel panel-default single-my-account m-0">
                           <div class="panel-heading my-account-title">
-                            <h4 class="panel-title">
-                              <a data-bs-toggle="collapse" href="#my-account-1" class="collapsed"
-                                aria-expanded="true">Direct bank transfer</a>
-                            </h4>
-                          </div>
-                          <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
-                            <div class="panel-body">
-                              <p>
-                                Please send a check to Store Name, Store Street,
-                                Store Town, Store State / County, Store
-                                Postcode.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default single-my-account m-0">
-                          <div class="panel-heading my-account-title">
-                            <h4 class="panel-title">
-                              <a data-bs-toggle="collapse" href="#my-account-2" (click)="showPaypal()"
-                                aria-expanded="false" class="collapsed">Check payments</a>
+                            <h4 class="panel-title" style="margin-bottom: 0 !important;">
+                              <a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false" class="collapsed">Thanh toán online</a>
                             </h4>
                           </div>
                           <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
                             <div class="panel-body">
-                              <p>
-                                Please send a check to Store Name, Store Street,
-                                Store Town, Store State / County, Store
-                                Postcode.
-                              </p>
+                              <a (click)="showPaypal()" style="margin-right: 10px;">
+                                <img src="assets/images/logo/paypal_logo.png" class="payment_icon" />
+                              </a>
+                              <a>
+                                <img src="assets/images/logo/momo_logo.png" class="payment_icon" />
+                              </a>
                             </div>
                           </div>
                         </div>
                         <div class="panel panel-default single-my-account m-0">
                           <div class="panel-heading my-account-title">
                             <h4 class="panel-title">
-                              <a data-bs-toggle="collapse" (click)="showCashPayment()" href="#my-account-3">Cash on
-                                delivery</a>
+                              <a data-bs-toggle="collapse" (click)="showCashPayment()" href="#my-account-3">Thanh toán khi nhận hàng </a>
                             </h4>
-                          </div>
-                          <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
-                            <div class="panel-body">
-                              <p>
-                                Please send a check to Store Name, Store Street,
-                                Store Town, Store State / County, Store
-                                Postcode.
-                              </p>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -297,7 +231,7 @@
                   </div>
                 </div>
                 <div class="Place-order mt-25" [style.display]="isCashOnDelivery">
-                  <button type="submit" class="btn-submit">Place Order</button>
+                  <button type="submit" class="btn-submit">Mua hàng</button>
                 </div>
                 <br />
                 <div class="place-order mt-25" [style.display]="isPaypalPayment">
