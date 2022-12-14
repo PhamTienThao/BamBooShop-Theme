@@ -1,7 +1,8 @@
 <div class="single-blog">
     <div class="blog-image">
         <a routerLink="/bai-viet/{{article.Alias}}">
-            <img [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink) | hostImageClient" class="img-responsive w-100" alt="" />
+            <img [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink) | hostImageClient" class="img-responsive w-100"
+                alt="" />
         </a>
     </div>
     <div class="blog-text">
@@ -10,16 +11,12 @@
             <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i></a></span>
         </div>
         <h5 class="blog-heading">
-            <a routerLink="/bai-viet/{{article.Alias}}" class="blog-heading-link">
-                {{article.Title}}
-            </a>
+            <a routerLink="/bai-viet/{{article.Alias}}" class="blog-heading-link"> {{article.Title}} </a>
         </h5>
         <p>
             <!-- {{article.ShortDescription}} -->
         </p>
-        <a routerLink="/bai-viet/{{article.Alias}}" class="btn btn-primary blog-btn">
-            Read More
-        </a>
+        <a routerLink="/bai-viet/{{article.Alias}}" class="btn btn-primary blog-btn"> Đọc thêm </a>
     </div>
 </div>
 <br>
