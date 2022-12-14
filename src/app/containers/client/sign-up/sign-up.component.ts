@@ -48,8 +48,8 @@ export class SignUpComponent implements OnInit, AfterViewInit {
         [Validators.email, Validators.required],
       ],
       OTP: [{ value: '', disabled: true }, Validators.required],
-      Password: [null, [Validators.required, Validators.minLength(5)]],
-      RePassword: [null, [Validators.required, Validators.minLength(5)]],
+      Password: [null, [Validators.required, Validators.minLength(6)]],
+      RePassword: [null, [Validators.required, Validators.minLength(6)]],
       FullName: [null, Validators.required],
       PhoneNumber: [
         null,

@@ -1,35 +1,24 @@
 <!-- Hero/Intro Slider Start -->
 <div class="section">
-  <div
-    class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1"
-  >
+  <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
     <app-carousel [images]="mainBanner" [autoSlide]="true"></app-carousel>
   </div>
 </div>
-<!-- Hero/Intro Slider End -->
-<!-- Product Area Start -->
 <div class="product-area">
   <div class="container">
-    <!-- Section Title & Tab Start -->
     <div class="row">
       <div class="col-12">
         <div class="section-title text-center pt-70px">
-          <h2 class="title">Highlight Product</h2>
+          <h2 class="title">Sản sản phẩm nổi bật</h2>
         </div>
       </div>
     </div>
-    <!-- Section Title & Tab End -->
     <div class="row">
       <div class="col">
         <div class="tab-content">
-          <!-- 1st tab start -->
           <div class="tab-pane fade show active" id="newarrivals">
             <div class="row mb-n-30px">
-              <div
-                class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px"
-                *ngFor="let item of productSelling"
-              >
-                <!-- Single Product -->
+              <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" *ngFor="let item of productSelling">
                 <app-product-template [product]="item"></app-product-template>
               </div>
             </div>
@@ -39,8 +28,6 @@
     </div>
   </div>
 </div>
-<!-- Product Area End -->
-<!-- Feature product area start -->
 <div class="feature-product-area" *ngFor="let menu of menuHomePages">
   <div class="container">
     <div class="row">
@@ -55,35 +42,25 @@
       </div>
     </div>
     <div class="row">
-      <div
-        class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px"
-        *ngFor="let item of menu.Products"
-      >
-        <!-- Single Product -->
+      <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" *ngFor="let item of menu.Products">
         <app-product-template [product]="item"></app-product-template>
       </div>
     </div>
   </div>
 </div>
-<!-- Feature product area End -->
-<!-- Blog area start from here -->
 <div class="main-blog-area">
   <div class="container">
-    <!-- section title start -->
     <div class="row">
       <div class="col-md-12">
         <div class="section-title text-center mb-30px0px pt-70px">
           <a routerLink="/danh-muc-bai-viet">
-            <h2 class="title">Latest Blog</h2>
+            <h2 class="title">Bài viết gần đây</h2>
           </a>
         </div>
       </div>
     </div>
-    <!-- section title start -->
     <div class="row">
-      <div
-        class="col-lg-6 col-sm-6 mb-xs-30px"
-        *ngFor="let article of highlightArticle">
+      <div class="col-lg-6 col-sm-6 mb-xs-30px" *ngFor="let article of highlightArticle">
         <app-article-template [article]="article"></app-article-template>
       </div>
     </div>

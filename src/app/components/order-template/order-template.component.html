@@ -7,12 +7,12 @@
             <table>
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Product Name</th>
-                  <th>Until Price</th>
-                  <th>Attributes</th>
-                  <th>Qty</th>
-                  <th>Subtotal</th>
+                  <th>Ảnh</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Giá cả</th>
+                  <th>Thuộc tính</th>
+                  <th>Số lượng</th>
+                  <th>Tổng</th>
                   <th *ngIf="data.Status == 40">Review</th>
                 </tr>
               </thead>
@@ -40,11 +40,11 @@
                     {{item.Qty * item.ProductPrice}}
                   </td>
                   <td *ngIf="data.Status == 40">
-                    <a class="view" (click)="review(item)"> View
+                    <a class="view" (click)="review(item)"> Xem
                       <a
-                        *ngIf="(item.Reviews != null && item.Reviews.length > 0) || item.IsReview; else elseTemplate">/Reviewed</a>
+                        *ngIf="(item.Reviews != null && item.Reviews.length > 0) || item.IsReview; else elseTemplate">/Đã đánh giá</a>
                       <ng-template #elseTemplate>
-                        <a>/No review</a>
+                        <a>/Chưa đánh giá</a>
                       </ng-template>
                     </a>
                   </td>
@@ -54,23 +54,23 @@
           </div>
           <br>
           <div class="total-order-wrapper">
-            Total: {{paidStatus(data.IsPaid)}}
+            Tổng cộng hóa đơn: {{paidStatus(data.IsPaid)}}
             <span class="total-order"> {{data.TotalAmount}}</span>
           </div>
           <br>
           <div class="review-container" *ngIf="isVisibleModal">
-            <div class="review-title"><span>Review</span></div>
+            <div class="review-title"><span>Chi tiết</span></div>
             <br>
             <div class="table-content table-responsive cart-table-content">
               <table>
                 <thead>
                   <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Until Price</th>
-                    <th>Attributes</th>
-                    <th>Qty</th>
-                    <th>Rating</th>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá cả</th>
+                    <th>Thuộc tính</th>
+                    <th>Số lượng</th>
+                    <th>Đánh giá</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -98,10 +98,7 @@
                         <ngb-rating [max]="5" [(rate)]="reviewModel.Star">
                           <ng-template let-fill="fill">
                             <span class="defaultHert-review" [class.filled]="fill === 100">
-                              <span class="paintHeart" [style.width.%]="fill">
-                                &#9733;
-                              </span>
-                              &#9733;
+                              <span class="paintHeart" [style.width.%]="fill"> &#9733; </span> &#9733;
                             </span>
                           </ng-template>
                         </ngb-rating>
@@ -113,7 +110,7 @@
             </div>
             <div>
               <textarea cols="80" rows="4" [(ngModel)]="reviewModel.Content" name="ProductReview"
-                placeholder="Place your review here ...">
+                placeholder="Nhập bình luận và nhận xét ở đây ...">
             </textarea>
             </div>
           </div>
@@ -122,16 +119,15 @@
               <div class="order-shiping-update-wrapper">
                 <div class="order-shiping-update">
                   <button *ngIf="data.Status==10 || data.Status == 20 || data.Status == 30; else delivered"
-                    (click)="cancelOrder()">Cancel Order</button>
+                    (click)="cancelOrder()">Hủy đơn hàng</button>
                   <ng-template #delivered>
-                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="confirmReview()"
-                      style="margin-right: 30px;">Review</button>
-                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="closeReview()">Close Review</button>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="confirmReview()" style="margin-right: 30px;">Gửi</button>
+                    <button *ngIf="data.Status == 40 && isVisibleModal" (click)="closeReview()">Đóng nhận xét</button>
                   </ng-template>
 
                 </div>
                 <div class="order-close">
-                  <button (click)="close()">Close</button>
+                  <button (click)="close()">Đóng đơn hàng</button>
                 </div>
               </div>
             </div>

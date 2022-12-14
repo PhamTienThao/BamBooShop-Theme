@@ -81,7 +81,7 @@
             <!-- Right Side End -->
           </div>
           <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
-            <span>Quantity:</span>
+            <span>So:</span>
             <ul class="d-flex">
               <li>
                 <a>{{ product.Quantity }}</a>
@@ -97,7 +97,7 @@
                 <button class="plusminus-plus" (click)="handlePlus()">+</button>
               </div>
               <div class="pro-details-cart">
-                <button (click)="addToCart()" class="add-cart"> Add To Cart </button>
+                <button (click)="addToCart()" class="add-cart"> Thêm vào giỏ </button>
               </div>
               <div class="pro-details-cart">
                 <button (click)="buyNow()" class="add-cart">Buy Now</button>
@@ -107,7 +107,7 @@
           <ng-template #qtyNotAvailable>
             <div class="pro-details-quality">
               <div class="out-of-stock-wrap">
-                <span class="out-of-stock"> Out of Stock </span>
+                <span class="out-of-stock"> Hết hàng </span>
               </div>
             </div>
           </ng-template>

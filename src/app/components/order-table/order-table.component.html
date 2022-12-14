@@ -17,11 +17,11 @@
     <thead>
       <tr>
         <th>Id</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Total</th>
-        <th>Paid</th>
-        <th>Actions</th>
+        <th>Ngày</th>
+        <th>Trạng thái</th>
+        <th>Tổng</th>
+        <th>Thanh toán</th>
+        <th>Hành động</th>
       </tr>
     </thead>
     <tbody *ngFor="let item of orderFilter">
@@ -32,7 +32,7 @@
         <td>{{item.TotalAmount}}</td>
         <td><i *ngIf="item.IsPaid; else notPaid" class="fa fa-check"></i>
             <ng-template #notPaid><i class="fa fa-times"></i></ng-template></td>
-        <td><a (click)="view(item)" class="view">view</a></td>
+        <td><a (click)="view(item)" class="view">Chi tiết</a></td>
       </tr>
     </tbody>
   </table>

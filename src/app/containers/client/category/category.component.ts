@@ -20,20 +20,20 @@ export class CategoryComponent implements OnInit {
   };
 
   filterPrice = [
-    { name: 'All', value: 'all' },
-    { name: 'Above 30m', value: '30m' },
-    { name: 'From 20m to 30m', value: 'f20t30' },
-    { name: 'From 10m to 20m', value: 'f10t20' },
-    { name: 'From 5m to 10m', value: 'f5t10' },
-    { name: 'Below 5m', value: 'l5' },
+    { name: 'Tất cả', value: 'all' },
+    { name: 'Trên 30tr', value: '30m' },
+    { name: 'Từ 20tr tới 30tr', value: 'f20t30' },
+    { name: 'Từ 10tr tới 20tr', value: 'f10t20' },
+    { name: 'Từ 5tr tới 10tr', value: 'f5t10' },
+    { name: 'Dưới 5tr', value: 'l5' },
   ];
   filterOption = [
-    { name: 'Default', value: 'highlight' },
-    { name: 'Name, A to Z', value: 'az' },
-    { name: 'Name, Z to A', value: 'za' },
-    { name: 'Best fit', value: 'highlight' },
-    { name: 'Price, low to high', value: 'price-asc' },
-    { name: 'Price, high to low', value: 'price-desc' },
+    { name: 'Mặc định', value: 'highlight' },
+    { name: 'Từ A tới Z', value: 'az' },
+    { name: 'Từ Z tới A', value: 'za' },
+    { name: 'Nổi bật', value: 'highlight' },
+    { name: 'Giảm dần theo giá', value: 'price-asc' },
+    { name: 'Tăng dần theo giá', value: 'price-desc' },
   ];
 
   currentFilterPrice: any;

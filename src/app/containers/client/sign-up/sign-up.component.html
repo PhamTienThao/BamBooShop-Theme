@@ -5,30 +5,30 @@
       <div class="col-lg-7 col-md-12 ml-auto mr-auto">
         <div class="login-register-wrapper">
           <div class="login-title">
-            <h4>Register</h4>
+            <h4>ĐĂNG KÝ</h4>
           </div>
           <div class="tab-content">
             <div id="lg1" class="tab-pane active">
               <div class="login-form-container">
                 <mat-horizontal-stepper linear #myStepper>
                   <mat-step [editable]="false">
-                    <ng-template matStepLabel> Register </ng-template>
+                    <ng-template matStepLabel> Đăng ký </ng-template>
                     <div class="login-register-form">
                       <form [formGroup]="formMail" (ngSubmit)="requestOTP()">
                         <div class="email-register">
                           <input type="text" email formControlName="Email" placeholder="Email" required />
                           <small *ngIf=" formMail.get('Email')?.invalid && formMail.get('Email')?.touched" class="text-danger">
-                            * Please enter the correct email format
+                            * Email không chính xác
                           </small>
                         </div>
                         <div class="button-box">
                           <div class="login-area-button">
                             <button type="submit" class="login-button">
-                              <span> Next</span>
+                              <span> Tiếp</span>
                             </button>
                           </div>
                           <div class="text-or">
-                            <span>OR</span>
+                            <span>Hoặc</span>
                           </div>
                           <div class="social-login-area">
                             <div class="facbook-login">
@@ -53,70 +53,69 @@
                     </div>
                   </mat-step>
                   <mat-step [editable]="false">
-                    <ng-template matStepLabel> Email Verification </ng-template>
+                    <ng-template matStepLabel> Xác nhận Email </ng-template>
                     <div class="login-register-form">
                       <form [formGroup]="formOTP" (ngSubmit)="confirmOTP()">
                         <div class="email-register">
                           <input type="text" formControlName="OTP" placeholder="OTP" required />
                           <small *ngIf="formOTP.get('OTP')?.invalid && formOTP.get('OTP')?.touched" class="text-danger">
-                            * OTP is required
+                            * Nhập mã OTP trong hòm thư của bạn
                           </small>
                         </div>
                         <div class="button-box">
                           <div class="login-area-button">
                             <button type="submit" class="login-button">
-                              <span>Verify</span>
+                              <span>Xác nhận</span>
                             </button>
                           </div>
                           <div class="text-register">
                             <a routerLink="/dang-nhap">
-                              < Back to Login </a>
+                              < Quay lại đăng nhập </a>
                           </div>
                         </div>
                       </form>
                     </div>
                   </mat-step>
                   <mat-step [editable]="false">
-                    <ng-template matStepLabel class="steps-title">Complete</ng-template>
+                    <ng-template matStepLabel class="steps-title">Hoàn tất</ng-template>
                     <div class="login-register-form">
                       <form [formGroup]="formData" (ngSubmit)="onSubmit()">
                         <div class="email-register">
                           <input type="email" formControlName="Email" placeholder="Email" />
                         </div>
                         <div class="email-register">
-                          <input type="text" formControlName="FullName" placeholder="Full Name" />
+                          <input type="text" formControlName="FullName" placeholder="Họ và tên" />
                           <small *ngIf=" formData.get('FullName')?.invalid && formData.get('FullName')?.touched" class="text-danger">
-                            * Full Name is required
+                            * Chưa điền thông tin họ tên
                           </small>
                         </div>
                         <div class="email-register">
-                          <input type="password" formControlName="Password" placeholder="Password" />
+                          <input type="password" formControlName="Password" placeholder="Mật khẩu" />
                           <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger">
-                            * Please fill out the Password field and mini length is 5
+                            * Mật khẩu không được để trồng và dài hơn 6 ký tự
                           </small>
                         </div>
                         <div class="email-register">
-                          <input type="password" formControlName="RePassword" placeholder="Re-enter Password" />
+                          <input type="password" formControlName="RePassword" placeholder="Xác nhận mật khẩu" />
                           <small *ngIf="formData.get('RePassword')?.invalid && formData.get('RePassword')?.touched" class="text-danger">
-                            * Please fill out the Re-enter Password field and mini length is 5
+                            *Xác nhận mật khẩu không được để trồng và phải trùng với mật khẩu
                           </small>
                         </div>
-
                         <div class="email-register">
-                          <input type="text" formControlName="PhoneNumber" placeholder="Phone Number" />
+                          <input type="text" formControlName="PhoneNumber" placeholder="Số điện thoại" />
                           <small *ngIf="formData.get('PhoneNumber')?.invalid && formData.get('PhoneNumber')?.touched" class="text-danger">
-                            * Please enter the correct phone number format
+                            * Thông tin điện thoại không chính xác
                           </small>
                         </div>
                         <div class="button-box">
                           <div class="login-area-button">
                             <button type="submit" class="login-button">
-                              <span>Register</span>
+                              <span>Đăng ký</span>
                             </button>
                           </div>
                           <div class="text-register">
                             <a routerLink="/dang-nhap">
-                              < Back to Login </a>
+                              < Quay lại đăng nhập </a>
                           </div>
                         </div>
                       </form>
@@ -131,4 +130,3 @@
     </div>
   </div>
 </div>
-<!-- sign-up area end -->

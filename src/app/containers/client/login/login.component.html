@@ -4,7 +4,7 @@
       <div class="col-lg-7 col-md-12 ml-auto mr-auto">
         <div class="login-register-wrapper">
           <div class="login-title">
-            <h4>Login</h4>
+            <h4>ĐĂNG NHẬP</h4>
           </div>
           <div class="tab-content">
             <div id="lg1" class="tab-pane active">
@@ -14,14 +14,14 @@
                     <div class="email-login">
                       <input type="text" name="user-name" email formControlName="Email" placeholder="Email" required />
                       <small *ngIf="formData.get('Email')?.invalid && formData.get('Email')?.touched" class="text-danger">
-                        * Please enter the correct email format
+                        * Email không chính xác
                       </small>
                     </div>
                     <div class="password-login">
-                      <input type="password" name="user-password" formControlName="Password" placeholder="Password"
+                      <input type="password" name="user-password" formControlName="Password" placeholder="Mật khẩu"
                         required />
                       <small *ngIf="formData.get('Password')?.invalid && formData.get('Password')?.touched" class="text-danger">
-                        * Please fill out the password field and mini length is 5
+                        * Mật khẩu không được để trống 
                       </small>
                     </div>
                     <div class="button-box">
@@ -30,15 +30,15 @@
                           <input formControlName="Remember" type="checkbox" name="remember-user" />
                           Remember me
                         </a>
-                        <a routerLink="/quen-mat-khau">Forgot Password?</a>
+                        <a routerLink="/quen-mat-khau">Quên mật khẩu?</a>
                       </div>
                       <div class="login-area-button">
                         <button type="submit" class="login-button">
-                          <span>Login</span>
+                          <span>Đăng nhập</span>
                         </button>
                       </div>
                       <div class="text-or">
-                        <span>OR</span>
+                        <span>Hoặc</span>
                       </div>
                       <div class="social-login-area">
                         <div class="facbook-login">
@@ -55,8 +55,8 @@
                         </div>
                       </div>
                       <div class="text-register">
-                        <span>Do not have an account?</span>
-                        <a routerLink="/dang-ky"> Register > </a>
+                        <span>Chưa có tài khoản?</span>
+                        <a routerLink="/dang-ky"> Đăng ký ngay > </a>
                       </div>
                     </div>
                   </form>

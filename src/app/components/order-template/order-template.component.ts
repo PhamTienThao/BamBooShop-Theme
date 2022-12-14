@@ -103,7 +103,7 @@ export class OrderTemplateComponent implements OnInit {
     this.dialogRef.close(this.reloadData);
   }
   paidStatus(isPaid: boolean){
-    if(isPaid) return "Paid"
+    if(isPaid) return "Đã thanh toán"
     else return "";
   }
 }

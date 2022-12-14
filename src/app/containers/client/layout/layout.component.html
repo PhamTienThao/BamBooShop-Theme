@@ -1,13 +1,11 @@
-<!-- Footer Area Start -->
 <div class="main-wrapper">
   <header>
-    <!-- Header top area start -->
     <div class="header-top">
       <div class="container">
         <div class="row justify-content-between align-items-center">
           <div class="col">
             <div class="welcome-text">
-              <p>Made by BamBooShop</p>
+              <p>Sản phẩm đến từ BamBooShop</p>
             </div>
           </div>
           <div class="col d-none d-lg-block">
@@ -15,15 +13,13 @@
               <ul>
                 <li><a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i>{{ website.PhoneNumber || null }}</a></li>
                 <li><a href="mailto:{{ website.Email || null }}"><i class="fa fa-envelope-o"></i>{{ website.Email || null }}</a></li>
-                <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Account</a></li>
+                <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Tài khoản</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Header top area end -->
-    <!-- Header action area start -->
     <div class="header-bottom d-none d-lg-block">
       <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -38,8 +34,7 @@
             <div class="search-element">
               <form action="#">
                 <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
-                  type="text" placeholder="Search"  (ngModelChange)="getAutoSearchData($event)"
-                  [matAutocomplete]="auto" />
+                  type="text" placeholder="Nhập từ khóa tìm kiêm"  (ngModelChange)="getAutoSearchData($event)" [matAutocomplete]="auto" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
                 <mat-autocomplete #auto="matAutocomplete">
                   <mat-option *ngFor="let option of options" [value]="option">
@@ -51,16 +46,13 @@
           </div>
           <div class="col-lg-3 col">
             <div class="header-actions">
-              <!-- Single Wedge Start -->
               <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle">
                 <i class="pe-7s-back"></i>
               </a>
-              <!-- Single Wedge End -->
               <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
                 *ngIf="getQtyItemInCart > 0; else notCart">
                 <i class="pe-7s-cart"></i>
                 <p class="header-action-num">{{ getQtyItemInCart }}</p>
-                <!-- <span class="cart-amount">€30.00</span> -->
               </a>
               <ng-template #notCart>
                 <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
@@ -72,8 +64,6 @@
         </div>
       </div>
     </div>
-    <!-- Header action area end -->
-    <!-- Header action area start -->
     <div class="header-bottom d-lg-none sticky-nav style-1">
       <div class="container">
         <div class="row justify-content-between align-items-center">
@@ -86,25 +76,21 @@
             <div class="search-element">
               <form action="#">
                 <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
-                  type="text" placeholder="Search" />
+                  type="text" placeholder="Nhập từ khóa tìm kiếm" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
             </div>
           </div>
           <div class="col-lg-3 col">
             <div class="header-actions">
-              <!-- Single Wedge Start -->
               <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle"><i class="pe-7s-back"></i></a>
-              <!-- Single Wedge End -->
-              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
-                *ngIf="getQtyItemInCart > 0; else notCart">
+              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0" *ngIf="getQtyItemInCart > 0; else notCart">
                 <i class="pe-7s-cart"></i>
                 <span class="header-action-num">{{ getQtyItemInCart }}</span>
               </a>
               <ng-template #notCart>
                 <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                   <i class="pe-7s-cart"></i>
-                  <!-- <span class="cart-amount">€30.00</span> -->
                 </a>
               </ng-template>
               <a (click)="openSideNav()" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -115,9 +101,6 @@
         </div>
       </div>
     </div>
-    <!-- Header action area end -->
-
-    <!-- header navigation area start -->
     <div class="header-nav-area d-none d-lg-block sticky-nav">
       <div class="container">
         <div class="header-nav">
@@ -147,15 +130,13 @@
     <!-- header navigation area end -->
     <div class="mobile-search-box d-lg-none">
       <div class="container">
-        <!-- mobile search start -->
         <div class="search-element max-width-100">
           <form action="#">
             <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }" type="text"
-              placeholder="Search" />
+              placeholder="Nhập từ khóa tìm kiếm" />
             <button (click)="search()"><i class="pe-7s-search"></i></button>
           </form>
         </div>
-        <!-- mobile search start -->
       </div>
     </div>
   </header>
@@ -194,16 +175,13 @@
       </div>
     </div>
   </div>
-  <!-- OffCanvas Menu End -->
   <router-outlet></router-outlet>
 
-  <!-- Footer Area Start -->
   <div class="footer-area">
     <div class="footer-container">
       <div class="footer-top">
         <div class="container">
           <div class="row">
-            <!-- Start single blog -->
             <div class="col-md-6 col-lg-3 mb-md-30px mb-lm-30px">
               <div class="single-wedge">
                 <div class="footer-logo">
@@ -216,32 +194,31 @@
                 </div>
                 <ul class="link-follow">
                   <li>
-                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#"><i
-                        class="fa fa-facebook" aria-hidden="true"></i></a>
-                  </li>
-                  <li>
-                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-tumblr"
-                        aria-hidden="true"></i>
+                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#">
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-twitter"
-                        aria-hidden="true"></i>
+                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#">
+                      <i class="fa fa-tumblr" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-instagram"
-                        aria-hidden="true"></i>
+                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#">
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#">
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-            <!-- End single blog -->
-            <!-- Start single blog -->
             <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-60px">
               <div class="single-wedge">
-                <h4 class="footer-herading">Information</h4>
+                <h4 class="footer-herading">Tài liệu hướng dẫn</h4>
                 <div class="footer-links">
                   <div class="footer-row">
                     <ul class="align-items-center">
@@ -255,49 +232,39 @@
                 </div>
               </div>
             </div>
-            <!-- End single blog -->
-            <!-- Start single blog -->
             <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-40px">
               <div class="single-wedge">
-                <h4 class="footer-herading">My Account</h4>
+                <h4 class="footer-herading">Tài khoản của tôi</h4>
                 <div class="footer-links">
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li">
-                        <a class="single-link" routerLink="/profile">My Account</a>
+                        <a class="single-link" routerLink="/profile">Tài khoản</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="contact.html">Contact</a>
+                        <a class="single-link" href="/gio-hang">Giỏ hàng</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/gio-hang">Shopping cart</a>
+                        <a class="single-link" href="/">Trang chủ</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/">Shop</a>
-                      </li>
-                      <li class="li">
-                        <a class="single-link" href="/dang-nhap">Services Login</a>
+                        <a class="single-link" href="/dang-nhap">Đăng nhập</a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- End single blog -->
-            <!-- Start single blog -->
             <div class="col-md-6 col-lg-3 col-sm-12">
               <div class="single-wedge">
-                <h4 class="footer-herading">Contact Info</h4>
+                <h4 class="footer-herading">Thông tin liên lạc</h4>
                 <div class="footer-links">
-                  <!-- News letter area -->
                   <p class="phone">Phone/Fax:<a href="tel:{{ website.PhoneNumber }}">{{ website.PhoneNumber }}</a></p>
                   <p class="mail">Email:<a href="mailto:{{ website.Email }}">{{ website.Email }}</a></p>
-                  <p class="mail">Addresses:<a href=""> {{ website.Address }}</a></p>
-                  <!-- News letter area  End -->
+                  <p class="mail">Địa chỉ:<a href=""> {{ website.Address }}</a></p>
                 </div>
               </div>
             </div>
-            <!-- End single blog -->
           </div>
         </div>
       </div>
@@ -317,5 +284,4 @@
       </div>
     </div>
   </div>
-  <!-- Footer Area End -->
 </div>

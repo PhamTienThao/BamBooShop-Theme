@@ -8,7 +8,7 @@
           <div class="filter-category">
             <div class="compare-product">
               <div class="shot-product">
-                <p>Sort By:</p>
+                <p>Xếp theo:</p>
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
@@ -25,7 +25,7 @@
             </div>
             <div class="select-shoing-wrap">
               <div class="shot-product">
-                <p>Sort By:</p>
+                <p>Xếp theo:</p>
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
@@ -40,32 +40,7 @@
                 </ul>
               </div>
             </div>
-            <!-- <div class="select-shoing-wrap d-flex align-items-center">
-              <div class="shot-product">
-                <p>Sort By:</p>
-              </div>
-              <div class="header-bottom-set dropdown">
-                <button
-                  class="dropdown-toggle header-action-btn"
-                  data-bs-toggle="dropdown"
-                >
-                  {{ currentFilterPrice || null }}
-                  <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li *ngFor="let item of filterPrice; index as index">
-                    <a
-                      class="dropdown-item"
-                      (click)="filter.price = item.value; getData()"
-                      >{{ item.name }}</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div> -->
           </div>
-
-          <!-- Left Side End -->
           <div class="shop-tab nav">
             <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
               <i class="fa fa-th" aria-hidden="true"></i>
@@ -74,14 +49,8 @@
               <i class="fa fa-list" aria-hidden="true"></i>
             </button>
           </div>
-          <!-- Right Side Start -->
-
-          <!-- Right Side End -->
         </div>
-        <!-- Shop Top Area End -->
-        <!-- Shop Bottom Area Start -->
         <div class="shop-bottom-area">
-          <!-- Tab Content Area Start -->
           <div class="row">
             <div class="col">
               <div class="tab-content">
@@ -101,18 +70,13 @@
               </div>
             </div>
           </div>
-          <!-- Tab Content Area End -->
-          <!--  Pagination Area Start -->
           <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
             <div class="pages btn-showmore" *ngIf="filter.take<=countAllProducts">
-              <button id="showMoreButton"  (click)="showMore()">Show More</button>
+              <button id="showMoreButton"  (click)="showMore()">Hiển thị thêm</button>
             </div>
           </div>
-          <!--  Pagination Area End -->
         </div>
-        <!-- Shop Bottom Area End -->
       </div>
     </div>
   </div>
 </div>
-<!-- Shop Page End  -->

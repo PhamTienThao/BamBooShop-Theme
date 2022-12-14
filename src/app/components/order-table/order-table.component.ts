@@ -23,14 +23,14 @@ export class OrderTableComponent implements OnInit {
   tooltips = ['Rất không hài lòng', 'Không hài lòng', 'Bình thường', 'Hài lòng', 'Rất hài lòng'];
   reviewModel!: Review;
   orderStatus = [
-    { value: 0, name: 'All' },
-    { value: 10, name: 'Waiting for confirm' },
-    { value: 20, name: 'Confirmed' },
-    { value: 30, name: 'Delivering' },
-    { value: 40, name: 'Delivered' },
-    { value: 50, name: 'Canceled' },
-    { value: 60, name: 'Paid Order' },
-    { value: 70, name: 'Not Paid Order' },
+    { value: 0, name: 'Tất cả' },
+    { value: 10, name: 'Chờ xác nhận' },
+    { value: 20, name: 'Đã xác nhận' },
+    { value: 30, name: 'Đang vận chuyển' },
+    { value: 40, name: 'Đã giao' },
+    { value: 50, name: 'Bị hủy' },
+    { value: 60, name: 'Đã thanh toán' },
+    { value: 70, name: 'Chưa thanh toán' },
   ];
   orderFilter: Order[] = [];
   orderFilterIndexValue: number = 0;

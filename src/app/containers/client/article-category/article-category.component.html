@@ -19,8 +19,6 @@
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {{item.Created | date:'dd/MM/yyyy'}}
               </span>
-              <span><a class="blog-author" href="blog-grid.html"><i class="fa fa-user" aria-hidden="true"></i> Wild
-                  Nick</a></span>
             </div>
             <h5 class="blog-heading">
               <a class="blog-heading-link" routerLink="/bai-viet/{{item.Alias}}">{{ item.Title }}</a>
@@ -29,7 +27,7 @@
               Mô tả ở đây
             </p>
             <a routerLink="/bai-viet/{{item.Alias}}" class="btn btn-primary blog-btn">
-              Read More</a>
+              Chi tiết</a>
           </div>
         </div>
       </div>
