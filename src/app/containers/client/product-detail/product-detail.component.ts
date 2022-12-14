@@ -136,7 +136,7 @@ export class ProductDetailComponent implements OnInit {
         });
       }
     }
-    //fix bug product qty when add to cart
+    //fix bug product qty when Thêm vào giỏ
     this.toastrService.success(
       `Đã thêm ${this.product.Name} vào giỏ hàng`,
       '',

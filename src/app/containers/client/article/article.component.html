@@ -1,5 +1,4 @@
 <div class="offcanvas-overlay"></div>
-<!-- Blog Area Start -->
 <div class="blog-grid pb-100px pt-100px main-blog-page single-blog-page">
   <div class="container">
     <div class="row">
@@ -8,20 +7,13 @@
           <div class="single-blog-post blog-grid-post">
             <div class="blog-image single-blog">
               <img class="img-fluid h-auto border-radius-10px" 
-              [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink)| hostImageClient" 
-              alt="blog" />
-              <!-- <img class="img-fluid h-auto border-radius-10px" [src]="article.Image || null | hostImageClient" alt="blog" /> -->
+              [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink)| hostImageClient"  alt="blog" />
             </div>
             <div class="blog-post-content-inner mt-30px">
               <div class="blog-athor-date">
-                <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{ article.Created | date:
-                  "dd/MM/yyyy" }}</span>
-                <span><a class="blog-author"><i class="fa fa-user" aria-hidden="true"></i>
-                  </a></span>
+                <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{ article.Created | date:"dd/MM/yyyy" }}</span>
               </div>
-              <h4 class="blog-title">
-                {{ article.Title }}
-              </h4>
+              <h4 class="blog-title"> {{ article.Title }} </h4>
               <div class="quate-speech-area">
                 <div class="quate-speech" data-aos="fade-up" data-aos-delay="200"></div>
                 <div [innerHTML]="article.ShortDescription"></div>
@@ -35,23 +27,17 @@
           </div>
         </div>
       </div>
-      <!-- Sidebar Area Start -->
-      <div class="col-lg-4 order-lg-first col-md-12 order-md-last mt-md-50px mt-lm-50px" data-aos="fade-up"
-        data-aos-delay="200">
+      <div class="col-lg-4 order-lg-first col-md-12 order-md-last mt-md-50px mt-lm-50px" data-aos="fade-up" data-aos-delay="200">
         <div class="blog-sidebar mr-20px">
-          <!-- Sidebar single item -->
           <div class="search-widget">
             <form action="#" [formGroup]="formSearchArticles" (ngSubmit)="searchArticle()">
-              <input placeholder="Search" formControlName="SearchText" type="text" />
+              <input placeholder="Nhập từ khóa tìm kiếm" formControlName="SearchText" type="text" />
               <button type="submit" ><i class="fa fa-search"></i></button>
             </form>
           </div>
-          <!-- Sidebar single item -->
-          <!-- Sidebar single item -->
           <div class="sidebar-widget-group">
-            <!-- Sidebar single item -->
             <div class="sidebar-widget">
-              <h3 class="sidebar-title">Recent Post</h3>
+              <h3 class="sidebar-title">Gợi ý bài viết</h3>
               <div class="recent-post-widget">
                 <div class="recent-single-post d-flex" *ngFor="let article of menu?.Articles" class="mg-b">
                   <app-article-template-horizontal [article]="article"></app-article-template-horizontal>
@@ -61,8 +47,6 @@
           </div>
         </div>
       </div>
-      <!-- Sidebar Area End -->
     </div>
   </div>
 </div>
-<!-- Blag Area End -->

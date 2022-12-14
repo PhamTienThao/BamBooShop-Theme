@@ -29,7 +29,7 @@
                   <form [formGroup]="formData" (ngSubmit)="submitForm()">
                     <div class="default-form-box mb-20">
                       <div class="title-required">
-                        <label>Email</label>
+                        <label>Email:</label>
                         <span class="text-red">(*)</span>
                       </div>
                       <input type="text" formControlName="Email" name="email" />
@@ -67,18 +67,15 @@
                     <p>Giới tính</p>
                     <mat-radio-group class="input-radio" formControlName="Gender">
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Nam" name="id_gender"></mat-radio-button> Nam
-                      </span>
+                        <mat-radio-button type="radio" value="Nam" name="id_gender"></mat-radio-button> Nam </span>
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Nữ" name="id_gender"></mat-radio-button> Nữ
-                      </span>
+                        <mat-radio-button type="radio" value="Nữ" name="id_gender"></mat-radio-button> Nữ </span>
                       <span class="custom-radio">
-                        <mat-radio-button type="radio" value="Khác" name="id_gender"></mat-radio-button> Khác
-                      </span>
+                        <mat-radio-button type="radio" value="Khác" name="id_gender"></mat-radio-button> Khác </span>
                     </mat-radio-group>
                     <br />
                     <div class="save_button mt-3">
-                      <button class="btn" type="submit">Lưu lại</button>
+                      <button class="btn" type="submit">Lưu</button>
                     </div>
                   </form>
                 </div>

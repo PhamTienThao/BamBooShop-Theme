@@ -21,7 +21,7 @@
         <p [innerHTML]="product.ShortDescription"></p>
       </div>
       <span class="quantity">
-        <span class="quantity-title">Quantity:</span>
+        <span class="quantity-title">Số lượng:</span>
         <span class="quantity-value">
           {{ product.Quantity }}
         </span>
@@ -34,19 +34,19 @@
         <div class="actions">
           <div class="actions-add-to-card">
             <button (click)="addToCart()">
-              <span>Add to cart</span>
+              <span>Thêm vào giỏ</span>
             </button>
           </div>
           <div class="actions-read-more">
             <button class="read-more" routerLink="/san-pham/{{ product.Alias }}">
-              <span>Read more</span>
+              <span>Chi tiết</span>
             </button>
           </div>
         </div>
       </div>
       <ng-template #QuantityNotAvailable>
         <div class="quantityNotAvailable">
-          <span>Out of order</span>
+          <span>Hết hàng</span>
         </div>
       </ng-template>
     </div>

@@ -31,10 +31,10 @@ export class OrderTableComponent implements OnInit {
   orderStatus = [
     { value: 0, name: 'Tất cả' },
     { value: 10, name: 'Chờ xác nhận' },
-    { value: 20, name: 'Xác nhận' },
-    { value: 30, name: 'Đang giao hàng' },
-    { value: 40, name: 'Đã giao hàng' },
-    { value: 50, name: 'Đã hủy' },
+    { value: 20, name: 'Đã xác nhận' },
+    { value: 30, name: 'Đang vận chuyển' },
+    { value: 40, name: 'Đã giao' },
+    { value: 50, name: 'Bị hủy' },
     { value: 60, name: 'Đã thanh toán' },
     { value: 70, name: 'Chưa thanh toán' },
   ];

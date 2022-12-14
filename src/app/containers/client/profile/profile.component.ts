@@ -48,8 +48,8 @@ export class ProfileComponent implements OnInit {
     });
     this.formChangePassword = this.formBuilder.group({
       OldPassword: [null, Validators.required],
-      NewPassword: [null, [Validators.required, Validators.minLength(5)]],
-      ConfirmPassword: [null, [Validators.required, Validators.minLength(5)]],
+      NewPassword: [null, [Validators.required, Validators.minLength(6)]],
+      ConfirmPassword: [null, [Validators.required, Validators.minLength(6)]],
     });
     let isSocial = localStorage.getItem(
       Constants.LOCAL_STORAGE_KEY.SOCIAL_LOGIN

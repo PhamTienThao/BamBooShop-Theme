@@ -22,7 +22,7 @@
   <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
     <div class="actions">
       <button
-        title="Add To Cart"
+        title="Thêm vào giỏ"
         class="action add-to-cart"
         (click)="addToCart()"
       >
@@ -32,7 +32,7 @@
   </div>
   <ng-template #QuantityNotAvailable>
     <div class="actions">
-      <div title="Add To Cart" class="quantityNotAvailable">
+      <div title="Thêm vào giỏ" class="quantityNotAvailable">
         <span>Đang hết hàng</span>
       </div>
     </div>
