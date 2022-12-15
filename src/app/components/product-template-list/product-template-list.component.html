@@ -22,13 +22,11 @@
       </div>
       <span class="quantity">
         <span class="quantity-title">Số lượng:</span>
-        <span class="quantity-value">
-          {{ product.Quantity }}
-        </span>
+        <span class="quantity-value"> {{ product.Quantity }} </span>
       </span>
       <span class="price">
-        <span class="old">${{ product.Price | number }}đ</span>
-        <span class="new">${{ product.DiscountPrice | number }}</span>
+        <span class="old">{{ product.Price | number }}đ</span>
+        <span class="new">{{ product.DiscountPrice | number }}</span>
       </span>
       <div *ngIf="product.Quantity > 0; else QuantityNotAvailable">
         <div class="actions">
