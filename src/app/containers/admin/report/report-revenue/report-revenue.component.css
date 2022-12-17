@@ -29,3 +29,6 @@
   font-size: 15px;
   font-weight: 500;
 }
+::ng-deep .nz-disable-td {
+  display: none !important;
+}

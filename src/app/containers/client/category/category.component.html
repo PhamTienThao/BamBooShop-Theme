@@ -8,13 +8,12 @@
           <div class="filter-category">
             <div class="compare-product">
               <div class="shot-product">
-                <p>Xếp theo:</p>
+                <p>Lọc:</p>
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
-                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
-                  {{ currentFilterOption || null }}
-                  <i class="fa fa-angle-down"></i>
+                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown"> {{ currentFilterOption || null }} <i
+                    class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li *ngFor="let item of filterOption; index as index">
@@ -25,13 +24,12 @@
             </div>
             <div class="select-shoing-wrap">
               <div class="shot-product">
-                <p>Xếp theo:</p>
+                <p>Lọc:</p>
               </div>
               <!-- Single Wedge End -->
               <div class="header-bottom-set dropdown">
-                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">
-                  {{ currentFilterPrice || null }}
-                  <i class="fa fa-angle-down"></i>
+                <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown"> {{ currentFilterPrice || null }} <i
+                    class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li *ngFor="let item of filterPrice; index as index">
@@ -56,8 +54,7 @@
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="shop-grid">
                   <div class="row mb-n-30px">
-                    <div *ngFor="let product of menu?.Products"
-                      class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                    <div *ngFor="let product of menu?.Products" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
                       <app-product-template [product]="product"></app-product-template>
                     </div>
                   </div>
@@ -72,7 +69,7 @@
           </div>
           <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
             <div class="pages btn-showmore" *ngIf="filter.take<=countAllProducts">
-              <button id="showMoreButton"  (click)="showMore()">Hiển thị thêm</button>
+              <button id="showMoreButton" (click)="showMore()">Hiển thị thêm</button>
             </div>
           </div>
         </div>

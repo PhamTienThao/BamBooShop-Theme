@@ -41,8 +41,7 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Tên sản phẩm"  [(ngModel)]="filter.keySearch" 
-          (ngModelChange)="searchProduct()">
+          <input type="text" nz-input placeholder="Tên sản phẩm" [(ngModel)]="filter.keySearch" (ngModelChange)="searchProduct()">
         </nz-input-group>
         <ng-template #prefixTemplate>
           <i nz-icon nzType="search" class="opacity-05" (click)="searchProduct()"></i>
@@ -73,7 +72,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" class="mg-t">
-     <!-- <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12"> 
+    <nz-table #tblData [nzData]="filterDatas" [nzPageSize]="12">
       <thead>
         <tr>
           <th class="text-center">Hình ảnh</th>
@@ -126,11 +125,11 @@
           </td>
         </tr>
       </tbody>
-    </nz-table>  -->
-    <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()" 
-        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent" 
+    </nz-table>
+    <!-- <app-table-template #productTable [listOfData]="filterDatas" (onDelete)="onDelete($event)" (onAddnew)="addNew()"
+        (onEdit)="showDetail($event)" (onMultiSelect)="deleteListProduct($event)" [addEditComponent]="addEditComponent"
         [columnsTable]="dataColumns" [multiColSelect]="true" [tableSize]="'small'">
-    </app-table-template>
+    </app-table-template> -->
   </div>
 </div>
 <app-product-detail #frmDetail (onSubmit)="onSubmit($event) "></app-product-detail>

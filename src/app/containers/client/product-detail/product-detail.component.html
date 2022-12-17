@@ -9,14 +9,13 @@
           <ul class="small_img_prev">
             <!-- <img [src]="product.ImageCloudLink === null? product.Image : product.ImageCloudLink | hostImageClient"
             (click)="showImg(product.ImageCloudLink === null? product.Image : product.ImageCloudLink)" class="small_img" /> -->
-            <img [src]="(product.ImageCloudLink == null? product.Image : product.ImageCloudLink) | hostImageClient"
-              class="small_img" />
+            <img [src]="(product.ImageCloudLink == null? product.Image : product.ImageCloudLink) | hostImageClient" class="small_img" />
             <!-- <ng-template #cloudImg>
               <img [src]="product.ImageCloudLink | hostImageClient" class="small_img">
             </ng-template> -->
             <li *ngFor="let productImage of product.ProductImages; let i = index">
-              <img [src]="(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink) | hostImageClient"
-                class="small_img" [ngClass]="{ 'active-img': selectedIndex === i }"
+              <img [src]="(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink) | hostImageClient" class="small_img"
+                [ngClass]="{ 'active-img': selectedIndex === i }"
                 (click)="showImg(productImage.ImageCloudLink == null? productImage.Image : productImage.ImageCloudLink) ; selectImage(i)" />
               <!-- <ng-template #cloudImg>
               <img [src]="productImage.ImageCloudLink | hostImageClient"
@@ -34,10 +33,10 @@
           <h2>{{ product.Name }}</h2>
           <div class="pricing-meta d-flex">
             <ul class="d-flex">
-              <li class="old-price-product-detail"> ${{ product.Price | number }} </li>
+              <li class="old-price-product-detail"> {{ product.Price | number }}đ </li>
             </ul>
             <ul class="d-flex">
-              <li class="new-price">${{ product.DiscountPrice | number }}</li>
+              <li class="new-price">{{ product.DiscountPrice | number }}đ</li>
             </ul>
           </div>
           <div class="pro-details-rating-wrap" *ngIf="product.RateAvg >= 1; else noRate">
@@ -57,7 +56,7 @@
                     <span class="paintHeart" [style.width.%]="fill"> &#9733; </span> &#9733; </span>
                 </ng-template>
               </ngb-rating>
-              <span class="rate-avg">(Not rate)</span>
+              <span class="rate-avg">(Chưa có)</span>
             </div>
           </ng-template>
           <div class="mt-30px">
@@ -70,11 +69,8 @@
                 <p>{{ attributes.Name }}:</p>
               </div>
               <div class="shop-select">
-                <select class="shop-sort" #attributeSelected
-                  (change)="  chooseAttribute(attributes.ProductAttributes, $event)">
-                  <option [value]="index" *ngFor="let item of attributes.ProductAttributes; index as index">
-                    {{ item.Value }}
-                  </option>
+                <select class="shop-sort" #attributeSelected (change)="  chooseAttribute(attributes.ProductAttributes, $event)">
+                  <option [value]="index" *ngFor="let item of attributes.ProductAttributes; index as index"> {{ item.Value }} </option>
                 </select>
               </div>
             </div>
@@ -92,8 +88,7 @@
             <div class="pro-details-quality">
               <div class="wrapper">
                 <button class="plusminus-minus" (click)="handleMinus()"> - </button>
-                <input type="number" class="number-input" value="1" [(ngModel)]="qty"
-                  (change)="handleInputQuantity()" />
+                <input type="number" class="number-input" value="1" [(ngModel)]="qty" (change)="handleInputQuantity()" />
                 <button class="plusminus-plus" (click)="handlePlus()">+</button>
               </div>
               <div class="pro-details-cart">
@@ -107,7 +102,7 @@
           <ng-template #qtyNotAvailable>
             <div class="pro-details-quality">
               <div class="out-of-stock-wrap">
-                <span class="out-of-stock"> Hết hàng </span>
+                <span class="out-of-stock"> Đang hết hàng </span>
               </div>
             </div>
           </ng-template>
@@ -123,11 +118,11 @@
             <!-- <div id="des-details1" class="tab-pane active">
               <div class="product-anotherinfo-wrapper text-start">
                 <ul>
-                  <li><span>Weight</span> 400 g</li>
-                  <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-                  <li><span>Materials</span> 60% cotton, 40% polyester</li>
+                  <li><span>Cân nặng</span> 400g</li>
+                  <li><span>Kích thước</span>25 x 15 x 30 cm</li>
+                  <li><span>Chất liệu</span> Hợp kim nhôm</li>
                   <li>
-                    <span>Other Info</span> American heirloom jean shorts pug seitan letterpress
+                    <span>Dung lượng pin</span> 22 tiếng
                   </li>
                 </ul>
               </div>
@@ -194,8 +189,7 @@
         <div class="tab-content mt-60px">
           <div class="tab-pane fade show active" id="newarrivals">
             <div class="row mb-n-30px">
-              <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px"
-                *ngFor="let productRelated of product.ProductRelateds">
+              <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px" *ngFor="let productRelated of product.ProductRelateds">
                 <app-product-template [product]="productRelated.Product"></app-product-template>
               </div>
             </div>

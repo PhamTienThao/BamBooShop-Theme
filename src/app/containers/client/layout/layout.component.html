@@ -13,7 +13,7 @@
               <ul>
                 <li><a href="tel:{{ website.PhoneNumber }}"><i class="fa fa-phone"></i>{{ website.PhoneNumber || null }}</a></li>
                 <li><a href="mailto:{{ website.Email || null }}"><i class="fa fa-envelope-o"></i>{{ website.Email || null }}</a></li>
-                <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Tài khoản</a></li>
+                <li><a routerLink="/tai-khoan"><i class="fa fa-user"></i> Tài khoản của tôi</a></li>
               </ul>
             </div>
           </div>
@@ -33,13 +33,11 @@
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
-                  type="text" placeholder="Nhập từ khóa tìm kiêm"  (ngModelChange)="getAutoSearchData($event)" [matAutocomplete]="auto" />
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }" type="text"
+                  placeholder="Nhập từ khóa tìm kiêm" (ngModelChange)="getAutoSearchData($event)" [matAutocomplete]="auto" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
                 <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of options" [value]="option">
-                    {{option}}
-                  </mat-option>
+                  <mat-option *ngFor="let option of options" [value]="option"> {{option}} </mat-option>
                 </mat-autocomplete>
               </form>
             </div>
@@ -75,8 +73,8 @@
           <div class="col-lg-6 d-none d-lg-block">
             <div class="search-element">
               <form action="#">
-                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }"
-                  type="text" placeholder="Nhập từ khóa tìm kiếm" />
+                <input (keyup.enter)="search()" [(ngModel)]="keySearch" [ngModelOptions]="{ standalone: true }" type="text"
+                  placeholder="Nhập từ khóa tìm kiếm" />
                 <button (click)="search()"><i class="pe-7s-search"></i></button>
               </form>
             </div>
@@ -84,7 +82,8 @@
           <div class="col-lg-3 col">
             <div class="header-actions">
               <a routerLink="dang-nhap" class="header-action-btn offcanvas-toggle"><i class="pe-7s-back"></i></a>
-              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0" *ngIf="getQtyItemInCart > 0; else notCart">
+              <a routerLink="/gio-hang" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0"
+                *ngIf="getQtyItemInCart > 0; else notCart">
                 <i class="pe-7s-cart"></i>
                 <span class="header-action-num">{{ getQtyItemInCart }}</span>
               </a>
@@ -108,9 +107,7 @@
             <ul>
               <li class="dropdown" *ngFor="let menu of mainMenus">
                 <ng-container *ngIf="menu.SubMenus == null || menu.SubMenus.length == 0;else elseTemplateMenu">
-                  <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" 
-                    rel="noopener noreferrer">
-                    {{ menu.Name }}
+                  <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" rel="noopener noreferrer"> {{ menu.Name }}
                   </a>
                 </ng-container>
                 <ng-template #elseTemplateMenu>
@@ -154,14 +151,12 @@
         <ul>
           <li *ngFor="let menu of mainMenus">
             <ng-container *ngIf="menu.SubMenus == null || menu.SubMenus.length == 0;else elseTemplateMenuMobile">
-              <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" 
-                rel="noopener noreferrer">
+              <a routerLink="/{{menu.Type == 'bai-viet' ? 'danh-muc-bai-viet/' : ''}}{{ menu.Alias }}" rel="noopener noreferrer">
                 <span class="menu-text">{{ menu.Name }}</span>
               </a>
             </ng-container>
             <ng-template #elseTemplateMenuMobile>
-              <a routerLink="{{menu.Alias}}">{{ menu.Name }}
-                <i class="fa fa-angle-down" style="float: right;" (click)="openSubMenu(menu.Alias)" ></i>
+              <a routerLink="{{menu.Alias}}">{{ menu.Name }} <i class="fa fa-angle-down" style="float: right;" (click)="openSubMenu(menu.Alias)"></i>
               </a>
               <ul style="display: none;" id="{{menu.Alias}}">
                 <li *ngFor="let item of menu?.SubMenus">
@@ -170,13 +165,12 @@
                 </li>
               </ul>
             </ng-template>
-          </li>       
+          </li>
         </ul>
       </div>
     </div>
   </div>
   <router-outlet></router-outlet>
-
   <div class="footer-area">
     <div class="footer-container">
       <div class="footer-top">
@@ -194,23 +188,19 @@
                 </div>
                 <ul class="link-follow">
                   <li>
-                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#">
-                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    <a class="m-0" title="Twitter" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-facebook"
+                        aria-hidden="true"></i></a>
+                  </li>
+                  <li>
+                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-tumblr" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a title="Tumblr" target="_blank" rel="noopener noreferrer" href="#">
-                      <i class="fa fa-tumblr" aria-hidden="true"></i>
+                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
                   </li>
                   <li>
-                    <a title="Facebook" target="_blank" rel="noopener noreferrer" href="#">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#">
-                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    <a title="Instagram" target="_blank" rel="noopener noreferrer" href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
                     </a>
                   </li>
                 </ul>
@@ -234,21 +224,24 @@
             </div>
             <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-40px">
               <div class="single-wedge">
-                <h4 class="footer-herading">Tài khoản của tôi</h4>
+                <h4 class="footer-herading">Dịch vụ</h4>
                 <div class="footer-links">
                   <div class="footer-row">
                     <ul class="align-items-center">
                       <li class="li">
-                        <a class="single-link" routerLink="/profile">Tài khoản</a>
+                        <a class="single-link" routerLink="/profile">Mua mới thu cũ</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/gio-hang">Giỏ hàng</a>
+                        <a class="single-link" href="contact.html">Hỗ trợ trả góp</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/">Trang chủ</a>
+                        <a class="single-link" href="/gio-hang">Đảm bảo hàng chính hãng</a>
                       </li>
                       <li class="li">
-                        <a class="single-link" href="/dang-nhap">Đăng nhập</a>
+                        <a class="single-link" href="/">Giao hàng tận nơi</a>
+                      </li>
+                      <li class="li">
+                        <a class="single-link" href="/dang-nhap">Uy tín, chất lượng</a>
                       </li>
                     </ul>
                   </div>
@@ -259,9 +252,11 @@
               <div class="single-wedge">
                 <h4 class="footer-herading">Thông tin liên lạc</h4>
                 <div class="footer-links">
-                  <p class="phone">Phone/Fax:<a href="tel:{{ website.PhoneNumber }}">{{ website.PhoneNumber }}</a></p>
-                  <p class="mail">Email:<a href="mailto:{{ website.Email }}">{{ website.Email }}</a></p>
-                  <p class="mail">Địa chỉ:<a href=""> {{ website.Address }}</a></p>
+                  <!-- News letter area -->
+                  <p class="phone">Phone/Fax: <a href="tel:{{ website.PhoneNumber }}">{{ website.PhoneNumber }}</a></p>
+                  <p class="mail">Email: <a href="mailto:{{ website.Email }}">{{ website.Email }}</a></p>
+                  <p class="mail">Addresses: <a href=""> {{ website.Address }}</a></p>
+                  <!-- News letter area  End -->
                 </div>
               </div>
             </div>
@@ -274,8 +269,7 @@
             <div class="row flex-md-row-reverse align-items-center">
               <div class="col-md-6 text-center text-md-end">
                 <div class="payment-mth">
-                  <a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png"
-                      alt="payment-image" /></a>
+                  <a href="#"><img class="img img-fluid" src="assets/images/icons/payment.png" alt="payment-image" /></a>
                 </div>
               </div>
             </div>

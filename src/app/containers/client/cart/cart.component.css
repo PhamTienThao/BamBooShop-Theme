@@ -190,6 +190,9 @@
   margin-bottom: 30px;
 }
 
+.payment_icon {
+  height: 40px;
+}
 /* Responsvie */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

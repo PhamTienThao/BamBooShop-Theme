@@ -1,7 +1,8 @@
 <div class="single-blog">
     <div class="blog-image">
         <a routerLink="/bai-viet/{{article.Alias}}">
-            <img [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink) | hostImageClient" class="img-responsive w-100" alt="" />
+            <img [src]="(article.ImageCloudLink == null? article.Image : article.ImageCloudLink) | hostImageClient" class="img-responsive w-100"
+                alt="" />
         </a>
     </div>
     <div class="blog-text">
@@ -9,16 +10,12 @@
             <span class="blog-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{article.Created | date:'dd/MM/yyyy'}}</span>
         </div>
         <h5 class="blog-heading">
-            <a routerLink="/bai-viet/{{article.Alias}}" class="blog-heading-link">
-                {{article.Title}}
-            </a>
+            <a routerLink="/bai-viet/{{article.Alias}}" class="blog-heading-link"> {{article.Title}} </a>
         </h5>
         <p>
             <!-- {{article.ShortDescription}} -->
         </p>
-        <a routerLink="/bai-viet/{{article.Alias}}" class="btn btn-primary blog-btn">
-            Chi tiết
-        </a>
+        <a routerLink="/bai-viet/{{article.Alias}}" class="btn btn-primary blog-btn"> Chi tiết </a>
     </div>
 </div>
 <br>
