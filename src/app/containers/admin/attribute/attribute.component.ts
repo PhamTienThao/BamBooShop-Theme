@@ -29,17 +29,17 @@ export class AttributeComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    this.tableColumns = [
-      {
-        name: 'Tên thuộc tính',
-        prop: 'Name',
-        type: 'text',
-        width: '600px',
-        textClass: 'text-left',
-        //sortOrder: null,
-        sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
-      }
-    ];
+    // this.tableColumns = [
+    //   {
+    //     name: 'Tên thuộc tính',
+    //     prop: 'Name',
+    //     type: 'text',
+    //     width: '600px',
+    //     textClass: 'text-left',
+    //     //sortOrder: null,
+    //     sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
+    //   }
+    // ];
   }
 
   getData() {
