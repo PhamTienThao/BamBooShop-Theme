@@ -164,10 +164,6 @@ const routes: Routes = [
         component: ReviewComponent,
       },
       {
-        path: 'table',
-        component: TableTemplateComponent,
-      },
-      {
         path: '',
         component: DashboardComponent,
       },
