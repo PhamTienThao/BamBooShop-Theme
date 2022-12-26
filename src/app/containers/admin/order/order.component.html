@@ -68,7 +68,7 @@
         margin-right: 10px;
         width: 28%;
         align-self: center;  font-weight: 500;"> Ngày đặt hàng</span>
-        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
+        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'" (ngModelChange)="getData()"></nz-range-picker>
       </div>
     </div>
   </div>
