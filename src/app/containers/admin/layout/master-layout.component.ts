@@ -42,7 +42,7 @@ export class MasterLayoutComponent implements OnInit {
               {
                 sub_nav: '/admin/don-hang/don-hang-can-xu-ly',
                 sub_title: 'Đơn hàng cần xử lý',
-                notificationData: this.notification?.WipOders
+                notificationData: this.notification?.WipOrders
               },
               {
                 sub_nav: '/admin/don-hang',
