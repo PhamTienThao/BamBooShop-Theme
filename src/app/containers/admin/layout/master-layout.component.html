@@ -8,7 +8,7 @@
         <li *ngIf="item.sub; else noSub" nz-submenu nzTitle="{{item.title}}" nzIcon="{{item.icon}}">
           <ul>
             <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)"
-              nz-menu-item> {{sub.sub_title}} {{sub.notificationData? '('+ sub.notificationData +' )' : ''}}
+              nz-menu-item> {{sub.sub_title}} {{sub.notificationData? '('+ sub.notificationData +')' : ''}}
             </li>
           </ul>
         </li>
