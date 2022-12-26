@@ -178,6 +178,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             prop: 'Name',
             type: 'text',
             //sortOrder: null,
+            width: '40px',
             sortFn: (a: any, b: any) => a.Name.localeCompare(b.Name),
             // listOfFilter: [
             //   { text: 'laptop', value: 'a' },
