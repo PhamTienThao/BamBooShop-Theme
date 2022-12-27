@@ -34,7 +34,7 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Mã sản phẩm, tên sản phẩm" [(ngModel)]="filter.keySearch">
+          <input type="text" nz-input placeholder="Mã sản phẩm, tên sản phẩm" [(ngModel)]="filter.keySearch" (ngModelChange)="getData()">
         </nz-input-group>
         <ng-template #prefixTemplate>
           <i nz-icon nzType="search" class="opacity-05"></i>
@@ -45,7 +45,7 @@
         margin-right: 10px;
         width: 28%;
         align-self: center;  font-weight: 500;"> Ngày đặt hàng</span>
-        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
+        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'" (ngModelChange)="getData()"></nz-range-picker>
       </div>
     </div>
   </div>

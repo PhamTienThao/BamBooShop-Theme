@@ -32,4 +32,7 @@ export class ReportService {
       }
     });
   }
+  getMenuNotification() {
+    return this.http.get(AppRoutingApi.Report.Router_Prefix + "/menu-notification");
+  }
 }

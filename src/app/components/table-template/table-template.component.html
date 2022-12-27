@@ -5,7 +5,7 @@
 </div>
 <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData" nzTableLayout="fixed"
     [nzSize]="tableSize" (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
-    [nzScroll]="{ x: '80vh', y: '45vh' }">
+    [nzScroll]="{ x: 'auto', y: '45vh' }">
     <thead>
         <tr>
             <ng-container *ngIf="multiColSelect">
@@ -14,7 +14,8 @@
             </ng-container>
             <th *ngFor="let item of columnsTable" class="{{item.textClass != null? item.textClass : 'text-center'}}"
                 [(nzSortOrder)]="item.sortOrder" [nzSortFn]="item.sortFn" [nzFilters]="item.listOfFilter"
-                [nzFilterFn]="item.filterFn">
+                [nzFilterFn]="item.filterFn"       [ngStyle]="{'max-width': item.width}">
+
                 {{item.name}}
             </th>
             <ng-container *ngIf="editDeleteAction">

@@ -47,11 +47,11 @@ const routes: Routes = [
         path: 'dang-xuat',
         component: LogoutComponent,
       },
-      {
-        path: "quen-mat-khau",
-        canActivate: [AuthGuardService],
-        component: ForgotPasswordComponent
-      },
+      // {
+      //   path: "quen-mat-khau",
+      //   canActivate: [AuthGuardService],
+      //   component: ForgotPasswordComponent
+      // },
       {
         path: 'gio-hang',
         canActivate: [AuthGuardService],
@@ -69,6 +69,10 @@ const routes: Routes = [
       {
         path: 'danh-sach-bai-viet',
         component: ArticleCategoryComponent,
+      },
+      {
+        path: 'quen-mat-khau',
+        component: ForgotPasswordComponent,
       },
       {
         path: 'bai-viet',

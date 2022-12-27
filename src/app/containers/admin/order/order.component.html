@@ -48,14 +48,14 @@
     <div class="input-product-header">
       <div class="m-b-10 m-r-20 search-product">
         <nz-input-group [nzPrefix]="prefixTemplate">
-          <input type="text" nz-input placeholder="Mã đơn hàng, tên KH" [(ngModel)]="filter.keySearch">
+          <input type="text" nz-input placeholder="Mã đơn hàng, tên KH" [(ngModel)]="filter.keySearch" (ngModelChange)="getData()">
         </nz-input-group>
         <ng-template #prefixTemplate>
           <i nz-icon nzType="search" class="opacity-05"></i>
         </ng-template>
       </div>
       <div class="select-product">
-        <nz-select [(ngModel)]="filter.status" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Tất cả">
+        <nz-select [(ngModel)]="filter.status" class="width-full" nzAllowClear nzSize="default" nzPlaceHolder="Tất cả" (ngModelChange)="getData()">
           <nz-option nzValue="10" nzLabel="Chờ xác nhận"></nz-option>
           <nz-option nzValue="20" nzLabel="Đã xác nhận"></nz-option>
           <nz-option nzValue="30" nzLabel="Đang vận chuyển"></nz-option>
@@ -68,7 +68,7 @@
         margin-right: 10px;
         width: 28%;
         align-self: center;  font-weight: 500;"> Ngày đặt hàng</span>
-        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'"></nz-range-picker>
+        <nz-range-picker [nzPlaceHolder]="['Từ ngày','Đến ngày']" [(ngModel)]="filter.rangeDate" [nzFormat]="'dd-MM-yyyy'" (ngModelChange)="getData()"></nz-range-picker>
       </div>
     </div>
   </div>

@@ -7,13 +7,16 @@
       <div *ngFor=" let item of menuDisplay">
         <li *ngIf="item.sub; else noSub" nz-submenu nzTitle="{{item.title}}" nzIcon="{{item.icon}}">
           <ul>
-            <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)" nz-menu-item> {{sub.sub_title}}</li>
+            <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)"
+              nz-menu-item> {{sub.sub_title}} {{sub.notificationData? '('+ sub.notificationData +')' : ''}}
+            </li>
           </ul>
         </li>
         <ng-template #noSub>
           <li (click)="navigate(item.navigate, item.title)" nz-menu-item>
             <i nz-icon nzType="{{item.icon}}"></i>
-            <span> {{item.title}} </span>
+            <span> {{item.title}} {{item.notificationData? '('+ item.notificationData + ')' : ''}}
+            </span>
           </li>
         </ng-template>
       </div>
@@ -21,9 +24,11 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"></i>
       <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item nzTheme="outline" nz-popconfirm nzPopconfirmTitle="Đăng xuất" (nzOnConfirm)="logout()" nzPopconfirmPlacement="topRight">
+        <li nz-menu-item nzTheme="outline" nz-popconfirm nzPopconfirmTitle="Đăng xuất" (nzOnConfirm)="logout()"
+          nzPopconfirmPlacement="topRight">
           <i nz-icon nzType="logout"></i>
         </li>
       </ul>
