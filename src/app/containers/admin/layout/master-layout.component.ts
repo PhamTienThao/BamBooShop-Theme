@@ -19,7 +19,7 @@ export class MasterLayoutComponent implements OnInit {
   ) {}
   title: string = 'Dashboard';
   menuDisplay: any[] = [];
-
+  notificationData: number | undefined;
   notification: any;
 
   ngOnInit() {
@@ -39,6 +39,7 @@ export class MasterLayoutComponent implements OnInit {
             title: 'Đơn hàng',
             icon: 'shopping-cart',
             sub: true,
+            notificationData: this.notification?.WipOrders,
             sub_menu: [
               {
                 sub_nav: '/admin/don-hang/don-hang-can-xu-ly',
@@ -48,7 +49,7 @@ export class MasterLayoutComponent implements OnInit {
               {
                 sub_nav: '/admin/don-hang',
                 sub_title: 'Danh sách đơn hàng',
-                notificationData: this.notification?.Orders,
+                // notificationData: this.notification?.Orders,
               },
             ],
           },
@@ -160,7 +161,7 @@ export class MasterLayoutComponent implements OnInit {
         ];
       },
       error: (err) => {
-        this.messageService.error(err);
+        this.messageService.error('Không thành công!');
         [
           {
             navigate: '/admin',

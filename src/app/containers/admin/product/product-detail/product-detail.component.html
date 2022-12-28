@@ -89,7 +89,7 @@
             <nz-form-item>
               <nz-form-label nzRequired>Alias </nz-form-label>
               <nz-form-control nzErrorTip="Không được để trống!">
-                <textarea type="text" nz-input formControlName="Alias"></textarea>
+                <input type="text" nz-input formControlName="Alias">
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -191,10 +191,9 @@
                       <nz-form-control nzErrorTip="Không được để trống!">
                         <nz-select nzMode="multiple" formControlName="ProductRelateds">
                           <nz-option *ngFor="let product of allProducts" nzCustomContent [nzValue]="product.Id" [nzLabel]="product.Name">
-                            <img class="img-product-select" nz-image 
-                            [nzSrc]="(product.ImageCloudLink == null? product.Image: product.ImageCloudLink) | pipeHostImage" alt="" /> 
-                            {{product.Name}}
-                          </nz-option>
+                            <img class="img-product-select" nz-image
+                              [nzSrc]="(product.ImageCloudLink == null? product.Image: product.ImageCloudLink) | pipeHostImage" alt="" />
+                            {{product.Name}} </nz-option>
                         </nz-select>
                       </nz-form-control>
                     </nz-form-item>

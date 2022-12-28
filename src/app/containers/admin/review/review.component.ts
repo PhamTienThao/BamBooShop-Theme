@@ -25,7 +25,7 @@ export class ReviewComponent implements OnInit {
     private reviewService: ReviewService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getData();
@@ -55,7 +55,7 @@ export class ReviewComponent implements OnInit {
           this.displayData = this.datas;
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -81,24 +81,30 @@ export class ReviewComponent implements OnInit {
           this.frmDetail.visible = false;
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
 
   filterChange() {
-    var keySearch = this.filter.keySearch.toLowerCase()
+    var keySearch = this.filter.keySearch.toLowerCase();
     if (this.filter.status == null) {
-      this.displayData = this.datas.filter(x => x.Product?.Name.toLowerCase().includes(keySearch)
-        || x.Product?.Alias.toLowerCase().includes(keySearch)
-        || x.CreatedBy?.toLowerCase().includes(keySearch))
+      this.displayData = this.datas.filter(
+        (x) =>
+          x.Product?.Name.toLowerCase().includes(keySearch) ||
+          x.Product?.Alias.toLowerCase().includes(keySearch) ||
+          x.CreatedBy?.toLowerCase().includes(keySearch)
+      );
+    } else {
+      this.displayData = this.datas.filter(
+        (d) => d.Status == this.filter.status
+      );
+      this.displayData = this.displayData.filter(
+        (d) =>
+          d.Product?.Name.toLowerCase().includes(keySearch) ||
+          d.Product?.Alias.toLowerCase().includes(keySearch) ||
+          d.CreatedBy?.toLowerCase().includes(keySearch)
+      );
     }
-    else {
-      this.displayData = this.datas.filter(d => d.Status == this.filter.status);
-      this.displayData = this.displayData.filter(d => d.Product?.Name.toLowerCase().includes(keySearch)
-        || d.Product?.Alias.toLowerCase().includes(keySearch)
-        || d.CreatedBy?.toLowerCase().includes(keySearch))
-    }
-
   }
 }

@@ -18,7 +18,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @ViewChild('frmDetail', { static: true }) frmDetail!: ProductDetailComponent;
-  @ViewChild('productTable', { static: true }) productTable!: TableTemplateComponent;
+  @ViewChild('productTable', { static: true })
+  productTable!: TableTemplateComponent;
 
   datas: Product[] = [];
   filterDatas: Product[] = [];
@@ -33,7 +34,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   filter = {
     keySearch: '',
     menuId: null,
-    highLight: null
+    highLight: null,
   };
   addEditComponent = ProductDetailComponent;
   constructor(
@@ -42,9 +43,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService, // private tableSvc: TableService
     private readonly route: ActivatedRoute
-  ) {
-
-  }
+  ) {}
 
   ngOnDestroy(): void {
     this.onDestroy$.next(true);
@@ -70,7 +69,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       },
       error: (err: any) => {
         this.messageService.error(err.error.message);
-      }
+      },
     });
   }
   tableInit() {
@@ -97,7 +96,8 @@ export class ProductComponent implements OnInit, OnDestroy {
         //   { text: 'laptop', value: 'a' },
         //   { text: 'Jim', value: 'HMTien' }
         // ],
-        filterFn: (list: string[], item: any) => list.some(name => item.Name.indexOf(name) !== -1)
+        filterFn: (list: string[], item: any) =>
+          list.some((name) => item.Name.indexOf(name) !== -1),
       },
       {
         name: 'Danh mục',
@@ -107,7 +107,8 @@ export class ProductComponent implements OnInit, OnDestroy {
         //listOfFilter: menuFilterList,
         //sortOrder: null,
         sortFn: (a: any, b: any) => a.Menu?.Name.localeCompare(b.Menu?.Name),
-        filterFn: (list: string[], item: any) => list.some(name => item.Menu?.Name.indexOf(name) !== -1)
+        filterFn: (list: string[], item: any) =>
+          list.some((name) => item.Menu?.Name.indexOf(name) !== -1),
       },
       {
         name: 'Giá niêm yết',
@@ -129,9 +130,10 @@ export class ProductComponent implements OnInit, OnDestroy {
         type: 'bool',
         listOfFilter: [
           { text: 'True', value: true },
-          { text: 'False', value: false }
+          { text: 'False', value: false },
         ],
-        filterFn: (list: string[], item: any) => list.some(name => item.Selling == name)
+        filterFn: (list: string[], item: any) =>
+          list.some((name) => item.Selling == name),
       },
       {
         name: 'Trạng thái',
@@ -152,14 +154,14 @@ export class ProductComponent implements OnInit, OnDestroy {
         type: 'number',
         //sortOrder: null,
         sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
-      }
+      },
     ];
-    this.menuService.loadAllProductMenu().subscribe(resp => {
+    this.menuService.loadAllProductMenu().subscribe((resp) => {
       if (resp) {
         var menuFilterList: any[] = [];
-        resp.forEach(item => {
-          menuFilterList.push({ text: item.name, value: item.id })
-        })
+        resp.forEach((item) => {
+          menuFilterList.push({ text: item.name, value: item.id });
+        });
         this.dataColumns = [
           {
             name: 'Hình ảnh',
@@ -184,7 +186,8 @@ export class ProductComponent implements OnInit, OnDestroy {
             //   { text: 'laptop', value: 'a' },
             //   { text: 'Jim', value: 'HMTien' }
             // ],
-            filterFn: (list: string[], item: any) => list.some(name => item.Name.indexOf(name) !== -1)
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.Name.indexOf(name) !== -1),
           },
           {
             name: 'Danh mục',
@@ -194,8 +197,10 @@ export class ProductComponent implements OnInit, OnDestroy {
             with: '200px',
             listOfFilter: menuFilterList,
             //sortOrder: null,
-            sortFn: (a: any, b: any) => a.Menu?.Name.localeCompare(b.Menu?.Name),
-            filterFn: (list: string[], item: any) => list.some(name => item.MenuId == name)
+            sortFn: (a: any, b: any) =>
+              a.Menu?.Name.localeCompare(b.Menu?.Name),
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.MenuId == name),
           },
           {
             name: 'Giá niêm yết',
@@ -217,9 +222,10 @@ export class ProductComponent implements OnInit, OnDestroy {
             type: 'bool',
             listOfFilter: [
               { text: 'True', value: true },
-              { text: 'False', value: false }
+              { text: 'False', value: false },
             ],
-            filterFn: (list: string[], item: any) => list.some(name => item.Selling == name)
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.Selling == name),
           },
           {
             name: 'Trạng thái',
@@ -240,7 +246,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             type: 'number',
             //sortOrder: null,
             sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
-          }
+          },
         ];
       } else {
         this.dataColumns = [
@@ -266,7 +272,8 @@ export class ProductComponent implements OnInit, OnDestroy {
             //   { text: 'laptop', value: 'a' },
             //   { text: 'Jim', value: 'HMTien' }
             // ],
-            filterFn: (list: string[], item: any) => list.some(name => item.Name.indexOf(name) !== -1)
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.Name.indexOf(name) !== -1),
           },
           {
             name: 'Danh mục',
@@ -275,8 +282,10 @@ export class ProductComponent implements OnInit, OnDestroy {
             type: 'text',
             //listOfFilter: menuFilterList,
             //sortOrder: null,
-            sortFn: (a: any, b: any) => a.Menu?.Name.localeCompare(b.Menu?.Name),
-            filterFn: (list: string[], item: any) => list.some(name => item.Menu?.Name.indexOf(name) !== -1)
+            sortFn: (a: any, b: any) =>
+              a.Menu?.Name.localeCompare(b.Menu?.Name),
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.Menu?.Name.indexOf(name) !== -1),
           },
           {
             name: 'Giá niêm yết',
@@ -298,9 +307,10 @@ export class ProductComponent implements OnInit, OnDestroy {
             type: 'bool',
             listOfFilter: [
               { text: 'True', value: true },
-              { text: 'False', value: false }
+              { text: 'False', value: false },
             ],
-            filterFn: (list: string[], item: any) => list.some(name => item.Selling == name)
+            filterFn: (list: string[], item: any) =>
+              list.some((name) => item.Selling == name),
           },
           {
             name: 'Trạng thái',
@@ -321,7 +331,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             type: 'number',
             //sortOrder: null,
             sortFn: (a: any, b: any) => a.Quantity - b.Quantity,
-          }
+          },
         ];
       }
     });
@@ -330,7 +340,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.filter = {
       keySearch: '',
       menuId: null,
-      highLight: null
+      highLight: null,
     };
     this.getData();
   }
@@ -359,9 +369,8 @@ export class ProductComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           this.messageService.error(error.error.message);
-        }
-      }
-      );
+        },
+      });
   }
 
   // search(): void {
@@ -381,9 +390,12 @@ export class ProductComponent implements OnInit, OnDestroy {
     //     || x.Alias.toLowerCase().includes(keySearch)
     //     || x.Price.toString().toLowerCase().includes(keySearch))
     // }
-    this.filterDatas = this.datas.filter(x => x.Name.toLowerCase().includes(keySearch)
-      || x.Alias.toLowerCase().includes(keySearch)
-      || x.Price.toString().toLowerCase().includes(keySearch))
+    this.filterDatas = this.datas.filter(
+      (x) =>
+        x.Name.toLowerCase().includes(keySearch) ||
+        x.Alias.toLowerCase().includes(keySearch) ||
+        x.Price.toString().toLowerCase().includes(keySearch)
+    );
   }
   changeMenuItem() {
     this.getData();
@@ -405,32 +417,29 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.productTable.setOfCheckedId.delete(product.Id);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
   deleteListProduct(productId: Product[]) {
     var listOfProducts: number[] = [];
-    productId.forEach(item => {
-      listOfProducts.push(item.Id)
-    })
+    productId.forEach((item) => {
+      listOfProducts.push(item.Id);
+    });
     if (listOfProducts.length <= 1) {
-      this.productService
-        .deleteByListId(listOfProducts)
-        .subscribe({
-          next: (resp: any) => {
-            this.messageService.success('Xóa thành công');
-            this.getData();
-            this.refreshTable(true);
-          },
-          error: (err) => {
-            this.messageService.error(err);
-          },
-        });
+      this.productService.deleteByListId(listOfProducts).subscribe({
+        next: (resp: any) => {
+          this.messageService.success('Xóa thành công');
+          this.getData();
+          this.refreshTable(true);
+        },
+        error: (err) => {
+          this.messageService.error('Không thành công!');
+        },
+      });
     } else {
       this.messageService.success('Đã xảy ra lỗi');
     }
-
   }
   addNew() {
     this.frmDetail.isAddNew = true;
@@ -461,7 +470,7 @@ export class ProductComponent implements OnInit, OnDestroy {
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -483,7 +492,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     } else {
@@ -502,7 +511,7 @@ export class ProductComponent implements OnInit, OnDestroy {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     }

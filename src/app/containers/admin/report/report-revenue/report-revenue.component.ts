@@ -50,7 +50,7 @@ export class ReportRevenueComponent implements OnInit {
         });
       },
       error: (err) => {
-        this.messageService.error(err);
+        this.messageService.error('Không thành công!');
       },
     });
   }

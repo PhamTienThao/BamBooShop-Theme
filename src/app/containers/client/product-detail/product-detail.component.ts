@@ -87,7 +87,8 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getByAlias(this.productAlias).subscribe({
       next: (resp: any) => {
         this.product = JSON.parse(resp['data']);
-        if(this.product.ImageCloudLink !=null) this.mainImage = this.product.ImageCloudLink;
+        if (this.product.ImageCloudLink != null)
+          this.mainImage = this.product.ImageCloudLink;
         else this.mainImage = this.product.Image;
       },
       error: (err: any) => {
@@ -98,7 +99,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  showImg(src: string ) {
+  showImg(src: string) {
     this.mainImage = src;
   }
 

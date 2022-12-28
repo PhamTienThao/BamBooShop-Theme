@@ -212,7 +212,7 @@ export class CartComponent implements OnInit {
       }
     }
     if (this.formData.invalid) {
-      this.toastrService.error('Please fill all the information fields', '', {
+      this.toastrService.error('Hãy điền đầy đủ thông tin nhận hàng!', '', {
         positionClass: 'toast-bottom-right',
       });
       return;
@@ -258,7 +258,7 @@ export class CartComponent implements OnInit {
     if (!city) {
       return;
     }
-    console.log(city)
+    console.log(city);
     // cách 1
     // const search = this.vietnamData.filter((data) => data.city === city);
     // console.log('search', search);

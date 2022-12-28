@@ -61,7 +61,7 @@ export class ReportComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }

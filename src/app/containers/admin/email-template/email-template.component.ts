@@ -45,7 +45,7 @@ export class EmailTemplateComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -65,7 +65,7 @@ export class EmailTemplateComponent implements OnInit {
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -86,7 +86,7 @@ export class EmailTemplateComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }

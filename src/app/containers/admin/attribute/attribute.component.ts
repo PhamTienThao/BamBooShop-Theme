@@ -16,7 +16,7 @@ export class AttributeComponent implements OnInit {
   frmDetail!: AttributeDetailComponent;
 
   datas: Attribute[] = [];
-  tableColumns: any[] =[];
+  tableColumns: any[] = [];
   filter = {
     keySearch: '',
   };
@@ -56,7 +56,7 @@ export class AttributeComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -76,7 +76,7 @@ export class AttributeComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -112,7 +112,7 @@ export class AttributeComponent implements OnInit {
             this.frmDetail.visible = false;
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     } else {
@@ -131,7 +131,7 @@ export class AttributeComponent implements OnInit {
             this.frmDetail.visible = false;
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     }

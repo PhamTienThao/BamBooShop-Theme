@@ -44,7 +44,7 @@ export class ArticleComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -64,7 +64,7 @@ export class ArticleComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -95,7 +95,7 @@ export class ArticleComponent implements OnInit {
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -117,7 +117,7 @@ export class ArticleComponent implements OnInit {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     } else {
@@ -136,7 +136,7 @@ export class ArticleComponent implements OnInit {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     }

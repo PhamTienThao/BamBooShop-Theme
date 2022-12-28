@@ -26,7 +26,7 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
+    reader.onerror = (error) => reject('Không thành công!');
   });
 
 @Component({
@@ -70,7 +70,7 @@ export class ProductDetailComponent implements OnInit {
       Id: [0],
       MenuId: [0, Validators.required],
       Name: ['', Validators.required],
-      Alias: ['', Validators.required],
+      Alias: ['', Validators.required, { disabled: true }],
       Image: [''],
       Index: [1],
       Status: [10, Validators.required],
@@ -98,7 +98,8 @@ export class ProductDetailComponent implements OnInit {
     this.fileList = [];
     this.srcImage = product.Image;
     this.srcCloudImg = product.ImageCloudLink;
-    if(this.srcCloudImg != null && this.srcCloudImg.length > 0) this.srcImage = this.srcCloudImg;
+    if (this.srcCloudImg != null && this.srcCloudImg.length > 0)
+      this.srcImage = this.srcCloudImg;
     this.formData.patchValue(product);
 
     if (
@@ -109,7 +110,7 @@ export class ProductDetailComponent implements OnInit {
       this.fileList = product.ProductImages.map(
         (x: ProductImage, i: number) => {
           var imgUrl = '';
-          if(x.ImageCloudLink != null && x.ImageCloudLink.length > 0)
+          if (x.ImageCloudLink != null && x.ImageCloudLink.length > 0)
             imgUrl = x.ImageCloudLink;
           else imgUrl = environment.hostImage + x.Image;
           return {
@@ -156,7 +157,7 @@ export class ProductDetailComponent implements OnInit {
         this.allProducts = JSON.parse(resp['data']);
       },
       error: (err) => {
-        this.messageService.error(err);
+        this.messageService.error('Không thành công!');
       },
     });
   }
@@ -167,7 +168,7 @@ export class ProductDetailComponent implements OnInit {
         this.attribute = JSON.parse(resp['data']);
       },
       error: (err) => {
-        this.messageService.error(err);
+        this.messageService.error('Không thành công!');
       },
     });
   }
@@ -235,7 +236,7 @@ export class ProductDetailComponent implements OnInit {
 
       dataForm.ProductAttributes = productAttributes;
     }
-    let productImages: ProductImage[] = this.fileList.map(x => {
+    let productImages: ProductImage[] = this.fileList.map((x) => {
       return {
         Id: 0,
         ProductId: 0,
@@ -243,7 +244,7 @@ export class ProductDetailComponent implements OnInit {
         ImageCloudLink: '',
       };
     });
-    console.log(productImages)
+    console.log(productImages);
     dataForm.ProductImages = productImages;
 
     if (dataForm.ProductRelateds != null) {

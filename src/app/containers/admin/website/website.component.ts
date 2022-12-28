@@ -64,7 +64,7 @@ export class WebsiteComponent implements OnInit {
           this.formData.patchValue(website);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -100,7 +100,7 @@ export class WebsiteComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }

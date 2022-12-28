@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   orderStatus!: OrderStatus;
 
   pieChartOption!: EChartsOption;
-  lineChartOption!: EChartsOption; 
+  lineChartOption!: EChartsOption;
   barChartOption!: EChartsOption;
 
   constructor(
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
     private productService: ProductService,
     private spinner: NgxSpinnerService,
     private messageService: NzMessageService
-  ) { }
+  ) {}
   ngOnInit() {
     this.getData();
     this.getTopOrderCustomer();
@@ -54,11 +54,26 @@ export class DashboardComponent implements OnInit {
         for (var i = 0; i < this.dataHighlight.OrderQtyByStatus.length; i++) {
           if (this.dataHighlight.OrderQtyByStatus[i] > 0) {
             pieData = [
-              { value: this.dataHighlight.OrderQtyByStatus[0], name: OrderStatus.toString(10) },
-              { value: this.dataHighlight.OrderQtyByStatus[1], name: OrderStatus.toString(20) },
-              { value: this.dataHighlight.OrderQtyByStatus[2], name: OrderStatus.toString(30) },
-              { value: this.dataHighlight.OrderQtyByStatus[3], name: OrderStatus.toString(40) },
-              { value: this.dataHighlight.OrderQtyByStatus[4], name: OrderStatus.toString(50) }
+              {
+                value: this.dataHighlight.OrderQtyByStatus[0],
+                name: OrderStatus.toString(10),
+              },
+              {
+                value: this.dataHighlight.OrderQtyByStatus[1],
+                name: OrderStatus.toString(20),
+              },
+              {
+                value: this.dataHighlight.OrderQtyByStatus[2],
+                name: OrderStatus.toString(30),
+              },
+              {
+                value: this.dataHighlight.OrderQtyByStatus[3],
+                name: OrderStatus.toString(40),
+              },
+              {
+                value: this.dataHighlight.OrderQtyByStatus[4],
+                name: OrderStatus.toString(50),
+              },
             ];
             isNoDatPieChart = false;
             break;
@@ -72,17 +87,23 @@ export class DashboardComponent implements OnInit {
           // },
           tooltip: {
             trigger: 'item',
-            formatter: '{a} <br/>{b} : {c} ({d}%)'
+            formatter: '{a} <br/>{b} : {c} ({d}%)',
           },
           toolbox: {
             feature: {
-              saveAsImage: {}
-            }
+              saveAsImage: {},
+            },
           },
           legend: {
             bottom: 10,
             left: 'center',
-            data: ['Chờ xác nhận', 'Đã xác nhận', 'Đang vận chuyển', 'Đã giao', 'Đã hủy']
+            data: [
+              'Chờ xác nhận',
+              'Đã xác nhận',
+              'Đang vận chuyển',
+              'Đã giao',
+              'Đã hủy',
+            ],
           },
           series: [
             {
@@ -91,69 +112,99 @@ export class DashboardComponent implements OnInit {
               center: ['50%', '50%'],
               selectedMode: 'single',
               label: {
-                show: false
+                show: false,
               },
               data: pieData,
               emphasis: {
                 itemStyle: {
                   shadowBlur: 10,
                   shadowOffsetX: 0,
-                  shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-              }
-            }]
+                  shadowColor: 'rgba(0, 0, 0, 0.5)',
+                },
+              },
+            },
+          ],
         };
 
         //barChartOption
-        var barData = this.dataHighlight.Revenues.map((x, index) => { return ['T' + (index + 1), x]; });
+        var barData = this.dataHighlight.Revenues.map((x, index) => {
+          return ['T' + (index + 1), x];
+        });
         this.barChartOption = {
           tooltip: {
             trigger: 'axis',
             axisPointer: {
-              type: 'shadow'
-            }
+              type: 'shadow',
+            },
           },
           toolbox: {
             feature: {
-              saveAsImage: {}
-            }
+              saveAsImage: {},
+            },
           },
           xAxis: {
             type: 'category',
-            data: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12']
+            data: [
+              'T1',
+              'T2',
+              'T3',
+              'T4',
+              'T5',
+              'T6',
+              'T7',
+              'T8',
+              'T9',
+              'T10',
+              'T11',
+              'T12',
+            ],
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
           },
           series: [
             {
               data: barData,
-              type: 'bar'
-            }
-          ]
+              type: 'bar',
+            },
+          ],
         };
 
         //lineChartOption
-        var lineChartTotalOrder: any[] = this.dataHighlight.OrderQty.map((x, index) => {return x});
-        var lineChartXAxis: any[] = this.dataHighlight.OrderQty.map((x, index) => {return 'T' + (index + 1)});
+        var lineChartTotalOrder: any[] = this.dataHighlight.OrderQty.map(
+          (x, index) => {
+            return x;
+          }
+        );
+        var lineChartXAxis: any[] = this.dataHighlight.OrderQty.map(
+          (x, index) => {
+            return 'T' + (index + 1);
+          }
+        );
         this.lineChartOption = {
           xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: lineChartXAxis
+            data: lineChartXAxis,
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
           },
           toolbox: {
             feature: {
-              saveAsImage: {}
-            }
+              saveAsImage: {},
+            },
           },
           legend: {
             bottom: 0,
-            data: ['Tổng Đơn hàng', OrderStatus.toString(10), OrderStatus.toString(20), 
-            OrderStatus.toString(30), OrderStatus.toString(40), OrderStatus.toString(50)]
+            data: [
+              'Tổng Đơn hàng',
+              OrderStatus.toString(10),
+              OrderStatus.toString(20),
+              OrderStatus.toString(30),
+              OrderStatus.toString(40),
+              OrderStatus.toString(50),
+            ],
           },
           series: [
             {
@@ -165,33 +216,33 @@ export class DashboardComponent implements OnInit {
               name: OrderStatus.toString(10),
               data: this.dataHighlight.OrderQtyByStatusInYear[0],
               type: 'line',
-             
             },
             {
               name: OrderStatus.toString(20),
               data: this.dataHighlight.OrderQtyByStatusInYear[1],
-              type: 'line',             
+              type: 'line',
             },
             {
               name: OrderStatus.toString(30),
               data: this.dataHighlight.OrderQtyByStatusInYear[2],
-              type: 'line',              
+              type: 'line',
             },
             {
               name: OrderStatus.toString(40),
               data: this.dataHighlight.OrderQtyByStatusInYear[3],
-              type: 'line',              
+              type: 'line',
             },
             {
               name: OrderStatus.toString(50),
               data: this.dataHighlight.OrderQtyByStatusInYear[4],
-              type: 'line',             
-            }
-          ]
+              type: 'line',
+            },
+          ],
         };
-
       },
-      error: (error) => {this.messageService.error(error);},
+      error: (error) => {
+        this.messageService.error('Không thành công!');
+      },
     });
   }
 
@@ -209,13 +260,12 @@ export class DashboardComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err: any) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
 
-  onSelect(event: any) {
-  }
+  onSelect(event: any) {}
   getTopSellProduct() {
     this.spinner.show();
     this.productService.getTopProductBestSeller().subscribe({
@@ -224,7 +274,7 @@ export class DashboardComponent implements OnInit {
         this.spinner.hide();
       },
       error: (err: any) => {
-        this.messageService.error(err);
+        this.messageService.error('Không thành công!');
       },
     });
   }
@@ -245,7 +295,7 @@ export class DashboardComponent implements OnInit {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     } else {
@@ -264,7 +314,7 @@ export class DashboardComponent implements OnInit {
             this.getData();
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     }
@@ -286,7 +336,7 @@ export class DashboardComponent implements OnInit {
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -299,6 +349,6 @@ export interface ReportHighlight {
   SalesRevenue: number;
   OrderQty: number[];
   OrderQtyByStatus: number[];
-  OrderQtyByStatusInYear:any[];
+  OrderQtyByStatusInYear: any[];
   Revenues: number[];
 }

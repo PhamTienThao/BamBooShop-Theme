@@ -193,6 +193,13 @@
 .payment_icon {
   height: 40px;
 }
+
+::ng-deep .ant-form label {
+  font-size: 16px !important;
+}
+::ng-deep .cart-main-area .table-content table tbody > tr td.product-name a {
+  font-weight: 600 !important;
+}
 /* Responsvie */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

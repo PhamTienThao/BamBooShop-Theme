@@ -41,7 +41,7 @@ export class GalleryComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -61,7 +61,7 @@ export class GalleryComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -91,7 +91,7 @@ export class GalleryComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }

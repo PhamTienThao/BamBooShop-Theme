@@ -5,17 +5,44 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" class="menu-left">
       <div *ngFor=" let item of menuDisplay">
-        <li *ngIf="item.sub; else noSub" nz-submenu nzTitle="{{item.title}}" nzIcon="{{item.icon}}">
+        <li *ngIf="item.sub && item.notificationData && item.title == 'Đơn hàng'; else notOrder" nz-submenu nzTitle="{{item.title}}"
+          nzIcon="{{item.icon}}">
+          <p class="badge-noti-outside"> {{item.notificationData}}</p>
           <ul>
-            <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)"
-              nz-menu-item> {{sub.sub_title}} {{sub.notificationData? '('+ sub.notificationData +')' : ''}}
-            </li>
+            <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)" nz-menu-item> {{sub.sub_title}} <p
+                *ngIf="sub.notificationData; else noNotifiSub" class="badge-noti-sub"> {{sub.notificationData}} </p>
+              <ng-template #noNotifiSub>
+                <p class="badge-no-noti-sub"> {{sub.notificationData}} </p>
+              </ng-template>
           </ul>
         </li>
+        <ng-template #notOrder>
+          <li *ngIf="item.sub; else noSub" nz-submenu nzTitle="{{item.title}}" nzIcon="{{item.icon}}">
+            <ul>
+              <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)" nz-menu-item> {{sub.sub_title}} <p
+                  *ngIf="sub.notificationData; else noNotifiSub" class="badge-noti-sub"> {{sub.notificationData}} </p>
+                <ng-template #noNotifiSub>
+                  <p class="badge-no-noti-sub"> {{sub.notificationData}} </p>
+                </ng-template>
+            </ul>
+          </li>
+        </ng-template>
+        <!-- <li *ngIf="item.sub && item.notificationData" nz-submenu nzTitle="{{item.title}}" nzIcon="{{item.icon}}">
+          <ul>
+            <li *ngFor="let sub of item.sub_menu" (click)="navigate(sub.sub_nav, item.title, sub.sub_title)" nz-menu-item> {{sub.sub_title}} <p
+                *ngIf="sub.notificationData; else noNotifiSub" class="badge-noti-sub"> {{sub.notificationData}} </p>
+              <ng-template #noNotifiSub>
+                <p class="badge-no-noti-sub"> {{sub.notificationData}} </p>
+              </ng-template>
+          </ul>
+        </li> -->
         <ng-template #noSub>
           <li (click)="navigate(item.navigate, item.title)" nz-menu-item>
             <i nz-icon nzType="{{item.icon}}"></i>
-            <span> {{item.title}} {{item.notificationData? '('+ item.notificationData + ')' : ''}}
+            <span> {{item.title}} <p *ngIf="item.notificationData; else noNotifi" class="badge-noti"> {{item.notificationData}} </p>
+              <ng-template #noNotifi>
+                <p class="badge-no-noti"> {{item.notificationData}} </p>
+              </ng-template>
             </span>
           </li>
         </ng-template>
@@ -24,11 +51,9 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        (click)="isCollapsed = !isCollapsed"></i>
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
       <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item nzTheme="outline" nz-popconfirm nzPopconfirmTitle="Đăng xuất" (nzOnConfirm)="logout()"
-          nzPopconfirmPlacement="topRight">
+        <li nz-menu-item nzTheme="outline" nz-popconfirm nzPopconfirmTitle="Đăng xuất" (nzOnConfirm)="logout()" nzPopconfirmPlacement="topRight">
           <i nz-icon nzType="logout"></i>
         </li>
       </ul>

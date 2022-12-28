@@ -7,7 +7,7 @@ import { AuthenticationAdminService } from '../auth/authentication-admin.service
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   formData!: FormGroup;
@@ -18,14 +18,13 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ngZone: NgZone,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.formData = this.formBuilder.group({
-      UserName: ["", Validators.required],
-      Password: ["", Validators.required],
-      Remember: [true]
+      UserName: ['', Validators.required],
+      Password: ['', Validators.required],
+      Remember: [true],
     });
   }
 
@@ -44,18 +43,16 @@ export class LoginComponent implements OnInit {
       .login(this.formData.getRawValue())
       .subscribe({
         next: (data) => {
-          this.messageService.success("Đăng nhập thành công");
-          this.navigate("/admin")
+          this.messageService.success('Đăng nhập thành công');
+          this.navigate('/admin');
         },
         error: (error) => {
-          this.messageService.error(error.error.message);
-        }
-      }
-      );
+          this.messageService.error('Đăng nhập không thành công!');
+        },
+      });
   }
 
   navigate(path: string): void {
     this.ngZone.run(() => this.router.navigateByUrl(path)).then();
   }
-
 }

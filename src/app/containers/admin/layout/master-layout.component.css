@@ -142,3 +142,65 @@ nz-content::-webkit-scrollbar-thumb {
   font-size: 14px;
   font-weight: 700;
 }
+.badge-noti,
+.badge-noti-sub {
+  position: absolute;
+  background: red;
+  padding: 2px;
+  right: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+}
+
+.badge-noti {
+  bottom: 15px;
+}
+.badge-no-noti-sub,
+.badge-no-noti {
+  display: none;
+}
+.badge-noti-outside {
+  position: absolute;
+  background: red;
+  padding: 2px;
+  right: 50px;
+  top: 125px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  width: 21px;
+  height: 21px;
+}

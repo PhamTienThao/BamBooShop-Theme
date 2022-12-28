@@ -1,11 +1,12 @@
-:host ::ng-deep div img.lazyloaded {
+:host ::ng-deep div p a img.lazyloaded {
   max-width: 100%;
+  display: block !important;
+  margin: 0 auto !important;
 }
-
-:host ::ng-deep div p > img.lazyloaded {
+:host ::ng-deep div p.lazyloaded {
   text-align: center;
+  display: block;
 }
-
 .section-title-product-detail {
   padding-top: 50px;
   line-height: 2;
@@ -158,7 +159,7 @@
 }
 .small_img {
   width: 100px;
-  height: 115px;
+  height: 100px;
   cursor: pointer;
   border-radius: 5px;
   opacity: 0.5;
@@ -178,7 +179,7 @@
 .big_img {
   position: relative;
   width: 570px;
-  height: 675px;
+  height: 570px;
   border-radius: 7px;
   border: 2px solid #e2e2e2;
 }
@@ -186,7 +187,7 @@
 @media only screen and (min-width: 1200px) and (max-width: 1216px) {
   .small_img {
     width: 100px;
-    height: 115px;
+    height: 100px;
   }
   .small_img_prev li {
     margin: 15px 6px 0 6px;
@@ -196,11 +197,11 @@
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .big_img {
     width: 450px;
-    height: 531px;
+    height: 450px;
   }
   .small_img {
     width: 80px;
-    height: 95px;
+    height: 80px;
   }
   .small_img_prev li {
     margin: 15px 5px 0 5px;
@@ -213,11 +214,11 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .big_img {
     width: 690px;
-    height: 685px;
+    height: 690px;
   }
   .small_img {
     width: 115px;
-    height: 130px;
+    height: 115px;
   }
   .small_img_prev li {
     margin: 15px 7px 0 7px;
@@ -230,11 +231,11 @@
   .big_img {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 100%;
   }
   .small_img {
     width: 90px;
-    height: 105px;
+    height: 90px;
   }
   .small_img_prev li {
     margin: 15px 5px 0 5px;
@@ -245,16 +246,19 @@
   .title-des {
     font-size: 30px;
   }
+  .product-details-content {
+    margin-top: 130px;
+  }
 }
 @media only screen and (max-width: 550px) {
   .big_img {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 100%;
   }
   .small_img {
     width: 80px;
-    height: 95px;
+    height: 80px;
   }
   .small_img_prev li {
     margin: 15px 3px 0 3px;
@@ -271,7 +275,7 @@
   .big_img {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 100%;
     text-align: center;
   }
   .small_img {
@@ -298,7 +302,7 @@
   .big_img {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 100%;
     text-align: center;
   }
   .small_img {

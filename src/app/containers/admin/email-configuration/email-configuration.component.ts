@@ -50,7 +50,7 @@ export class EmailConfigurationComponent implements OnInit {
           this.formData.patchValue(config);
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -81,7 +81,7 @@ export class EmailConfigurationComponent implements OnInit {
           this.getData();
         },
         error: (err) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }

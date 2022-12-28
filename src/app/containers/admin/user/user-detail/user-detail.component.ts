@@ -74,7 +74,7 @@ export class UserDetailComponent implements OnInit {
             this.messageService.success('Cập nhật thành công');
           },
           error: (err) => {
-            this.messageService.error(err);
+            this.messageService.error('Không thành công!');
           },
         });
     }

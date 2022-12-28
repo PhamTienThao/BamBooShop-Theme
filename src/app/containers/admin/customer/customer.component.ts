@@ -44,7 +44,7 @@ export class CustomerComponent implements OnInit {
           this.datas = JSON.parse(resp['data']);
         },
         error: (err: any) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
@@ -64,7 +64,7 @@ export class CustomerComponent implements OnInit {
           this.frmDetail.setForm(JSON.parse(resp['data']));
         },
         error: (err: any) => {
-          this.messageService.error(err);
+          this.messageService.error('Không thành công!');
         },
       });
   }
